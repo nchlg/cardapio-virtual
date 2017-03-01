@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cardápio Virtual</string>
+    <!-- Search/Busca -->
+    <string name="app_label">Cardápio Virtual</string>
+    <string name="res_search_hint">Buscar restaurantes</string>
+    <string name="res_search_descr">Barra de busca de restaurantes</string>
+    <string name="res_search_icon_descr">Ícone de busca de restaurantes</string>
+    <string name="voice_language">pt</string>
+
+    <!-- Strings related to the tabs -->
+    <string name="tab_fav">Favoritos</string>
+    <string name="tab_restaurants">Restaurantes</string>
+    <string name="tab_map">Mapa</string>
+</resources>

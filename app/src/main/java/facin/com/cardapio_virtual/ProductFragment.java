@@ -22,6 +22,7 @@ import org.semanticweb.owlapi.util.SimpleIRIMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -126,12 +127,15 @@ public class ProductFragment extends Fragment {
             try {
                 // TODO: Ler arquivo OWL. Mudar Exception
                 // TODO: Popular lista de produtos
+                // InputStream cardapioFile = getActivity().getAssets().open("pizza.owl");
+                File cardapioFile = new File(getActivity().getFilesDir(), "pizza.owl");
                 // Cria o gerenciador
                 OWLOntologyManager ontologyManager = createOntologyManager();
-                OWLOntology ontology =
-                        ontologyManager.loadOntologyFromOntologyDocument(
-                                IRI.create("ontologyFile"));
-                assert(ontology != null);
+                // OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(IRI.create("ontologyFile"));
+                OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(cardapioFile);
+                if (cardapio != null) {
+
+                }
             // Para múltiplas exceções: catch (IOException | OWLOntologyCreationException e) {
             } catch (OWLOntologyCreationException e) {
                 e.printStackTrace();
@@ -146,6 +150,7 @@ public class ProductFragment extends Fragment {
             ontologyManager.getIRIMappers().add(new AutoIRIMapper(
                     new File(getString(R.string.materialized_ontologies_file)), true));
             return ontologyManager;
+
         }
 
         @Override

@@ -10,12 +10,12 @@
     <string name="title_activity_locais">LocaisActivity</string>
     <string name="large_text">Large text</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings related to the tabs -->
+    <!-- Tabs -->
     <string name="tab_fav">Favourites</string>
     <string name="tab_restaurants">Restaurants</string>
     <string name="tab_map">Map</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Ontology -->
     <string name="materialized_ontologies_file">materializedOntologies</string>
 </resources>

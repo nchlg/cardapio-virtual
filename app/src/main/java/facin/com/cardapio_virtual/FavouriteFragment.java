@@ -154,8 +154,8 @@ public class FavouriteFragment extends Fragment {
                         restaurantsCursor.getString(2),
                         restaurantsCursor.getString(3),
                         restaurantsCursor.getString(4),
-                        Long.parseLong(restaurantsCursor.getString(5)),
-                        Long.parseLong(restaurantsCursor.getString(6)),
+                        Double.parseDouble(restaurantsCursor.getString(5)),
+                        Double.parseDouble(restaurantsCursor.getString(6)),
                         restaurantsCursor.getString(7)
                 );
                 favourites.add(restaurant);

@@ -75,9 +75,15 @@ public class MainActivity extends AppCompatActivity
                 searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
         searchView.setSubmitButtonEnabled(true);
+        //searchView.setOnQueryTextListener(this);
 
         return true;
     }
+
+    /*@Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

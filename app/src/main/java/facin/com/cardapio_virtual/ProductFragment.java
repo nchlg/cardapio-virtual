@@ -12,13 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.semanticweb.owlapi.apibinding.OWLManager;
+/*import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
-import org.semanticweb.owlapi.util.SimpleIRIMapper;
+import org.semanticweb.owlapi.util.SimpleIRIMapper;*/
 
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class ProductFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            new FetchProductTask().execute((Void) null);
+            //new FetchProductTask().execute((Void) null);
             //recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
@@ -120,7 +120,7 @@ public class ProductFragment extends Fragment {
         void onListFragmentInteraction(Product product);
     }
 
-    public class FetchProductTask extends AsyncTask<Void, Void, Boolean> {
+    /*public class FetchProductTask extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -166,5 +166,5 @@ public class ProductFragment extends Fragment {
             // Cria produtos
             return products;
         }*/
-    }
+    //}
 }

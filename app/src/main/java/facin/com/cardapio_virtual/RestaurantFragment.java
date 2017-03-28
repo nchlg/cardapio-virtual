@@ -121,7 +121,7 @@ public class RestaurantFragment extends Fragment {
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                insereDummies();
+                // insereDummies();
                 restaurantsCursor = getActivity().getContentResolver().query(
                         DatabaseContract.RestaurantesEntry.CONTENT_URI,
                         null,
@@ -158,8 +158,8 @@ public class RestaurantFragment extends Fragment {
                         restaurantsCursor.getString(2),
                         restaurantsCursor.getString(3),
                         restaurantsCursor.getString(4),
-                        Long.parseLong(restaurantsCursor.getString(5).trim()),
-                        Long.parseLong(restaurantsCursor.getString(6).trim()),
+                        Double.parseDouble(restaurantsCursor.getString(5).trim()),
+                        Double.parseDouble(restaurantsCursor.getString(6).trim()),
                         restaurantsCursor.getString(7)
                 );
                 restaurants.add(restaurant);

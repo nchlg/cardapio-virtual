@@ -26,7 +26,7 @@ public class Restaurant {
     }
 
     public Restaurant(int primaryKey, String nome, String email, String telefone, String endereco,
-                      long latitude, long longitude, String descricao) {
+                      double latitude, double longitude, String descricao) {
         this.primaryKey = primaryKey;
         this.nome = nome;
         this.email = email;

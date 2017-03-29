@@ -7,6 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/fragment_container"
     tools:context="facin.com.cardapio_virtual.SearchableActivity">
+
+    <!-- <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="facin.com.cardapio_virtual.RestaurantFragment"
+        android:id="@+id/restaunrant_fragment">
+
+    </fragment>-->
 
 </RelativeLayout>

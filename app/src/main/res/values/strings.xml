@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Virtual Menu</string>
     <string name="content_authority">facin.com.cardapio_virtual</string>
-    <!-- Search/Busca -->
     <string name="app_label">Virtual Menu</string>
+    <!-- Search/Busca -->
+    <string name="res_search_label">Search Results</string>
     <string name="res_search_hint">Search restaurants</string>
     <string name="res_search_descr">Restaurants search bar</string>
     <string name="res_search_icon_descr">Restaurants search icon</string>
@@ -18,4 +19,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Ontology -->
     <string name="materialized_ontologies_file">materializedOntologies</string>
+    <!-- Map -->
+    <string name="google_maps_api_key">AIzaSyAOaHPomF2FL3aTlYkDxbc2GvhSi_t46pU</string>
 </resources>

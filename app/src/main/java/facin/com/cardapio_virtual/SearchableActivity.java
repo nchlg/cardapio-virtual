@@ -4,12 +4,15 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ViewGroup;
 
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
-public class SearchableActivity extends AppCompatActivity {
+public class SearchableActivity extends AppCompatActivity
+    implements RestaurantFragment.OnListFragmentInteractionListener {
 
     private Cursor searchCursor;
 
@@ -18,7 +21,12 @@ public class SearchableActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchable);
         setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
-        handleIntent(getIntent());
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container,
+                            RestaurantFragment.newInstance(handleIntent(getIntent())))
+                    .commit();
+        }
     }
 
     @Override
@@ -26,13 +34,19 @@ public class SearchableActivity extends AppCompatActivity {
         handleIntent(intent);
     }
 
-    private void handleIntent(Intent intent) {
-
+    private String handleIntent(Intent intent) {
+        String query = "";
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            new FetchSearchTask().execute(query);
+            query = intent.getStringExtra(SearchManager.QUERY);
+            //new FetchSearchTask().execute(query);
             //use the query to search your data somehow
         }
+        return query;
+    }
+
+    // Métodos relacionado aos fragmentos
+    public void onListFragmentInteraction(Restaurant item) {
+
     }
 
     public class FetchSearchTask extends AsyncTask<String, Void, Boolean> {

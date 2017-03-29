@@ -30,10 +30,13 @@ public class RestaurantFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String ARG_QUERY = "search-query";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private String mSearchQuery = null;
     private OnListFragmentInteractionListener mListener;
     private Cursor restaurantsCursor;
+    private Cursor searchesCursor;
     private ArrayList<Restaurant> restaurants;
     private RecyclerView recyclerView;
 
@@ -46,13 +49,15 @@ public class RestaurantFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static RestaurantFragment newInstance(int columnCount) {
+    public static RestaurantFragment newInstance(String query) {
         RestaurantFragment fragment = new RestaurantFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putString(ARG_QUERY, query);
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,7 @@ public class RestaurantFragment extends Fragment {
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            mSearchQuery = getArguments().getString(ARG_QUERY);
         }
     }
 
@@ -77,7 +83,8 @@ public class RestaurantFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            new FetchRestaurantTask().execute((Void) null);
+            // Pode-se checar que a Atividade é instanceof SearchableActivity para garantia........
+            new FetchRestaurantTask().execute(mSearchQuery);
             // recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
@@ -116,51 +123,76 @@ public class RestaurantFragment extends Fragment {
         void onListFragmentInteraction(Restaurant item);
     }
 
-    public class FetchRestaurantTask extends AsyncTask<Void, Void, Boolean> {
+    public class FetchRestaurantTask extends AsyncTask<String, Void, String> {
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                // insereDummies();
-                restaurantsCursor = getActivity().getContentResolver().query(
-                        DatabaseContract.RestaurantesEntry.CONTENT_URI,
-                        null,
-                        null,
-                        null,
-                        null
-                );
-                if (restaurantsCursor != null) {
-                    return true;
+        protected String doInBackground(String... params) {
+            // Se mSearchQuery for nula, significa que a atividade é a MainActivity. Senão, é a SearchableActivity.
+            if (params[0] == null) {
+                try {
+                    // insereDummies();
+                    restaurantsCursor = getActivity().getContentResolver().query(
+                            DatabaseContract.RestaurantesEntry.CONTENT_URI,
+                            null,
+                            null,
+                            null,
+                            null
+                    );
+                    if (restaurantsCursor != null) {
+                        return "restaurantsCursor";
+                    }
+                } catch (UnsupportedOperationException e) {
+                    e.printStackTrace();
+                    return null;
                 }
-            } catch (UnsupportedOperationException e) {
-                e.printStackTrace();
-                return false;
+            } else {
+                String searchQuery = params[0];
+                try {
+                    searchesCursor = getActivity().getContentResolver().query(
+                            DatabaseContract.RestaurantesEntry.CONTENT_URI,
+                            null,
+                            DatabaseContract.RestaurantesEntry.COLUMN_NOME + " LIKE ?",
+                            new String[]{"%" + searchQuery + "%"},
+                            null
+                    );
+                    if (searchesCursor != null) {
+                        return "searchesCursor";
+                    }
+                } catch (UnsupportedOperationException e) {
+                    e.printStackTrace();
+                    return null;
+                }
             }
-            return false;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(final Boolean result) {
-            if (result) {
+        protected void onPostExecute(final String result) {
+            if (result.equals("restaurantsCursor")) {
                 restaurants = populaLista(restaurantsCursor);
                 recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurants, mListener));
+            } else {
+                if (result.equals("searchesCursor")) {
+                    restaurants = populaLista(searchesCursor);
+                    recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurants, mListener));
+                }
             }
         }
 
         public ArrayList<Restaurant> populaLista(Cursor cursor) {
             restaurants = new ArrayList<>();
-            DatabaseUtils.dumpCursor(restaurantsCursor);
+            DatabaseUtils.dumpCursor(cursor);
             /* Cria restaurantes */
-            while(restaurantsCursor.moveToNext()) {
+            while(cursor.moveToNext()) {
                 Restaurant restaurant = new Restaurant(
-                        Integer.parseInt(restaurantsCursor.getString(0)),
-                        restaurantsCursor.getString(1),
-                        restaurantsCursor.getString(2),
-                        restaurantsCursor.getString(3),
-                        restaurantsCursor.getString(4),
-                        Double.parseDouble(restaurantsCursor.getString(5).trim()),
-                        Double.parseDouble(restaurantsCursor.getString(6).trim()),
-                        restaurantsCursor.getString(7)
+                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        Double.parseDouble(cursor.getString(5).trim()),
+                        Double.parseDouble(cursor.getString(6).trim()),
+                        cursor.getString(7)
                 );
                 restaurants.add(restaurant);
             }

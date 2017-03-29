@@ -27,11 +27,16 @@
                 android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
         </activity>
-        <activity android:name=".SearchableActivity">
+        <activity android:name=".SearchableActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/res_search_label">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-
+            <!-- Parent activity meta-data to support API level 4+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -41,6 +46,10 @@
             android:label="@string/title_activity_locais"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuActivity"></activity>
+        <!-- Map API -->
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_api_key" />
     </application>
-
 </manifest>

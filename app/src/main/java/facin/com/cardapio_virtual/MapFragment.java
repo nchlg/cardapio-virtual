@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.OnMapReadyCallback;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
  * Use the {@link MapFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+// implements OnMapReadyCallback
 public class MapFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

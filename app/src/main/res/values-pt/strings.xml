@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cardápio Virtual</string>
-    <!-- Search/Busca -->
     <string name="app_label">Cardápio Virtual</string>
+    <!-- Search/Busca -->
+    <string name="res_search_label">Resultados da Busca</string>
     <string name="res_search_hint">Buscar restaurantes</string>
     <string name="res_search_descr">Barra de busca de restaurantes</string>
     <string name="res_search_icon_descr">Ícone de busca de restaurantes</string>

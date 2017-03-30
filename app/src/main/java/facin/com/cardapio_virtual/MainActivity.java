@@ -2,6 +2,7 @@ package facin.com.cardapio_virtual;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,10 +18,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.android.gms.location.LocationSettingsStates;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 public class MainActivity extends AppCompatActivity
         implements FavouriteFragment.OnListFragmentInteractionListener,
         RestaurantFragment.OnListFragmentInteractionListener,
-        MapFragment.OnFragmentInteractionListener {
+        MyMapFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -31,6 +38,9 @@ public class MainActivity extends AppCompatActivity
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private GoogleMap map;
+    // Constant used in the location settings dialog.
+    protected static final int REQUEST_CHECK_SETTINGS = 0x1;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -80,6 +90,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+
     /*@Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -109,6 +121,25 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        final LocationSettingsStates states = LocationSettingsStates.fromIntent(intent);
+        switch (requestCode) {
+            case REQUEST_CHECK_SETTINGS:
+                switch (resultCode) {
+                    case RESULT_OK:
+                        // All required changes were successfully made
+                        break;
+                    case RESULT_CANCELED:
+                        // The user was asked to change settings, but chose not to
+                        break;
+                    default:
+                        break;
+                }
+                break;
+        }
+    }
+
 
     public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -122,8 +153,21 @@ public class MainActivity extends AppCompatActivity
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 1)
                 return new RestaurantFragment();
-            else if (position == 2)
-                return new MapFragment();
+            else if (position == 2) {
+                /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+                        .getMap();
+                if (map!=null) {
+                    Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
+                            .title("Hamburg"));
+                    Marker kiel = map.addMarker(new MarkerOptions()
+                            .position(KIEL)
+                            .title("Kiel")
+                            .snippet("Kiel is cool")
+                            .icon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.ic_launcher)));
+                }*/
+                return new MyMapFragment();
+            }
             else
                 return new FavouriteFragment();
         }

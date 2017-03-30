@@ -14,4 +14,7 @@
     <string name="tab_restaurants">Restaurantes</string>
     <string name="tab_map">Mapa</string>
     <string name="materialized_ontologies_file">materializedOntologies</string>
+
+    <!-- Mapa -->
+    <string name="current_position_title">Posição Atual</string>
 </resources>

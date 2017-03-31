@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
-import facin.com.cardapio_virtual.RestaurantFragment.OnListFragmentInteractionListener;
+import facin.com.cardapio_virtual.RestaurantsFragment.OnListFragmentInteractionListener;
 
 public class MyRestaurantRecyclerViewAdapter extends RecyclerView.Adapter<MyRestaurantRecyclerViewAdapter.ViewHolder> {
 

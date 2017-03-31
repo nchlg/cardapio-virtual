@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -62,7 +63,8 @@ import facin.com.cardapio_virtual.data.DatabaseContract;
 public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener,
+        GoogleMap.OnMarkerClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -121,6 +123,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
@@ -160,7 +163,6 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-
             // Register the listener with the Location Manager to receive location updates
             //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
             String locationProvider = LocationManager.GPS_PROVIDER;
@@ -328,9 +330,9 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                         break;
                 }
 
-                for (MarkerOptions mo : mMarkerArray) {
+                /*for (MarkerOptions mo : mMarkerArray) {
                     mMap.addMarker(mo);
-                }
+                }*/
             }
         });
         if (ContextCompat.checkSelfPermission(getContext(),
@@ -338,6 +340,15 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+        /*Intent intent = new Intent(getContext(), RestaurantActivity.class);
+        intent.putExtra(EXTRA_PK_PESQUISA, Integer.toString(item.getPk_pesquisa()));
+        intent.putExtra(EXTRA_PESQUISA, item);
+        // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
+        startActivityForResult(intent, BATERIA_REQUEST);*/
     }
 
     /*public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -437,7 +448,8 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                         DatabaseContract.RestaurantesEntry.CONTENT_URI,
                         new String[]{DatabaseContract.RestaurantesEntry.COLUMN_LAT,
                                 DatabaseContract.RestaurantesEntry.COLUMN_LNG,
-                                DatabaseContract.RestaurantesEntry.COLUMN_NOME},
+                                DatabaseContract.RestaurantesEntry.COLUMN_NOME,
+                                DatabaseContract.RestaurantesEntry._ID},
                         null,
                         null,
                         null
@@ -455,7 +467,10 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         @Override
         protected void onPostExecute(final Boolean result) {
             if (result) {
-                ArrayList<LatLng> coordinates = populaLista(coordinatesCursor);
+                populaLista(coordinatesCursor);
+                for (MarkerOptions mo : mMarkerArray) {
+                    mMap.addMarker(mo);
+                }
             }
         }
 
@@ -469,15 +484,16 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                         Double.parseDouble(cursor.getString(1))
                 );
                 restCoordinates.add(latlng);
-                criaMarcador(latlng, cursor.getString(2));
+                criaMarcador(latlng, cursor.getString(2), Float.parseFloat(cursor.getString(3)));
             }
             return restCoordinates;
         }
 
-        protected void criaMarcador(LatLng ll, String nome) {
+        protected void criaMarcador(LatLng ll, String nome, float id) {
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(ll);
             markerOptions.title(nome);
+            markerOptions.zIndex(id);
             mMarkerArray.add(markerOptions);
         }
 

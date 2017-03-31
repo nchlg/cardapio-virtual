@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class FavouriteFragment extends Fragment {
+public class FavouritesFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -38,13 +38,13 @@ public class FavouriteFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FavouriteFragment() {
+    public FavouritesFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static FavouriteFragment newInstance(int columnCount) {
-        FavouriteFragment fragment = new FavouriteFragment();
+    public static FavouritesFragment newInstance(int columnCount) {
+        FavouritesFragment fragment = new FavouritesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);

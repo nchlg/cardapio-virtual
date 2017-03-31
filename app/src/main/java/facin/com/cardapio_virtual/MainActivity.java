@@ -20,13 +20,10 @@ import android.view.MenuItem;
 
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity
-        implements FavouriteFragment.OnListFragmentInteractionListener,
-        RestaurantFragment.OnListFragmentInteractionListener,
+        implements FavouritesFragment.OnListFragmentInteractionListener,
+        RestaurantsFragment.OnListFragmentInteractionListener,
         MyMapFragment.OnFragmentInteractionListener {
 
     /**
@@ -152,7 +149,7 @@ public class MainActivity extends AppCompatActivity
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 1)
-                return new RestaurantFragment();
+                return new RestaurantsFragment();
             else if (position == 2) {
                 /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                         .getMap();
@@ -169,7 +166,7 @@ public class MainActivity extends AppCompatActivity
                 return new MyMapFragment();
             }
             else
-                return new FavouriteFragment();
+                return new FavouritesFragment();
         }
 
         @Override

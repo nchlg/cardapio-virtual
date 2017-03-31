@@ -13,7 +13,7 @@
     <!-- <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="facin.com.cardapio_virtual.RestaurantFragment"
+        android:name="facin.com.cardapio_virtual.RestaurantsFragmentt"
         android:id="@+id/restaunrant_fragment">
 
     </fragment>-->

@@ -16,9 +16,7 @@ import android.view.ViewGroup;
 
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -26,7 +24,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class RestaurantFragment extends Fragment {
+public class RestaurantsFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -44,13 +42,13 @@ public class RestaurantFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public RestaurantFragment() {
+    public RestaurantsFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static RestaurantFragment newInstance(String query) {
-        RestaurantFragment fragment = new RestaurantFragment();
+    public static RestaurantsFragment newInstance(String query) {
+        RestaurantsFragment fragment = new RestaurantsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_QUERY, query);
         fragment.setArguments(args);

@@ -4,15 +4,13 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ViewGroup;
 
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 public class SearchableActivity extends AppCompatActivity
-    implements RestaurantFragment.OnListFragmentInteractionListener {
+    implements RestaurantsFragment.OnListFragmentInteractionListener {
 
     private Cursor searchCursor;
 
@@ -24,7 +22,7 @@ public class SearchableActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container,
-                            RestaurantFragment.newInstance(handleIntent(getIntent())))
+                            RestaurantsFragment.newInstance(handleIntent(getIntent())))
                     .commit();
         }
     }

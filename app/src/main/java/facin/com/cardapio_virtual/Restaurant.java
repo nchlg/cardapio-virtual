@@ -5,7 +5,7 @@ package facin.com.cardapio_virtual;
  */
 public class Restaurant {
 
-    private int primaryKey;
+    // private int primaryKey;
     private String nome;
     private String email;
     private String telefone;
@@ -15,7 +15,7 @@ public class Restaurant {
     private String descricao;
 
     public Restaurant() {
-        primaryKey = 0;
+        // primaryKey = 0;
         nome = "";
         email = "";
         telefone = "";
@@ -25,9 +25,9 @@ public class Restaurant {
         descricao = "";
     }
 
-    public Restaurant(int primaryKey, String nome, String email, String telefone, String endereco,
+    public Restaurant(String nome, String email, String telefone, String endereco,
                       double latitude, double longitude, String descricao) {
-        this.primaryKey = primaryKey;
+        // this.primaryKey = primaryKey;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -39,7 +39,7 @@ public class Restaurant {
 
     public Restaurant(Boolean teste) {
         if (teste) {
-            primaryKey = 100;
+            // primaryKey = 100;
             nome = "Bar do 5";
             email = "bardo5@mail.com";
             telefone = "(XXX) XXXX-XXXX";

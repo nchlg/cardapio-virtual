@@ -2,13 +2,17 @@ package facin.com.cardapio_virtual;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,23 +31,23 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+
+import facin.com.cardapio_virtual.data.DatabaseContract;
 
 
 /**
@@ -73,10 +78,14 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+    LocationManager locationManager;
     Marker mCurrLocationMarker;
     // Constant used in the location settings dialog.
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
-
+    // Cursor
+    private Cursor coordinatesCursor;
+    // ArrayList de MarkerOptions (marcadores do mapa)
+    ArrayList<MarkerOptions> mMarkerArray;
 
     public MyMapFragment() {
         // Required empty public constructor
@@ -127,7 +136,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Acquire a reference to the system Location Manager
-        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         // Define a listener that responds to location updates
         LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
@@ -159,10 +168,12 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
             return;
         }
 
+        // Cria marcadores através da busca no banco
+        mMarkerArray = new ArrayList<>();
+        new FetchCoordinateTask().execute((Void) null);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
     }
 
     @Override
@@ -196,6 +207,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        Log.d("mMarkerArray: ", mMarkerArray.toString());
 
         // Add a marker in Sydney and move the camera
         /*LatLng sydney = new LatLng(-34, 151);
@@ -213,7 +225,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                 mMap.setMyLocationEnabled(true);
             } else {
                 //Request Location Permission
-                checkLocationPermission();
+                //checkLocationPermission();
             }
         }
         else {
@@ -249,16 +261,15 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         }
 
         //Place current location marker
-        // TODO: Tirar marcador da posição atual.
         /*
         * A posição atual já fica marcada com um "pontinho azul". Os marcadores servirão para mostrar os
         * restaurantes em volta deste pontinho... */
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
+        /*MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title(getResources().getString(R.string.current_position_title));
         //markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
+        mCurrLocationMarker = mMap.addMarker(markerOptions);*/
 
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
@@ -273,7 +284,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
     public void onConnected(@Nullable Bundle bundle) {
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setInterval(30 * 1000);
-        mLocationRequest.setFastestInterval(5 * 1000);
+        mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
         /* You can get the current location settings of a user's device.
         To do this, create a LocationSettingsRequest.Builder, and add one or more location requests
@@ -289,7 +300,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
             // TODO: Fazer isso funcionar kkk
             @Override
-            public void onResult(LocationSettingsResult result) {
+            public void onResult(@NonNull LocationSettingsResult result) {
                 final Status status = result.getStatus();
                 // final LocationSettingsStates = result.getLocationSettingsStates();
                 switch (status.getStatusCode()) {
@@ -307,12 +318,18 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                                     REQUEST_CHECK_SETTINGS);
                         } catch (IntentSender.SendIntentException e) {
                             // Ignore the error.
+                        } finally {
+
                         }
                         break;
                     case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
                         // Location settings are not satisfied. However, we have no way
                         // to fix the settings so we won't show the dialog.
                         break;
+                }
+
+                for (MarkerOptions mo : mMarkerArray) {
+                    mMap.addMarker(mo);
                 }
             }
         });
@@ -323,7 +340,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         }
     }
 
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    /*public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -393,7 +410,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
             // other 'case' lines to check for other
             // permissions this app might request
         }
-    }
+    }*/
 
     @Override
     public void onConnectionSuspended(int i) {
@@ -408,5 +425,80 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public class FetchCoordinateTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                // insereDummies();
+                coordinatesCursor = getActivity().getContentResolver().query(
+                        DatabaseContract.RestaurantesEntry.CONTENT_URI,
+                        new String[]{DatabaseContract.RestaurantesEntry.COLUMN_LAT,
+                                DatabaseContract.RestaurantesEntry.COLUMN_LNG,
+                                DatabaseContract.RestaurantesEntry.COLUMN_NOME},
+                        null,
+                        null,
+                        null
+                );
+                if (coordinatesCursor != null) {
+                    return true;
+                }
+            } catch (UnsupportedOperationException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean result) {
+            if (result) {
+                ArrayList<LatLng> coordinates = populaLista(coordinatesCursor);
+            }
+        }
+
+        protected ArrayList<LatLng> populaLista(Cursor cursor) {
+            ArrayList<LatLng> restCoordinates = new ArrayList<>();
+            DatabaseUtils.dumpCursor(cursor);
+            /* Cria LatLng dos restaurantes */
+            while(cursor.moveToNext()) {
+                LatLng latlng = new LatLng(
+                        Double.parseDouble(cursor.getString(0)),
+                        Double.parseDouble(cursor.getString(1))
+                );
+                restCoordinates.add(latlng);
+                criaMarcador(latlng, cursor.getString(2));
+            }
+            return restCoordinates;
+        }
+
+        protected void criaMarcador(LatLng ll, String nome) {
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(ll);
+            markerOptions.title(nome);
+            mMarkerArray.add(markerOptions);
+        }
+
+        public void insereDummies() {
+            Restaurant espaco32 = new Restaurant("Espaço 32",
+                    "espaco32@gmail.com",
+                    "(51) 3093-3256",
+                    "Av. Bento Gonçalves, 4314 (PUCRS - Prédio 32)",
+                    -30.061238,
+                    -51.173792,
+                    "Almoço À La Carte, Lanches, Cafés, Coffee Break, Eventos Corporativos, Festas");
+            ContentValues rest2 = new ContentValues();
+            rest2.put("_id", (byte[]) null);
+            rest2.put("nome", espaco32.getNome());
+            rest2.put("email", espaco32.getEmail());
+            rest2.put("telefone", espaco32.getTelefone());
+            rest2.put("endereco", espaco32.getEndereco());
+            rest2.put("latitude", espaco32.getLatitude());
+            rest2.put("longitude", espaco32.getLongitude());
+            rest2.put("descricao", espaco32.getDescricao());
+            getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest2);
+        }
     }
 }

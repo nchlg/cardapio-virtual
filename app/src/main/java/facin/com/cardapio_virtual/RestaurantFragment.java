@@ -185,7 +185,6 @@ public class RestaurantFragment extends Fragment {
             /* Cria restaurantes */
             while(cursor.moveToNext()) {
                 Restaurant restaurant = new Restaurant(
-                        Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),

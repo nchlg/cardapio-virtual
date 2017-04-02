@@ -29,12 +29,13 @@ import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM_MICRO_RULE_INF;
 
 public class OntologyInitializer {
 
-    public static void setUp() {
+    public static void setUp(File fileDir) {
         // create the base model
-        String SOURCE = "file://pizza.xml";
+        String fileName = "pizza.owl";
+        String SOURCE = "file://" + fileName;
         String NS = SOURCE + "#";
-        OntModel base = ModelFactory.createOntologyModel( OWL_MEM );
-        base.read(new File(SOURCE).toString());
+        OntModel base = ModelFactory.createOntologyModel(OWL_MEM);
+        base.read(new File(fileDir, fileName).toString());
 //        base.read( SOURCE, "RDF/XML" );
 
         // create the reasoning model using the base

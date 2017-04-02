@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        OntologyInitializer.setUp();
+        OntologyInitializer.setUp(getApplicationContext().getFilesDir());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Cria barra de abas

@@ -120,51 +120,51 @@ public class ProductFragment extends Fragment {
         void onListFragmentInteraction(Product product);
     }
 
-    /*public class FetchProductTask extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                // TODO: Ler arquivo OWL. Mudar Exception
-                // TODO: Popular lista de produtos
-                // InputStream cardapioFile = getActivity().getAssets().open("pizza.owl");
-                File cardapioFile = new File(getActivity().getFilesDir(), "pizza.owl");
-                // Cria o gerenciador
-                OWLOntologyManager ontologyManager = createOntologyManager();
-                // OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(IRI.create("ontologyFile"));
-                OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(cardapioFile);
-                if (cardapio != null) {
-
-                }
-            // Para múltiplas exceções: catch (IOException | OWLOntologyCreationException e) {
-            } catch (OWLOntologyCreationException e) {
-                e.printStackTrace();
-                return false;
-            }
-            return false;
-        }
-
-        protected OWLOntologyManager createOntologyManager() {
-            OWLOntologyManager ontologyManager =
-                    OWLManager.createOWLOntologyManager();
-            ontologyManager.getIRIMappers().add(new AutoIRIMapper(
-                    new File(getString(R.string.materialized_ontologies_file)), true));
-            return ontologyManager;
-
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean result) {
-            if (result) {
-                // products = populaLista(restaurantsCursor);
-                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(products, mListener));
-            }
-        }
+//    public class FetchProductTask extends AsyncTask<Void, Void, Boolean> {
+//
+//        @Override
+//        protected Boolean doInBackground(Void... params) {
+//            try {
+//                // TODO: Ler arquivo OWL. Mudar Exception
+//                // TODO: Popular lista de produtos
+//                // InputStream cardapioFile = getActivity().getAssets().open("pizza.owl");
+//                File cardapioFile = new File(getActivity().getFilesDir(), "pizza.owl");
+//                // Cria o gerenciador
+//                OWLOntologyManager ontologyManager = createOntologyManager();
+//                // OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(IRI.create("ontologyFile"));
+//                OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(cardapioFile);
+//                if (cardapio != null) {
+//
+//                }
+//            // Para múltiplas exceções: catch (IOException | OWLOntologyCreationException e) {
+//            } catch (OWLOntologyCreationException e) {
+//                e.printStackTrace();
+//                return false;
+//            }
+//            return false;
+//        }
+//
+//        protected OWLOntologyManager createOntologyManager() {
+//            OWLOntologyManager ontologyManager =
+//                    OWLManager.createOWLOntologyManager();
+//            ontologyManager.getIRIMappers().add(new AutoIRIMapper(
+//                    new File(getString(R.string.materialized_ontologies_file)), true));
+//            return ontologyManager;
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(final Boolean result) {
+//            if (result) {
+//                // products = populaLista(restaurantsCursor);
+//                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(products, mListener));
+//            }
+//        }
 
         /* public ArrayList<Product> populaLista(Cursor cursor) {
             products = new ArrayList<>();
             // Cria produtos
             return products;
-        }*/
-    //}
+        }
+    }*/
 }

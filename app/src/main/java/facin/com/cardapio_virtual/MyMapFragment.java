@@ -349,6 +349,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         intent.putExtra(EXTRA_PESQUISA, item);
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
         startActivityForResult(intent, BATERIA_REQUEST);*/
+        return true;
     }
 
     /*public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;

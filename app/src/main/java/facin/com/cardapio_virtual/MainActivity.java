@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.maps.GoogleMap;
 
+import facin.com.cardapio_virtual.owlModels.OntologyInitializer;
+
 public class MainActivity extends AppCompatActivity
         implements FavouritesFragment.OnListFragmentInteractionListener,
         RestaurantsFragment.OnListFragmentInteractionListener,
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        OntologyInitializer.setUp();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Cria barra de abas

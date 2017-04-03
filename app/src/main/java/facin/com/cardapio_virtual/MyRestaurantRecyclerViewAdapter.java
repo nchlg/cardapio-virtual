@@ -30,6 +30,7 @@ public class MyRestaurantRecyclerViewAdapter extends RecyclerView.Adapter<MyRest
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getNome());
         holder.mContentView.setText(mValues.get(position).getEndereco());
+        //holder.mContentView.setText(System.getProperty("user.dir"));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

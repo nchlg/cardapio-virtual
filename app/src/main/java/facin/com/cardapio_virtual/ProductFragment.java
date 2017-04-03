@@ -20,10 +20,20 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.util.AutoIRIMapper;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;*/
 
+import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM;
+import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM_MICRO_RULE_INF;
 
 /**
  * A fragment representing a list of Items.
@@ -40,6 +50,11 @@ public class ProductFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     private ArrayList<Product> products;
     private RecyclerView recyclerView;
+
+    // Ontology
+    private File lanchesFile;
+    private File fileDir;
+    private String fileName;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -62,6 +77,10 @@ public class ProductFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        fileDir = getActivity().getApplicationContext().getFilesDir();
+        fileName = "pizza.owl";
+        lanchesFile = new File(fileDir, fileName);
+
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -81,7 +100,7 @@ public class ProductFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            //new FetchProductTask().execute((Void) null);
+            new FetchOntologyTask().execute((Void) null);
             //recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
@@ -120,51 +139,65 @@ public class ProductFragment extends Fragment {
         void onListFragmentInteraction(Product product);
     }
 
-//    public class FetchProductTask extends AsyncTask<Void, Void, Boolean> {
-//
-//        @Override
-//        protected Boolean doInBackground(Void... params) {
-//            try {
-//                // TODO: Ler arquivo OWL. Mudar Exception
-//                // TODO: Popular lista de produtos
-//                // InputStream cardapioFile = getActivity().getAssets().open("pizza.owl");
-//                File cardapioFile = new File(getActivity().getFilesDir(), "pizza.owl");
-//                // Cria o gerenciador
-//                OWLOntologyManager ontologyManager = createOntologyManager();
-//                // OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(IRI.create("ontologyFile"));
-//                OWLOntology cardapio = ontologyManager.loadOntologyFromOntologyDocument(cardapioFile);
-//                if (cardapio != null) {
-//
-//                }
-//            // Para múltiplas exceções: catch (IOException | OWLOntologyCreationException e) {
-//            } catch (OWLOntologyCreationException e) {
-//                e.printStackTrace();
-//                return false;
-//            }
-//            return false;
-//        }
-//
-//        protected OWLOntologyManager createOntologyManager() {
-//            OWLOntologyManager ontologyManager =
-//                    OWLManager.createOWLOntologyManager();
-//            ontologyManager.getIRIMappers().add(new AutoIRIMapper(
-//                    new File(getString(R.string.materialized_ontologies_file)), true));
-//            return ontologyManager;
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(final Boolean result) {
-//            if (result) {
-//                // products = populaLista(restaurantsCursor);
-//                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(products, mListener));
-//            }
-//        }
+    public class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
 
-        /* public ArrayList<Product> populaLista(Cursor cursor) {
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                // create the base model
+                String protocol = "file:/";
+                String SOURCE = protocol + fileDir + "/" + fileName;
+                String NS = SOURCE + "#";
+                OntModel base = ModelFactory.createOntologyModel(OWL_MEM);
+                // base.read(new File(protocol + fileDir, fileName).toString());
+                base.read(protocol + lanchesFile.toString());
+//              base.read( SOURCE, "RDF/XML" );
+
+                // create the reasoning model using the base
+                OntModel inf = ModelFactory.createOntologyModel( OWL_MEM_MICRO_RULE_INF, base );
+
+                // create a dummy paper for this example
+                OntClass paper = base.getOntClass( NS + "American" );
+                Individual p1 = base.createIndividual( NS + "american1", paper );
+
+                // list the asserted types
+                for (Iterator<Resource> i = p1.listRDFTypes(true); i.hasNext(); ) {
+                    System.out.println( p1.getURI() + " is asserted in class " + i.next() );
+                }
+
+                // list the inferred types
+                p1 = inf.getIndividual( NS + "paper1" );
+                for (Iterator<Resource> i = p1.listRDFTypes(true); i.hasNext(); ) {
+                    System.out.println( p1.getURI() + " is inferred to be in class " + i.next() );
+                }
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        /*protected OWLOntologyManager createOntologyManager() {
+            OWLOntologyManager ontologyManager =
+                    OWLManager.createOWLOntologyManager();
+            ontologyManager.getIRIMappers().add(new AutoIRIMapper(
+                    new File(getString(R.string.materialized_ontologies_file)), true));
+            return ontologyManager;
+
+        }*/
+
+        @Override
+        protected void onPostExecute(final Boolean result) {
+            if (result) {
+                // products = populaLista(restaurantsCursor);
+                // recyclerView.setAdapter(new MyProductRecyclerViewAdapter(products, mListener));
+            }
+        }
+
+         public ArrayList<Product> populaLista(Cursor cursor) {
             products = new ArrayList<>();
             // Cria produtos
             return products;
         }
-    }*/
+    }
 }

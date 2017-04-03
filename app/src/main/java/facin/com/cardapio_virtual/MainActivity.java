@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.maps.GoogleMap;
 
+import java.io.File;
+
 import facin.com.cardapio_virtual.owlModels.OntologyInitializer;
 
 public class MainActivity extends AppCompatActivity
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        OntologyInitializer.setUp(getApplicationContext().getFilesDir());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Cria barra de abas
@@ -114,7 +115,11 @@ public class MainActivity extends AppCompatActivity
 
     // Métodos relacionado aos fragmentos
     public void onListFragmentInteraction(Restaurant item) {
-
+        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+        // intent.putExtra(EXTRA_PK_PESQUISA, Integer.toString(item.getPk_pesquisa()));
+        // intent.putExtra(EXTRA_PESQUISA, item);
+        // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
+        startActivityForResult(intent, -1);
     }
 
     public void onFragmentInteraction(Uri uri) {

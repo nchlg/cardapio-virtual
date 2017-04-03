@@ -10,4 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="facin.com.cardapio_virtual.MenuActivity">
 
+    <fragment android:name="facin.com.cardapio_virtual.ProductFragment"
+        android:id="@+id/product_fragment"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+
+
 </RelativeLayout>

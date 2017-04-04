@@ -26,9 +26,17 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -76,13 +84,30 @@ public class ProductFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         fileDir = getActivity().getApplicationContext().getFilesDir();
-        fileName = "pizza.owl";
-        lanchesFile = new File(fileDir, fileName);
-
+        // criaArquivoMetodo1();
+        criaArquivoMetodo2();
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        }
+    }
+
+    protected void criaArquivoMetodo1() {
+        fileName = "pizza.owl";
+        lanchesFile = new File(fileDir, fileName);
+    }
+
+    protected void criaArquivoMetodo2() {
+        try {
+            fileName = "pizza.owl";
+            String content = getActivity().getApplicationContext().getAssets().open("pizza.owl").toString();
+
+            FileOutputStream outputLanches;
+            outputLanches = getActivity().openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputLanches.write(content.getBytes());
+            outputLanches.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -144,31 +169,41 @@ public class ProductFragment extends Fragment {
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
+                // Caminhos dos arquivos
+                InputStream assetFile = getActivity().getApplicationContext().getAssets().open("pizza.owl");
+                String outputFilePath = fileDir + "/" + fileName;
+
                 // create the base model
                 String protocol = "file:/";
-                String SOURCE = protocol + fileDir + "/" + fileName;
+                String SOURCE = protocol + outputFilePath;
                 String NS = SOURCE + "#";
                 OntModel base = ModelFactory.createOntologyModel(OWL_MEM);
+                // Read the file
                 // base.read(new File(protocol + fileDir, fileName).toString());
-                base.read(protocol + lanchesFile.toString());
+                // InputStream inputLanches = new FileInputStream(fileDir + "/" + fileName);
+                // InputStream inputLanches = new FileInputStream(getActivity().getApplicationContext().getAssets().open("pizza.owl"));
+                carregaArquivoInicial(assetFile, outputFilePath);
+                base.read(new FileInputStream(outputFilePath), "OWL");
+
+                //base.read(getActivity().getApplicationContext().getAssets().open("pizza.owl"), "OWL");
 //              base.read( SOURCE, "RDF/XML" );
 
                 // create the reasoning model using the base
-                OntModel inf = ModelFactory.createOntologyModel( OWL_MEM_MICRO_RULE_INF, base );
+                OntModel inf = ModelFactory.createOntologyModel(OWL_MEM_MICRO_RULE_INF, base);
 
                 // create a dummy paper for this example
-                OntClass paper = base.getOntClass( NS + "American" );
-                Individual p1 = base.createIndividual( NS + "american1", paper );
+                OntClass paper = base.getOntClass(NS + "American");
+                Individual p1 = base.createIndividual(NS + "american1", paper);
 
                 // list the asserted types
                 for (Iterator<Resource> i = p1.listRDFTypes(true); i.hasNext(); ) {
-                    System.out.println( p1.getURI() + " is asserted in class " + i.next() );
+                    System.out.println(p1.getURI() + " is asserted in class " + i.next());
                 }
 
                 // list the inferred types
-                p1 = inf.getIndividual( NS + "paper1" );
+                p1 = inf.getIndividual(NS + "paper1");
                 for (Iterator<Resource> i = p1.listRDFTypes(true); i.hasNext(); ) {
-                    System.out.println( p1.getURI() + " is inferred to be in class " + i.next() );
+                    System.out.println(p1.getURI() + " is inferred to be in class " + i.next());
                 }
                 return true;
             } catch (Exception e) {
@@ -177,14 +212,28 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        /*protected OWLOntologyManager createOntologyManager() {
-            OWLOntologyManager ontologyManager =
-                    OWLManager.createOWLOntologyManager();
-            ontologyManager.getIRIMappers().add(new AutoIRIMapper(
-                    new File(getString(R.string.materialized_ontologies_file)), true));
-            return ontologyManager;
+        private void carregaArquivoInicial(InputStream inputStream, String outputPath) throws IOException {
+            BufferedReader br = null;
 
-        }*/
+            BufferedWriter bw = null;
+            try {
+                br = new BufferedReader(new InputStreamReader(inputStream));
+                bw = new BufferedWriter(new FileWriter(outputPath));
+                String inputLine;
+                while ((inputLine = br.readLine()) != null) {
+                    bw.write(inputLine);
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } finally {
+                if (br != null)
+                    br.close();
+                if (bw != null)
+                    bw.close();
+            }
+        }
+
+        // protected boolean saveFile(File file)
 
         @Override
         protected void onPostExecute(final Boolean result) {
@@ -194,7 +243,7 @@ public class ProductFragment extends Fragment {
             }
         }
 
-         public ArrayList<Product> populaLista(Cursor cursor) {
+        public ArrayList<Product> populaLista(Cursor cursor) {
             products = new ArrayList<>();
             // Cria produtos
             return products;

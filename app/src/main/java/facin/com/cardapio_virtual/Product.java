@@ -13,11 +13,20 @@ public class Product {
     private ArrayList<String> ingredientes;
     private int quantidade;
 
+    // Sem ingredientes
     public Product(String nome, double preco, int quantidade) {
         this.nome = nome;
         this.preco = preco;
         ingredientes = new ArrayList<>();
         this.quantidade = quantidade;
+    }
+
+    // Sem quantidade
+    public Product(String nome, double preco, ArrayList<String> ingredientes) {
+        this.nome = nome;
+        this.preco = preco;
+        ingredientes = ingredientes;
+        this.quantidade = 0;
     }
 
     public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade) {

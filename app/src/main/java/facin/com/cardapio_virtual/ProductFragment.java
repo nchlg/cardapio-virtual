@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,12 @@ import org.semanticweb.owlapi.util.AutoIRIMapper;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;*/
 
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.RDFList;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 import java.io.BufferedReader;
@@ -38,7 +42,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Set;
 
 import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM;
 import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM_MICRO_RULE_INF;
@@ -166,6 +172,8 @@ public class ProductFragment extends Fragment {
 
     public class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
 
+        ObjectProperty hasTopping;
+
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
@@ -175,36 +183,25 @@ public class ProductFragment extends Fragment {
 
                 // create the base model
                 String protocol = "file:/";
-                String SOURCE = protocol + outputFilePath;
+                String SOURCE = "http://www.co-ode.org/ontologies/pizza/pizza.owl";
                 String NS = SOURCE + "#";
-                OntModel base = ModelFactory.createOntologyModel(OWL_MEM);
+                OntModel ontModel = ModelFactory.createOntologyModel(OWL_MEM);
                 // Read the file
                 // base.read(new File(protocol + fileDir, fileName).toString());
                 // InputStream inputLanches = new FileInputStream(fileDir + "/" + fileName);
                 // InputStream inputLanches = new FileInputStream(getActivity().getApplicationContext().getAssets().open("pizza.owl"));
+                // Carrega o arquivo dos assets para a pasta de arquivos do aplicativo
                 carregaArquivoInicial(assetFile, outputFilePath);
-                base.read(new FileInputStream(outputFilePath), "OWL");
-
-                //base.read(getActivity().getApplicationContext().getAssets().open("pizza.owl"), "OWL");
-//              base.read( SOURCE, "RDF/XML" );
-
+                // Lê a ontologia
+                ontModel.read(new FileInputStream(outputFilePath), "OWL");
+                // Teste: criando uma propriedade
+                hasTopping = ontModel.createObjectProperty(NS + "hasTopping");
                 // create the reasoning model using the base
-                OntModel inf = ModelFactory.createOntologyModel(OWL_MEM_MICRO_RULE_INF, base);
+                // OntModel inf = ModelFactory.createOntologyModel(OWL_MEM_MICRO_RULE_INF, ontModel);
 
-                // create a dummy paper for this example
-                OntClass paper = base.getOntClass(NS + "American");
-                Individual p1 = base.createIndividual(NS + "american1", paper);
+                // Transforma as OntClasses em Products e popula o vetor (Array List) com produtos
+                populaVetorProdutos(ontModel.listClasses().toSet(), ontModel.getOntClass(NS + "NamedPizza"));
 
-                // list the asserted types
-                for (Iterator<Resource> i = p1.listRDFTypes(true); i.hasNext(); ) {
-                    System.out.println(p1.getURI() + " is asserted in class " + i.next());
-                }
-
-                // list the inferred types
-                p1 = inf.getIndividual(NS + "paper1");
-                for (Iterator<Resource> i = p1.listRDFTypes(true); i.hasNext(); ) {
-                    System.out.println(p1.getURI() + " is inferred to be in class " + i.next());
-                }
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -238,15 +235,39 @@ public class ProductFragment extends Fragment {
         @Override
         protected void onPostExecute(final Boolean result) {
             if (result) {
-                // products = populaLista(restaurantsCursor);
-                // recyclerView.setAdapter(new MyProductRecyclerViewAdapter(products, mListener));
+                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(products, mListener));
             }
         }
 
-        public ArrayList<Product> populaLista(Cursor cursor) {
+        protected  void populaVetorProdutos(Set<OntClass> ontModelSet, OntClass superClass) {
             products = new ArrayList<>();
-            // Cria produtos
+            for (OntClass oc : ontModelSet) {
+                if (oc.hasSuperClass(superClass))
+                    transformaOntClassEmProduto(oc);
+            }
+        }
+
+        protected ArrayList<Product> transformaOntClassEmProduto(OntClass ontClass) {
+            products.add(new Product(
+                    ontClass.getLabel("pt"),
+                    3.50,
+                    populaIngredientes(ontClass)
+            ));
+            Log.d("Produto log", ontClass.getLabel("pt"));
+            // as(RDFList.class).asJavaList()
             return products;
+        }
+
+        protected ArrayList<String> populaIngredientes(OntClass ontClass) {
+            ArrayList<String> ingredientes = new ArrayList<>();
+            RDFNode nodo = ontClass.getPropertyValue(hasTopping);
+            if (nodo != null) {
+                RDFList nodoList = nodo.as(RDFList.class);
+                for (Iterator<RDFNode> i = nodoList.iterator(); i.hasNext(); ) {
+                    ingredientes.add(i.next().toString());
+                }
+            }
+            return ingredientes;
         }
     }
 }

@@ -26,6 +26,7 @@ import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.RDFList;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -239,7 +240,7 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        protected  void populaVetorProdutos(Set<OntClass> ontModelSet, OntClass superClass) {
+        protected void populaVetorProdutos(Set<OntClass> ontModelSet, OntClass superClass) {
             products = new ArrayList<>();
             for (OntClass oc : ontModelSet) {
                 if (oc.hasSuperClass(superClass))
@@ -260,11 +261,12 @@ public class ProductFragment extends Fragment {
 
         protected ArrayList<String> populaIngredientes(OntClass ontClass) {
             ArrayList<String> ingredientes = new ArrayList<>();
-            RDFNode nodo = ontClass.getPropertyValue(hasTopping);
-            if (nodo != null) {
-                RDFList nodoList = nodo.as(RDFList.class);
-                for (Iterator<RDFNode> i = nodoList.iterator(); i.hasNext(); ) {
+            NodeIterator nodeList = ontClass.listPropertyValues(hasTopping);
+            if (nodeList != null) {
+                // RDFList nodoList = nodo.as(RDFList.class);
+                for (Iterator<RDFNode> i = nodeList.iterator(); i.hasNext(); ) {
                     ingredientes.add(i.next().toString());
+                    Log.d("Ingr. log", i.next() != null ? i.next().toString() : ":(");
                 }
             }
             return ingredientes;

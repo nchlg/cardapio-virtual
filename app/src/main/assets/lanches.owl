@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3">
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Chessecake_de_Frutas_Vermelhas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Chá"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Suco_Verde"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torta_de_Limão"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Croissant_de_Presunto_e_Queijo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Chocolate_Quente"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#A_La_Minuta"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DomainConcept"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Limão"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Quatro_Queijos"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Forno"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torta"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Croissant_de_Chocolate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Quindim"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Queijo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_Frito"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torta_de_Maçã"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Moca"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Docinho"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Hortelã"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torrada"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Lanche"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Expresso_Duplo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frango_à_Italiana"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Preto"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Frango"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake_de_Café"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Refrigerante"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torrada_Completa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frutas_Vermelhas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#English_Breakfast"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Comida"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Carne"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pão_de_Queijo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Verde"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cola"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Bebida"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Lady_Grey"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Croissant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PIzza_Marguerita"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Expresso"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake_de_Doce_de_Leite"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Calabresa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torrada_Vegetariana"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pizza_de_Calabresa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pingado"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Guaraná"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake_de_Goiabada"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cappuccino"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Suco_de_Laranja"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Café"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Croissant_de_Frango"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Suco"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PIzza"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Laranja"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Brigadeiro"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Refeição"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ValuePartition"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torrada_Simples"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Café_Latte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Earl_Grey"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pizza_de_Coração"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Palmito"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Americano"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <Class IRI="#Refeição"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Americano"/>
+        <Class IRI="#Café"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bebida"/>
+        <Class IRI="#DomainConcept"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Brigadeiro"/>
+        <Class IRI="#Docinho"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Café"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Café_Latte"/>
+        <Class IRI="#Café"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cappuccino"/>
+        <Class IRI="#Café"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake"/>
+        <Class IRI="#Torta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake_de_Café"/>
+        <Class IRI="#Cheesecake"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake_de_Doce_de_Leite"/>
+        <Class IRI="#Cheesecake"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake_de_Goiabada"/>
+        <Class IRI="#Cheesecake"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chessecake_de_Frutas_Vermelhas"/>
+        <Class IRI="#Cheesecake"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chocolate_Quente"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chá"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cola"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Comida"/>
+        <Class IRI="#DomainConcept"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Chocolate"/>
+        <Class IRI="#Croissant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Frango"/>
+        <Class IRI="#Croissant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Presunto_e_Queijo"/>
+        <Class IRI="#Croissant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+        <Class IRI="#Croissant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Docinho"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Earl_Grey"/>
+        <Class IRI="#Preto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#English_Breakfast"/>
+        <Class IRI="#Preto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Expresso"/>
+        <Class IRI="#Café"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Expresso_Duplo"/>
+        <Class IRI="#Expresso"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_à_Italiana"/>
+        <Class IRI="#Refeição"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frutas_Vermelhas"/>
+        <Class IRI="#Chá"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Guaraná"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Hortelã"/>
+        <Class IRI="#Chá"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lady_Grey"/>
+        <Class IRI="#Preto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lanche"/>
+        <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Laranja"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Limão"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Moca"/>
+        <Class IRI="#Café"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PIzza"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PIzza_Marguerita"/>
+        <Class IRI="#PIzza"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito"/>
+        <Class IRI="#Pastel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Calabresa"/>
+        <Class IRI="#Pastel_Frito"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Carne"/>
+        <Class IRI="#Pastel_Frito"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno"/>
+        <Class IRI="#Pastel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Frango"/>
+        <Class IRI="#Pastel_de_Forno"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Palmito"/>
+        <Class IRI="#Pastel_de_Forno"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Quatro_Queijos"/>
+        <Class IRI="#Pastel_de_Forno"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Queijo"/>
+        <Class IRI="#Pastel_Frito"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pingado"/>
+        <Class IRI="#Café"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza_de_Calabresa"/>
+        <Class IRI="#PIzza"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza_de_Coração"/>
+        <Class IRI="#PIzza"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Preto"/>
+        <Class IRI="#Chá"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pão_de_Queijo"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Quindim"/>
+        <Class IRI="#Docinho"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refeição"/>
+        <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco_Verde"/>
+        <Class IRI="#Suco"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco_de_Laranja"/>
+        <Class IRI="#Suco"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Completa"/>
+        <Class IRI="#Torrada"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Simples"/>
+        <Class IRI="#Torrada"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Vegetariana"/>
+        <Class IRI="#Torrada"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Limão"/>
+        <Class IRI="#Torta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Maçã"/>
+        <Class IRI="#Torta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Verde"/>
+        <Class IRI="#Chá"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Bebida"/>
+        <Class IRI="#Comida"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#DomainConcept"/>
+        <Class IRI="#ValuePartition"/>
+    </DisjointClasses>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

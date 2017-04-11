@@ -6,133 +6,161 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3">
+    <Prefix name="" IRI="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Declaration>
-        <Class IRI="#Chessecake_de_Frutas_Vermelhas"/>
+        <Class IRI="#Gorduras"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Chá"/>
+        <Class IRI="#Cha_Preto"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Suco_Verde"/>
+        <Class IRI="#Cha"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Torta_de_Limão"/>
+        <Class IRI="#Pizza_de_Coracao"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Croissant_de_Presunto_e_Queijo"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Chocolate_Quente"/>
+        <DataProperty IRI="#lactose"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_Frito_de_Queijo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pouco_Salgado"/>
     </Declaration>
     <Declaration>
         <Class IRI="#A_La_Minuta"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Queijo_Mucarela"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#DomainConcept"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Limão"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Pastel_de_Quatro_Queijos"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Pastel_de_Forno"/>
+        <DataProperty IRI="#gluten"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Torta"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Croissant_de_Chocolate"/>
+        <Class IRI="#Pastel_de_Forno"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Quindim"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Pastel_de_Queijo"/>
+        <Class IRI="#Pastel_Frito_de_Carne"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Pastel_Frito"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Torta_de_Maçã"/>
+        <DataProperty IRI="#vegetariano"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Moca"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Docinho"/>
+        <Class IRI="#Nao_Gorduroso"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Hortelã"/>
+        <ObjectProperty IRI="#temIngrediente"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Gorduroso"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Queijo_Cheddar"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Docinho"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Torrada"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Lanche"/>
+        <Class IRI="#Nível_de_Sal"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Expresso_Duplo"/>
+        <Class IRI="#Bergamota"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Frango_à_Italiana"/>
+        <Class IRI="#File"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Preto"/>
+        <Class IRI="#Molho_Pesto"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Pastel_de_Frango"/>
+        <Class IRI="#Molho"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Cheesecake_de_Café"/>
+        <Class IRI="#Coracao_de_Galinha"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pao_de_Queijo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake_de_Cafe"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Refrigerante"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Torrada_Completa"/>
+        <Class IRI="#Coco"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Frutas_Vermelhas"/>
+        <Class IRI="#Meio_Salgado"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#English_Breakfast"/>
+        <Class IRI="#Refrigerante_de_Laranja"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake_de_Frutas_Vermelhas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Folhas_de_Hortela"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Chocolate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Leite_Condensado"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Meio_Gorduroso"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Agua"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Comida"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+        <Class IRI="#Verdura"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Pastel_de_Carne"/>
+        <Class IRI="#Fruta"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Pão_de_Queijo"/>
+        <Class IRI="#Carne"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Verde"/>
+        <Class IRI="#Molho_de_Tomate"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Cola"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Bebida"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Lady_Grey"/>
+        <Class IRI="#Torta_de_Maca"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Croissant"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#PIzza_Marguerita"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Expresso"/>
@@ -141,37 +169,232 @@
         <Class IRI="#Cheesecake_de_Doce_de_Leite"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Pastel_de_Calabresa"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Torrada_Vegetariana"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Pastel"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Pizza_de_Calabresa"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Cheesecake"/>
+        <Class IRI="#Pastel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cafe"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ingrediente"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Pingado"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Guaraná"/>
+        <Class IRI="#Guarana"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Cheesecake_de_Goiabada"/>
+        <Class IRI="#Folhas_de_Cha_Preto"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frango_a_Italiana"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Cappuccino"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Maca"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Feijao"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Suco_de_Laranja"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Café"/>
+        <Class IRI="#Presunto"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cha_de_Hortela"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Brigadeiro"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Farinha"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Queijo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Refrigerante_de_Limao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Acucar"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Earl_Grey"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Americano"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Queijo_Parmesao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cha_Verde"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Queijo_Provolone"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cream_Cheese"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pimenta"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Suco_Verde"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torta_de_Limao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Chocolate_Quente"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Batata_Frita"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Folhas_de_Cha_Verde"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cafe_Moido"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temGorduras"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Limao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Farinha_de_Arroz"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#temSal"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Croissant_de_Chocolate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Calabresa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Quindim"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Couve"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Derivado_de_Animal"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Alface"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Refrigerante_de_Cola"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Lanche"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Expresso_Duplo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_Frito_de_Calabresa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ovo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Canela"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Requeijao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frango"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Refeicao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Forno_de_Quatro_Queijos"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Torrada_Completa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Dioxido_de_Carbono"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Gengibre"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frutas_Vermelhas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#English_Breakfast"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Noz_de_Cola"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Especiaria"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Farinha_de_Trigo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Arroz"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Palmito"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Refrigerante_de_Guarana"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cha_de_Frutas_Vermelhas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Tomate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Bebida"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Lady_Grey"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#eIngredienteDe"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Produto"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cafe_Latte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pastel_de_Forno_de_Frango"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Laticinio"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pizza"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Croissant_de_Frango"/>
@@ -180,161 +403,704 @@
         <Class IRI="#Suco"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#PIzza"/>
+        <DataProperty IRI="#preco"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Laranja"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Brigadeiro"/>
+        <Class IRI="#Torrada_Simples"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Refeição"/>
+        <Class IRI="#Salgado"/>
     </Declaration>
     <Declaration>
         <Class IRI="#ValuePartition"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Torrada_Simples"/>
+        <Class IRI="#Pizza_Marguerita"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Café_Latte"/>
+        <Class IRI="#Pastel_de_Forno_de_Palmito"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Earl_Grey"/>
+        <Class IRI="#Leite"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Pizza_de_Coração"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Pastel_de_Palmito"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Americano"/>
+        <Class IRI="#Doce_de_Leite"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="#A_La_Minuta"/>
-        <Class IRI="#Refeição"/>
+        <Class IRI="#Refeicao"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Alface"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Arroz"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Batata_Frita"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Feijao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#File"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#A_La_Minuta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Tomate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Acucar"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Agua"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Alface"/>
+        <Class IRI="#Verdura"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Americano"/>
-        <Class IRI="#Café"/>
+        <Class IRI="#Cafe"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Americano"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Americano"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Agua"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Arroz"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Batata_Frita"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Bebida"/>
-        <Class IRI="#DomainConcept"/>
+        <Class IRI="#Produto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bebida"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bergamota"/>
+        <Class IRI="#Fruta"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Brigadeiro"/>
         <Class IRI="#Docinho"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Café"/>
+        <Class IRI="#Brigadeiro"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Chocolate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Brigadeiro"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite_Condensado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cafe"/>
         <Class IRI="#Bebida"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Café_Latte"/>
-        <Class IRI="#Café"/>
+        <Class IRI="#Cafe"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Cafe_Moido"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cafe_Latte"/>
+        <Class IRI="#Cafe"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cafe_Latte"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Meio_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cafe_Latte"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cafe_Moido"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Calabresa"/>
+        <Class IRI="#Carne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Canela"/>
+        <Class IRI="#Especiaria"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Cappuccino"/>
-        <Class IRI="#Café"/>
+        <Class IRI="#Cafe"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cappuccino"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Meio_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cappuccino"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Canela"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cappuccino"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Carne"/>
+        <Class IRI="#Derivado_de_Animal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Agua"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_Preto"/>
+        <Class IRI="#Cha"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_Preto"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Folhas_de_Cha_Preto"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_Verde"/>
+        <Class IRI="#Cha"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_Verde"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Folhas_de_Cha_Verde"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_de_Frutas_Vermelhas"/>
+        <Class IRI="#Cha"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_de_Frutas_Vermelhas"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Frutas_Vermelhas"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_de_Hortela"/>
+        <Class IRI="#Cha"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cha_de_Hortela"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Folhas_de_Hortela"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Cheesecake"/>
         <Class IRI="#Torta"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Cheesecake_de_Café"/>
         <Class IRI="#Cheesecake"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Cream_Cheese"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake_de_Cafe"/>
+        <Class IRI="#Cheesecake"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake_de_Cafe"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Cafe_Moido"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake_de_Cafe"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite_Condensado"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Cheesecake_de_Doce_de_Leite"/>
         <Class IRI="#Cheesecake"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Cheesecake_de_Goiabada"/>
+        <Class IRI="#Cheesecake_de_Doce_de_Leite"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Doce_de_Leite"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cheesecake_de_Frutas_Vermelhas"/>
         <Class IRI="#Cheesecake"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Chessecake_de_Frutas_Vermelhas"/>
-        <Class IRI="#Cheesecake"/>
+        <Class IRI="#Cheesecake_de_Frutas_Vermelhas"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Frutas_Vermelhas"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chocolate"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Chocolate_Quente"/>
         <Class IRI="#Bebida"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Chá"/>
-        <Class IRI="#Bebida"/>
+        <Class IRI="#Chocolate_Quente"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Gorduroso"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Cola"/>
-        <Class IRI="#Refrigerante"/>
+        <Class IRI="#Chocolate_Quente"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Chocolate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chocolate_Quente"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Coco"/>
+        <Class IRI="#Fruta"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Comida"/>
-        <Class IRI="#DomainConcept"/>
+        <Class IRI="#Produto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Coracao_de_Galinha"/>
+        <Class IRI="#Carne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Couve"/>
+        <Class IRI="#Verdura"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cream_Cheese"/>
+        <Class IRI="#Laticinio"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Croissant"/>
         <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Meio_Gorduroso"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Croissant_de_Chocolate"/>
         <Class IRI="#Croissant"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Croissant_de_Chocolate"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Chocolate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Chocolate"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Croissant_de_Frango"/>
         <Class IRI="#Croissant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Frango"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Frango"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Frango"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Croissant_de_Presunto_e_Queijo"/>
         <Class IRI="#Croissant"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Croissant_de_Presunto_e_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Presunto"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Presunto_e_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Presunto_e_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Croissant_de_Quatro_Queijos"/>
         <Class IRI="#Croissant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Cheddar"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Mucarela"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Parmesao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Provolone"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Croissant_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Meio_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Derivado_de_Animal"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Dioxido_de_Carbono"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Doce_de_Leite"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Docinho"/>
         <Class IRI="#Lanche"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Docinho"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Docinho"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Acucar"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Docinho"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Earl_Grey"/>
-        <Class IRI="#Preto"/>
+        <Class IRI="#Cha_Preto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Earl_Grey"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Bergamota"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#English_Breakfast"/>
-        <Class IRI="#Preto"/>
+        <Class IRI="#Cha_Preto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Especiaria"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Expresso"/>
-        <Class IRI="#Café"/>
+        <Class IRI="#Cafe"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Expresso"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Expresso_Duplo"/>
         <Class IRI="#Expresso"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Frango_à_Italiana"/>
-        <Class IRI="#Refeição"/>
+        <Class IRI="#Farinha"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Farinha_de_Arroz"/>
+        <Class IRI="#Farinha"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Farinha_de_Trigo"/>
+        <Class IRI="#Farinha"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Feijao"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#File"/>
+        <Class IRI="#Carne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Folhas_de_Cha_Preto"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Folhas_de_Cha_Verde"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Folhas_de_Hortela"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango"/>
+        <Class IRI="#Carne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_a_Italiana"/>
+        <Class IRI="#Refeicao"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_a_Italiana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_a_Italiana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Alface"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_a_Italiana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Arroz"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_a_Italiana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Frango"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_a_Italiana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Molho_Pesto"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frango_a_Italiana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Pimenta"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fruta"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Frutas_Vermelhas"/>
-        <Class IRI="#Chá"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Guaraná"/>
-        <Class IRI="#Refrigerante"/>
+        <Class IRI="#Gengibre"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Hortelã"/>
-        <Class IRI="#Chá"/>
+        <Class IRI="#Gorduras"/>
+        <Class IRI="#ValuePartition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Gorduroso"/>
+        <Class IRI="#Gorduras"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Guarana"/>
+        <Class IRI="#Fruta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ingrediente"/>
+        <Class IRI="#DomainConcept"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Lady_Grey"/>
-        <Class IRI="#Preto"/>
+        <Class IRI="#Cha_Preto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lady_Grey"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Bergamota"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lady_Grey"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Laranja"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Lady_Grey"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Limao"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Lanche"/>
@@ -342,23 +1108,135 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Laranja"/>
-        <Class IRI="#Refrigerante"/>
+        <Class IRI="#Fruta"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Limão"/>
-        <Class IRI="#Refrigerante"/>
+        <Class IRI="#Laticinio"/>
+        <Class IRI="#Derivado_de_Animal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Leite"/>
+        <Class IRI="#Laticinio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Leite_Condensado"/>
+        <Class IRI="#Laticinio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Limao"/>
+        <Class IRI="#Fruta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Maca"/>
+        <Class IRI="#Fruta"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Meio_Gorduroso"/>
+        <Class IRI="#Gorduras"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Meio_Salgado"/>
+        <Class IRI="#Nível_de_Sal"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Moca"/>
-        <Class IRI="#Café"/>
+        <Class IRI="#Cafe"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#PIzza"/>
+        <Class IRI="#Moca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Moca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Chocolate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Moca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Molho"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Molho_Pesto"/>
+        <Class IRI="#Molho"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Molho_de_Tomate"/>
+        <Class IRI="#Molho"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Nao_Gorduroso"/>
+        <Class IRI="#Gorduras"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Noz_de_Cola"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Nível_de_Sal"/>
+        <Class IRI="#ValuePartition"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ovo"/>
+        <Class IRI="#Derivado_de_Animal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Palmito"/>
+        <Class IRI="#Verdura"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pao"/>
+        <Class IRI="#Ingrediente"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pao_de_Queijo"/>
         <Class IRI="#Lanche"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#PIzza_Marguerita"/>
-        <Class IRI="#PIzza"/>
+        <Class IRI="#Pao_de_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Meio_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pao_de_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Farinha_de_Arroz"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pao_de_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Ovo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pao_de_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pao_de_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Meio_Salgado"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Pastel"/>
@@ -369,108 +1247,676 @@
         <Class IRI="#Pastel"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pastel_de_Calabresa"/>
+        <Class IRI="#Pastel_Frito"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Meio_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Meio_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito_de_Calabresa"/>
         <Class IRI="#Pastel_Frito"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pastel_de_Carne"/>
+        <Class IRI="#Pastel_Frito_de_Calabresa"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Calabresa"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito_de_Calabresa"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito_de_Carne"/>
         <Class IRI="#Pastel_Frito"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito_de_Carne"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#File"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito_de_Carne"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Cheddar"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito_de_Queijo"/>
+        <Class IRI="#Pastel_Frito"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_Frito_de_Queijo"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Pastel_de_Forno"/>
         <Class IRI="#Pastel"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pastel_de_Frango"/>
+        <Class IRI="#Pastel_de_Forno"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Frango"/>
         <Class IRI="#Pastel_de_Forno"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pastel_de_Palmito"/>
+        <Class IRI="#Pastel_de_Forno_de_Frango"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Frango"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Frango"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Frango"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Requeijao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Palmito"/>
         <Class IRI="#Pastel_de_Forno"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pastel_de_Quatro_Queijos"/>
+        <Class IRI="#Pastel_de_Forno_de_Palmito"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Palmito"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Palmito"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Palmito"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Requeijao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Quatro_Queijos"/>
         <Class IRI="#Pastel_de_Forno"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pastel_de_Queijo"/>
-        <Class IRI="#Pastel_Frito"/>
+        <Class IRI="#Pastel_de_Forno_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Meio_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Cheddar"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Mucarela"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Parmesao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pastel_de_Forno_de_Quatro_Queijos"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo_Provolone"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pimenta"/>
+        <Class IRI="#Especiaria"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Pingado"/>
-        <Class IRI="#Café"/>
+        <Class IRI="#Cafe"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pingado"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Meio_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pingado"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza"/>
+        <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Molho_de_Tomate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza_Marguerita"/>
+        <Class IRI="#Pizza"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza_Marguerita"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Molho_Pesto"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza_Marguerita"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Tomate"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Pizza_de_Calabresa"/>
-        <Class IRI="#PIzza"/>
+        <Class IRI="#Pizza"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pizza_de_Coração"/>
-        <Class IRI="#PIzza"/>
+        <Class IRI="#Pizza_de_Calabresa"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Calabresa"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Preto"/>
-        <Class IRI="#Chá"/>
+        <Class IRI="#Pizza_de_Coracao"/>
+        <Class IRI="#Pizza"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Pão_de_Queijo"/>
-        <Class IRI="#Lanche"/>
+        <Class IRI="#Pizza_de_Coracao"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Coracao_de_Galinha"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pouco_Salgado"/>
+        <Class IRI="#Nível_de_Sal"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Presunto"/>
+        <Class IRI="#Carne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Produto"/>
+        <Class IRI="#DomainConcept"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Queijo"/>
+        <Class IRI="#Laticinio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Queijo_Cheddar"/>
+        <Class IRI="#Queijo"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Queijo_Mucarela"/>
+        <Class IRI="#Queijo"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Queijo_Parmesao"/>
+        <Class IRI="#Queijo"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Queijo_Provolone"/>
+        <Class IRI="#Queijo"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Quindim"/>
         <Class IRI="#Docinho"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Refeição"/>
+        <Class IRI="#Quindim"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Coco"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Quindim"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Ovo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refeicao"/>
         <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refeicao"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Meio_Salgado"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Refrigerante"/>
         <Class IRI="#Bebida"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Refrigerante"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Acucar"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Agua"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Dioxido_de_Carbono"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Cola"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Cola"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Noz_de_Cola"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Guarana"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Guarana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Guarana"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Laranja"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Laranja"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Laranja"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Limao"/>
+        <Class IRI="#Refrigerante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Refrigerante_de_Limao"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Limao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Requeijao"/>
+        <Class IRI="#Laticinio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Salgado"/>
+        <Class IRI="#Nível_de_Sal"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Suco"/>
         <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Agua"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Fruta"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Suco_Verde"/>
         <Class IRI="#Suco"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Suco_Verde"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Couve"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco_Verde"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Folhas_de_Hortela"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco_Verde"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Gengibre"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco_Verde"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Laranja"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Suco_Verde"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Limao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Suco_de_Laranja"/>
         <Class IRI="#Suco"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Suco_de_Laranja"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Laranja"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Tomate"/>
+        <Class IRI="#Verdura"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Torrada"/>
         <Class IRI="#Lanche"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Pao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Queijo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Torrada_Completa"/>
         <Class IRI="#Torrada"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Torrada_Completa"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Alface"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Completa"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Ovo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Completa"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Presunto"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Completa"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Tomate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Torrada_Simples"/>
         <Class IRI="#Torrada"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Simples"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Presunto"/>
+        </ObjectSomeValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Torrada_Vegetariana"/>
         <Class IRI="#Torrada"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Torrada_Vegetariana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Alface"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Vegetariana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Ovo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Vegetariana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Palmito"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torrada_Vegetariana"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Tomate"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Torta"/>
         <Class IRI="#Lanche"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Torta_de_Limão"/>
+        <Class IRI="#Torta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temGorduras"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Acucar"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temSal"/>
+            <Class IRI="#Pouco_Salgado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Limao"/>
         <Class IRI="#Torta"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Torta_de_Maçã"/>
+        <Class IRI="#Torta_de_Limao"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Farinha_de_Trigo"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Limao"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Leite_Condensado"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Limao"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Limao"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Maca"/>
         <Class IRI="#Torta"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Verde"/>
-        <Class IRI="#Chá"/>
+        <Class IRI="#Torta_de_Maca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Canela"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Maca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Farinha_de_Arroz"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Maca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Maca"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Torta_de_Maca"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#temIngrediente"/>
+            <Class IRI="#Nao_Gorduroso"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Verdura"/>
+        <Class IRI="#Ingrediente"/>
     </SubClassOf>
     <DisjointClasses>
         <Class IRI="#Bebida"/>
@@ -480,6 +1926,757 @@
         <Class IRI="#DomainConcept"/>
         <Class IRI="#ValuePartition"/>
     </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Gorduroso"/>
+        <Class IRI="#Meio_Gorduroso"/>
+        <Class IRI="#Nao_Gorduroso"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Ingrediente"/>
+        <Class IRI="#Produto"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Meio_Salgado"/>
+        <Class IRI="#Pouco_Salgado"/>
+        <Class IRI="#Salgado"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#temGorduras"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#eIngredienteDe"/>
+        <ObjectProperty IRI="#temIngrediente"/>
+    </InverseObjectProperties>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#eIngredienteDe"/>
+        <Class IRI="#Ingrediente"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temIngrediente"/>
+        <Class IRI="#Bebida"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#temIngrediente"/>
+        <Class IRI="#Comida"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#eIngredienteDe"/>
+        <Class IRI="#Bebida"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#eIngredienteDe"/>
+        <Class IRI="#Comida"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temGorduras"/>
+        <Class IRI="#Gorduras"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temIngrediente"/>
+        <Class IRI="#Ingrediente"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#temSal"/>
+        <Class IRI="#Nível_de_Sal"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#gluten"/>
+        <Class IRI="#Produto"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#lactose"/>
+        <Class IRI="#Produto"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#preco"/>
+        <Class IRI="#Produto"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#vegetariano"/>
+        <Class IRI="#Produto"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#gluten"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#lactose"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#preco"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#vegetariano"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#A_La_Minuta</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">A La Minuta</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Acucar</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Açúcar</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Agua</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Água</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Alface</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Alface</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Americano</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Americano</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Arroz</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Arroz</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Batata_Frita</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">BatataFrita</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Bebida</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Bebida</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Bergamota</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Bergamota</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Brigadeiro</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Brigadeiro</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cafe</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Café</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cafe_Latte</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Café Latte</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cafe_Moido</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Café Moido</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Calabresa</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Calabresa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Canela</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Canela</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cappuccino</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Cappuccino</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Carne</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Carne</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cha</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chá</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cha_Preto</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chá Preto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cha_Verde</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chá Verde</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cha_de_Frutas_Vermelhas</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chá de Frutas Vermelhas</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cha_de_Hortela</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chá de Hortelã</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cheesecake</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chessecake</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cheesecake_de_Cafe</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Cheesecake de Café</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cheesecake_de_Doce_de_Leite</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Cheesecake de Doce de Leite</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cheesecake_de_Frutas_Vermelhas</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Cheesecake de Frutas Vermelhas</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Chocolate</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chocolate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Chocolate_Quente</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Chocolate Quente</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Coco</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Coco</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Comida</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Comida</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Coracao_de_Galinha</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Coração de Galinha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Couve</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Couve</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Cream_Cheese</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Queijo Cremoso</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Croissant</IRI>
+        <Literal xml:lang="fr" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Croissant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Croissant_de_Chocolate</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Croissant de Chocolate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Croissant_de_Frango</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Croissant de Frango</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Croissant_de_Presunto_e_Queijo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Croissant de Presunto e Queijo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Croissant_de_Quatro_Queijos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Croissant de Quatro Queijos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Derivado_de_Animal</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Derivado de Animal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Dioxido_de_Carbono</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Dióxido de Carbono</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Doce_de_Leite</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Doce de Leite</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Docinho</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Docinho</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#DomainConcept</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Conceito Domínio</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Earl_Grey</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Earl Grey</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#English_Breakfast</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">English Breakfast</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Especiaria</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Especiaria</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Expresso</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Expresso</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Expresso_Duplo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Expresso Duplo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Farinha</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Farinha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Farinha_de_Arroz</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Farinha de Arroz</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Farinha_de_Trigo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Farinha de Trigo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Feijao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Feijão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#File</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Filé</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Folhas_de_Cha_Preto</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Folhas de Chá Preto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Folhas_de_Cha_Verde</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Folhas de Chá Verde</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Folhas_de_Hortela</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Folhas de Hortelã</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Frango</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Frango</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Frango_a_Italiana</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Frango à Italiana</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Fruta</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Fruta</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Frutas_Vermelhas</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Frutas Vermelhas</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Gengibre</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Gengibre</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Gorduras</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Gorduras</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Gorduroso</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Gorduroso</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Guarana</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Guaraná</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Ingrediente</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Ingrediente</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Lady_Grey</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Lady Grey</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Lanche</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Lanche</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Laranja</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Laranja</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Laticinio</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Laticínio</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Leite</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Leite</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Leite_Condensado</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Leite Condensado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Limao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Limão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Maca</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Maçã</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Meio_Gorduroso</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Meio Gorduroso</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Meio_Salgado</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Meio Salgado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Moca</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Moca</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Molho</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Molho</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Molho_Pesto</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Molho Pesto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Molho_de_Tomate</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Molho de Tomate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Nao_Gorduroso</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Não Gorduroso</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Noz_de_Cola</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Noz de Cola</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Nível_de_Sal</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Nível de Sal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Ovo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Ovo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Palmito</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Palmito</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pao_de_Queijo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pão de Queijo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_Frito</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel Frito</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_Frito_de_Calabresa</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel Frito de Calabresa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_Frito_de_Carne</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel Frito de Carne</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_Frito_de_Queijo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel Frito de Queijo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_de_Forno</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel de Forno</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_de_Forno_de_Frango</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel de Forno de Frango</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_de_Forno_de_Palmito</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel de Forno de Palmito</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pastel_de_Forno_de_Quatro_Queijos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pastel de Forno de Quatro Queijos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pimenta</IRI>
+        <Literal datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pimenta</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pingado</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pingado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pizza</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pizza</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pizza_Marguerita</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pizza Marguerita</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pizza_de_Calabresa</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pizza de Calabresa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pizza_de_Coracao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pizza de Coração</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Pouco_Salgado</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Pouco Salgado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Presunto</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Presunto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Produto</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Produto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Queijo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Queijo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Queijo_Cheddar</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Quejo Cheddar</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Queijo_Mucarela</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Queijo Muçarela</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Queijo_Parmesao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Queijo Parmesão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Queijo_Provolone</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Queijo Provolone</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Quindim</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Quindim</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Refeicao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Refeição</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Refrigerante</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Refrigerante</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Refrigerante_de_Cola</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Refrigerante de Cola</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Refrigerante_de_Guarana</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Refrigerante de Guaraná</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Refrigerante_de_Laranja</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Refrigerante de Laranja</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Refrigerante_de_Limao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Refrigerante de Limão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Requeijao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Requeijão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Salgado</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Salgado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Suco</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Suco</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Suco_Verde</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Suco Verde</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Suco_de_Laranja</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Suco de Laranja</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Tomate</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Tomate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Torrada</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Torrada</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Torrada_Completa</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Torrada Completa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Torrada_Simples</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Torrada Simples</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Torrada_Vegetariana</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Torrada Vegetariana</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Torta</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Torta</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Torta_de_Limao</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Torta de Limão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Torta_de_Maca</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Torta de Maçã</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#ValuePartition</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Partição Valor</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Verdura</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Verdura</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#preco</IRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Preço</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>owl:Thing</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"></Literal>
+    </AnnotationAssertion>
 </Ontology>
 
 

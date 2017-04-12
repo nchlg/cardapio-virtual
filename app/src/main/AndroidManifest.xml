@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="facin.com.cardapio_virtual">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -50,10 +51,6 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity
-            android:name=".LocaisActivity"
-            android:label="@string/title_activity_locais"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuActivity" />
         <!-- Map API -->
         <meta-data
@@ -73,7 +70,11 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".RestaurantInfoActivity"
+            android:label="@string/title_activity_restaurant_info"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

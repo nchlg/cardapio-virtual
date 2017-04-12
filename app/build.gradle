@@ -20,12 +20,12 @@ android {
     }
 }
 
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     // compile 'net.sourceforge.owlapi:owlapi-distribution:5.0.5'
     // https://mvnrepository.com/artifact/com.hp.hpl.jena/jena
     //compile group: 'com.hp.hpl.jena', name: 'jena', version: '2.6.4'
-    testCompile 'junit:junit:4.12'
     compile files('androjena_0.5.jar')
     compile files('icu4j-3.4.5.jar')
     compile files('iri-0.8.jar')
@@ -36,4 +36,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.google.android.gms:play-services-maps:10.2.1'
     compile 'com.google.android.gms:play-services-location:10.2.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

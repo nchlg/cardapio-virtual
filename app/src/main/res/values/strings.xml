@@ -23,4 +23,5 @@
     <string name="google_maps_api_key">AIzaSyAOaHPomF2FL3aTlYkDxbc2GvhSi_t46pU</string>
     <string name="title_activity_maps">Map</string>
     <string name="current_position_title">Current Position</string>
+    <string name="title_activity_restaurant_info">RestaurantInfoActivity</string>
 </resources>

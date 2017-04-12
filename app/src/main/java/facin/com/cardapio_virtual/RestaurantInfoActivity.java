@@ -7,12 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class LocaisActivity extends AppCompatActivity {
+public class RestaurantInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_locais);
+        setContentView(R.layout.activity_restaurant_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -25,4 +25,5 @@ public class LocaisActivity extends AppCompatActivity {
             }
         });
     }
+
 }

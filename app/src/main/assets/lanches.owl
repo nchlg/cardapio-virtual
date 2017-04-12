@@ -40,10 +40,10 @@
         <Class IRI="#A_La_Minuta"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Queijo_Mucarela"/>
+        <Class IRI="#DomainConcept"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#DomainConcept"/>
+        <Class IRI="#Queijo_Mucarela"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="#gluten"/>
@@ -61,16 +61,16 @@
         <Class IRI="#Pastel_Frito"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="#vegetariano"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Moca"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Nao_Gorduroso"/>
+        <DataProperty IRI="#vegetariano"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#temIngrediente"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Nao_Gorduroso"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Gorduroso"/>
@@ -109,13 +109,13 @@
         <Class IRI="#Pao"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Cheesecake_de_Cafe"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Refrigerante"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Coco"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cheesecake_de_Cafe"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Meio_Salgado"/>
@@ -133,10 +133,10 @@
         <Class IRI="#Chocolate"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Leite_Condensado"/>
+        <Class IRI="#Meio_Gorduroso"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Meio_Gorduroso"/>
+        <Class IRI="#Leite_Condensado"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Agua"/>
@@ -199,10 +199,10 @@
         <Class IRI="#Cappuccino"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Maca"/>
+        <Class IRI="#Feijao"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Feijao"/>
+        <Class IRI="#Maca"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Suco_de_Laranja"/>
@@ -226,16 +226,16 @@
         <Class IRI="#Refrigerante_de_Limao"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Acucar"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Earl_Grey"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Americano"/>
+        <Class IRI="#Acucar"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Queijo_Parmesao"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Americano"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Cha_Verde"/>
@@ -313,10 +313,10 @@
         <Class IRI="#Ovo"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Canela"/>
+        <Class IRI="#Requeijao"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Requeijao"/>
+        <Class IRI="#Canela"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Frango"/>
@@ -331,10 +331,13 @@
         <Class IRI="#Torrada_Completa"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Dioxido_de_Carbono"/>
+        <NamedIndividual IRI="#A_La_Minuta"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Gengibre"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Dioxido_de_Carbono"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Frutas_Vermelhas"/>
@@ -349,10 +352,10 @@
         <Class IRI="#Croissant_de_Quatro_Queijos"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Especiaria"/>
+        <Class IRI="#Farinha_de_Trigo"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Farinha_de_Trigo"/>
+        <Class IRI="#Especiaria"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Arroz"/>
@@ -409,13 +412,13 @@
         <Class IRI="#Laranja"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#ValuePartition"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Torrada_Simples"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Salgado"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#ValuePartition"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Pizza_Marguerita"/>
@@ -1940,6 +1943,10 @@
         <Class IRI="#Pouco_Salgado"/>
         <Class IRI="#Salgado"/>
     </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#A_La_Minuta"/>
+        <NamedIndividual IRI="#A_La_Minuta"/>
+    </ClassAssertion>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#temGorduras"/>
         <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>

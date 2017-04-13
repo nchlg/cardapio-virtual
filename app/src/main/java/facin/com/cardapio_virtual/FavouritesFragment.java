@@ -122,8 +122,8 @@ public class FavouritesFragment extends Fragment {
                 restaurantsCursor = getActivity().getContentResolver().query(
                         DatabaseContract.RestaurantesEntry.CONTENT_URI,
                         null,
-                        null,
-                        null,
+                        DatabaseContract.RestaurantesEntry.COLUMN_FAVORITO + " = ?",
+                        new String[]{"1"},
                         null
                 );
                 if (restaurantsCursor != null) {

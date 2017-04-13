@@ -18,10 +18,10 @@ public class DatabaseProvider extends ContentProvider {
 
     /* Tabelas */
     static final int RESTAURANTES = 100;
-    static final int USUARIOS = 200;
-    static final int FAVORITOS = 300;
+//    static final int USUARIOS = 200;
+//    static final int FAVORITOS = 300;
     /* Joins */
-    static final int RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS = 301;
+//    static final int RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS = 301;
     /* Distinct */
 
     static UriMatcher buildUriMatcher() {
@@ -32,11 +32,11 @@ public class DatabaseProvider extends ContentProvider {
         final String authority = DatabaseContract.CONTENT_AUTHORITY;
         /* Para cada tipo de URI que você deseja adicionar, crie um código correspondente.*/
         matcher.addURI(authority, DatabaseContract.PATH_RESTAURANTES, RESTAURANTES);
-        matcher.addURI(authority, DatabaseContract.PATH_USUARIOS, USUARIOS);
-        matcher.addURI(authority, DatabaseContract.PATH_FAVORITOS, FAVORITOS);
-        /* Joins */
-        matcher.addURI(authority, DatabaseContract.PATH_RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS + "/",
-                RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS);
+//        matcher.addURI(authority, DatabaseContract.PATH_USUARIOS, USUARIOS);
+//        matcher.addURI(authority, DatabaseContract.PATH_FAVORITOS, FAVORITOS);
+//        /* Joins */
+//        matcher.addURI(authority, DatabaseContract.PATH_RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS + "/",
+//                RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS);
         return matcher;
     }
 
@@ -53,10 +53,10 @@ public class DatabaseProvider extends ContentProvider {
         switch (match) {
             case RESTAURANTES:
                 return DatabaseContract.RestaurantesEntry.CONTENT_TYPE;
-            case USUARIOS:
-                return DatabaseContract.UsuariosEntry.CONTENT_TYPE;
-            case FAVORITOS:
-                return DatabaseContract.FavoritosEntry.CONTENT_TYPE;
+//            case USUARIOS:
+//                return DatabaseContract.UsuariosEntry.CONTENT_TYPE;
+//            case FAVORITOS:
+//                return DatabaseContract.FavoritosEntry.CONTENT_TYPE;
             default:
                 throw new UnsupportedOperationException("URI desconhecida: " + uri);
         }
@@ -79,45 +79,45 @@ public class DatabaseProvider extends ContentProvider {
                 );
                 break;
             }
-            case USUARIOS: {
-                retCursor = mOpenHelper.getReadableDatabase().query(
-                        DatabaseContract.UsuariosEntry.TABLE_NAME,
-                        projection,
-                        selection,
-                        selectionArgs,
-                        null,
-                        null,
-                        sortOrder
-                );
-                break;
-            }
-            case FAVORITOS: {
-                retCursor = mOpenHelper.getReadableDatabase().query(
-                        DatabaseContract.FavoritosEntry.TABLE_NAME,
-                        projection,
-                        selection,
-                        selectionArgs,
-                        null,
-                        null,
-                        sortOrder
-                );
-                break;
-            }
-            case RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS: {
-                retCursor = mOpenHelper.getReadableDatabase().rawQuery(
-                      " SELECT " +
-                        DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry._ID + ", " +
-                        DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry.COLUMN_NOME + "AS RESTAURANTE_NOME, " +
-                        DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO + ", " +
-                        DatabaseContract.FavoritosEntry.TABLE_NAME + "." + DatabaseContract.FavoritosEntry._ID +
-                        " FROM " + DatabaseContract.RestaurantesEntry.TABLE_NAME +
-                        " INNER JOIN " + DatabaseContract.FavoritosEntry.TABLE_NAME +
-                        " ON " + DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry._ID +
-                        " = " + DatabaseContract.FavoritosEntry.TABLE_NAME + "." + DatabaseContract.FavoritosEntry.COLUMN_ID_RESTAURANTE,
-                        selectionArgs
-                );
-                break;
-            }
+//            case USUARIOS: {
+//                retCursor = mOpenHelper.getReadableDatabase().query(
+//                        DatabaseContract.UsuariosEntry.TABLE_NAME,
+//                        projection,
+//                        selection,
+//                        selectionArgs,
+//                        null,
+//                        null,
+//                        sortOrder
+//                );
+//                break;
+//            }
+//            case FAVORITOS: {
+//                retCursor = mOpenHelper.getReadableDatabase().query(
+//                        DatabaseContract.FavoritosEntry.TABLE_NAME,
+//                        projection,
+//                        selection,
+//                        selectionArgs,
+//                        null,
+//                        null,
+//                        sortOrder
+//                );
+//                break;
+//            }
+//            case RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS: {
+//                retCursor = mOpenHelper.getReadableDatabase().rawQuery(
+//                      " SELECT " +
+//                        DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry._ID + ", " +
+//                        DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry.COLUMN_NOME + "AS RESTAURANTE_NOME, " +
+//                        DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO + ", " +
+//                        DatabaseContract.FavoritosEntry.TABLE_NAME + "." + DatabaseContract.FavoritosEntry._ID +
+//                        " FROM " + DatabaseContract.RestaurantesEntry.TABLE_NAME +
+//                        " INNER JOIN " + DatabaseContract.FavoritosEntry.TABLE_NAME +
+//                        " ON " + DatabaseContract.RestaurantesEntry.TABLE_NAME + "." + DatabaseContract.RestaurantesEntry._ID +
+//                        " = " + DatabaseContract.FavoritosEntry.TABLE_NAME + "." + DatabaseContract.FavoritosEntry.COLUMN_ID_RESTAURANTE,
+//                        selectionArgs
+//                );
+//                break;
+//            }
             default:
                 throw new UnsupportedOperationException("URI desconhecida: " + uri);
         }
@@ -140,22 +140,22 @@ public class DatabaseProvider extends ContentProvider {
                     throw new android.database.SQLException("Falha ao inserir linha em " + uri);
                 break;
             }
-            case USUARIOS: {
-                long _id = db.insert(DatabaseContract.UsuariosEntry.TABLE_NAME, null, values);
-                if (_id > 0)
-                    returnUri = DatabaseContract.UsuariosEntry.buildAvaliacoesUri(_id);
-                else
-                    throw new android.database.SQLException("Falha ao inserir linha em " + uri);
-                break;
-            }
-            case FAVORITOS: {
-                long _id = db.insert(DatabaseContract.FavoritosEntry.TABLE_NAME, null, values);
-                if (_id > 0)
-                    returnUri = DatabaseContract.FavoritosEntry.buildAvaliacoesUri(_id);
-                else
-                    throw new android.database.SQLException("Falha ao inserir linha em " + uri);
-                break;
-            }
+//            case USUARIOS: {
+//                long _id = db.insert(DatabaseContract.UsuariosEntry.TABLE_NAME, null, values);
+//                if (_id > 0)
+//                    returnUri = DatabaseContract.UsuariosEntry.buildAvaliacoesUri(_id);
+//                else
+//                    throw new android.database.SQLException("Falha ao inserir linha em " + uri);
+//                break;
+//            }
+//            case FAVORITOS: {
+//                long _id = db.insert(DatabaseContract.FavoritosEntry.TABLE_NAME, null, values);
+//                if (_id > 0)
+//                    returnUri = DatabaseContract.FavoritosEntry.buildAvaliacoesUri(_id);
+//                else
+//                    throw new android.database.SQLException("Falha ao inserir linha em " + uri);
+//                break;
+//            }
             default:
                 throw new UnsupportedOperationException("URI desconhecida: " + uri);
         }
@@ -176,16 +176,16 @@ public class DatabaseProvider extends ContentProvider {
                         DatabaseContract.RestaurantesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             }
-            case USUARIOS: {
-                rowsDeleted = db.delete(
-                        DatabaseContract.UsuariosEntry.TABLE_NAME, selection, selectionArgs);
-                break;
-            }
-            case FAVORITOS: {
-                rowsDeleted = db.delete(
-                        DatabaseContract.FavoritosEntry.TABLE_NAME, selection, selectionArgs);
-                break;
-            }
+//            case USUARIOS: {
+//                rowsDeleted = db.delete(
+//                        DatabaseContract.UsuariosEntry.TABLE_NAME, selection, selectionArgs);
+//                break;
+//            }
+//            case FAVORITOS: {
+//                rowsDeleted = db.delete(
+//                        DatabaseContract.FavoritosEntry.TABLE_NAME, selection, selectionArgs);
+//                break;
+//            }
             default:
                 throw new UnsupportedOperationException("URI desconhecida: " + uri);
         }
@@ -206,14 +206,14 @@ public class DatabaseProvider extends ContentProvider {
                 rowsUpdated = db.update(DatabaseContract.RestaurantesEntry.TABLE_NAME, values, selection,
                         selectionArgs);
                 break;
-            case USUARIOS:
-                rowsUpdated = db.update(DatabaseContract.UsuariosEntry.TABLE_NAME, values, selection,
-                        selectionArgs);
-                break;
-            case FAVORITOS:
-                rowsUpdated = db.update(DatabaseContract.FavoritosEntry.TABLE_NAME, values, selection,
-                        selectionArgs);
-                break;
+//            case USUARIOS:
+//                rowsUpdated = db.update(DatabaseContract.UsuariosEntry.TABLE_NAME, values, selection,
+//                        selectionArgs);
+//                break;
+//            case FAVORITOS:
+//                rowsUpdated = db.update(DatabaseContract.FavoritosEntry.TABLE_NAME, values, selection,
+//                        selectionArgs);
+//                break;
             default:
                 throw new UnsupportedOperationException("URI desconhecida: " + uri);
         }
@@ -244,38 +244,38 @@ public class DatabaseProvider extends ContentProvider {
                 }
                 getContext().getContentResolver().notifyChange(uri, null);
                 return returnCount;
-            case USUARIOS:
-                db.beginTransaction();
-                returnCount = 0;
-                try {
-                    for (ContentValues value : values) {
-                        long _id = db.insert(DatabaseContract.UsuariosEntry.TABLE_NAME, null, value);
-                        if (_id != -1) {
-                            returnCount++;
-                        }
-                    }
-                    db.setTransactionSuccessful();
-                } finally {
-                    db.endTransaction();
-                }
-                getContext().getContentResolver().notifyChange(uri, null);
-                return returnCount;
-            case FAVORITOS:
-                db.beginTransaction();
-                returnCount = 0;
-                try {
-                    for (ContentValues value : values) {
-                        long _id = db.insert(DatabaseContract.FavoritosEntry.TABLE_NAME, null, value);
-                        if (_id != -1) {
-                            returnCount++;
-                        }
-                    }
-                    db.setTransactionSuccessful();
-                } finally {
-                    db.endTransaction();
-                }
-                getContext().getContentResolver().notifyChange(uri, null);
-                return returnCount;
+//            case USUARIOS:
+//                db.beginTransaction();
+//                returnCount = 0;
+//                try {
+//                    for (ContentValues value : values) {
+//                        long _id = db.insert(DatabaseContract.UsuariosEntry.TABLE_NAME, null, value);
+//                        if (_id != -1) {
+//                            returnCount++;
+//                        }
+//                    }
+//                    db.setTransactionSuccessful();
+//                } finally {
+//                    db.endTransaction();
+//                }
+//                getContext().getContentResolver().notifyChange(uri, null);
+//                return returnCount;
+//            case FAVORITOS:
+//                db.beginTransaction();
+//                returnCount = 0;
+//                try {
+//                    for (ContentValues value : values) {
+//                        long _id = db.insert(DatabaseContract.FavoritosEntry.TABLE_NAME, null, value);
+//                        if (_id != -1) {
+//                            returnCount++;
+//                        }
+//                    }
+//                    db.setTransactionSuccessful();
+//                } finally {
+//                    db.endTransaction();
+//                }
+//                getContext().getContentResolver().notifyChange(uri, null);
+//                return returnCount;
             default:
                 return super.bulkInsert(uri, values);
         }

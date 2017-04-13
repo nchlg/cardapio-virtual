@@ -128,7 +128,7 @@ public class RestaurantsFragment extends Fragment {
             // Se mSearchQuery for nula, significa que a atividade é a MainActivity. Senão, é a SearchableActivity.
             if (params[0] == null) {
                 try {
-                    // insereDummies();
+                    insereRestauranteTeste();
                     restaurantsCursor = getActivity().getContentResolver().query(
                             DatabaseContract.RestaurantesEntry.CONTENT_URI,
                             null,
@@ -196,7 +196,24 @@ public class RestaurantsFragment extends Fragment {
             return restaurants;
         }
 
-        public void insereDummies() {
+        boolean insereRestauranteTeste() {
+            Cursor testCursor = getActivity().getContentResolver().query(
+                    DatabaseContract.RestaurantesEntry.CONTENT_URI,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            if (testCursor != null) {
+                while(testCursor.moveToNext()) {
+                    if (testCursor.getString(testCursor.getColumnIndex("nome")).equals("Bar do 5")) {
+                        testCursor.close();
+                        return false;
+                    }
+                }
+            }
+
             Restaurant restaurant = new Restaurant(true);
             ContentValues rest1 = new ContentValues();
             rest1.put("_id", (byte[]) null);
@@ -207,7 +224,13 @@ public class RestaurantsFragment extends Fragment {
             rest1.put("latitude",restaurant.getLatitude());
             rest1.put("longitude",restaurant.getLongitude());
             rest1.put("descricao",restaurant.getDescricao());
+            rest1.put("favorito", restaurant.isFavorito() ? 1 : 0);
             getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest1);
+
+            if (testCursor != null ) {
+                testCursor.close();
+            }
+            return true;
         }
     }
 }

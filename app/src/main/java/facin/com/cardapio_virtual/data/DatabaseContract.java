@@ -50,6 +50,7 @@ public class DatabaseContract {
         public static final String COLUMN_LAT = "latitude";
         public static final String COLUMN_LNG = "longitude";
         public static final String COLUMN_DESCRICAO = "descricao";
+        public static final String COLUMN_FAVORITO = "favorito";
 
         /* Gera o ID da tabela */
         public static Uri buildAvaliacoesUri(long id) {
@@ -58,47 +59,47 @@ public class DatabaseContract {
     }
 
     /* Classe interna que define os conteúdos da tabela Usuarios */
-    public static final class UsuariosEntry implements BaseColumns {
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_USUARIOS).build();
-
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_USUARIOS;
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_USUARIOS;
-
-        /* Nome da tabela */
-        public static final String TABLE_NAME = "usuarios";
-
-        /* Colunas */
-        public static final String COLUMN_NOME = "nome";
-        // public static final String COLUMN_EMAIL = "email";
-
-        /* Gera o ID da tabela */
-        public static Uri buildAvaliacoesUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-    }
-
-    /* Classe interna que define os conteúdos da tabela Favoritos */
-    public static final class FavoritosEntry implements BaseColumns {
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITOS).build();
-
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FAVORITOS;
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FAVORITOS;
-
-        /* Nome da tabela */
-        public static final String TABLE_NAME = "favoritos";
-
-        /* Colunas */
-        public static final String COLUMN_ID_RESTAURANTE = "id_restaurante";
-        public static final String COLUMN_ID_USUARIO = "id_usuario";
-
-        /* Gera o ID da tabela */
-        public static Uri buildAvaliacoesUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-    }
+//    public static final class UsuariosEntry implements BaseColumns {
+//        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_USUARIOS).build();
+//
+//        public static final String CONTENT_TYPE =
+//                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_USUARIOS;
+//        public static final String CONTENT_ITEM_TYPE =
+//                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_USUARIOS;
+//
+//        /* Nome da tabela */
+//        public static final String TABLE_NAME = "usuarios";
+//
+//        /* Colunas */
+//        public static final String COLUMN_NOME = "nome";
+//        // public static final String COLUMN_EMAIL = "email";
+//
+//        /* Gera o ID da tabela */
+//        public static Uri buildAvaliacoesUri(long id) {
+//            return ContentUris.withAppendedId(CONTENT_URI, id);
+//        }
+//    }
+//
+//    /* Classe interna que define os conteúdos da tabela Favoritos */
+//    public static final class FavoritosEntry implements BaseColumns {
+//        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_FAVORITOS).build();
+//
+//        public static final String CONTENT_TYPE =
+//                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FAVORITOS;
+//        public static final String CONTENT_ITEM_TYPE =
+//                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_FAVORITOS;
+//
+//        /* Nome da tabela */
+//        public static final String TABLE_NAME = "favoritos";
+//
+//        /* Colunas */
+//        public static final String COLUMN_ID_RESTAURANTE = "id_restaurante";
+//        public static final String COLUMN_ID_USUARIO = "id_usuario";
+//
+//        /* Gera o ID da tabela */
+//        public static Uri buildAvaliacoesUri(long id) {
+//            return ContentUris.withAppendedId(CONTENT_URI, id);
+//        }
+//    }
 
 }

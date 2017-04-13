@@ -264,10 +264,10 @@ public class ProductFragment extends Fragment {
             NodeIterator nodeList = ontClass.listPropertyValues(hasTopping);
             if (nodeList != null) {
                 // RDFList nodoList = nodo.as(RDFList.class);
-                for (Iterator<RDFNode> i = nodeList.iterator(); i.hasNext(); ) {
-                    ingredientes.add(i.next().toString());
-                    Log.d("Ingr. log", i.next() != null ? i.next().toString() : ":(");
-                }
+//                for (Iterator<RDFNode> i = nodeList.iterator(); i.hasNext(); ) {
+//                    ingredientes.add(i.next().toString());
+//                    Log.d("Ingr. log", i.next() != null ? i.next().toString() : ":(");
+//                }
             }
             return ingredientes;
         }

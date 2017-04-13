@@ -13,6 +13,7 @@ public class Restaurant {
     private double latitude;
     private double longitude;
     private String descricao;
+    private boolean favorito;
 
     public Restaurant() {
         // primaryKey = 0;
@@ -23,6 +24,7 @@ public class Restaurant {
         latitude = 0;
         longitude = 0;
         descricao = "";
+        favorito = false;
     }
 
     public Restaurant(String nome, String email, String telefone, String endereco,
@@ -35,6 +37,7 @@ public class Restaurant {
         this.endereco = endereco;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.favorito = false;
     }
 
     public Restaurant(Boolean teste) {
@@ -47,6 +50,7 @@ public class Restaurant {
             latitude = -30.059947;
             longitude = -51.174464;
             descricao = "Bar do prédio de História que oferece deliciosas opções vegetarianas e um ambiente aconchegante.";
+            favorito = true;
         }
     }
 
@@ -104,5 +108,13 @@ public class Restaurant {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
     }
 }

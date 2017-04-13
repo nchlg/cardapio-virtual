@@ -444,7 +444,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                // insereDummies();
+                insereRestaurante();
                 coordinatesCursor = getActivity().getContentResolver().query(
                         DatabaseContract.RestaurantesEntry.CONTENT_URI,
                         new String[]{DatabaseContract.RestaurantesEntry.COLUMN_LAT,
@@ -498,7 +498,24 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
             mMarkerArray.add(markerOptions);
         }
 
-        public void insereDummies() {
+        boolean insereRestaurante() throws NullPointerException {
+            Cursor espaco32Cursor = getActivity().getContentResolver().query(
+                    DatabaseContract.RestaurantesEntry.CONTENT_URI,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            if (espaco32Cursor != null) {
+                while(espaco32Cursor.moveToNext()) {
+                    if (espaco32Cursor.getString(espaco32Cursor.getColumnIndex("name")).equals("Espaço 32")) {
+                        espaco32Cursor.close();
+                        return false;
+                    }
+                }
+            }
+
             Restaurant espaco32 = new Restaurant("Espaço 32",
                     "espaco32@gmail.com",
                     "(51) 3093-3256",
@@ -515,7 +532,13 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
             rest2.put("latitude", espaco32.getLatitude());
             rest2.put("longitude", espaco32.getLongitude());
             rest2.put("descricao", espaco32.getDescricao());
+            rest2.put("favorito", espaco32.isFavorito() ? 1 : 0);
             getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest2);
+
+            if (espaco32Cursor != null) {
+                espaco32Cursor.close();
+            }
+            return true;
         }
     }
 }

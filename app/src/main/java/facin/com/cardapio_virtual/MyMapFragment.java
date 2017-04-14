@@ -509,7 +509,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
 
             if (espaco32Cursor != null) {
                 while(espaco32Cursor.moveToNext()) {
-                    if (espaco32Cursor.getString(espaco32Cursor.getColumnIndex("name")).equals("Espaço 32")) {
+                    if (espaco32Cursor.getString(espaco32Cursor.getColumnIndex("nome")).equals("Espaço 32")) {
                         espaco32Cursor.close();
                         return false;
                     }

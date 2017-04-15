@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="facin.com.cardapio_virtual">
 
     <!--
@@ -39,7 +40,8 @@
         <activity
             android:name=".SearchableActivity"
             android:label="@string/res_search_label"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -74,7 +76,8 @@
         <activity
             android:name=".RestaurantInfoActivity"
             android:label="@string/title_activity_restaurant_info"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
     </application>
 
 </manifest>

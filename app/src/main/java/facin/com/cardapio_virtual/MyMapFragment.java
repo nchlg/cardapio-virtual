@@ -515,24 +515,17 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                     }
                 }
             }
-
-            Restaurant espaco32 = new Restaurant("Espaço 32",
-                    "espaco32@gmail.com",
-                    "(51) 3093-3256",
-                    "Av. Bento Gonçalves, 4314 (PUCRS - Prédio 32)",
-                    -30.061238,
-                    -51.173792,
-                    "Almoço À La Carte, Lanches, Cafés, Coffee Break, Eventos Corporativos, Festas");
+            
             ContentValues rest2 = new ContentValues();
             rest2.put("_id", (byte[]) null);
-            rest2.put("nome", espaco32.getNome());
-            rest2.put("email", espaco32.getEmail());
-            rest2.put("telefone", espaco32.getTelefone());
-            rest2.put("endereco", espaco32.getEndereco());
-            rest2.put("latitude", espaco32.getLatitude());
-            rest2.put("longitude", espaco32.getLongitude());
-            rest2.put("descricao", espaco32.getDescricao());
-            rest2.put("favorito", espaco32.isFavorito() ? 1 : 0);
+            rest2.put("nome", "Espaço 32");
+            rest2.put("email", "espaco32@gmail.com");
+            rest2.put("telefone", "(51) 3093-3256");
+            rest2.put("endereco", "Av. Bento Gonçalves, 4314 (PUCRS - Prédio 32)");
+            rest2.put("latitude", -30.061238);
+            rest2.put("longitude", -51.173792);
+            rest2.put("descricao", "Almoço À La Carte, Lanches, Cafés, Coffee Break, Eventos Corporativos, Festas");
+            rest2.put("favorito", 0);
             getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest2);
 
             if (espaco32Cursor != null) {

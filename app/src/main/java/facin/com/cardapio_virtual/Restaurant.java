@@ -5,7 +5,7 @@ package facin.com.cardapio_virtual;
  */
 public class Restaurant {
 
-    // private int primaryKey;
+    private int primaryKey;
     private String nome;
     private String email;
     private String telefone;
@@ -15,8 +15,8 @@ public class Restaurant {
     private String descricao;
     private boolean favorito;
 
-    public Restaurant() {
-        // primaryKey = 0;
+    public Restaurant(int primaryKey) {
+        this.primaryKey = primaryKey;
         nome = "";
         email = "";
         telefone = "";
@@ -27,9 +27,9 @@ public class Restaurant {
         favorito = false;
     }
 
-    public Restaurant(String nome, String email, String telefone, String endereco,
+    public Restaurant(int primaryKey, String nome, String email, String telefone, String endereco,
                       double latitude, double longitude, String descricao) {
-        // this.primaryKey = primaryKey;
+        this.primaryKey = primaryKey;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -38,20 +38,6 @@ public class Restaurant {
         this.latitude = latitude;
         this.longitude = longitude;
         this.favorito = false;
-    }
-
-    public Restaurant(Boolean teste) {
-        if (teste) {
-            // primaryKey = 100;
-            nome = "Bar do 5";
-            email = "bardo5@mail.com";
-            telefone = "(XXX) XXXX-XXXX";
-            endereco = "Av. Ipiranga, 6681";
-            latitude = -30.059947;
-            longitude = -51.174464;
-            descricao = "Bar do prédio de História que oferece deliciosas opções vegetarianas e um ambiente aconchegante.";
-            favorito = true;
-        }
     }
 
     public String getNome() {
@@ -116,5 +102,13 @@ public class Restaurant {
 
     public void setFavorito(boolean favorito) {
         this.favorito = favorito;
+    }
+
+    public int getPrimaryKey() {
+        return primaryKey;
+    }
+
+    public void setPrimaryKey(int primaryKey) {
+        this.primaryKey = primaryKey;
     }
 }

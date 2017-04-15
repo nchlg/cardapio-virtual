@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity
     private GoogleMap map;
     // Constant used in the location settings dialog.
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
+    // Intent EXTRA
+    protected static final String EXTRA_RESTAURANT_PK = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_PK";
+    protected static final String EXTRA_RESTAURANT_NOME = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_NOME";
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -115,9 +118,9 @@ public class MainActivity extends AppCompatActivity
 
     // Métodos relacionado aos fragmentos
     public void onListFragmentInteraction(Restaurant item) {
-        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-        // intent.putExtra(EXTRA_PK_PESQUISA, Integer.toString(item.getPk_pesquisa()));
-        // intent.putExtra(EXTRA_PESQUISA, item);
+        Intent intent = new Intent(getApplicationContext(), RestaurantInfoActivity.class);
+        intent.putExtra(EXTRA_RESTAURANT_PK, Integer.toString(item.getPrimaryKey()));
+        intent.putExtra(EXTRA_RESTAURANT_NOME, item.getNome());
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
         startActivityForResult(intent, -1);
     }

@@ -183,6 +183,7 @@ public class RestaurantsFragment extends Fragment {
             /* Cria restaurantes */
             while(cursor.moveToNext()) {
                 Restaurant restaurant = new Restaurant(
+                        Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
@@ -214,17 +215,16 @@ public class RestaurantsFragment extends Fragment {
                 }
             }
 
-            Restaurant restaurant = new Restaurant(true);
             ContentValues rest1 = new ContentValues();
             rest1.put("_id", (byte[]) null);
-            rest1.put("nome", restaurant.getNome());
-            rest1.put("email",restaurant.getEmail());
-            rest1.put("telefone",restaurant.getTelefone());
-            rest1.put("endereco",restaurant.getEndereco());
-            rest1.put("latitude",restaurant.getLatitude());
-            rest1.put("longitude",restaurant.getLongitude());
-            rest1.put("descricao",restaurant.getDescricao());
-            rest1.put("favorito", restaurant.isFavorito() ? 1 : 0);
+            rest1.put("nome", "Bar do 5");
+            rest1.put("email", "bardo5@mail.com");
+            rest1.put("telefone", "(XXX) XXXX-XXXX");
+            rest1.put("endereco", "Av. Ipiranga, 6681");
+            rest1.put("latitude", -30.059947);
+            rest1.put("longitude", -51.174464);
+            rest1.put("descricao","Bar do prédio de História que oferece deliciosas opções vegetarianas e um ambiente aconchegante.");
+            rest1.put("favorito", 1);
             getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest1);
 
             if (testCursor != null ) {

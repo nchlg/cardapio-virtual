@@ -17,4 +17,7 @@
 
     <!-- Mapa -->
     <string name="current_position_title">Posição Atual</string>
+
+    <!-- Restaurant Info -->
+    <string name="title_activity_restaurant_info">Informações Adicionais</string>
 </resources>

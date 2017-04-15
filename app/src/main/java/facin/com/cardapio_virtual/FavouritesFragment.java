@@ -150,6 +150,7 @@ public class FavouritesFragment extends Fragment {
             /* Cria restaurantes */
             while(restaurantsCursor.moveToNext()) {
                 Restaurant restaurant = new Restaurant(
+                        Integer.parseInt(restaurantsCursor.getString(0)),
                         restaurantsCursor.getString(1),
                         restaurantsCursor.getString(2),
                         restaurantsCursor.getString(3),

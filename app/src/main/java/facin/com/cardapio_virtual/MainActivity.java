@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity
     // Intent EXTRA
     protected static final String EXTRA_RESTAURANT_PK = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_PK";
     protected static final String EXTRA_RESTAURANT_NOME = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_NOME";
+    protected static final String EXTRA_RESTAURANT_DESCRICAO = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_DESCRICAO";
+    protected static final String EXTRA_RESTAURANT_ENDERECO = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_ENDERECO";
+    protected static final String EXTRA_RESTAURANT_EMAIL = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_EMAIL";
+    protected static final String EXTRA_RESTAURANT_TELEFONE = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_TELEFONE";
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -121,6 +125,10 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(getApplicationContext(), RestaurantInfoActivity.class);
         intent.putExtra(EXTRA_RESTAURANT_PK, Integer.toString(item.getPrimaryKey()));
         intent.putExtra(EXTRA_RESTAURANT_NOME, item.getNome());
+        intent.putExtra(EXTRA_RESTAURANT_DESCRICAO, item.getDescricao());
+        intent.putExtra(EXTRA_RESTAURANT_ENDERECO, item.getEndereco());
+        intent.putExtra(EXTRA_RESTAURANT_EMAIL, item.getEmail());
+        intent.putExtra(EXTRA_RESTAURANT_TELEFONE, item.getTelefone());
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
         startActivityForResult(intent, -1);
     }

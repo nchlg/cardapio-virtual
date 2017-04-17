@@ -23,5 +23,12 @@
     <string name="google_maps_api_key">AIzaSyAOaHPomF2FL3aTlYkDxbc2GvhSi_t46pU</string>
     <string name="title_activity_maps">Map</string>
     <string name="current_position_title">Current Position</string>
+
+    <!-- Restaurant Info -->
     <string name="title_activity_restaurant_info">Additional Information</string>
+    <string name="btn_menu">Restaurant Menu</string>
+    <string name="indisp_description">Description unavailable.</string>
+    <string name="indisp_address">Address unavailable</string>
+    <string name="indisp_email">E-mail unavailable</string>
+    <string name="indisp_phone_number">Phone number unavailable</string>
 </resources>

@@ -31,4 +31,10 @@
     <string name="indisp_address">Address unavailable</string>
     <string name="indisp_email">E-mail unavailable</string>
     <string name="indisp_phone_number">Phone number unavailable</string>
+    <string name="pre_address">Address</string>
+    <string name="pre_email">E-mail</string>
+    <string name="pre_phone_number">Phone Number</string>
+
+    <!-- Menu -->
+    <string name="title_activity_menu">Menu</string>
 </resources>

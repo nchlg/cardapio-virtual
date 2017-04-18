@@ -17,4 +17,17 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Text Appearance -->
+    <style name="TextAppearance.Large" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="TextAppearance.Medium" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="TextAppearance.Small" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

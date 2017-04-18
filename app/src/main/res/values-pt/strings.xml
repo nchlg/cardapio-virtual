@@ -20,9 +20,15 @@
 
     <!-- Restaurant Info -->
     <string name="title_activity_restaurant_info">Informações Adicionais</string>
-    <string name="cardapio_button">Cardápio</string>
+    <string name="btn_menu">Cardápio</string>
     <string name="indisp_description">Descrição indisponível.</string>
     <string name="indisp_address">Endereço indisponivel</string>
     <string name="indisp_email">E-mail indisponível</string>
     <string name="indisp_phone_number">Número de telefone indisponível</string>
+    <string name="pre_address">Endereço</string>
+    <string name="pre_email">E-mail</string>
+    <string name="pre_phone_number">Telefone</string>
+
+    <!-- Menu -->
+    <string name="title_activity_menu">Cardápio</string>
 </resources>

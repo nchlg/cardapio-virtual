@@ -49,10 +49,10 @@
         <DataProperty IRI="#gluten"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Torta"/>
+        <Class IRI="#Pastel_de_Forno"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Pastel_de_Forno"/>
+        <Class IRI="#Torta"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Pastel_Frito_de_Carne"/>
@@ -125,6 +125,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#Cheesecake_de_Frutas_Vermelhas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pastel_de_Forno_de_Frango_2"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Folhas_de_Hortela"/>
@@ -292,6 +295,9 @@
         <Class IRI="#Couve"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#Pastel_de_Forno_de_Frango_1"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Derivado_de_Animal"/>
     </Declaration>
     <Declaration>
@@ -331,9 +337,6 @@
         <Class IRI="#Torrada_Completa"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#A_La_Minuta"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#Gengibre"/>
     </Declaration>
     <Declaration>
@@ -352,10 +355,10 @@
         <Class IRI="#Croissant_de_Quatro_Queijos"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Farinha_de_Trigo"/>
+        <Class IRI="#Especiaria"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Especiaria"/>
+        <Class IRI="#Farinha_de_Trigo"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Arroz"/>
@@ -1944,9 +1947,17 @@
         <Class IRI="#Salgado"/>
     </DisjointClasses>
     <ClassAssertion>
-        <Class IRI="#A_La_Minuta"/>
-        <NamedIndividual IRI="#A_La_Minuta"/>
+        <Class IRI="#Pastel_de_Forno_de_Frango"/>
+        <NamedIndividual IRI="#Pastel_de_Forno_de_Frango_1"/>
     </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pastel_de_Forno_de_Frango"/>
+        <NamedIndividual IRI="#Pastel_de_Forno_de_Frango_2"/>
+    </ClassAssertion>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#Pastel_de_Forno_de_Frango_1"/>
+        <NamedIndividual IRI="#Pastel_de_Forno_de_Frango_2"/>
+    </DifferentIndividuals>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#temGorduras"/>
         <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
@@ -2019,11 +2030,6 @@
         <DataProperty IRI="#vegetariano"/>
         <Datatype abbreviatedIRI="xsd:boolean"/>
     </DataPropertyRange>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#A_La_Minuta</IRI>
-        <Literal xml:lang="pt" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">A La Minuta</Literal>
-    </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>#Acucar</IRI>

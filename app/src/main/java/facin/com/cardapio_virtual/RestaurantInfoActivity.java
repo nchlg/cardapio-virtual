@@ -22,6 +22,9 @@ public class RestaurantInfoActivity extends AppCompatActivity {
     private String intentEndereco;
     private String intentEmail;
     private String intentTelefone;
+    private String auxEnderecoText;
+    private String auxEmailText;
+    private String auxTelefoneText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,28 +73,34 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         mDescricaoText.setText(intentDescricao);
 
         if (intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO) != null) {
-            intentEndereco = getResources().getString(R.string.pre_address) + ": " +
-                    intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO) + ".";
+            intentEndereco = intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO);
+            auxEnderecoText = getResources().getString(R.string.pre_address) + ": " +
+                     intentEndereco + ".";
         } else {
             intentEndereco = getResources().getString(R.string.indisp_address);
+            auxEnderecoText = intentEndereco;
         }
-        mEnderecoText.setText(intentEndereco);
+        mEnderecoText.setText(auxEnderecoText);
 
         if (intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_EMAIL) != null) {
-            intentEmail = getResources().getString(R.string.pre_email) + ": " +
-                    intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_EMAIL) + ".";
+            intentEmail = intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_EMAIL);
+            auxEmailText = getResources().getString(R.string.pre_email) + ": " +
+                     intentEmail + ".";
         } else {
             intentEmail = getResources().getString(R.string.indisp_email);
+            auxEmailText = intentEmail;
         }
-        mEmailText.setText(intentEmail);
+        mEmailText.setText(auxEmailText);
 
         if (intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE) != null) {
-            intentTelefone = getResources().getString(R.string.pre_phone_number) + ": " +
-                    intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE) + ".";
+            intentTelefone = intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE);
+            auxTelefoneText = getResources().getString(R.string.pre_phone_number) + ": " +
+                     intentTelefone + ".";
         } else {
             intentTelefone = getResources().getString(R.string.indisp_phone_number);
+            auxTelefoneText = intentTelefone;
         }
-        mTelefoneText.setText(intentTelefone);
+        mTelefoneText.setText(auxTelefoneText);
     }
 
     @Override

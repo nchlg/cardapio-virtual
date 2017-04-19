@@ -524,7 +524,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
             rest2.put("endereco", "Av. Bento Gonçalves, 4314 (PUCRS - Prédio 32)");
             rest2.put("latitude", -30.061238);
             rest2.put("longitude", -51.173792);
-            rest2.put("descricao", "Almoço À La Carte, Lanches, Cafés, Coffee Break, Eventos Corporativos, Festas");
+            rest2.put("descricao", "Almoço À La Carte, Lanches, Cafés, Coffee Break, Eventos Corporativos, Festas.");
             rest2.put("favorito", 0);
             getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest2);
 

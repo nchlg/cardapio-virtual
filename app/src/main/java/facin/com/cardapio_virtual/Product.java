@@ -12,6 +12,7 @@ public class Product {
     private double preco;
     private ArrayList<String> ingredientes;
     private int quantidade;
+    private int preferencia;
 
     // Sem ingredientes
     public Product(String nome, double preco, int quantidade) {
@@ -19,6 +20,7 @@ public class Product {
         this.preco = preco;
         ingredientes = new ArrayList<>();
         this.quantidade = quantidade;
+        preferencia = 0;
     }
 
     // Sem quantidade
@@ -27,6 +29,7 @@ public class Product {
         this.preco = preco;
         ingredientes = ingredientes;
         this.quantidade = 0;
+        preferencia = 0;
     }
 
     public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade) {
@@ -34,6 +37,7 @@ public class Product {
         this.preco = preco;
         this.ingredientes = ingredientes;
         this.quantidade = quantidade;
+        preferencia = 0;
     }
 
     public Product() {
@@ -41,6 +45,7 @@ public class Product {
         preco = 0.0;
         ingredientes = new ArrayList<>();
         quantidade = 0;
+        preferencia = 0;
     }
 
     public String getNome() {
@@ -73,5 +78,13 @@ public class Product {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public int getPreferencia() {
+        return preferencia;
+    }
+
+    public void setPreferencia(int preferencia) {
+        this.preferencia = preferencia;
     }
 }

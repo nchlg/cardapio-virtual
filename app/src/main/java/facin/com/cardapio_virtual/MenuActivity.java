@@ -1,5 +1,6 @@
 package facin.com.cardapio_virtual;
 
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,15 @@ public class MenuActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        if (savedInstanceState == null) {
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.activity_menu,
+                                ProductFragment.newInstance(1))
+                        .commit();
+            }
+
+        }
 
         // Intent
         Intent intent = getIntent();
@@ -55,6 +65,8 @@ public class MenuActivity extends AppCompatActivity
             intentTelefone = getResources().getString(R.string.indisp_phone_number);
         }
     }
+
+
 
     @Override
     public void onListFragmentInteraction(Product product) {

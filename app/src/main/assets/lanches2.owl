@@ -1,0 +1,2211 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3"
+     xml:base="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#eIngredienteDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#eIngredienteDe">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduras"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <rdfs:label xml:lang="pt">Preço</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#A_La_Minuta -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#A_La_Minuta">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refeicao"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Alface"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Arroz"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Batata_Frita"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Feijao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#File"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Acucar -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Acucar">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Açúcar</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Água</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Alface -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Alface">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Verdura"/>
+        <rdfs:label xml:lang="pt">Alface</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Americano -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Americano">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Americano</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Arroz -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Arroz">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Arroz</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Batata_Frita -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Batata_Frita">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">BatataFrita</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida"/>
+        <rdfs:label xml:lang="pt">Bebida</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bergamota -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bergamota">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+        <rdfs:label xml:lang="pt">Bergamota</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Brigadeiro -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Brigadeiro">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Docinho"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite_Condensado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Brigadeiro</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe_Moido"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Café</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe_Latte -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe_Latte">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Café Latte</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe_Moido -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe_Moido">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Café Moido</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Calabresa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Calabresa">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Carne"/>
+        <rdfs:label xml:lang="pt">Calabresa</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Canela -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Canela">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Especiaria"/>
+        <rdfs:label xml:lang="pt">Canela</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cappuccino -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cappuccino">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Canela"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Cappuccino</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Carne -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Carne">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Derivado_de_Animal"/>
+        <rdfs:label xml:lang="pt">Carne</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Chá</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Preto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Preto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Cha_Preto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Chá Preto</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Verde -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Verde">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Cha_Verde"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Chá Verde</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_de_Frutas_Vermelhas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_de_Frutas_Vermelhas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frutas_Vermelhas"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Chá de Frutas Vermelhas</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_de_Hortela -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_de_Hortela">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Hortela"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Chá de Hortelã</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cream_Cheese"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Chessecake</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Cafe -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Cafe">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe_Moido"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite_Condensado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Cheesecake de Café</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Doce_de_Leite -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Doce_de_Leite">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Doce_de_Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Cheesecake de Doce de Leite</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Frutas_Vermelhas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Frutas_Vermelhas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frutas_Vermelhas"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Cheesecake de Frutas Vermelhas</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Chocolate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate_Quente -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate_Quente">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Chocolate Quente</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Coco -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Coco">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+        <rdfs:label xml:lang="pt">Coco</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:label xml:lang="pt">Comida</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Coracao_de_Galinha -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Coracao_de_Galinha">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Carne"/>
+        <rdfs:label xml:lang="pt">Coração de Galinha</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Couve -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Couve">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Verdura"/>
+        <rdfs:label xml:lang="pt">Couve</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cream_Cheese -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cream_Cheese">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio"/>
+        <rdfs:label xml:lang="pt">Queijo Cremoso</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="fr">Croissant</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Chocolate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Chocolate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Croissant de Chocolate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Frango -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Frango">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frango"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Croissant de Frango</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Presunto_e_Queijo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Presunto_e_Queijo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Presunto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Croissant de Presunto e Queijo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Quatro_Queijos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant_de_Quatro_Queijos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Croissant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Cheddar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Mucarela"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Parmesao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Provolone"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Croissant de Quatro Queijos</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Derivado_de_Animal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Derivado_de_Animal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Derivado de Animal</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Dioxido_de_Carbono -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Dioxido_de_Carbono">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Dióxido de Carbono</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Doce_de_Leite -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Doce_de_Leite">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Doce de Leite</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Docinho -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Docinho">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Acucar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Docinho</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#DomainConcept -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#DomainConcept">
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#ValuePartition"/>
+        <rdfs:label xml:lang="pt">Conceito Domínio</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Earl_Grey -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Earl_Grey">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Preto"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bergamota"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Earl Grey</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#English_Breakfast -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#English_Breakfast">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Preto"/>
+        <rdfs:label xml:lang="en">English Breakfast</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Especiaria -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Especiaria">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Especiaria</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Expresso</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso_Duplo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso_Duplo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso"/>
+        <rdfs:label xml:lang="pt">Expresso Duplo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Farinha</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Arroz -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Arroz">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha"/>
+        <rdfs:label xml:lang="pt">Farinha de Arroz</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Trigo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Trigo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha"/>
+        <rdfs:label xml:lang="pt">Farinha de Trigo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Feijao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Feijao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Feijão</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#File -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#File">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Carne"/>
+        <rdfs:label xml:lang="pt">Filé</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Cha_Preto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Cha_Preto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Folhas de Chá Preto</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Cha_Verde -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Cha_Verde">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Folhas de Chá Verde</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Hortela -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Hortela">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Folhas de Hortelã</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frango -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frango">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Carne"/>
+        <rdfs:label xml:lang="pt">Frango</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frango_a_Italiana -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frango_a_Italiana">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refeicao"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Alface"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Arroz"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frango"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho_Pesto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pimenta"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Frango à Italiana</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Fruta</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frutas_Vermelhas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frutas_Vermelhas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Frutas Vermelhas</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gengibre -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gengibre">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Gengibre</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduras -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduras">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#ValuePartition"/>
+        <rdfs:label xml:lang="pt">Gorduras</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduroso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduroso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduras"/>
+        <rdfs:label xml:lang="pt">Gorduroso</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Guarana -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Guarana">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+        <rdfs:label xml:lang="pt">Guaraná</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#DomainConcept"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:label xml:lang="pt">Ingrediente</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lady_Grey -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lady_Grey">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Preto"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bergamota"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Lady Grey</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida"/>
+        <rdfs:label xml:lang="pt">Lanche</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+        <rdfs:label xml:lang="pt">Laranja</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Derivado_de_Animal"/>
+        <rdfs:label xml:lang="pt">Laticínio</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio"/>
+        <rdfs:label xml:lang="pt">Leite</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite_Condensado -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite_Condensado">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio"/>
+        <rdfs:label xml:lang="pt">Leite Condensado</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+        <rdfs:label xml:lang="pt">Limão</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Maca -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Maca">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+        <rdfs:label xml:lang="pt">Maçã</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduras"/>
+        <rdfs:label xml:lang="pt">Meio Gorduroso</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+        <rdfs:label xml:lang="pt">Meio Salgado</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Moca -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Moca">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Chocolate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Moca</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Molho</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho_Pesto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho_Pesto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho"/>
+        <rdfs:label xml:lang="pt">Molho Pesto</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho_de_Tomate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho_de_Tomate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho"/>
+        <rdfs:label xml:lang="pt">Molho de Tomate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduras"/>
+        <rdfs:label xml:lang="pt">Não Gorduroso</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Noz_de_Cola -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Noz_de_Cola">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Noz de Cola</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#ValuePartition"/>
+        <rdfs:label xml:lang="pt">Nível de Sal</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ovo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ovo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Derivado_de_Animal"/>
+        <rdfs:label xml:lang="pt">Ovo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Palmito -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Palmito">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Verdura"/>
+        <rdfs:label xml:lang="pt">Palmito</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Pão</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Arroz"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ovo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pão de Queijo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:label xml:lang="pt">Pastel</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel Frito</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito_de_Calabresa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito_de_Calabresa">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Calabresa"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel Frito de Calabresa</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito_de_Carne -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito_de_Carne">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#File"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Cheddar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel Frito de Carne</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito_de_Queijo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito_de_Queijo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_Frito"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel Frito de Queijo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel de Forno</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Frango"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Requeijao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel de Forno de Frango</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Palmito -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Palmito">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Palmito"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Requeijao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel de Forno de Palmito</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Quatro_Queijos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Quatro_Queijos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Cheddar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Mucarela"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Parmesao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Provolone"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pastel de Forno de Quatro Queijos</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pimenta -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pimenta">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Especiaria"/>
+        <rdfs:label>Pimenta</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pingado -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pingado">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pingado</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho_de_Tomate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pizza</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza_Marguerita -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza_Marguerita">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Molho_Pesto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pizza Marguerita</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza_de_Calabresa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza_de_Calabresa">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Calabresa"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pizza de Calabresa</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza_de_Coracao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza_de_Coracao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pizza"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Coracao_de_Galinha"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Pizza de Coração</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+        <rdfs:label xml:lang="pt">Pouco Salgado</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Presunto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Presunto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Carne"/>
+        <rdfs:label xml:lang="pt">Presunto</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#DomainConcept"/>
+        <rdfs:label xml:lang="pt">Produto</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio"/>
+        <rdfs:label xml:lang="pt">Queijo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Cheddar -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Cheddar">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+        <rdfs:label xml:lang="pt">Quejo Cheddar</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Mucarela -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Mucarela">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+        <rdfs:label xml:lang="pt">Queijo Muçarela</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Parmesao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Parmesao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+        <rdfs:label xml:lang="pt">Queijo Parmesão</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Provolone -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Provolone">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+        <rdfs:label xml:lang="pt">Queijo Provolone</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Quindim -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Quindim">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Docinho"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Coco"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ovo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Quindim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refeicao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refeicao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Refeição</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Acucar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Dioxido_de_Carbono"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Refrigerante</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Cola -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Cola">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Noz_de_Cola"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Refrigerante de Cola</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Guarana -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Guarana">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Guarana"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Refrigerante de Guaraná</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Laranja -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Laranja">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Refrigerante de Laranja</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Limao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante_de_Limao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Refrigerante"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Refrigerante de Limão</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Requeijao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Requeijao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio"/>
+        <rdfs:label xml:lang="pt">Requeijão</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+        <rdfs:label xml:lang="pt">Salgado</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bebida"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Suco</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco_Verde -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco_Verde">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Couve"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Hortela"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gengibre"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Suco Verde</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco_de_Laranja -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco_de_Laranja">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Suco de Laranja</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Verdura"/>
+        <rdfs:label xml:lang="pt">Tomate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Torrada</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Completa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Completa">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Alface"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ovo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Presunto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Torrada Completa</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Simples -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Simples">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Presunto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Torrada Simples</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Vegetariana -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Vegetariana">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Alface"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ovo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Palmito"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Torrada Vegetariana</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Acucar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Torta</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta_de_Limao -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta_de_Limao">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Trigo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite_Condensado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Torta de Limão</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta_de_Maca -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta_de_Maca">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Canela"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Arroz"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Maca"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Torta de Maçã</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#ValuePartition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#ValuePartition">
+        <rdfs:label xml:lang="pt">Partição Valor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Verdura -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Verdura">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
+        <rdfs:label xml:lang="pt">Verdura</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
+        <rdfs:label xml:lang="pt"></rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduroso"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_2"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

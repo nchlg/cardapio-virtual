@@ -88,6 +88,9 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
     private Cursor coordinatesCursor;
     // ArrayList de MarkerOptions (marcadores do mapa)
     ArrayList<MarkerOptions> mMarkerArray;
+    // Variável que indica se o fragmento está visível ou se está sendo carregado pelas abas vizinhas
+    private boolean isFragmentLoaded = false;
+
 
     public MyMapFragment() {
         // Required empty public constructor
@@ -194,6 +197,16 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
         super.onDetach();
         mListener = null;
     }
+
+
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser && !isFragmentLoaded ) {
+//            // Load your data here or do network operations here
+//            isFragmentLoaded = true;
+//        }
+//    }
 
     /**
      * This interface must be implemented by activities that contain this

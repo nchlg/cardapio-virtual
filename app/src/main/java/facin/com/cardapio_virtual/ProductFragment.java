@@ -1,9 +1,9 @@
 package facin.com.cardapio_virtual;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,33 +22,29 @@ import org.semanticweb.owlapi.util.AutoIRIMapper;
 import org.semanticweb.owlapi.util.SimpleIRIMapper;*/
 
 import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntProperty;
+import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.NodeIterator;
-import com.hp.hpl.jena.rdf.model.RDFList;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM;
-import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM_MICRO_RULE_INF;
 
 /**
  * A fragment representing a list of Items.
@@ -63,7 +59,7 @@ public class ProductFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private ArrayList<Product> products;
+    private ArrayList<Product> produtos;
     private RecyclerView recyclerView;
 
     // Ontology
@@ -100,7 +96,7 @@ public class ProductFragment extends Fragment {
     }
 
     protected void criaArquivoMetodo1() {
-        fileName = "pizza.owl";
+        fileName = "lanches2.owl";
         lanchesFile = new File(fileDir, fileName);
     }
 
@@ -173,19 +169,21 @@ public class ProductFragment extends Fragment {
 
     public class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
 
-        ObjectProperty hasTopping;
+        OntProperty temIngrediente;
 
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
                 // Caminhos dos arquivos
-                InputStream assetFile = getActivity().getApplicationContext().getAssets().open("pizza.owl");
+                InputStream assetFile = getActivity().getApplicationContext().getAssets().open("lanches2.owl");
                 String outputFilePath = fileDir + "/" + fileName;
 
                 // create the base model
                 String protocol = "file:/";
-                String SOURCE = "http://www.co-ode.org/ontologies/pizza/pizza.owl";
+                // String SOURCE = "http://www.co-ode.org/ontologies/pizza/pizza.owl";
+                String SOURCE = "http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3";
                 String NS = SOURCE + "#";
+                //JenaOWLModel owlModel = ProtegeOWL.createJenaOWLModel();
                 OntModel ontModel = ModelFactory.createOntologyModel(OWL_MEM);
                 // Read the file
                 // base.read(new File(protocol + fileDir, fileName).toString());
@@ -196,17 +194,24 @@ public class ProductFragment extends Fragment {
                 // Lê a ontologia
                 ontModel.read(new FileInputStream(outputFilePath), "OWL");
                 // Teste: criando uma propriedade
-                hasTopping = ontModel.createObjectProperty(NS + "hasTopping");
+                temIngrediente = ontModel.createOntProperty(NS + "temIngrediente");
                 // create the reasoning model using the base
                 // OntModel inf = ModelFactory.createOntologyModel(OWL_MEM_MICRO_RULE_INF, ontModel);
-
                 // Transforma as OntClasses em Products e popula o vetor (Array List) com produtos
-                populaVetorProdutos(ontModel.listClasses().toSet(), ontModel.getOntClass(NS + "NamedPizza"));
-
+                populaListaProdutos(pegaClassesAPartirDeIndividuos(ontModel.listIndividuals().toSet()));
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
                 return false;
+            }
+        }
+
+        // protected boolean saveFile(File file)
+
+        @Override
+        protected void onPostExecute(final Boolean result) {
+            if (result) {
+                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtos, mListener));
             }
         }
 
@@ -231,45 +236,112 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        // protected boolean saveFile(File file)
+        private HashMap<OntClass, Integer> pegaClassesAPartirDeIndividuos(Set<Individual> individuals) {
+            HashMap<OntClass, Integer> ontClasses = new HashMap<>();
+            Boolean contemClasse = false;
+            for (Individual i : individuals) {
+                for (Map.Entry<OntClass, Integer> kv : ontClasses.entrySet()) {
+                    if (kv.getKey().equals(i.getOntClass())) {
+                        contemClasse = true;
+                        kv.setValue(kv.getValue() + 1);
+                    }
+                    if (contemClasse)
+                        break;
+                }
+                if (!contemClasse)
+                    ontClasses.put(i.getOntClass(), 1);
 
-        @Override
-        protected void onPostExecute(final Boolean result) {
-            if (result) {
-                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(products, mListener));
+            }
+            return ontClasses;
+        }
+
+        private void populaListaProdutos(HashMap<OntClass, Integer> ontClasses) {
+            produtos = new ArrayList<>();
+            for (Map.Entry<OntClass, Integer> kv : ontClasses.entrySet()) {
+                produtos.add(transformaOntClassEmProduto(kv.getKey(), kv.getValue()));
             }
         }
 
-        protected void populaVetorProdutos(Set<OntClass> ontModelSet, OntClass superClass) {
-            products = new ArrayList<>();
-            for (OntClass oc : ontModelSet) {
-                if (oc.hasSuperClass(superClass))
-                    transformaOntClassEmProduto(oc);
-            }
-        }
-
-        protected ArrayList<Product> transformaOntClassEmProduto(OntClass ontClass) {
-            products.add(new Product(
+        private Product transformaOntClassEmProduto(OntClass ontClass, int quantidade) {
+            return new Product(
                     ontClass.getLabel("pt"),
                     3.50,
-                    populaIngredientes(ontClass)
-            ));
-            Log.d("Produto log", ontClass.getLabel("pt"));
-            // as(RDFList.class).asJavaList()
-            return products;
+                    populaIngredientes(ontClass),
+                    quantidade
+            );
         }
 
-        protected ArrayList<String> populaIngredientes(OntClass ontClass) {
+
+        private ArrayList<String> populaIngredientes(OntClass ontClass) {
             ArrayList<String> ingredientes = new ArrayList<>();
-            NodeIterator nodeList = ontClass.listPropertyValues(hasTopping);
-            if (nodeList != null) {
-                // RDFList nodoList = nodo.as(RDFList.class);
-//                for (Iterator<RDFNode> i = nodeList.iterator(); i.hasNext(); ) {
-//                    ingredientes.add(i.next().toString());
-//                    Log.d("Ingr. log", i.next() != null ? i.next().toString() : ":(");
+//            StmtIterator nodeIterator = ontClass.listProperties(temIngrediente);
+            //Set<RDFNode> nodeSet = nodeIterator.toSet();
+//            if (nodeIterator != null) {
+//                // RDFList nodoList = nodeList.as(RDFList.class);
+//                while (nodeIterator.hasNext()) {
+//                    ingredientes.add(nodeIterator.nextStatement().toString());
 //                }
+//            }
+            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
+                String ingrediente = displayType(superClasses.next());
+                if (ingrediente != null) {
+                    ingredientes.add(ingrediente);
+                    Log.d("Ingr. log", ingrediente);
+                }
             }
             return ingredientes;
         }
+
+        @Nullable
+        private String displayType(OntClass superClass) {
+            if (superClass.isRestriction()) {
+                return displayRestriction(superClass.asRestriction());
+            }
+            return null;
+        }
+
+        @Nullable
+        private String displayRestriction(Restriction restriction) {
+            if (restriction.isSomeValuesFromRestriction()) {
+                if (restriction.getOnProperty().equals(temIngrediente)) {
+//                    Log.d("Property", restriction.getOnProperty().toString());
+//                    Log.d("Constraint", restriction.asSomeValuesFromRestriction().getSomeValuesFrom().toString());
+                    return restriction.asSomeValuesFromRestriction()
+                            .getSomeValuesFrom()
+                            .as(OntClass.class)
+                            .getLabel("pt");
+                }
+            } else if (restriction.isAllValuesFromRestriction()) {
+                return displayRestriction("all",
+                        restriction.getOnProperty(),
+                        restriction.asAllValuesFromRestriction().getAllValuesFrom());
+            }
+            return null;
+        }
+
+        @Nullable
+        private String displayRestriction(String qualifier, OntProperty ontProperty, Resource constraint) {
+            return null;
+        }
+
+//        protected Object renderConstraint( Resource constraint ) {
+//            if (constraint.canAs( UnionClass.class )) {
+//                UnionClass uc = constraint.as( UnionClass.class );
+//                // this would be so much easier in ruby ...
+//                String r = "union{ ";
+//                for (Iterator<? extends OntClass> i = uc.listOperands(); i.hasNext(); ) {
+//                    r = r + " " + renderURI( i.next() );
+//                }
+//                return r + "}";
+//            }
+//            else {
+//                return renderURI( constraint );
+//            }
+//        }
+//
+//        protected Object renderURI( Resource onP ) {
+//            String qName = onP.getModel().qnameFor( onP.getURI() );
+//            return qName == null ? onP.getLocalName() : qName;
+//        }
     }
 }

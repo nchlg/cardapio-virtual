@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         // Tab/Aba 1
         mSlidingTabLayout.getTabAt(1).setText(R.string.tab_restaurants);
         // Tab/Aba 2
-        mSlidingTabLayout.getTabAt(2).setText(R.string.tab_map);
+        //mSlidingTabLayout.getTabAt(2).setText(R.string.tab_map);
 
     }
 
@@ -169,21 +169,21 @@ public class MainActivity extends AppCompatActivity
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 1)
                 return new RestaurantsFragment();
-            else if (position == 2) {
-                /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-                        .getMap();
-                if (map!=null) {
-                    Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
-                            .title("Hamburg"));
-                    Marker kiel = map.addMarker(new MarkerOptions()
-                            .position(KIEL)
-                            .title("Kiel")
-                            .snippet("Kiel is cool")
-                            .icon(BitmapDescriptorFactory
-                                    .fromResource(R.drawable.ic_launcher)));
-                }*/
-                return new MyMapFragment();
-            }
+//            else if (position == 2) {
+//                /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+//                        .getMap();
+//                if (map!=null) {
+//                    Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
+//                            .title("Hamburg"));
+//                    Marker kiel = map.addMarker(new MarkerOptions()
+//                            .position(KIEL)
+//                            .title("Kiel")
+//                            .snippet("Kiel is cool")
+//                            .icon(BitmapDescriptorFactory
+//                                    .fromResource(R.drawable.ic_launcher)));
+//                }*/
+//                return new MyMapFragment();
+//            }
             else
                 return new FavouritesFragment();
         }

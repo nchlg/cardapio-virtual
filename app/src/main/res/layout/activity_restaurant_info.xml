@@ -13,15 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:paddingRight="16dp"
-        android:paddingEnd="16dp"
         android:paddingLeft="16dp"
         android:paddingStart="16dp"
         android:textAppearance="@style/TextAppearance.Medium"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/endereco_text"

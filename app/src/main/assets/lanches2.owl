@@ -54,7 +54,7 @@
     <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal">
-        <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nivel_de_Sal"/>
     </owl:ObjectProperty>
     
 
@@ -67,6 +67,16 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:label xml:lang="pt">Contável</rdfs:label>
+    </owl:DatatypeProperty>
     
 
 
@@ -164,6 +174,24 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -211,6 +239,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Americano</rdfs:label>
     </owl:Class>
     
@@ -244,6 +284,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Comida"/>
         <rdfs:label xml:lang="pt">Bebida</rdfs:label>
     </owl:Class>
@@ -275,6 +327,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite_Condensado"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Brigadeiro</rdfs:label>
     </owl:Class>
     
@@ -288,6 +352,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cafe_Moido"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Café</rdfs:label>
@@ -309,6 +379,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Café Latte</rdfs:label>
@@ -365,6 +447,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Cappuccino</rdfs:label>
     </owl:Class>
     
@@ -393,6 +487,24 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Agua"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Chá</rdfs:label>
@@ -468,6 +580,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cream_Cheese"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.9</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="en">Chessecake</rdfs:label>
@@ -557,6 +681,24 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Chocolate Quente</rdfs:label>
     </owl:Class>
     
@@ -617,6 +759,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Gorduroso"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="fr">Croissant</rdfs:label>
     </owl:Class>
     
@@ -638,6 +792,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Croissant de Chocolate</rdfs:label>
     </owl:Class>
     
@@ -657,6 +823,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Croissant de Frango</rdfs:label>
@@ -684,6 +862,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Croissant de Presunto e Queijo</rdfs:label>
@@ -723,6 +913,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Croissant de Quatro Queijos</rdfs:label>
@@ -777,6 +979,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Docinho</rdfs:label>
@@ -836,6 +1050,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Expresso</rdfs:label>
     </owl:Class>
     
@@ -845,6 +1071,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso_Duplo">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Expresso Duplo</rdfs:label>
     </owl:Class>
     
@@ -872,6 +1104,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha_de_Trigo">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Farinha"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Farinha de Trigo</rdfs:label>
     </owl:Class>
     
@@ -969,6 +1207,24 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pimenta"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Frango à Italiana</rdfs:label>
@@ -1089,6 +1345,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laticinio">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Derivado_de_Animal"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Laticínio</rdfs:label>
     </owl:Class>
     
@@ -1142,7 +1404,7 @@
     <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nivel_de_Sal"/>
         <rdfs:label xml:lang="pt">Meio Salgado</rdfs:label>
     </owl:Class>
     
@@ -1168,6 +1430,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Moca</rdfs:label>
@@ -1211,20 +1485,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nivel_de_Sal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nivel_de_Sal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#ValuePartition"/>
+        <rdfs:label xml:lang="pt">Nível de Sal</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Noz_de_Cola -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Noz_de_Cola">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
         <rdfs:label xml:lang="pt">Noz de Cola</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#ValuePartition"/>
-        <rdfs:label xml:lang="pt">Nível de Sal</rdfs:label>
     </owl:Class>
     
 
@@ -1290,6 +1564,30 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.75</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pão de Queijo</rdfs:label>
     </owl:Class>
     
@@ -1299,6 +1597,18 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pastel</rdfs:label>
     </owl:Class>
     
@@ -1341,6 +1651,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pastel Frito de Calabresa</rdfs:label>
     </owl:Class>
     
@@ -1362,6 +1684,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Cheddar"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pastel Frito de Carne</rdfs:label>
     </owl:Class>
     
@@ -1375,6 +1709,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pastel Frito de Queijo</rdfs:label>
@@ -1419,6 +1765,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Requeijao"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pastel de Forno de Frango</rdfs:label>
     </owl:Class>
     
@@ -1444,6 +1802,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Requeijao"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pastel de Forno de Palmito</rdfs:label>
@@ -1485,6 +1855,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Queijo_Provolone"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pastel de Forno de Quatro Queijos</rdfs:label>
     </owl:Class>
     
@@ -1513,6 +1895,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Leite"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pingado</rdfs:label>
@@ -1548,6 +1942,24 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pizza</rdfs:label>
     </owl:Class>
     
@@ -1569,6 +1981,12 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pizza Marguerita</rdfs:label>
     </owl:Class>
     
@@ -1582,6 +2000,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Calabresa"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pizza de Calabresa</rdfs:label>
@@ -1599,6 +2023,12 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Coracao_de_Galinha"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Pizza de Coração</rdfs:label>
     </owl:Class>
     
@@ -1607,7 +2037,7 @@
     <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nivel_de_Sal"/>
         <rdfs:label xml:lang="pt">Pouco Salgado</rdfs:label>
     </owl:Class>
     
@@ -1692,6 +2122,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ovo"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Quindim</rdfs:label>
     </owl:Class>
     
@@ -1705,6 +2147,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Meio_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">23.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Refeição</rdfs:label>
@@ -1738,6 +2192,24 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Dioxido_de_Carbono"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Refrigerante</rdfs:label>
@@ -1817,7 +2289,7 @@
     <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nível_de_Sal"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nivel_de_Sal"/>
         <rdfs:label xml:lang="pt">Salgado</rdfs:label>
     </owl:Class>
     
@@ -1843,6 +2315,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Suco</rdfs:label>
@@ -1884,6 +2368,12 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Suco Verde</rdfs:label>
     </owl:Class>
     
@@ -1897,6 +2387,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6.0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Suco de Laranja</rdfs:label>
@@ -1941,6 +2437,24 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Torrada</rdfs:label>
     </owl:Class>
     
@@ -1974,6 +2488,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.9</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Torrada Completa</rdfs:label>
     </owl:Class>
     
@@ -1987,6 +2513,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Presunto"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Torrada Simples</rdfs:label>
@@ -2020,6 +2558,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Tomate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.9</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Torrada Vegetariana</rdfs:label>
@@ -2076,6 +2626,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.9</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Torta de Limão</rdfs:label>
     </owl:Class>
     
@@ -2107,6 +2669,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nao_Gorduroso"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Torta de Maçã</rdfs:label>

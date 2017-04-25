@@ -37,4 +37,15 @@
 
     <!-- Menu -->
     <string name="title_activity_menu">Menu</string>
+    <string name="progress_dialog_product_title">Loaging menu</string>
+    <string name="progress_dialog_product_message">Please wait while the product list is being loaded to the screen</string>
+
+    <!-- Product Info -->
+    <string name="indisp_ingredients">Ingredients unavailable.</string>
+    <string name="indisp_price">Price unavailable.</string>
+    <string name="indisp_quantity">Quantity unavailable.</string>
+    <string name="pre_ingredients">Ingredients</string>
+    <string name="pre_price">Price</string>
+    <string name="pre_quantity">Quantity</string>
+
 </resources>

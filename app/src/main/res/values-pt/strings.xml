@@ -31,4 +31,14 @@
 
     <!-- Menu -->
     <string name="title_activity_menu">Cardápio</string>
+    <string name="progress_dialog_product_title">Carregando cardápio</string>
+    <string name="progress_dialog_product_message">Aguarde enquanto carregamos o cardápio na tela</string>
+
+    <!-- Product Info -->
+    <string name="indisp_ingredients">Ingredientes indisponíveis.</string>
+    <string name="indisp_price">Preço indisponível.</string>
+    <string name="indisp_quantity">Quantidade indisponível.</string>
+    <string name="pre_ingredients">Ingredientes</string>
+    <string name="pre_price">Preço</string>
+    <string name="pre_quantity">Quantidade</string>
 </resources>

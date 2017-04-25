@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1492991060197" name="http://www.co-ode.org/ontologies/pizza/pizza.owl" uri="pizza.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1492991060197" name="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3" uri="lanches.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1493157229114" name="http://www.co-ode.org/ontologies/pizza/pizza.owl" uri="pizza.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1493157229114" name="duplicate:http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3" uri="lanches2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1493157229114" name="duplicate:http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3" uri="lanches.owl"/>
     </group>
 </catalog>

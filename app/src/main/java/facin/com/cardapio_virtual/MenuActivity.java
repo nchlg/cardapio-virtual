@@ -1,8 +1,6 @@
 package facin.com.cardapio_virtual;
 
-import android.support.v4.app.Fragment;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,6 +20,10 @@ public class MenuActivity extends AppCompatActivity
     private String intentEndereco;
     private String intentEmail;
     private String intentTelefone;
+    protected static final String EXTRA_PRODUCT_NOME = "acin.com.cardapio_virtual.EXTRA_PRODUCT_NOME";
+    protected static final String EXTRA_PRODUCT_INGREDIENTES = "acin.com.cardapio_virtual.EXTRA_PRODUCT_INGREDIENTES";
+    protected static final String EXTRA_PRODUCT_PRECO = "acin.com.cardapio_virtual.EXTRA_PRODUCT_PRECO";
+    protected static final String EXTRA_PRODUCT_QUANTIDADE = "acin.com.cardapio_virtual.EXTRA_PRODUCT_QUANTIDADE";
 
     private final static int REQUEST_RESTAURANT_INFO = 13;
 
@@ -30,13 +32,10 @@ public class MenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         if (savedInstanceState == null) {
-            if (savedInstanceState == null) {
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.activity_menu,
-                                ProductFragment.newInstance(1))
-                        .commit();
-            }
-
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.activity_menu,
+                            ProductFragment.newInstance(1))
+                    .commit();
         }
 
         // Intent
@@ -66,11 +65,18 @@ public class MenuActivity extends AppCompatActivity
         }
     }
 
-
-
     @Override
     public void onListFragmentInteraction(Product product) {
-
+        Intent intent = new Intent(getApplicationContext(), ProductInfoActivity.class);
+        intent.putExtra(EXTRA_PRODUCT_NOME, product.getNome());
+        intent.putExtra(EXTRA_PRODUCT_INGREDIENTES, product.getIngredientesAsString());
+        intent.putExtra(EXTRA_PRODUCT_PRECO, product.getPrecoAsString());
+        if (product.isContavel())
+            intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, Integer.toString(product.getQuantidade()));
+        else
+            intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, (String) null);
+        // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
+        startActivityForResult(intent, -1);
     }
 
     @Override
@@ -101,19 +107,4 @@ public class MenuActivity extends AppCompatActivity
         setResult(RESULT_OK, intent);
         finish();
     }
-
-
-//    public class FetchOntologyTask extends AsyncTask<Void, Boolean, Void> {
-//        @Override
-//        protected Boolean doInBackground(Void... params) {
-//
-//            try {
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(final Boolean result) {
-//
-//        }
-//    }
 }

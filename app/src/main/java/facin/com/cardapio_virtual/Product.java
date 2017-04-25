@@ -1,6 +1,10 @@
 package facin.com.cardapio_virtual;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Priscila on 28/02/2017.
@@ -12,31 +16,35 @@ public class Product {
     private double preco;
     private ArrayList<String> ingredientes;
     private int quantidade;
+    private boolean contavel;
     private int preferencia;
 
     // Sem ingredientes
-    public Product(String nome, double preco, int quantidade) {
+    public Product(String nome, double preco, int quantidade, boolean contavel) {
         this.nome = nome;
         this.preco = preco;
         ingredientes = new ArrayList<>();
         this.quantidade = quantidade;
+        this.contavel = contavel;
         preferencia = 0;
     }
 
     // Sem quantidade
-    public Product(String nome, double preco, ArrayList<String> ingredientes) {
+    public Product(String nome, double preco, ArrayList<String> ingredientes, boolean contavel) {
         this.nome = nome;
         this.preco = preco;
         ingredientes = ingredientes;
         this.quantidade = 0;
+        this.contavel = contavel;
         preferencia = 0;
     }
 
-    public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade) {
+    public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, boolean contavel) {
         this.nome = nome;
         this.preco = preco;
         this.ingredientes = ingredientes;
         this.quantidade = quantidade;
+        this.contavel = contavel;
         preferencia = 0;
     }
 
@@ -46,6 +54,23 @@ public class Product {
         ingredientes = new ArrayList<>();
         quantidade = 0;
         preferencia = 0;
+    }
+
+    public String getIngredientesAsString() {
+        String ingredientesAsString = "";
+        for (String ingr : ingredientes) {
+            ingredientesAsString = ingredientesAsString + ingr.toLowerCase();
+            if (!ingredientes.get(ingredientes.size() - 1).equals(ingr))
+                ingredientesAsString = ingredientesAsString + ", ";
+        }
+        return ingredientesAsString;
+    }
+
+    public String getPrecoAsString() {
+
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.GERMANY);
+        DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
+        return "R$ " + decimalFormat.format(preco);
     }
 
     public String getNome() {
@@ -86,5 +111,13 @@ public class Product {
 
     public void setPreferencia(int preferencia) {
         this.preferencia = preferencia;
+    }
+
+    public boolean isContavel() {
+        return contavel;
+    }
+
+    public void setContavel(boolean contavel) {
+        this.contavel = contavel;
     }
 }

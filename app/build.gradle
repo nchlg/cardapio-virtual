@@ -22,6 +22,7 @@ android {
 
 
 
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     // compile 'net.sourceforge.owlapi:owlapi-distribution:5.0.5'

@@ -1,5 +1,6 @@
 package facin.com.cardapio_virtual;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,14 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-/*import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import org.semanticweb.owlapi.util.AutoIRIMapper;
-import org.semanticweb.owlapi.util.SimpleIRIMapper;*/
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -38,6 +31,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -61,6 +55,7 @@ public class ProductFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     private ArrayList<Product> produtos;
     private RecyclerView recyclerView;
+    private ProgressDialog progressDialog;
 
     // Ontology
     private File lanchesFile;
@@ -128,6 +123,8 @@ public class ProductFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            progressDialog = ProgressDialog.show(getActivity(), getResources().getText(R.string.progress_dialog_product_title),
+                    getResources().getText(R.string.progress_dialog_product_message), true, false);
             new FetchOntologyTask().execute((Void) null);
             //recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
@@ -170,6 +167,7 @@ public class ProductFragment extends Fragment {
     public class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
 
         OntProperty temIngrediente;
+        OntProperty contavel;
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -177,28 +175,31 @@ public class ProductFragment extends Fragment {
                 // Caminhos dos arquivos
                 InputStream assetFile = getActivity().getApplicationContext().getAssets().open("lanches2.owl");
                 String outputFilePath = fileDir + "/" + fileName;
-
-                // create the base model
                 String protocol = "file:/";
-                // String SOURCE = "http://www.co-ode.org/ontologies/pizza/pizza.owl";
                 String SOURCE = "http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3";
                 String NS = SOURCE + "#";
-                //JenaOWLModel owlModel = ProtegeOWL.createJenaOWLModel();
                 OntModel ontModel = ModelFactory.createOntologyModel(OWL_MEM);
-                // Read the file
-                // base.read(new File(protocol + fileDir, fileName).toString());
-                // InputStream inputLanches = new FileInputStream(fileDir + "/" + fileName);
-                // InputStream inputLanches = new FileInputStream(getActivity().getApplicationContext().getAssets().open("pizza.owl"));
+
                 // Carrega o arquivo dos assets para a pasta de arquivos do aplicativo
                 carregaArquivoInicial(assetFile, outputFilePath);
+
                 // Lê a ontologia
                 ontModel.read(new FileInputStream(outputFilePath), "OWL");
-                // Teste: criando uma propriedade
+
+                // Cria propriedades
                 temIngrediente = ontModel.createOntProperty(NS + "temIngrediente");
-                // create the reasoning model using the base
-                // OntModel inf = ModelFactory.createOntologyModel(OWL_MEM_MICRO_RULE_INF, ontModel);
-                // Transforma as OntClasses em Products e popula o vetor (Array List) com produtos
-                populaListaProdutos(pegaClassesAPartirDeIndividuos(ontModel.listIndividuals().toSet()));
+                contavel = ontModel.createOntProperty(NS + "contavel");
+
+                // Transforma as OntClasses em Products e popula a lista com produtos
+                HashMap<OntClass, Integer> classesContaveis = pegaClassesAPartirDeIndividuos(ontModel.listIndividuals().toSet());
+                // TODO: Alterar hashmap para array list e criar sobrecarga no método populaListaProdutos
+                // TODO: ""FLAG"" contável true ou false nos Produtos já que "quantidade 0" pode conflitar
+                HashMap<OntClass, Integer> classesNaoContaveis =
+                        pegaClassesNaoContaveis(ontModel.listClasses().toSet(),
+                                ontModel.getOntClass(NS + "Produto"));
+                populaListaProdutos(classesContaveis);
+                populaListaProdutos(classesNaoContaveis);
+
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -211,6 +212,7 @@ public class ProductFragment extends Fragment {
         @Override
         protected void onPostExecute(final Boolean result) {
             if (result) {
+                progressDialog.dismiss();
                 recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtos, mListener));
             }
         }
@@ -234,6 +236,28 @@ public class ProductFragment extends Fragment {
                 if (bw != null)
                     bw.close();
             }
+        }
+
+        // TODO: Mudar para lista
+        private HashMap<OntClass, Integer> pegaClassesPorAtributo(Set<OntClass> ontClasses, OntProperty property) {
+            HashMap<OntClass, Integer> classesQuePossuemTalAtributo = new HashMap<>();
+
+            for (OntClass oc : ontClasses) {
+                OntClass superClasse = oc.getSuperClass();
+                while (superClasse != null) {
+                    if (superClasse.isRestriction()) {
+                        Restriction restriction = superClasse.asRestriction();
+                        if (restriction.isHasValueRestriction()) {
+                            if (restriction.getOnProperty().equals(property)) {
+                                classesQuePossuemTalAtributo.put(oc, 0);
+                                break;
+                            }
+                        }
+                    }
+                    superClasse = superClasse.getSuperClass();
+                }
+            }
+            return classesQuePossuemTalAtributo;
         }
 
         private HashMap<OntClass, Integer> pegaClassesAPartirDeIndividuos(Set<Individual> individuals) {
@@ -267,10 +291,10 @@ public class ProductFragment extends Fragment {
                     ontClass.getLabel("pt"),
                     3.50,
                     populaIngredientes(ontClass),
-                    quantidade
+                    quantidade,
+                    true
             );
         }
-
 
         private ArrayList<String> populaIngredientes(OntClass ontClass) {
             ArrayList<String> ingredientes = new ArrayList<>();
@@ -283,7 +307,7 @@ public class ProductFragment extends Fragment {
 //                }
 //            }
             for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
-                String ingrediente = displayType(superClasses.next());
+                String ingrediente = displayType(superClasses.next(), temIngrediente);
                 if (ingrediente != null) {
                     ingredientes.add(ingrediente);
                     Log.d("Ingr. log", ingrediente);
@@ -293,19 +317,17 @@ public class ProductFragment extends Fragment {
         }
 
         @Nullable
-        private String displayType(OntClass superClass) {
+        private String displayType(OntClass superClass, OntProperty property) {
             if (superClass.isRestriction()) {
-                return displayRestriction(superClass.asRestriction());
+                return displayRestriction(superClass.asRestriction(), property);
             }
             return null;
         }
 
         @Nullable
-        private String displayRestriction(Restriction restriction) {
+        private String displayRestriction(Restriction restriction, OntProperty property) {
             if (restriction.isSomeValuesFromRestriction()) {
-                if (restriction.getOnProperty().equals(temIngrediente)) {
-//                    Log.d("Property", restriction.getOnProperty().toString());
-//                    Log.d("Constraint", restriction.asSomeValuesFromRestriction().getSomeValuesFrom().toString());
+                if (restriction.getOnProperty().equals(property)) {
                     return restriction.asSomeValuesFromRestriction()
                             .getSomeValuesFrom()
                             .as(OntClass.class)
@@ -323,25 +345,5 @@ public class ProductFragment extends Fragment {
         private String displayRestriction(String qualifier, OntProperty ontProperty, Resource constraint) {
             return null;
         }
-
-//        protected Object renderConstraint( Resource constraint ) {
-//            if (constraint.canAs( UnionClass.class )) {
-//                UnionClass uc = constraint.as( UnionClass.class );
-//                // this would be so much easier in ruby ...
-//                String r = "union{ ";
-//                for (Iterator<? extends OntClass> i = uc.listOperands(); i.hasNext(); ) {
-//                    r = r + " " + renderURI( i.next() );
-//                }
-//                return r + "}";
-//            }
-//            else {
-//                return renderURI( constraint );
-//            }
-//        }
-//
-//        protected Object renderURI( Resource onP ) {
-//            String qName = onP.getModel().qnameFor( onP.getURI() );
-//            return qName == null ? onP.getLocalName() : qName;
-//        }
     }
 }

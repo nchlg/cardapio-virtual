@@ -7,8 +7,6 @@ import android.view.MenuItem;
 
 import java.io.File;
 
-import facin.com.cardapio_virtual.owlModels.OntologyInitializer;
-
 public class MenuActivity extends AppCompatActivity
         implements ProductFragment.OnListFragmentInteractionListener {
 
@@ -20,10 +18,14 @@ public class MenuActivity extends AppCompatActivity
     private String intentEndereco;
     private String intentEmail;
     private String intentTelefone;
-    protected static final String EXTRA_PRODUCT_NOME = "acin.com.cardapio_virtual.EXTRA_PRODUCT_NOME";
-    protected static final String EXTRA_PRODUCT_INGREDIENTES = "acin.com.cardapio_virtual.EXTRA_PRODUCT_INGREDIENTES";
-    protected static final String EXTRA_PRODUCT_PRECO = "acin.com.cardapio_virtual.EXTRA_PRODUCT_PRECO";
-    protected static final String EXTRA_PRODUCT_QUANTIDADE = "acin.com.cardapio_virtual.EXTRA_PRODUCT_QUANTIDADE";
+    private String intentOntClassURI;
+    protected static final String SOURCE = "http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3";
+    protected static final String NS = SOURCE + "#";
+    protected static final String EXTRA_PRODUCT_NOME = "facin.com.cardapio_virtual.EXTRA_PRODUCT_NOME";
+    protected static final String EXTRA_PRODUCT_INGREDIENTES = "facin.com.cardapio_virtual.EXTRA_PRODUCT_INGREDIENTES";
+    protected static final String EXTRA_PRODUCT_PRECO = "facin.com.cardapio_virtual.EXTRA_PRODUCT_PRECO";
+    protected static final String EXTRA_PRODUCT_QUANTIDADE = "facin.com.cardapio_virtual.EXTRA_PRODUCT_QUANTIDADE";
+    protected static final String EXTRA_PRODUCT_ONTCLASS_URI = "facin.com.cardapio_virtual.EXTRA_PRODUCT_ONTCLASS_URI";
 
     private final static int REQUEST_RESTAURANT_INFO = 13;
 
@@ -63,20 +65,34 @@ public class MenuActivity extends AppCompatActivity
         } else {
             intentTelefone = getResources().getString(R.string.indisp_phone_number);
         }
+        if (intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI) != null) {
+            intentOntClassURI = intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI);
+        } else {
+            intentOntClassURI = NS + "Produto";
+        }
+
     }
 
     @Override
     public void onListFragmentInteraction(Product product) {
-        Intent intent = new Intent(getApplicationContext(), ProductInfoActivity.class);
-        intent.putExtra(EXTRA_PRODUCT_NOME, product.getNome());
-        intent.putExtra(EXTRA_PRODUCT_INGREDIENTES, product.getIngredientesAsString());
-        intent.putExtra(EXTRA_PRODUCT_PRECO, product.getPrecoAsString());
-        if (product.isContavel())
-            intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, Integer.toString(product.getQuantidade()));
-        else
-            intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, (String) null);
-        // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
-        startActivityForResult(intent, -1);
+        if (product.getOntClass().listSubClasses().toList().isEmpty()) {
+            Intent intent = new Intent(getApplicationContext(), ProductInfoActivity.class);
+            intent.putExtra(EXTRA_PRODUCT_NOME, product.getNome());
+            intent.putExtra(EXTRA_PRODUCT_INGREDIENTES, product.getIngredientesAsString());
+            intent.putExtra(EXTRA_PRODUCT_PRECO, product.getPrecoAsString());
+            if (product.isContavel())
+                intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, Integer.toString(product.getQuantidade()));
+            else
+                intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, (String) null);
+            intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
+            // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
+            startActivityForResult(intent, -1);
+        }
+        else {
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, product.getOntClass().getURI());
+            startActivityForResult(intent, -1);
+        }
     }
 
     @Override
@@ -106,5 +122,13 @@ public class MenuActivity extends AppCompatActivity
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    public String getIntentOntClassURI() {
+        return intentOntClassURI;
+    }
+
+    public void setIntentOntClassURI(String intentOntClassLocalName) {
+        this.intentOntClassURI = intentOntClassLocalName;
     }
 }

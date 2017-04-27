@@ -1,5 +1,7 @@
 package facin.com.cardapio_virtual;
 
+import com.hp.hpl.jena.ontology.OntClass;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -16,44 +18,45 @@ public class Product {
     private double preco;
     private ArrayList<String> ingredientes;
     private int quantidade;
-    private boolean contavel;
     private int preferencia;
+    private OntClass ontClass;
+
+    // Propriedades da Ontologia
+    private boolean contavel;
+    private boolean vegetariano;
+    private boolean lactose;
+
 
     // Sem ingredientes
-    public Product(String nome, double preco, int quantidade, boolean contavel) {
-        this.nome = nome;
-        this.preco = preco;
-        ingredientes = new ArrayList<>();
-        this.quantidade = quantidade;
-        this.contavel = contavel;
-        preferencia = 0;
+    public Product(String nome, double preco, int quantidade, OntClass ontClass) {
+        this(nome, preco, new ArrayList<String>(), quantidade, ontClass);
     }
 
     // Sem quantidade
-    public Product(String nome, double preco, ArrayList<String> ingredientes, boolean contavel) {
-        this.nome = nome;
-        this.preco = preco;
-        ingredientes = ingredientes;
-        this.quantidade = 0;
-        this.contavel = contavel;
-        preferencia = 0;
+    public Product(String nome, double preco, ArrayList<String> ingredientes, OntClass ontClass) {
+        this(nome, preco, ingredientes, 0, ontClass);
+
     }
 
-    public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, boolean contavel) {
+    public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, OntClass ontClass) {
         this.nome = nome;
         this.preco = preco;
         this.ingredientes = ingredientes;
         this.quantidade = quantidade;
-        this.contavel = contavel;
         preferencia = 0;
+        this.ontClass = ontClass;
+        // Propriedades da Ontologia
+        contavel = true;
+        vegetariano = false;
+        lactose = false;
+    }
+
+    public Product(String nome, OntClass ontClass) {
+        this(nome, 0, new ArrayList<String>(), 0, ontClass);
     }
 
     public Product() {
-        nome = "";
-        preco = 0.0;
-        ingredientes = new ArrayList<>();
-        quantidade = 0;
-        preferencia = 0;
+        this("", 0, new ArrayList<String>(), 0, null);
     }
 
     public String getIngredientesAsString() {
@@ -119,5 +122,13 @@ public class Product {
 
     public void setContavel(boolean contavel) {
         this.contavel = contavel;
+    }
+
+    public OntClass getOntClass() {
+        return ontClass;
+    }
+
+    public void setOntClass(OntClass ontClass) {
+        this.ontClass = ontClass;
     }
 }

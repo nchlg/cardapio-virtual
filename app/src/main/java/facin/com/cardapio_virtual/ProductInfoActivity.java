@@ -3,6 +3,8 @@ package facin.com.cardapio_virtual;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class ProductInfoActivity extends AppCompatActivity {
@@ -10,6 +12,8 @@ public class ProductInfoActivity extends AppCompatActivity {
     private TextView mIngredientesText;
     private TextView mPrecoText;
     private TextView mQuantidadeText;
+
+    private String intentOntClassURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,9 @@ public class ProductInfoActivity extends AppCompatActivity {
                 getActionBar().setTitle(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
             if (getSupportActionBar() != null)
                 getSupportActionBar().setTitle(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
+        }
+        if (intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI) != null ) {
+            intentOntClassURI = intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI);
         }
 
         // TextViews
@@ -71,6 +78,31 @@ public class ProductInfoActivity extends AppCompatActivity {
             auxQuantidadeText = intentQuantidade;
         }
         mQuantidadeText.setText(auxQuantidadeText);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setIntent();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home: {
+                setIntent();
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+    }
+
+    protected void setIntent() {
+        Intent intent = new Intent();
+        intent.putExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
+        // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override

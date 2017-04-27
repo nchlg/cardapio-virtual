@@ -761,6 +761,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
@@ -983,6 +989,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
             </owl:Restriction>
@@ -1078,6 +1090,21 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Expresso Duplo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso_Simples -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso_Simples">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Expresso"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#preco"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">Expresso Simples</rdfs:label>
     </owl:Class>
     
 
@@ -1566,6 +1593,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
@@ -1597,6 +1630,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Lanche"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
@@ -1940,6 +1979,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2597,6 +2642,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#contavel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Torta</rdfs:label>

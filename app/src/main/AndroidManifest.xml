@@ -82,7 +82,9 @@
             android:label="@string/title_activity_restaurant_info"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
-        <activity android:name=".ProductInfoActivity"></activity>
+        <activity android:name=".ProductInfoActivity"
+            android:parentActivityName=".MenuActivity"
+            tools:targetApi="jelly_bean"></activity>
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.ResourceFactory;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -31,10 +32,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
@@ -67,6 +66,7 @@ public class ProductFragment extends Fragment {
     private File lanchesFile;
     private File fileDir;
     private String fileName;
+    List<Individual> individuos;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -89,6 +89,7 @@ public class ProductFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fileDir = getActivity().getApplicationContext().getFilesDir();
+        individuos = null;
         // criaArquivoMetodo1();
         criaArquivoMetodo2();
         if (getArguments() != null) {
@@ -174,6 +175,7 @@ public class ProductFragment extends Fragment {
 
         OntProperty temIngrediente;
         OntProperty contavel;
+        Map<OntClass, Integer> relacaoClasseIndividuo = new HashMap<>();
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -196,13 +198,18 @@ public class ProductFragment extends Fragment {
                 temIngrediente = ontModel.createOntProperty(NS + "temIngrediente");
                 contavel = ontModel.createOntProperty(NS + "contavel");
 
+                // Pega indivíduos
+                individuos = ontModel.listIndividuals().toList();
+                relacaoClasseIndividuo = pegaClassesAPartirDeIndividuos(individuos);
+
                 // Transforma as OntClasses em Products e popula a lista com produtos
                 //HashMap<OntClass, Integer> classesContaveis = pegaClassesAPartirDeIndividuos(ontModel.listIndividuals().toSet());
                 //populaListaProdutos(classesContaveis);
                 //ArrayList<OntClass> classesNaoContaveis = pegaClassesPorAtributo(ontModel.listClasses().toSet(), contavel, false);
                 // populaListaProdutos(classesNaoContaveis);
 
-                populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
+                populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())),
+                        individuos);
                 Log.d("URI recebida", ((MenuActivity) getActivity()).getIntentOntClassURI() != null ? ((MenuActivity) getActivity()).getIntentOntClassURI() : "null");
                 // populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(NS + "Produto")));
                 Log.d("URI padrão", NS + "Produto");
@@ -273,7 +280,6 @@ public class ProductFragment extends Fragment {
         private ArrayList<OntClass> pegaClassesPorAtributo(Set<OntClass> ontClasses, OntProperty property, boolean filtro) {
         ArrayList<OntClass> classesQuePossuemTalAtributo = new ArrayList<>();
 
-
             for (OntClass oc : ontClasses) {
                 for (Iterator<OntClass> superClasses = oc.listSuperClasses(); superClasses.hasNext(); ) {
                     OntClass superClasse = superClasses.next();
@@ -295,11 +301,11 @@ public class ProductFragment extends Fragment {
             return classesQuePossuemTalAtributo;
         }
 
-        private HashMap<OntClass, Integer> pegaClassesAPartirDeIndividuos(Set<Individual> individuals) {
-            HashMap<OntClass, Integer> ontClasses = new HashMap<>();
+        private Map<OntClass, Integer> pegaClassesAPartirDeIndividuos(List<Individual> individuals) {
+            Map<OntClass, Integer> mapa = new HashMap<>();
             Boolean contemClasse = false;
             for (Individual i : individuals) {
-                for (Map.Entry<OntClass, Integer> kv : ontClasses.entrySet()) {
+                for (Map.Entry<OntClass, Integer> kv : mapa.entrySet()) {
                     if (kv.getKey().equals(i.getOntClass())) {
                         contemClasse = true;
                         kv.setValue(kv.getValue() + 1);
@@ -308,10 +314,10 @@ public class ProductFragment extends Fragment {
                         break;
                 }
                 if (!contemClasse)
-                    ontClasses.put(i.getOntClass(), 1);
+                    mapa.put(i.getOntClass(), 1);
 
             }
-            return ontClasses;
+            return mapa;
         }
 
 //        private void populaListaProdutos(Map<OntClass, Integer> ontClasses) {
@@ -347,15 +353,20 @@ public class ProductFragment extends Fragment {
             return false;
         }
 
-        private boolean temFilhosComQuantidade(OntClass ontClass) {
+        private boolean temFilhosComQuantidade(OntClass ontClass, List<Individual> individuals) {
             Deque<OntClass> filinha = new ArrayDeque<>();
             filinha.add(ontClass);
             OntClass classeAtual = null;
             while (!filinha.isEmpty()) {
                 classeAtual = filinha.pop();
                 if (classeAtual.listSubClasses().toList().isEmpty()) {
-                    // TODO: Verificar se tem individuos dessa classe
-                    // Se tiver,retorna true
+                    if (individuals != null) {
+                        for (Individual i : individuals) {
+                            if (i.getOntClass().equals(classeAtual)) {
+                                return true;
+                            }
+                        }
+                    }
                 }
                 else {
                     filinha.addAll(classeAtual.listSubClasses().toList());
@@ -364,31 +375,47 @@ public class ProductFragment extends Fragment {
             return false;
         }
 
-        private void populaListaProdutos(List<OntClass> ontClasses) {
+        private void populaListaProdutos(List<OntClass> ontClasses, List<Individual> individuals) {
             produtos = new ArrayList<>();
             for (OntClass oc : ontClasses) {
                 OntClass classeAtual = oc;
                 boolean isContavel = isClasseContavel(classeAtual);
                 while (classeAtual != null && !isContavel) {
                     classeAtual = classeAtual.getSuperClass();
-                    isContavel = isClasseContavel(classeAtual);
+                    if (classeAtual != null)
+                        isContavel = isClasseContavel(classeAtual);
                 }
-                if (isContavel) {
-
-                } else {
+                if (!oc.listSubClasses().toList().isEmpty() && isContavel) {
+                    if (individuals != null) {
+                        if (temFilhosComQuantidade(oc, individuals)) {
+                            produtos.add(transformaOntClassEmProdutoNaoContavel(oc));
+                        }
+                    }
+                } else if (oc.listSubClasses().toList().isEmpty() && isContavel) {
+                    if (individuals != null) {
+                        if (temFilhosComQuantidade(oc, individuals)) {
+                            for (Map.Entry<OntClass, Integer> kv : relacaoClasseIndividuo.entrySet()) {
+                                produtos.add(transformaOntClassEmProdutoContavel(oc, kv.getValue()));
+                            }
+                        }
+                    }
+                    // TODO: Criar método para classes não-folhas
+                } else if (!isContavel){
                     produtos.add(transformaOntClassEmProdutoNaoContavel(oc));
                 }
             }
         }
 
-//        private Product transformaOntClassEmProdutoContavel(OntClass ontClass, int quantidade) {
-//            return new Product(
-//                    ontClass.getLabel("pt"),
-//                    3.50,
-//                    populaIngredientes(ontClass),
-//                    quantidade
-//            );
-//        }
+        private Product transformaOntClassEmProdutoContavel(OntClass ontClass, int quantidade) {
+            // TODO: Método do preço!!!
+            return new Product(
+                    ontClass.getLabel("pt"),
+                    3.50,
+                    populaIngredientes(ontClass),
+                    quantidade,
+                    ontClass
+            );
+        }
 
         private Product transformaOntClassEmProdutoNaoContavel(OntClass ontClass) {
             return new Product(

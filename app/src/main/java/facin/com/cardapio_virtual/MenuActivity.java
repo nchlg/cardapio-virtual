@@ -10,8 +10,6 @@ import java.io.File;
 public class MenuActivity extends AppCompatActivity
         implements ProductFragment.OnListFragmentInteractionListener {
 
-    public File lanchesFile;
-
     // Intent
     private String intentNome;
     private String intentDescricao;

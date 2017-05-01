@@ -38,6 +38,14 @@ public class Product {
 
     }
 
+    public Product(String nome, OntClass ontClass) {
+        this(nome, 0, new ArrayList<String>(), 0, ontClass);
+    }
+
+    public Product() {
+        this("", 0, new ArrayList<String>(), 0, null);
+    }
+
     public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, OntClass ontClass) {
         this.nome = nome;
         this.preco = preco;
@@ -49,14 +57,6 @@ public class Product {
         contavel = true;
         vegetariano = false;
         lactose = false;
-    }
-
-    public Product(String nome, OntClass ontClass) {
-        this(nome, 0, new ArrayList<String>(), 0, ontClass);
-    }
-
-    public Product() {
-        this("", 0, new ArrayList<String>(), 0, null);
     }
 
     public String getIngredientesAsString() {

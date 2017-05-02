@@ -39,6 +39,8 @@
     <string name="title_activity_menu">Menu</string>
     <string name="progress_dialog_product_title">Loaging menu</string>
     <string name="progress_dialog_product_message">Please wait while the product list is being loaded to the screen</string>
+    <string name="action_filter">Filter</string>
+
 
     <!-- Product Info -->
     <string name="indisp_ingredients">Ingredients unavailable.</string>

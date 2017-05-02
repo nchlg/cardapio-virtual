@@ -3,12 +3,22 @@ package facin.com.cardapio_virtual;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
 
 public class MenuActivity extends AppCompatActivity
         implements ProductFragment.OnListFragmentInteractionListener {
+
+    // Para o menu de filtros
+    ListView
 
     // Intent
     private String intentNome;
@@ -37,6 +47,9 @@ public class MenuActivity extends AppCompatActivity
                             ProductFragment.newInstance(1))
                     .commit();
         }
+
+        // Para o menu flutuante
+        registerForContextMenu();
 
         // Intent
         Intent intent = getIntent();
@@ -128,5 +141,43 @@ public class MenuActivity extends AppCompatActivity
 
     public void setIntentOntClassURI(String intentOntClassLocalName) {
         this.intentOntClassURI = intentOntClassLocalName;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_cardapio, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                new MaterialDialog.Builder(MenuActivity.this)
+                        .title(R.string.action_filter)
+                        .items(R.array.media_filters)
+                        .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                if (text.length > 0) {
+                                    ((TextView) MenuActivity.this.findViewById(R.id.idioms_button))
+                                            .setText(toStringSeparadoPorVirgulas(text));
+                                    idiomasDB = text;
+                                }
+                                else {
+                                    idiomasDB = null;
+                                }
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.dialog_choose)
+                        .show();
+        }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

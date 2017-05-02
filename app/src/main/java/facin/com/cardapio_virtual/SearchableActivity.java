@@ -44,7 +44,15 @@ public class SearchableActivity extends AppCompatActivity
 
     // Métodos relacionado aos fragmentos
     public void onListFragmentInteraction(Restaurant item) {
-
+        Intent intent = new Intent(getApplicationContext(), RestaurantInfoActivity.class);
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_PK, Integer.toString(item.getPrimaryKey()));
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_NOME, item.getNome());
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_DESCRICAO, item.getDescricao());
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO, item.getEndereco());
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_EMAIL, item.getEmail());
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE, item.getTelefone());
+        // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
+        startActivityForResult(intent, -1);
     }
 
     public class FetchSearchTask extends AsyncTask<String, Void, Boolean> {

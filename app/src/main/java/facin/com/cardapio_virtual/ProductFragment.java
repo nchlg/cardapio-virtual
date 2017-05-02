@@ -19,6 +19,7 @@ import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.Restriction;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
@@ -66,7 +67,7 @@ public class ProductFragment extends Fragment {
     private File lanchesFile;
     private File fileDir;
     private String fileName;
-    List<Individual> individuos;
+    private List<Individual> individuos;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -174,6 +175,7 @@ public class ProductFragment extends Fragment {
     public class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
 
         OntProperty temIngrediente;
+        OntProperty preco;
         OntProperty contavel;
         Map<OntClass, Integer> relacaoClasseIndividuo = new HashMap<>();
 
@@ -197,6 +199,7 @@ public class ProductFragment extends Fragment {
                 // Cria propriedades
                 temIngrediente = ontModel.createOntProperty(NS + "temIngrediente");
                 contavel = ontModel.createOntProperty(NS + "contavel");
+                preco = ontModel.createOntProperty(NS + "preco");
 
                 // Pega indivíduos
                 individuos = ontModel.listIndividuals().toList();
@@ -208,8 +211,7 @@ public class ProductFragment extends Fragment {
                 //ArrayList<OntClass> classesNaoContaveis = pegaClassesPorAtributo(ontModel.listClasses().toSet(), contavel, false);
                 // populaListaProdutos(classesNaoContaveis);
 
-                populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())),
-                        individuos);
+                populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
                 Log.d("URI recebida", ((MenuActivity) getActivity()).getIntentOntClassURI() != null ? ((MenuActivity) getActivity()).getIntentOntClassURI() : "null");
                 // populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(NS + "Produto")));
                 Log.d("URI padrão", NS + "Produto");
@@ -279,7 +281,7 @@ public class ProductFragment extends Fragment {
         }
 
         private ArrayList<OntClass> pegaClassesPorAtributo(Set<OntClass> ontClasses, OntProperty property, boolean filtro) {
-        ArrayList<OntClass> classesQuePossuemTalAtributo = new ArrayList<>();
+            ArrayList<OntClass> classesQuePossuemTalAtributo = new ArrayList<>();
 
             for (OntClass oc : ontClasses) {
                 for (Iterator<OntClass> superClasses = oc.listSuperClasses(); superClasses.hasNext(); ) {
@@ -292,8 +294,8 @@ public class ProductFragment extends Fragment {
                                 //if (restriction.asHasValueRestriction().getHasValue())
                                 Log.d("HasValue", restriction.asHasValueRestriction().getHasValue().toString() != null ?
                                         restriction.asHasValueRestriction().getHasValue().toString() : "-");
-                                    classesQuePossuemTalAtributo.add(oc);
-                                    break;
+                                classesQuePossuemTalAtributo.add(oc);
+                                break;
                             }
                         }
                     }
@@ -342,9 +344,7 @@ public class ProductFragment extends Fragment {
                     Restriction restriction = superClasse.asRestriction();
                     if (restriction.isHasValueRestriction()) {
                         if (restriction.getOnProperty().equals(contavel)) {
-                            if (Boolean.valueOf(restriction.asHasValueRestriction().getHasValue().toString())) {
-                                Log.d("HasValue", restriction.asHasValueRestriction().getHasValue().toString() != null ?
-                                        restriction.asHasValueRestriction().getHasValue().toString() : "-");
+                            if (restriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean()) {
                                 return true;
                             }
                         }
@@ -353,24 +353,70 @@ public class ProductFragment extends Fragment {
             }
             return false;
         }
-        // Não está mostrando apenas os contáveis com indivíduos, mas todos os contáveis.....
-        private boolean temFilhosComQuantidade(OntClass ontClass, List<Individual> individuals) {
+
+        private boolean temRestricao(OntClass ontClass, OntProperty restricao) {
+            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
+                OntClass superClasse = superClasses.next();
+                if (superClasse.isRestriction()) {
+                    Restriction restriction = superClasse.asRestriction();
+                    if (restriction.isHasValueRestriction()) {
+                        if (restriction.getOnProperty().equals(restricao)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        private Double temRestricaoPreco(OntClass ontClass) {
+            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
+                OntClass superClasse = superClasses.next();
+                if (superClasse.isRestriction()) {
+                    Restriction restriction = superClasse.asRestriction();
+                    if (restriction.isHasValueRestriction()) {
+                        if (restriction.getOnProperty().equals(preco)) {
+                            return restriction.asHasValueRestriction().getHasValue().as(Literal.class).getDouble();
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private boolean temFilhosComQuantidade(OntClass ontClass) {
             Deque<OntClass> filinha = new ArrayDeque<>();
             filinha.add(ontClass);
-            OntClass classeAtual = null;
+            OntClass classeAtual;
             while (!filinha.isEmpty()) {
                 classeAtual = filinha.pop();
                 if (classeAtual.listSubClasses().toList().isEmpty()) {
-                    if (individuals != null) {
-                        for (Individual i : individuals) {
+                    if (individuos != null) {
+                        for (Individual i : individuos) {
                             if (i.getOntClass().equals(classeAtual)) {
                                 return true;
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     filinha.addAll(classeAtual.listSubClasses().toList());
+                }
+            }
+            return false;
+        }
+
+        private boolean temFilhosIncontaveis(OntClass ontClass) {
+            Deque<OntClass> filinha = new ArrayDeque<>();
+            filinha.add(ontClass);
+            OntClass classeAtual;
+            while (!filinha.isEmpty()) {
+                classeAtual = filinha.pop();
+                if (temRestricao(classeAtual, contavel) && !isClasseContavel(classeAtual)) {
+                    return true;
+                } else {
+                    if (!classeAtual.listSubClasses().toList().isEmpty()) {
+                        filinha.addAll(classeAtual.listSubClasses().toList());
+                    }
                 }
             }
             return false;
@@ -386,47 +432,47 @@ public class ProductFragment extends Fragment {
             return null;
         }
 
-        private void populaListaProdutos(List<OntClass> ontClasses, List<Individual> individuals) {
+        private void populaListaProdutos(List<OntClass> ontClasses) {
             produtos = new ArrayList<>();
             for (OntClass oc : ontClasses) {
                 OntClass classeAtual = oc;
-                /* Talvez aqui precise de um outro método. No caso da Torrada. Ela tem contavel = false. Mas Lanche tem contável = true.
-                Caso eu volte para as super classes, contável será true. Como fazer neste caso?
-                Criar 2 métodos? 1 que indique se tem a restrição e, se sim, pegar o valor? Senão, ver nos pais?
-                 */
-                boolean isContavel = isClasseContavel(classeAtual);
-                while (classeAtual != null && !isContavel) {
+                boolean isContavel = false;
+                boolean temRestricaoContavel = temRestricao(classeAtual, contavel);
+                if (temRestricaoContavel)
+                    isContavel = isClasseContavel(classeAtual);
+
+                while (classeAtual != null && !isContavel && !temRestricaoContavel) {
                     classeAtual = pegaSuperClasse(classeAtual);
-                    if (classeAtual != null)
-                        isContavel = isClasseContavel(classeAtual);
-                }
-                if (!oc.listSubClasses().toList().isEmpty() && isContavel) {
-                    if (individuals != null) {
-                        if (temFilhosComQuantidade(oc, individuals)) {
-                            produtos.add(transformaOntClassEmProdutoNaoContavel(oc));
-                        }
+                    if (classeAtual != null) {
+                        temRestricaoContavel = temRestricao(classeAtual, contavel);
+                        if (temRestricaoContavel)
+                            isContavel = isClasseContavel(classeAtual);
                     }
-                } else if (oc.listSubClasses().toList().isEmpty() && isContavel) {
-                    if (individuals != null) {
-                        if (temFilhosComQuantidade(oc, individuals)) {
+                }
+                if ((temRestricaoContavel && !isContavel) || temFilhosIncontaveis(oc) || temFilhosComQuantidade(oc)) {
+                    if (!oc.listSubClasses().toList().isEmpty() && isContavel) {
+                        if (individuos != null) {
+                            produtos.add(transformaOntClassEmProdutoIntermediario(oc));
+                        }
+                    } else if (oc.listSubClasses().toList().isEmpty() && isContavel) {
+                        if (individuos != null) {
                             for (Map.Entry<OntClass, Integer> kv : relacaoClasseIndividuo.entrySet()) {
                                 produtos.add(transformaOntClassEmProdutoContavel(oc, kv.getValue()));
                             }
                         }
+                    } else if (!oc.listSubClasses().toList().isEmpty() && !isContavel) {
+                        produtos.add(transformaOntClassEmProdutoIntermediario(oc));
+                    } else if (oc.listSubClasses().toList().isEmpty() && !isContavel) {
+                        produtos.add(transformaOntClassEmProdutoNaoContavel(oc));
                     }
-                    // TODO: Criar método para classes não-folhas
-                } else if (!isContavel){
-                    produtos.add(transformaOntClassEmProdutoNaoContavel(oc));
                 }
-                Log.d("Produto", oc.getLabel("pt") != null ? oc.getLabel("pt") : "-");
             }
         }
 
         private Product transformaOntClassEmProdutoContavel(OntClass ontClass, int quantidade) {
-            // TODO: Método do preço!!!
             return new Product(
                     ontClass.getLabel("pt"),
-                    3.50,
+                    getPreco(ontClass),
                     populaIngredientes(ontClass),
                     quantidade,
                     ontClass
@@ -436,8 +482,32 @@ public class ProductFragment extends Fragment {
         private Product transformaOntClassEmProdutoNaoContavel(OntClass ontClass) {
             return new Product(
                     ontClass.getLabel("pt"),
+                    getPreco(ontClass),
+                    populaIngredientes(ontClass),
                     ontClass
             );
+        }
+
+        private Product transformaOntClassEmProdutoIntermediario(OntClass ontClass) {
+            return new Product(
+                    ontClass.getLabel("pt"),
+                    ontClass
+            );
+        }
+
+        private double getPreco(OntClass ontClass) {
+            OntClass classeAtual = ontClass;
+            Double restricaoPreco = temRestricaoPreco(classeAtual);
+            if (restricaoPreco != null)
+                return restricaoPreco;
+            while (restricaoPreco == null && classeAtual != null) {
+                classeAtual = classeAtual.getSuperClass();
+                if (classeAtual != null) {
+                    restricaoPreco = temRestricaoPreco(classeAtual);
+                }
+            }
+
+            return restricaoPreco != null ? restricaoPreco : 0.0;
         }
 
         private ArrayList<String> populaIngredientes(OntClass ontClass) {
@@ -447,7 +517,6 @@ public class ProductFragment extends Fragment {
                 String ingrediente = displayType(superClasses.next(), temIngrediente);
                 if (ingrediente != null) {
                     ingredientes.add(ingrediente);
-                    Log.d("Ingr. log", ingrediente);
                 }
             }
             return ingredientes;

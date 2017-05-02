@@ -39,5 +39,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:10.2.1'
     compile 'com.google.android.gms:play-services-location:10.2.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    // Material Dialog, para Dialogs como a dos filtros do menu
+    compile 'com.afollestad.material-dialogs:core:0.9.4.4'
     testCompile 'junit:junit:4.12'
 }

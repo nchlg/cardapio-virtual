@@ -33,6 +33,10 @@
     <string name="title_activity_menu">Cardápio</string>
     <string name="progress_dialog_product_title">Carregando cardápio</string>
     <string name="progress_dialog_product_message">Aguarde enquanto carregamos o cardápio na tela</string>
+    <string name="action_filter">Filtrar</string>
+    <string name="filter_vegetarian">Produtos Vegetarianos</string>
+    <string name="filter_lactose">Produtos sem Lactose</string>
+    <string name="filter_gluten">Produtos sem Glúten</string>
 
     <!-- Product Info -->
     <string name="indisp_ingredients">Ingredientes indisponíveis.</string>

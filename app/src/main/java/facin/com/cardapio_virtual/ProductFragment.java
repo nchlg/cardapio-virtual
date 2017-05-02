@@ -246,7 +246,8 @@ public class ProductFragment extends Fragment {
                         else {
                             String nomeP1 = p1.getNome();
                             String nomeP2 = p2.getNome();
-
+                            Log.d("Nomes P1 P2", (p1.getNome() != null ? p1.getNome() : "-")
+                                    + (p2.getNome() != null ? p2.getNome() : "-"));
                             return nomeP1.compareTo(nomeP2);
                         }
                     }
@@ -352,7 +353,7 @@ public class ProductFragment extends Fragment {
             }
             return false;
         }
-
+        // Não está mostrando apenas os contáveis com indivíduos, mas todos os contáveis.....
         private boolean temFilhosComQuantidade(OntClass ontClass, List<Individual> individuals) {
             Deque<OntClass> filinha = new ArrayDeque<>();
             filinha.add(ontClass);
@@ -375,13 +376,27 @@ public class ProductFragment extends Fragment {
             return false;
         }
 
+        private OntClass pegaSuperClasse(OntClass ontClass) {
+            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
+                OntClass superClasse = superClasses.next();
+                if (!superClasse.isRestriction() && superClasse.getLabel("pt") != null) {
+                    return superClasse;
+                }
+            }
+            return null;
+        }
+
         private void populaListaProdutos(List<OntClass> ontClasses, List<Individual> individuals) {
             produtos = new ArrayList<>();
             for (OntClass oc : ontClasses) {
                 OntClass classeAtual = oc;
+                /* Talvez aqui precise de um outro método. No caso da Torrada. Ela tem contavel = false. Mas Lanche tem contável = true.
+                Caso eu volte para as super classes, contável será true. Como fazer neste caso?
+                Criar 2 métodos? 1 que indique se tem a restrição e, se sim, pegar o valor? Senão, ver nos pais?
+                 */
                 boolean isContavel = isClasseContavel(classeAtual);
                 while (classeAtual != null && !isContavel) {
-                    classeAtual = classeAtual.getSuperClass();
+                    classeAtual = pegaSuperClasse(classeAtual);
                     if (classeAtual != null)
                         isContavel = isClasseContavel(classeAtual);
                 }
@@ -403,6 +418,7 @@ public class ProductFragment extends Fragment {
                 } else if (!isContavel){
                     produtos.add(transformaOntClassEmProdutoNaoContavel(oc));
                 }
+                Log.d("Produto", oc.getLabel("pt") != null ? oc.getLabel("pt") : "-");
             }
         }
 

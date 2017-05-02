@@ -192,6 +192,7 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:label xml:lang="pt">A La Minuta</rdfs:label>
     </owl:Class>
     
 
@@ -594,7 +595,7 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.9</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:label xml:lang="en">Chessecake</rdfs:label>
+        <rdfs:label xml:lang="pt">Chessecake</rdfs:label>
     </owl:Class>
     
 
@@ -777,7 +778,7 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.5</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:label xml:lang="fr">Croissant</rdfs:label>
+        <rdfs:label xml:lang="pt">Croissant</rdfs:label>
     </owl:Class>
     
 
@@ -1029,7 +1030,8 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Bergamota"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:label xml:lang="en">Earl Grey</rdfs:label>
+        <rdfs:label xml:lang="pt">Earl Grey</rdfs:label>
+
     </owl:Class>
     
 
@@ -1038,7 +1040,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#English_Breakfast">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cha_Preto"/>
-        <rdfs:label xml:lang="en">English Breakfast</rdfs:label>
+        <rdfs:label xml:lang="pt">English Breakfast</rdfs:label>
     </owl:Class>
     
 
@@ -1345,7 +1347,7 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:label xml:lang="en">Lady Grey</rdfs:label>
+        <rdfs:label xml:lang="pt">Lady Grey</rdfs:label>
     </owl:Class>
     
 

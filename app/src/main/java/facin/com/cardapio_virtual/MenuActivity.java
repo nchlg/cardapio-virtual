@@ -13,12 +13,11 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity
         implements ProductFragment.OnListFragmentInteractionListener {
-
-    // Para o menu de filtros
-    ListView
 
     // Intent
     private String intentNome;
@@ -35,6 +34,8 @@ public class MenuActivity extends AppCompatActivity
     protected static final String EXTRA_PRODUCT_QUANTIDADE = "facin.com.cardapio_virtual.EXTRA_PRODUCT_QUANTIDADE";
     protected static final String EXTRA_PRODUCT_ONTCLASS_URI = "facin.com.cardapio_virtual.EXTRA_PRODUCT_ONTCLASS_URI";
 
+    protected static final String PRODUCT_FRAGMENT_TAG = "facin.com.cardapio_virtual.PRODUCT_FRAGMENT_TAG";
+
     private final static int REQUEST_RESTAURANT_INFO = 13;
 
     @Override
@@ -44,16 +45,13 @@ public class MenuActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.activity_menu,
-                            ProductFragment.newInstance(1))
+                            ProductFragment.newInstance(1), PRODUCT_FRAGMENT_TAG)
                     .commit();
         }
 
-        // Para o menu flutuante
-        registerForContextMenu();
-
         // Intent
         Intent intent = getIntent();
-        if(intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_NOME) != null) {
+        if (intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_NOME) != null) {
             intentNome = intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_NOME);
         }
         if (intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_DESCRICAO) != null) {
@@ -98,8 +96,7 @@ public class MenuActivity extends AppCompatActivity
             intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
             // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
             startActivityForResult(intent, -1);
-        }
-        else {
+        } else {
             Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
             intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, product.getOntClass().getURI());
             startActivityForResult(intent, -1);
@@ -111,17 +108,17 @@ public class MenuActivity extends AppCompatActivity
         setIntent();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case android.R.id.home: {
-                setIntent();
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(menuItem);
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem menuItem) {
+//        switch (menuItem.getItemId()) {
+//            case android.R.id.home: {
+//                setIntent();
+//                return true;
+//            }
+//            default:
+//                return super.onOptionsItemSelected(menuItem);
+//        }
+//    }
 
     protected void setIntent() {
         Intent intent = new Intent();
@@ -154,30 +151,46 @@ public class MenuActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.action_filter:
+            case R.id.action_filter: {
                 new MaterialDialog.Builder(MenuActivity.this)
                         .title(R.string.action_filter)
                         .items(R.array.media_filters)
                         .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                                if (text.length > 0) {
-                                    ((TextView) MenuActivity.this.findViewById(R.id.idioms_button))
-                                            .setText(toStringSeparadoPorVirgulas(text));
-                                    idiomasDB = text;
-                                }
-                                else {
-                                    idiomasDB = null;
-                                }
+                                ProductFragment productFragment =
+                                        (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
+                                productFragment.setFiltros(setFiltros(which));
                                 return true;
                             }
                         })
                         .positiveText(R.string.dialog_choose)
+                        .widgetColorRes(R.color.colorPrimary)
                         .show();
-        }
                 return true;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private List<FiltroInterface> setFiltros(Integer[] which) {
+        List<FiltroInterface> filtros = new ArrayList<>();
+        for (int i : which) {
+            switch (i) {
+                case 0:
+                    filtros.add(Filtros.getFiltroGluten());
+                    break;
+                case 1:
+                    filtros.add(Filtros.getFiltroLactose());
+                    break;
+                case 2:
+                    filtros.add(Filtros.getFiltroVegetariano());
+                    break;
+                default:
+                    break;
+            }
+        }
+        return filtros;
     }
 }

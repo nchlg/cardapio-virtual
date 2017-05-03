@@ -60,6 +60,7 @@ public class ProductFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private ArrayList<Product> produtos;
+    private List<FiltroInterface> filtros;
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
 
@@ -91,16 +92,11 @@ public class ProductFragment extends Fragment {
         super.onCreate(savedInstanceState);
         fileDir = getActivity().getApplicationContext().getFilesDir();
         individuos = null;
-        // criaArquivoMetodo1();
+        filtros = new ArrayList<>();
         criaArquivoMetodo2();
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-    }
-
-    protected void criaArquivoMetodo1() {
-        fileName = "lanches2.owl";
-        lanchesFile = new File(fileDir, fileName);
     }
 
     protected void criaArquivoMetodo2() {
@@ -157,26 +153,33 @@ public class ProductFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Product product);
     }
+
+    public List<Product> filtraProdutos() {
+        List<Product> produtosFiltrados = new ArrayList<>();
+        produtosFiltrados.addAll(produtos);
+        for (FiltroInterface filtro : filtros) {
+            produtosFiltrados = filtro.filtra(produtosFiltrados);
+        }
+        return produtosFiltrados;
+    }
+
+    public void setFiltros(List<FiltroInterface> filtros) {
+        this.filtros = filtros;
+    }
+
 
     public class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
 
         OntProperty temIngrediente;
         OntProperty preco;
         OntProperty contavel;
+        OntProperty gluten;
+        OntProperty lactose;
+        OntProperty vegetariano;
         Map<OntClass, Integer> relacaoClasseIndividuo = new HashMap<>();
 
         @Override
@@ -199,6 +202,9 @@ public class ProductFragment extends Fragment {
                 // Cria propriedades
                 temIngrediente = ontModel.createOntProperty(NS + "temIngrediente");
                 contavel = ontModel.createOntProperty(NS + "contavel");
+                gluten = ontModel.createOntProperty(NS + "gluten");
+                lactose = ontModel.createOntProperty(NS + "lactose");
+                vegetariano = ontModel.createOntProperty(NS + "vegetariano");
                 preco = ontModel.createOntProperty(NS + "preco");
 
                 // Pega indivíduos
@@ -212,9 +218,6 @@ public class ProductFragment extends Fragment {
                 // populaListaProdutos(classesNaoContaveis);
 
                 populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
-                Log.d("URI recebida", ((MenuActivity) getActivity()).getIntentOntClassURI() != null ? ((MenuActivity) getActivity()).getIntentOntClassURI() : "null");
-                // populaListaProdutos(pegaFilhosDaRaiz(ontModel.getOntClass(NS + "Produto")));
-                Log.d("URI padrão", NS + "Produto");
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();

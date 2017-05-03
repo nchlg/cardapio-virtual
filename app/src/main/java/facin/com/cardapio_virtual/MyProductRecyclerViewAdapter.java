@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import facin.com.cardapio_virtual.ProductFragment.OnListFragmentInteractionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyProductRecyclerViewAdapter extends RecyclerView.Adapter<MyProductRecyclerViewAdapter.ViewHolder> {
 
-    private final ArrayList<Product> mValues;
+    private final List<Product> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyProductRecyclerViewAdapter(ArrayList<Product> items, OnListFragmentInteractionListener listener) {
+    public MyProductRecyclerViewAdapter(List<Product> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

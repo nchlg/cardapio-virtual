@@ -33,11 +33,14 @@
     <string name="title_activity_menu">Cardápio</string>
     <string name="progress_dialog_product_title">Carregando cardápio</string>
     <string name="progress_dialog_product_message">Aguarde enquanto carregamos o cardápio na tela</string>
-    <string name="action_filter">Escolha um ou mais filtros</string>
-    <string name="dialog_choose">Filtrar</string>
-    <string name="filter_vegetarian">Produtos Vegetarianos</string>
-    <string name="filter_lactose">Produtos sem Lactose</string>
-    <string name="filter_gluten">Produtos sem Glúten</string>
+    <string name="action_filter">Filtrar</string>
+    <string name="dialog_choose">OK</string>
+    <string name="filter_vegetarian">Vegetariano</string>
+    <string name="filter_lactose">Sem Lactose</string>
+    <string name="filter_gluten">Sem Glúten</string>
+    <string name="filter_salt">Pouco Sal</string>
+    <string name="filter_fat">Pouca Gordura</string>
+
 
     <!-- Product Info -->
     <string name="indisp_ingredients">Ingredientes indisponíveis.</string>

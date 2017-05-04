@@ -161,6 +161,7 @@ public class MenuActivity extends AppCompatActivity
                                 ProductFragment productFragment =
                                         (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
                                 productFragment.setFiltros(setFiltros(which));
+                                productFragment.atualizaListaDeProdutos();
                                 return true;
                             }
                         })

@@ -25,6 +25,18 @@ public class Filtros {
             return produtos;
         }
     }
+    private static class FiltroSal implements FiltroInterface {
+        @Override
+        public List<Product> filtra(List<Product> produtos) {
+            return produtos;
+        }
+    }
+    private static class FiltroGordura implements FiltroInterface {
+        @Override
+        public List<Product> filtra(List<Product> produtos) {
+            return produtos;
+        }
+    }
 
     public static FiltroInterface getFiltroGluten() {
         return new FiltroGluten();
@@ -34,5 +46,11 @@ public class Filtros {
     }
     public static FiltroInterface getFiltroVegetariano() {
         return new FiltroVegetariano();
+    }
+    public static FiltroInterface getFiltroSal() {
+        return new FiltroSal();
+    }
+    public static FiltroInterface getFiltroGordura() {
+        return new FiltroGordura();
     }
 }

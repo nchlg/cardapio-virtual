@@ -19,5 +19,7 @@
         <item>@string/filter_gluten</item>
         <item>@string/filter_lactose</item>
         <item>@string/filter_vegetarian</item>
+        <item>@string/filter_fat</item>
+        <item>@string/filter_salt</item>
     </string-array>
 </resources>

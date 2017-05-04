@@ -23,8 +23,11 @@ public class Product {
 
     // Propriedades da Ontologia
     private boolean contavel;
-    private boolean vegetariano;
-    private boolean lactose;
+    private boolean isVegetariano;
+    private boolean hasLactose;
+    private boolean hasGluten;
+    private boolean isSalgado;
+    private boolean isGorduroso;
 
 
     // Sem ingredientes
@@ -55,8 +58,7 @@ public class Product {
         this.ontClass = ontClass;
         // Propriedades da Ontologia
         contavel = true;
-        vegetariano = false;
-        lactose = false;
+        // Filtros
     }
 
     public String getIngredientesAsString() {

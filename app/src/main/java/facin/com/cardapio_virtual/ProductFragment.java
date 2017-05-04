@@ -22,7 +22,6 @@ import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.ResourceFactory;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -167,6 +166,11 @@ public class ProductFragment extends Fragment {
         return produtosFiltrados;
     }
 
+    public void atualizaListaDeProdutos() {
+        recyclerView.setAdapter(new MyProductRecyclerViewAdapter(filtraProdutos(), mListener));
+        // recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
     public void setFiltros(List<FiltroInterface> filtros) {
         this.filtros = filtros;
     }
@@ -176,11 +180,15 @@ public class ProductFragment extends Fragment {
 
         OntProperty temIngrediente;
         OntProperty preco;
+        Map<OntClass, Integer> relacaoClasseIndividuo = new HashMap<>();
+
         OntProperty contavel;
         OntProperty gluten;
         OntProperty lactose;
         OntProperty vegetariano;
-        Map<OntClass, Integer> relacaoClasseIndividuo = new HashMap<>();
+        OntProperty temGorduras;
+        OntProperty temSal;
+        Map<OntProperty, Boolean> restricoes = new HashMap<>();
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -201,11 +209,15 @@ public class ProductFragment extends Fragment {
 
                 // Cria propriedades
                 temIngrediente = ontModel.createOntProperty(NS + "temIngrediente");
+                preco = ontModel.createOntProperty(NS + "preco");
+
+                // Cria restrições
                 contavel = ontModel.createOntProperty(NS + "contavel");
                 gluten = ontModel.createOntProperty(NS + "gluten");
                 lactose = ontModel.createOntProperty(NS + "lactose");
                 vegetariano = ontModel.createOntProperty(NS + "vegetariano");
-                preco = ontModel.createOntProperty(NS + "preco");
+                temGorduras = ontModel.createOntProperty(NS + "temGorduras");
+                temSal = ontModel.createOntProperty(NS + "temSal");
 
                 // Pega indivíduos
                 individuos = ontModel.listIndividuals().toList();
@@ -357,7 +369,7 @@ public class ProductFragment extends Fragment {
             return false;
         }
 
-        private boolean temRestricao(OntClass ontClass, OntProperty restricao) {
+        private boolean temRestricaoHasValue(OntClass ontClass, OntProperty restricao) {
             for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
                 OntClass superClasse = superClasses.next();
                 if (superClasse.isRestriction()) {
@@ -414,7 +426,7 @@ public class ProductFragment extends Fragment {
             OntClass classeAtual;
             while (!filinha.isEmpty()) {
                 classeAtual = filinha.pop();
-                if (temRestricao(classeAtual, contavel) && !isClasseContavel(classeAtual)) {
+                if (temRestricaoHasValue(classeAtual, contavel) && !isClasseContavel(classeAtual)) {
                     return true;
                 } else {
                     if (!classeAtual.listSubClasses().toList().isEmpty()) {
@@ -435,24 +447,87 @@ public class ProductFragment extends Fragment {
             return null;
         }
 
+        // Na verdade esse filtro funcionará como o filtro isClasseContável........ TODO: Arrumar
+        private void checaValorDaRestricao(OntClass ontClass, Map<OntProperty, Boolean> temRestricoes,
+                                                                Map<OntProperty, Boolean> valoresDasRestricoes) {
+
+            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
+                OntClass superClasse = superClasses.next();
+                if (superClasse.isRestriction()) {
+                    Restriction restriction = superClasse.asRestriction();
+                    for (Map.Entry<OntProperty, Boolean> kv : temRestricoes.entrySet()) {
+                        if (restriction.getOnProperty().equals(kv.getKey())) {
+                            kv.setValue(true);
+                            if (restriction.isHasValueRestriction()) {
+                                if (restriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean()) {
+                                    valoresDasRestricoes.put(kv.getKey(), true);
+                                }
+                            } else if (restriction.isSomeValuesFromRestriction()) {
+                                if (restriction.asSomeValuesFromRestriction()
+                                        .getSomeValuesFrom()
+                                        .as(OntClass.class)
+                                        .getLabel("pt").equals("Meio_Salgado") ||
+                                        restriction.asSomeValuesFromRestriction()
+                                                .getSomeValuesFrom()
+                                                .as(OntClass.class)
+                                                .getLabel("pt").equals("Salgado")) {
+                                    valoresDasRestricoes.put(kv.getKey(), true);
+                                }
+                            } else if (restriction.isSomeValuesFromRestriction()) {
+                                if (restriction.asSomeValuesFromRestriction()
+                                        .getSomeValuesFrom()
+                                        .as(OntClass.class)
+                                        .getLabel("pt").equals("Meio_Gorduroso") ||
+                                        restriction.asSomeValuesFromRestriction()
+                                                .getSomeValuesFrom()
+                                                .as(OntClass.class)
+                                                .getLabel("pt").equals("Gorduroso")) {
+                                    valoresDasRestricoes.put(kv.getKey(), true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private Map<OntProperty, Boolean> populaMapRestricoes() {
+            Map<OntProperty, Boolean> mapa = new HashMap<>();
+            mapa.put(gluten, false);
+            mapa.put(lactose, false);
+            mapa.put(vegetariano, false);
+            mapa.put(temGorduras, false);
+            mapa.put(temSal, false);
+            return mapa;
+        }
+
         private void populaListaProdutos(List<OntClass> ontClasses) {
             produtos = new ArrayList<>();
             for (OntClass oc : ontClasses) {
+
                 OntClass classeAtual = oc;
+
                 boolean isContavel = false;
-                boolean temRestricaoContavel = temRestricao(classeAtual, contavel);
+                boolean temRestricaoContavel = temRestricaoHasValue(classeAtual, contavel);
                 if (temRestricaoContavel)
                     isContavel = isClasseContavel(classeAtual);
+
+                Map<OntProperty, Boolean> valoresDasRestricoes = populaMapRestricoes();
+                Map<OntProperty, Boolean> temRestricoes =  populaMapRestricoes();
+                checaValorDaRestricao(classeAtual, temRestricoes, valoresDasRestricoes);
 
                 while (classeAtual != null && !isContavel && !temRestricaoContavel) {
                     classeAtual = pegaSuperClasse(classeAtual);
                     if (classeAtual != null) {
-                        temRestricaoContavel = temRestricao(classeAtual, contavel);
+                        temRestricaoContavel = temRestricaoHasValue(classeAtual, contavel);
+                        checaValorDaRestricao(classeAtual, temRestricoes, valoresDasRestricoes);
+                        Log.d("Restricoes", temRestricoes.toString() + " /// " + valoresDasRestricoes.toString());
                         if (temRestricaoContavel)
                             isContavel = isClasseContavel(classeAtual);
                     }
                 }
                 if ((temRestricaoContavel && !isContavel) || temFilhosIncontaveis(oc) || temFilhosComQuantidade(oc)) {
+
                     if (!oc.listSubClasses().toList().isEmpty() && isContavel) {
                         if (individuos != null) {
                             produtos.add(transformaOntClassEmProdutoIntermediario(oc));
@@ -551,7 +626,8 @@ public class ProductFragment extends Fragment {
         }
 
         @Nullable
-        private String displayRestriction(String qualifier, OntProperty ontProperty, Resource constraint) {
+        private String displayRestriction(String qualifier, OntProperty ontProperty, Resource
+                constraint) {
             return null;
         }
     }

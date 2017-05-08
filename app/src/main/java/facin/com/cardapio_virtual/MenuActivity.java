@@ -3,18 +3,17 @@ package facin.com.cardapio_virtual;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
+import facin.com.cardapio_virtual.auxiliares.Filtros;
 
 public class MenuActivity extends AppCompatActivity
         implements ProductFragment.OnListFragmentInteractionListener {
@@ -167,6 +166,7 @@ public class MenuActivity extends AppCompatActivity
                         })
                         .positiveText(R.string.dialog_choose)
                         .widgetColorRes(R.color.colorPrimary)
+                        .buttonRippleColor(getResources().getColor(R.color.colorPrimary))
                         .show();
                 return true;
             }
@@ -187,6 +187,12 @@ public class MenuActivity extends AppCompatActivity
                     break;
                 case 2:
                     filtros.add(Filtros.getFiltroVegetariano());
+                    break;
+                case 3:
+                    filtros.add(Filtros.getFiltroGordura());
+                    break;
+                case 4:
+                    filtros.add(Filtros.getFiltroSal());
                     break;
                 default:
                     break;

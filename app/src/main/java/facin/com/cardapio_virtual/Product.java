@@ -6,7 +6,9 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by Priscila on 28/02/2017.
@@ -20,36 +22,39 @@ public class Product {
     private int quantidade;
     private int preferencia;
     private OntClass ontClass;
-
     // Propriedades da Ontologia
     private boolean contavel;
-    private boolean isVegetariano;
-    private boolean hasLactose;
-    private boolean hasGluten;
-    private boolean isSalgado;
-    private boolean isGorduroso;
+    // Filtros
+    private Map<String, Boolean> mapaRestricoes;
 
 
     // Sem ingredientes
-    public Product(String nome, double preco, int quantidade, OntClass ontClass) {
-        this(nome, preco, new ArrayList<String>(), quantidade, ontClass);
+    public Product(String nome, double preco, int quantidade, OntClass ontClass,
+                   Map<String, Boolean> mapaRestricoes) {
+        this(nome, preco, new ArrayList<String>(), quantidade, ontClass, mapaRestricoes);
     }
 
     // Sem quantidade
-    public Product(String nome, double preco, ArrayList<String> ingredientes, OntClass ontClass) {
-        this(nome, preco, ingredientes, 0, ontClass);
+    public Product(String nome, double preco, ArrayList<String> ingredientes, OntClass ontClass,
+                   Map<String, Boolean> mapaRestricoes) {
+        this(nome, preco, ingredientes, 0, ontClass, mapaRestricoes);
 
     }
 
-    public Product(String nome, OntClass ontClass) {
-        this(nome, 0, new ArrayList<String>(), 0, ontClass);
+    // Produto intermediário
+    public Product(String nome, OntClass ontClass,
+                   Map<String, Boolean> mapaRestricoes) {
+        this(nome, 0, new ArrayList<String>(), 0, ontClass, mapaRestricoes);
     }
 
+    // Contrutor vazio
     public Product() {
-        this("", 0, new ArrayList<String>(), 0, null);
+        this("", 0, new ArrayList<String>(), 0, null, new HashMap<String, Boolean>());
     }
 
-    public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, OntClass ontClass) {
+    // Contrutor completo
+    public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, OntClass ontClass,
+                   Map<String, Boolean> mapaRestricoes) {
         this.nome = nome;
         this.preco = preco;
         this.ingredientes = ingredientes;
@@ -59,6 +64,7 @@ public class Product {
         // Propriedades da Ontologia
         contavel = true;
         // Filtros
+        this.mapaRestricoes = mapaRestricoes;
     }
 
     public String getIngredientesAsString() {
@@ -71,6 +77,7 @@ public class Product {
         return ingredientesAsString;
     }
 
+    // TODO: Verificar String format
     public String getPrecoAsString() {
 
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.GERMANY);
@@ -133,4 +140,13 @@ public class Product {
     public void setOntClass(OntClass ontClass) {
         this.ontClass = ontClass;
     }
+
+    public Map<String, Boolean> getMapaRestricoes() {
+        return mapaRestricoes;
+    }
+
+    public void setMapaRestricoes(Map<String, Boolean> mapaRestricoes) {
+        this.mapaRestricoes = mapaRestricoes;
+    }
+
 }

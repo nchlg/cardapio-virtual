@@ -3,12 +3,13 @@ package facin.com.cardapio_virtual;
 import com.hp.hpl.jena.ontology.OntClass;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import facin.com.cardapio_virtual.auxiliares.Restricao;
 
 /**
  * Created by Priscila on 28/02/2017.
@@ -25,36 +26,36 @@ public class Product {
     // Propriedades da Ontologia
     private boolean contavel;
     // Filtros
-    private Map<String, Boolean> mapaRestricoes;
+    private Map<Restricao, Boolean> mapaRestricoes;
 
 
     // Sem ingredientes
     public Product(String nome, double preco, int quantidade, OntClass ontClass,
-                   Map<String, Boolean> mapaRestricoes) {
+                   Map<Restricao, Boolean> mapaRestricoes) {
         this(nome, preco, new ArrayList<String>(), quantidade, ontClass, mapaRestricoes);
     }
 
     // Sem quantidade
     public Product(String nome, double preco, ArrayList<String> ingredientes, OntClass ontClass,
-                   Map<String, Boolean> mapaRestricoes) {
+                   Map<Restricao, Boolean> mapaRestricoes) {
         this(nome, preco, ingredientes, 0, ontClass, mapaRestricoes);
 
     }
 
     // Produto intermediário
     public Product(String nome, OntClass ontClass,
-                   Map<String, Boolean> mapaRestricoes) {
+                   Map<Restricao, Boolean> mapaRestricoes) {
         this(nome, 0, new ArrayList<String>(), 0, ontClass, mapaRestricoes);
     }
 
     // Contrutor vazio
     public Product() {
-        this("", 0, new ArrayList<String>(), 0, null, new HashMap<String, Boolean>());
+        this("", 0, new ArrayList<String>(), 0, null, new HashMap<facin.com.cardapio_virtual.auxiliares.Restricao, Boolean>());
     }
 
     // Contrutor completo
     public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, OntClass ontClass,
-                   Map<String, Boolean> mapaRestricoes) {
+                   Map<Restricao, Boolean> mapaRestricoes) {
         this.nome = nome;
         this.preco = preco;
         this.ingredientes = ingredientes;
@@ -141,11 +142,11 @@ public class Product {
         this.ontClass = ontClass;
     }
 
-    public Map<String, Boolean> getMapaRestricoes() {
+    public Map<Restricao, Boolean> getMapaRestricoes() {
         return mapaRestricoes;
     }
 
-    public void setMapaRestricoes(Map<String, Boolean> mapaRestricoes) {
+    public void setMapaRestricoes(Map<Restricao, Boolean> mapaRestricoes) {
         this.mapaRestricoes = mapaRestricoes;
     }
 

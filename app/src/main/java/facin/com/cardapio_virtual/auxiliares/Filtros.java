@@ -15,7 +15,7 @@ public class Filtros {
         public List<Product> filtra(List<Product> produtos) {
             List<Product> produtosFiltrados = new ArrayList<>();
             for (Product p : produtos) {
-                if (!p.getMapaRestricoes().get("gluten"))
+                if (!p.getMapaRestricoes().get(Restricao.GLUTEN))
                     produtosFiltrados.add(p);
             }
             return produtosFiltrados;
@@ -26,7 +26,7 @@ public class Filtros {
         public List<Product> filtra(List<Product> produtos) {
             List<Product> produtosFiltrados = new ArrayList<>();
             for (Product p : produtos) {
-                if (!p.getMapaRestricoes().get("lactose"))
+                if (!p.getMapaRestricoes().get(Restricao.LACTOSE))
                     produtosFiltrados.add(p);
             }
             return produtosFiltrados;
@@ -37,7 +37,7 @@ public class Filtros {
         public List<Product> filtra(List<Product> produtos) {
             List<Product> produtosFiltrados = new ArrayList<>();
             for (Product p : produtos) {
-                if (p.getMapaRestricoes().get("vegetariano"))
+                if (p.getMapaRestricoes().get(Restricao.VEGETARIANO))
                     produtosFiltrados.add(p);
             }
             return produtosFiltrados;
@@ -48,7 +48,7 @@ public class Filtros {
         public List<Product> filtra(List<Product> produtos) {
             List<Product> produtosFiltrados = new ArrayList<>();
             for (Product p : produtos) {
-                if (!p.getMapaRestricoes().get("temSal"))
+                if (!p.getMapaRestricoes().get(Restricao.TEMSAL))
                     produtosFiltrados.add(p);
             }
             return produtosFiltrados;
@@ -59,7 +59,7 @@ public class Filtros {
         public List<Product> filtra(List<Product> produtos) {
             List<Product> produtosFiltrados = new ArrayList<>();
             for (Product p : produtos) {
-                if (!p.getMapaRestricoes().get("temGorduras"))
+                if (!p.getMapaRestricoes().get(Restricao.TEMGORDURAS))
                     produtosFiltrados.add(p);
             }
             return produtosFiltrados;

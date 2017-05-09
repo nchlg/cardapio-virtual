@@ -37,6 +37,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gorduras"/>
+        <rdfs:label xml:lang="pt">Tem gorduras</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -55,6 +56,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temSal">
         <rdfs:range rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Nivel_de_Sal"/>
+        <rdfs:label xml:lang="pt">Tem sal</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -85,6 +87,7 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:label xml:lang="pt">Glúten</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -94,6 +97,7 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#lactose">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:label xml:lang="pt">Lactose</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -113,6 +117,7 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#vegetariano">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Produto"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:label xml:lang="pt">Vegetariano</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -1031,7 +1036,6 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="pt">Earl Grey</rdfs:label>
-
     </owl:Class>
     
 

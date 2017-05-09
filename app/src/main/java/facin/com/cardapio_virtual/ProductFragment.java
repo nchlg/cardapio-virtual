@@ -44,6 +44,8 @@ import java.util.Map;
 import java.util.Set;
 
 import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
+import facin.com.cardapio_virtual.auxiliares.Restricao;
+import facin.com.cardapio_virtual.auxiliares.VerificadorDeRestricao;
 
 import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM;
 
@@ -190,7 +192,7 @@ public class ProductFragment extends Fragment {
         OntProperty vegetariano;
         OntProperty temGorduras;
         OntProperty temSal;
-        Map<OntProperty, Boolean> restricoes = new HashMap<>();
+        Map<String, Map<Restricao, Boolean>> restricoesOntologia = new HashMap<>();
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -340,80 +342,6 @@ public class ProductFragment extends Fragment {
             return mapa;
         }
 
-        private boolean isClasseContavel(OntClass ontClass) {
-            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
-                OntClass superClasse = superClasses.next();
-                if (superClasse.isRestriction()) {
-                    Restriction restriction = superClasse.asRestriction();
-                    if (restriction.isHasValueRestriction()) {
-                        if (restriction.getOnProperty().equals(contavel)) {
-                            if (restriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean()) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        private boolean temRestricaoHasValue(OntClass ontClass, OntProperty restricao) {
-            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
-                OntClass superClasse = superClasses.next();
-                if (superClasse.isRestriction()) {
-                    Restriction restriction = superClasse.asRestriction();
-                    if (restriction.isHasValueRestriction()) {
-                        if (restriction.getOnProperty().equals(restricao)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        private boolean temRestricaoSomeValues(OntClass ontClass, OntProperty restricao) {
-            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
-                OntClass superClasse = superClasses.next();
-                if (superClasse.isRestriction()) {
-                    Restriction restriction = superClasse.asRestriction();
-                    if (restriction.isSomeValuesFromRestriction()) {
-                        if (restriction.getOnProperty().equals(restricao)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        private boolean temRestricao(OntClass ontClass, String restricao) {
-            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
-                OntClass superClasse = superClasses.next();
-                if (superClasse.isRestriction()) {
-                    Restriction superClassRestriction = superClasse.asRestriction();
-                    if (superClassRestriction.isSomeValuesFromRestriction()) {
-                        String label = superClassRestriction.getOnProperty().getLabel("pt");
-                        // TODO: label é sempre null. Verificar isso. Ver método getOnProperty().
-                        Log.d("Label TR", label != null ? label : "-");
-                        if (label != null) {
-                            if (label.equals(restricao)) {
-                                return true;
-                            }
-                        }
-                    } else if (superClassRestriction.isHasValueRestriction()) {
-                        String label = superClassRestriction.getOnProperty().getLabel("pt");
-                        if (label != null) {
-                            if (label.equals(restricao)) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
         private Double temRestricaoPreco(OntClass ontClass) {
             for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
                 OntClass superClasse = superClasses.next();
@@ -450,23 +378,6 @@ public class ProductFragment extends Fragment {
             return false;
         }
 
-        private boolean temFilhasIncontaveis(OntClass ontClass) {
-            Deque<OntClass> filinha = new ArrayDeque<>();
-            filinha.add(ontClass);
-            OntClass classeAtual;
-            while (!filinha.isEmpty()) {
-                classeAtual = filinha.pop();
-                if (temRestricaoHasValue(classeAtual, contavel) && !isClasseContavel(classeAtual)) {
-                    return true;
-                } else {
-                    if (!classeAtual.listSubClasses().toList().isEmpty()) {
-                        filinha.addAll(classeAtual.listSubClasses().toList());
-                    }
-                }
-            }
-            return false;
-        }
-
         private OntClass pegaSuperClasse(OntClass ontClass) {
             for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
                 OntClass superClasse = superClasses.next();
@@ -477,166 +388,144 @@ public class ProductFragment extends Fragment {
             return null;
         }
 
-        private boolean checaValorDaRestricao(OntClass ontClass, String restricao) {
-            for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
-                OntClass superClasse = superClasses.next();
-                if (superClasse.isRestriction()) {
-                    Restriction superClassRestriction = superClasse.asRestriction();
-                    String label = superClassRestriction.getOnProperty().getLabel("pt");
-                    Log.d("Label CVDR", label != null ? label : "-");
-                    if (label != null) {
-                        if (label.equals(restricao)) {
-                            if (superClassRestriction.isHasValueRestriction()) {
-                                if (superClassRestriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean()) {
-                                    return true;
-                                }
-                            } else if (superClassRestriction.isSomeValuesFromRestriction()) {
-                                if (superClassRestriction.asSomeValuesFromRestriction()
-                                        .getSomeValuesFrom()
-                                        .as(OntClass.class)
-                                        .getLabel("pt").equals("Meio_Salgado") ||
-                                        superClassRestriction.asSomeValuesFromRestriction()
-                                                .getSomeValuesFrom()
-                                                .as(OntClass.class)
-                                                .getLabel("pt").equals("Salgado")) {
-                                    return true;
-                                }
-                            } else if (superClassRestriction.isSomeValuesFromRestriction()) {
-                                if (superClassRestriction.asSomeValuesFromRestriction()
-                                        .getSomeValuesFrom()
-                                        .as(OntClass.class)
-                                        .getLabel("pt").equals("Meio_Gorduroso") ||
-                                        superClassRestriction.asSomeValuesFromRestriction()
-                                                .getSomeValuesFrom()
-                                                .as(OntClass.class)
-                                                .getLabel("pt").equals("Gorduroso")) {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+        private Map<Restricao, Boolean> verificaRestricoesDentreSuperClasses(OntClass ontClass) {
+            Map<Restricao, Boolean> mapaRetorno = restricoesOntologia.get(ontClass.getLabel("pt"));
+            if (mapaRetorno != null) {
+                return mapaRetorno;
+            } else {
+                mapaRetorno = new HashMap<>();
+                for (Restricao r : Restricao.values()) {
+                    Boolean valorDaRestricao = VerificadorDeRestricao.verificaRestricao(ontClass, r);
+                    mapaRetorno.put(r, valorDaRestricao);
                 }
+                return mapaRetorno;
             }
-            return false;
         }
 
-        private Map<String, Boolean> checaValorDaRestricaoDasFilhas(OntClass ontClass,
-                                                                    Map<String, Boolean> mapaRestricoes) {
+        // Se o valor for nulo ou for, por exemplo, true para glúten, ele é indesejado.
+        private boolean temValorIndesejado(Map<Restricao, Boolean> mapaRestricoes) {
+            boolean taTodoMundoCerto = true;
+            for (Map.Entry<Restricao, Boolean> kv : mapaRestricoes.entrySet()) {
+                if (kv.getValue() == null) {
+                    return true;
+                } else {
+                    taTodoMundoCerto &= verificaConjuntoRestricao(kv.getKey(), kv.getValue());
+                }
+            }
+            return !taTodoMundoCerto;
+        }
+
+        private boolean verificaConjuntoRestricao(Restricao restricao, Boolean valor) {
+            switch (restricao) {
+                case CONTAVEL:
+                    return valor;
+                case GLUTEN:
+                    return !valor;
+                case LACTOSE:
+                    return !valor;
+                case PRECO:
+                    return valor;
+                case TEMGORDURAS:
+                    return !valor;
+                case TEMSAL:
+                    return !valor;
+                case VEGETARIANO:
+                    return valor;
+                default:
+                    return false;
+            }
+        }
+
+        private void intercalaRestricoes(Map<Restricao, Boolean> mapaOrigem,
+                                         Map<Restricao, Boolean> mapaSecundario) {
+            for (Map.Entry<Restricao, Boolean> kvOrigem : mapaOrigem.entrySet()) {
+                if (kvOrigem.getValue() == null) {
+                    mapaOrigem.put(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()));
+                }
+            }
+        }
+
+        private void olhaParaCima(OntClass ontClass, Map<Restricao, Boolean> mapaRestricoes) {
+            while (ontClass != null && temValorIndesejado(mapaRestricoes)) {
+                ontClass = pegaSuperClasse(ontClass);
+                if (ontClass != null) {
+                    Map<Restricao, Boolean> mapaSecundario = verificaRestricoesDentreSuperClasses(ontClass);
+                    intercalaRestricoes(mapaRestricoes, mapaSecundario);
+                }
+            }
+        }
+
+        private void olhaParaBaixo(OntClass ontClass, Map<Restricao, Boolean> mapaRestricoes) {
             Deque<OntClass> filinha = new ArrayDeque<>();
             filinha.add(ontClass);
             OntClass classeAtual;
-            boolean temRestricaoNula;
-            while (!filinha.isEmpty()) {
+            while (!filinha.isEmpty() && temValorIndesejado(mapaRestricoes)) {
                 classeAtual = filinha.pop();
-                temRestricaoNula = false;
-
-                // Verifica restrições
-                mapaRestricoes = verificaRestricoesDentreSuperClasses(classeAtual,
-                        mapaRestricoes);
-//                Log.d("Classe/Mapa", (classeAtual.getLabel("pt") != null ? classeAtual.getLabel("pt") : "-"
-//                        + mapaRestricoes.toString()));
-
-                // Verifica se já encontrou todas as restrições
-                for (Map.Entry<String, Boolean> kv : mapaRestricoes.entrySet()) {
-                    if (kv.getValue() == null) {
-                        temRestricaoNula = true;
-                    }
-                }
-                // Se sim, sai do laço
-                if (!temRestricaoNula)
-                    break;
-                else {
-                    if (!classeAtual.listSubClasses().toList().isEmpty()) {
+                Map<Restricao, Boolean> mapaSecundario = verificaRestricoesDentreSuperClasses(classeAtual);
+                intercalaRestricoes(mapaRestricoes, mapaSecundario);
+                if (!classeAtual.listSubClasses().toList().isEmpty()) {
                         filinha.addAll(classeAtual.listSubClasses().toList());
-                    }
                 }
             }
-            return mapaRestricoes;
-        }
-
-        private Map<String, Boolean> criaMapaDeRestricoes() {
-            Map<String, Boolean> restricoes = new HashMap<>();
-            restricoes.put(gluten.getLabel("pt"), null);
-            restricoes.put(lactose.getLabel("pt"), null);
-            restricoes.put(vegetariano.getLabel("pt"), null);
-            restricoes.put(temSal.getLabel("pt"), null);
-            restricoes.put(temGorduras.getLabel("pt"), null);
-            return restricoes;
-        }
-
-        private Map<String, Boolean> verificaRestricoesDentreSuperClasses(OntClass ontClass,
-                                                                          Map<String, Boolean> mapaRestricoes) {
-            for (Map.Entry<String, Boolean> kv : mapaRestricoes.entrySet()) {
-                String restricao = kv.getKey();
-                if (mapaRestricoes.get(restricao) == null) {
-                    if (temRestricao(ontClass, restricao)) {
-                        if (checaValorDaRestricao(ontClass, restricao)) {
-                            mapaRestricoes.put(restricao, true);
-                        } else {
-                            mapaRestricoes.put(restricao, false);
-                        }
-                    }
-                }
-            }
-            return mapaRestricoes;
         }
 
         private void populaListaProdutos(List<OntClass> ontClasses) {
             produtos = new ArrayList<>();
 
             for (OntClass oc : ontClasses) {
-                OntClass classeAtual = oc;
-
+                // Verifica se tem ou não restrições de filtragem e seus valores
+                Map<Restricao, Boolean> mapaRestricoes = verificaRestricoesDentreSuperClasses(oc);
+                // Verifica restricoes nas classes superiores
+                olhaParaCima(oc, mapaRestricoes);
+                // Verifica restricoes nas classes inferiores
+                olhaParaBaixo(oc, mapaRestricoes);
+                // Insere mapa de restrições no mapão
+                restricoesOntologia.put(oc.getLabel("pt"), mapaRestricoes);
                 // Verifica se é ou não contável
-                boolean isContavel = false;
-                boolean temRestricaoContavel = temRestricaoHasValue(classeAtual, contavel);
-                if (temRestricaoContavel)
-                    isContavel = isClasseContavel(classeAtual);
+                Boolean contavel = mapaRestricoes.get(Restricao.CONTAVEL);
 
-                // Verifica se tem ou não restrições de filtragem
-                Map<String, Boolean> mapaRestricoes = criaMapaDeRestricoes();
-                mapaRestricoes = verificaRestricoesDentreSuperClasses(classeAtual,
-                        mapaRestricoes);
-
-                while (classeAtual != null && !isContavel && !temRestricaoContavel) {
-                    classeAtual = pegaSuperClasse(classeAtual);
-                    if (classeAtual != null) {
-                        // Verifica se é ou não contável
-                        temRestricaoContavel = temRestricaoHasValue(classeAtual, contavel);
-                        if (temRestricaoContavel)
-                            isContavel = isClasseContavel(classeAtual);
-                        // Verifica se tem ou não restrições de filtragem
-                        mapaRestricoes = verificaRestricoesDentreSuperClasses(classeAtual,
-                                mapaRestricoes);
-                    }
-                }
-                if ((temRestricaoContavel && !isContavel) || temFilhasIncontaveis(oc) || temFilhasComQuantidade(oc)) {
-                    mapaRestricoes = checaValorDaRestricaoDasFilhas(oc, mapaRestricoes);
+                if (isNotContavel(contavel) || temFilhasComQuantidade(oc)) {
                     Log.d("mapa", mapaRestricoes.toString());
 
-                    if (!oc.listSubClasses().toList().isEmpty() && isContavel) {
+                    // Se não é nodo folha e é contável, verifica se tem indivídios e cria um Produto intermediário
+                    if (!oc.listSubClasses().toList().isEmpty() && contavel) {
                         if (individuos != null) {
                             produtos.add(transformaOntClassEmProdutoIntermediario(oc, mapaRestricoes));
                         }
-                    } else if (oc.listSubClasses().toList().isEmpty() && isContavel) {
+                    }
+                    // Se é nodo folha e contável, verifica indivíduos e cria um produto contável
+                    else if (oc.listSubClasses().toList().isEmpty() && contavel) {
                         if (individuos != null) {
                             for (Map.Entry<OntClass, Integer> kv : relacaoClasseIndividuo.entrySet()) {
                                 produtos.add(transformaOntClassEmProdutoContavel(oc, kv.getValue(), mapaRestricoes));
                             }
                         }
-                    } else if (!oc.listSubClasses().toList().isEmpty() && !isContavel) {
+                    }
+                    // Se não é folha e não é contável, cria intermediário
+                    else if (!oc.listSubClasses().toList().isEmpty() && !contavel) {
                         produtos.add(transformaOntClassEmProdutoIntermediario(oc, mapaRestricoes));
-                    } else if (oc.listSubClasses().toList().isEmpty() && !isContavel) {
+                    }
+                    // Se é folha e não é contável...
+                    else if (oc.listSubClasses().toList().isEmpty() && !contavel) {
                         produtos.add(transformaOntClassEmProdutoNaoContavel(oc, mapaRestricoes));
                     }
                 }
             }
         }
 
+        private boolean isNotContavel(Boolean contavel) {
+            if (contavel != null) {
+                if (!contavel) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         private Product transformaOntClassEmProdutoContavel(OntClass ontClass,
                                                             int quantidade,
-                                                            Map<String, Boolean> mapaRestricoes) {
+                                                            Map<Restricao, Boolean> mapaRestricoes) {
             return new Product(
                     ontClass.getLabel("pt"),
                     getPreco(ontClass),
@@ -648,7 +537,7 @@ public class ProductFragment extends Fragment {
         }
 
         private Product transformaOntClassEmProdutoNaoContavel(OntClass ontClass,
-                                                               Map<String, Boolean> mapaRestricoes) {
+                                                               Map<Restricao, Boolean> mapaRestricoes) {
             return new Product(
                     ontClass.getLabel("pt"),
                     getPreco(ontClass),
@@ -659,7 +548,7 @@ public class ProductFragment extends Fragment {
         }
 
         private Product transformaOntClassEmProdutoIntermediario(OntClass ontClass,
-                                                                 Map<String, Boolean> mapaRestricoes) {
+                                                                 Map<Restricao, Boolean> mapaRestricoes) {
             return new Product(
                     ontClass.getLabel("pt"),
                     ontClass,

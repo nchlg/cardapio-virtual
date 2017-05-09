@@ -91,7 +91,6 @@ public class VerificadorDeRestricao {
             if (superClasse.isRestriction()) {
                 Restriction superClassRestriction = superClasse.asRestriction();
                 String label = superClassRestriction.getOnProperty().getLabel("pt");
-                Log.d("Lactose", label != null ? label : "-");
                 if (label != null) {
                     if (label.equals(Restricao.LACTOSE.getDescricao())) {
                         return superClassRestriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean();

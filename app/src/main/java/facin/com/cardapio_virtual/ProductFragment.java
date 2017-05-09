@@ -267,8 +267,6 @@ public class ProductFragment extends Fragment {
                         else {
                             String nomeP1 = p1.getNome();
                             String nomeP2 = p2.getNome();
-                            Log.d("Nomes P1 P2", (p1.getNome() != null ? p1.getNome() : "-")
-                                    + (p2.getNome() != null ? p2.getNome() : "-"));
                             return nomeP1.compareTo(nomeP2);
                         }
                     }
@@ -299,34 +297,11 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        private ArrayList<OntClass> pegaClassesPorAtributo(Set<OntClass> ontClasses, OntProperty property, boolean filtro) {
-            ArrayList<OntClass> classesQuePossuemTalAtributo = new ArrayList<>();
-
-            for (OntClass oc : ontClasses) {
-                for (Iterator<OntClass> superClasses = oc.listSuperClasses(); superClasses.hasNext(); ) {
-                    OntClass superClasse = superClasses.next();
-                    Log.d("SC:", superClasse.getLabel("pt") != null ? superClasse.getLabel("pt") : "-");
-                    if (superClasse.isRestriction()) {
-                        Restriction restriction = superClasse.asRestriction();
-                        if (restriction.isHasValueRestriction()) {
-                            if (restriction.getOnProperty().equals(property)) {
-                                //if (restriction.asHasValueRestriction().getHasValue())
-                                Log.d("HasValue", restriction.asHasValueRestriction().getHasValue().toString() != null ?
-                                        restriction.asHasValueRestriction().getHasValue().toString() : "-");
-                                classesQuePossuemTalAtributo.add(oc);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            return classesQuePossuemTalAtributo;
-        }
-
+        // TODO: Arrumar lance idivíduos Pão de Queijo
         private Map<OntClass, Integer> pegaClassesAPartirDeIndividuos(List<Individual> individuals) {
             Map<OntClass, Integer> mapa = new HashMap<>();
-            Boolean contemClasse = false;
             for (Individual i : individuals) {
+                Boolean contemClasse = false;
                 for (Map.Entry<OntClass, Integer> kv : mapa.entrySet()) {
                     if (kv.getKey().equals(i.getOntClass())) {
                         contemClasse = true;
@@ -418,7 +393,7 @@ public class ProductFragment extends Fragment {
         private boolean verificaConjuntoRestricao(Restricao restricao, Boolean valor) {
             switch (restricao) {
                 case CONTAVEL:
-                    return valor;
+                    return !valor;
                 case GLUTEN:
                     return !valor;
                 case LACTOSE:
@@ -436,9 +411,28 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        private void intercalaRestricoes(Map<Restricao, Boolean> mapaOrigem,
+        private void intercalaRestricoesParaBaixo(Map<Restricao, Boolean> mapaOrigem,
                                          Map<Restricao, Boolean> mapaSecundario) {
             for (Map.Entry<Restricao, Boolean> kvOrigem : mapaOrigem.entrySet()) {
+                // Se no mapaOrigem o valor for nulo, substitui pelo valor do novo vetor
+                if (kvOrigem.getValue() == null) {
+                    mapaOrigem.put(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()));
+                } else if (mapaSecundario.get(kvOrigem.getKey()) != null) {
+                    // Se o valor não for nulo, mas for indesejado...
+                    if (!verificaConjuntoRestricao(kvOrigem.getKey(), kvOrigem.getValue())) {
+                        // ...E o valor do mapa secundário for desejado, substitui também
+                        if (verificaConjuntoRestricao(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()))) {
+                            mapaOrigem.put(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()));
+                        }
+                    }
+                }
+            }
+        }
+
+        private void intercalaRestricoesParaCima(Map<Restricao, Boolean> mapaOrigem,
+                                                  Map<Restricao, Boolean> mapaSecundario) {
+            for (Map.Entry<Restricao, Boolean> kvOrigem : mapaOrigem.entrySet()) {
+                // Se no mapaOrigem o valor for nulo, substitui pelo valor do novo vetor
                 if (kvOrigem.getValue() == null) {
                     mapaOrigem.put(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()));
                 }
@@ -450,7 +444,7 @@ public class ProductFragment extends Fragment {
                 ontClass = pegaSuperClasse(ontClass);
                 if (ontClass != null) {
                     Map<Restricao, Boolean> mapaSecundario = verificaRestricoesDentreSuperClasses(ontClass);
-                    intercalaRestricoes(mapaRestricoes, mapaSecundario);
+                    intercalaRestricoesParaCima(mapaRestricoes, mapaSecundario);
                 }
             }
         }
@@ -460,11 +454,16 @@ public class ProductFragment extends Fragment {
             filinha.add(ontClass);
             OntClass classeAtual;
             while (!filinha.isEmpty() && temValorIndesejado(mapaRestricoes)) {
+                Log.d("If", filinha.toString());
                 classeAtual = filinha.pop();
                 Map<Restricao, Boolean> mapaSecundario = verificaRestricoesDentreSuperClasses(classeAtual);
-                intercalaRestricoes(mapaRestricoes, mapaSecundario);
-                if (!classeAtual.listSubClasses().toList().isEmpty()) {
+                if (isNotContavel(mapaSecundario.get(Restricao.CONTAVEL)) ||
+                        isNotContavel(mapaRestricoes.get(Restricao.CONTAVEL)) ||
+                        temFilhasComQuantidade(classeAtual)) {
+                    intercalaRestricoesParaBaixo(mapaRestricoes, mapaSecundario);
+                    if (!classeAtual.listSubClasses().toList().isEmpty()) {
                         filinha.addAll(classeAtual.listSubClasses().toList());
+                    }
                 }
             }
         }
@@ -479,12 +478,12 @@ public class ProductFragment extends Fragment {
                 olhaParaCima(oc, mapaRestricoes);
                 // Verifica restricoes nas classes inferiores
                 olhaParaBaixo(oc, mapaRestricoes);
-                // Insere mapa de restrições no mapão
-                restricoesOntologia.put(oc.getLabel("pt"), mapaRestricoes);
                 // Verifica se é ou não contável
                 Boolean contavel = mapaRestricoes.get(Restricao.CONTAVEL);
 
                 if (isNotContavel(contavel) || temFilhasComQuantidade(oc)) {
+                    // Insere mapa de restrições no mapão
+                    restricoesOntologia.put(oc.getLabel("pt"), mapaRestricoes);
                     Log.d("mapa", mapaRestricoes.toString());
 
                     // Se não é nodo folha e é contável, verifica se tem indivídios e cria um Produto intermediário

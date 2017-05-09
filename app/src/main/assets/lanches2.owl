@@ -2773,6 +2773,54 @@
     
 
 
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Cafe1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Cafe1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Cheesecake_de_Cafe"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_1 -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_1">
@@ -2785,6 +2833,14 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango_2">
         <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pastel_de_Forno_de_Frango"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta_de_Maca1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta_de_Maca1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torta_de_Maca"/>
     </owl:NamedIndividual>
     
 
@@ -2826,6 +2882,16 @@
             <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pouco_Salgado"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Salgado"/>
         </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo2"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo3"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo4"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Pao_de_Queijo5"/>
+        </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>

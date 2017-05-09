@@ -412,25 +412,22 @@ public class ProductFragment extends Fragment {
         }
 
         private void intercalaRestricoesParaBaixo(Map<Restricao, Boolean> mapaOrigem,
-                                         Map<Restricao, Boolean> mapaSecundario) {
+                                                  Map<Restricao, Boolean> mapaSecundario) {
             for (Map.Entry<Restricao, Boolean> kvOrigem : mapaOrigem.entrySet()) {
                 // Se no mapaOrigem o valor for nulo, substitui pelo valor do novo vetor
                 if (kvOrigem.getValue() == null) {
                     mapaOrigem.put(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()));
                 } else if (mapaSecundario.get(kvOrigem.getKey()) != null) {
                     // Se o valor não for nulo, mas for indesejado...
-                    if (!verificaConjuntoRestricao(kvOrigem.getKey(), kvOrigem.getValue())) {
-                        // ...E o valor do mapa secundário for desejado, substitui também
-                        if (verificaConjuntoRestricao(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()))) {
-                            mapaOrigem.put(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()));
-                        }
+                    if (verificaConjuntoRestricao(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()))) {
+                        mapaOrigem.put(kvOrigem.getKey(), mapaSecundario.get(kvOrigem.getKey()));
                     }
                 }
             }
         }
 
         private void intercalaRestricoesParaCima(Map<Restricao, Boolean> mapaOrigem,
-                                                  Map<Restricao, Boolean> mapaSecundario) {
+                                                 Map<Restricao, Boolean> mapaSecundario) {
             for (Map.Entry<Restricao, Boolean> kvOrigem : mapaOrigem.entrySet()) {
                 // Se no mapaOrigem o valor for nulo, substitui pelo valor do novo vetor
                 if (kvOrigem.getValue() == null) {
@@ -454,7 +451,6 @@ public class ProductFragment extends Fragment {
             filinha.add(ontClass);
             OntClass classeAtual;
             while (!filinha.isEmpty() && temValorIndesejado(mapaRestricoes)) {
-                Log.d("If", filinha.toString());
                 classeAtual = filinha.pop();
                 Map<Restricao, Boolean> mapaSecundario = verificaRestricoesDentreSuperClasses(classeAtual);
                 if (isNotContavel(mapaSecundario.get(Restricao.CONTAVEL)) ||
@@ -496,7 +492,8 @@ public class ProductFragment extends Fragment {
                     else if (oc.listSubClasses().toList().isEmpty() && contavel) {
                         if (individuos != null) {
                             for (Map.Entry<OntClass, Integer> kv : relacaoClasseIndividuo.entrySet()) {
-                                produtos.add(transformaOntClassEmProdutoContavel(oc, kv.getValue(), mapaRestricoes));
+                                if (kv.getKey().equals(oc))
+                                    produtos.add(transformaOntClassEmProdutoContavel(oc, kv.getValue(), mapaRestricoes));
                             }
                         }
                     }
@@ -509,6 +506,9 @@ public class ProductFragment extends Fragment {
                         produtos.add(transformaOntClassEmProdutoNaoContavel(oc, mapaRestricoes));
                     }
                 }
+            }
+            if (individuos != null) {
+                Log.d("Individuos", relacaoClasseIndividuo.toString());
             }
         }
 

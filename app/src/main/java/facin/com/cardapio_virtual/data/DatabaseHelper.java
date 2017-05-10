@@ -11,7 +11,7 @@ import facin.com.cardapio_virtual.data.DatabaseContract.*;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Alterar a medida que o banco de dados for modificado
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     static final String DATABASE_NAME = "cardapio-virtual.db";
 
@@ -33,6 +33,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 RestaurantesEntry.COLUMN_DESCRICAO + " VARCHAR(1000) NOT NULL, " +
                 RestaurantesEntry.COLUMN_FAVORITO + " BOOLEAN NOT NULL" +
                 ");";
+
+        final String SQL_CREATE_LOG_TABLE = "CREATE TABLE " + LogsEntry.TABLE_NAME + " (" +
+                LogsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                LogsEntry.COLUMN_PRODUTO + " VARCHAR(100) UNIQUE NOT NULL, " +
+                LogsEntry.COLUMN_ACESSOS + " INTEGER NOT NULL" +
+                ");";
+
 //        final String SQL_CREATE_USUARIOS_TABLE = "CREATE TABLE " + UsuariosEntry.TABLE_NAME + " (" +
 //                UsuariosEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                UsuariosEntry.COLUMN_NOME + " VARCHAR(200) UNIQUE NOT NULL" +

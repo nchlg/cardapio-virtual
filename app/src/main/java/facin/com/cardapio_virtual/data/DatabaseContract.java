@@ -19,6 +19,8 @@ public class DatabaseContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     public static final String PATH_RESTAURANTES = "restaurantes";
+    public static final String PATH_LOGS = "logs";
+    public static final String PATH_MAES_FILHAS = "maes_filhas";
     public static final String PATH_USUARIOS = "usuarios";
     public static final String PATH_FAVORITOS = "favoritos";
 
@@ -58,6 +60,28 @@ public class DatabaseContract {
         }
     }
 
+    /* Classe interna que define os conteúdos da tabela Log */
+    public static final class LogsEntry implements BaseColumns {
+        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_LOGS).build();
+
+        public static final String CONTENT_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOGS;
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOGS;
+
+        /* Nome da tabela */
+        public static final String TABLE_NAME = "logs";
+
+        /* Colunas */
+        public static final String COLUMN_PRODUTO = "produto";
+        public static final String COLUMN_ACESSOS = "acessos";
+
+        /* Gera o ID da tabela */
+        public static Uri buildAvaliacoesUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+    }
+
     /* Classe interna que define os conteúdos da tabela Usuarios */
 //    public static final class UsuariosEntry implements BaseColumns {
 //        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_USUARIOS).build();
@@ -79,6 +103,28 @@ public class DatabaseContract {
 //            return ContentUris.withAppendedId(CONTENT_URI, id);
 //        }
 //    }
+
+    /* Classe interna que define os conteúdos da tabela Maes_Filhas */
+    public static final class MaesFilhasEntry implements BaseColumns {
+        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_MAES_FILHAS).build();
+
+        public static final String CONTENT_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MAES_FILHAS;
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MAES_FILHAS;
+
+        /* Nome da tabela */
+        public static final String TABLE_NAME = "maes_filhas";
+
+        /* Colunas */
+        public static final String COLUMN_NOME = "nome_mae";
+        public static final String COLUMN_EMAIL = "id_filha";
+
+        /* Gera o ID da tabela */
+        public static Uri buildAvaliacoesUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+    }
 //
 //    /* Classe interna que define os conteúdos da tabela Favoritos */
 //    public static final class FavoritosEntry implements BaseColumns {

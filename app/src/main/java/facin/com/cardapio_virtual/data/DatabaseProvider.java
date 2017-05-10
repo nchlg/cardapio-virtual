@@ -5,6 +5,8 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
@@ -18,6 +20,8 @@ public class DatabaseProvider extends ContentProvider {
 
     /* Tabelas */
     static final int RESTAURANTES = 100;
+    static final int LOGS = 200;
+    static final int MAES_FILHAS = 300;
 //    static final int USUARIOS = 200;
 //    static final int FAVORITOS = 300;
     /* Joins */
@@ -53,6 +57,10 @@ public class DatabaseProvider extends ContentProvider {
         switch (match) {
             case RESTAURANTES:
                 return DatabaseContract.RestaurantesEntry.CONTENT_TYPE;
+            case LOGS:
+                return DatabaseContract.LogsEntry.CONTENT_TYPE;
+            case MAES_FILHAS:
+                return DatabaseContract.MaesFilhasEntry.CONTENT_TYPE;
 //            case USUARIOS:
 //                return DatabaseContract.UsuariosEntry.CONTENT_TYPE;
 //            case FAVORITOS:
@@ -70,6 +78,30 @@ public class DatabaseProvider extends ContentProvider {
             case RESTAURANTES: {
                 retCursor = mOpenHelper.getReadableDatabase().query(
                         DatabaseContract.RestaurantesEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
+            case LOGS: {
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        DatabaseContract.LogsEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
+            case MAES_FILHAS: {
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        DatabaseContract.MaesFilhasEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -140,6 +172,22 @@ public class DatabaseProvider extends ContentProvider {
                     throw new android.database.SQLException("Falha ao inserir linha em " + uri);
                 break;
             }
+            case LOGS: {
+                long _id = db.insert(DatabaseContract.LogsEntry.TABLE_NAME, null, values);
+                if (_id > 0)
+                    returnUri = DatabaseContract.RestaurantesEntry.buildAvaliacoesUri(_id);
+                else
+                    throw new android.database.SQLException("Falha ao inserir linha em " + uri);
+                break;
+            }
+            case MAES_FILHAS: {
+                long _id = db.insert(DatabaseContract.MaesFilhasEntry.TABLE_NAME, null, values);
+                if (_id > 0)
+                    returnUri = DatabaseContract.RestaurantesEntry.buildAvaliacoesUri(_id);
+                else
+                    throw new android.database.SQLException("Falha ao inserir linha em " + uri);
+                break;
+            }
 //            case USUARIOS: {
 //                long _id = db.insert(DatabaseContract.UsuariosEntry.TABLE_NAME, null, values);
 //                if (_id > 0)
@@ -176,6 +224,17 @@ public class DatabaseProvider extends ContentProvider {
                         DatabaseContract.RestaurantesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             }
+            case LOGS: {
+                rowsDeleted = db.delete(
+                        DatabaseContract.LogsEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            }
+            case MAES_FILHAS: {
+                rowsDeleted = db.delete(
+                        DatabaseContract.MaesFilhasEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            }
+
 //            case USUARIOS: {
 //                rowsDeleted = db.delete(
 //                        DatabaseContract.UsuariosEntry.TABLE_NAME, selection, selectionArgs);
@@ -202,10 +261,20 @@ public class DatabaseProvider extends ContentProvider {
         int rowsUpdated;
 
         switch (match) {
-            case RESTAURANTES:
+            case RESTAURANTES: {
                 rowsUpdated = db.update(DatabaseContract.RestaurantesEntry.TABLE_NAME, values, selection,
                         selectionArgs);
                 break;
+            }
+            case LOGS: {
+                rowsUpdated = insertOrUpdate(uri, values, selection, selectionArgs, db);
+                break;
+            }
+            case MAES_FILHAS: {
+                rowsUpdated = db.update(DatabaseContract.MaesFilhasEntry.TABLE_NAME, values, selection,
+                        selectionArgs);
+                break;
+            }
 //            case USUARIOS:
 //                rowsUpdated = db.update(DatabaseContract.UsuariosEntry.TABLE_NAME, values, selection,
 //                        selectionArgs);
@@ -222,13 +291,26 @@ public class DatabaseProvider extends ContentProvider {
         return rowsUpdated;
     }
 
+    private int insertOrUpdate(Uri uri, ContentValues values,
+                                String selection, String[] selectionArgs, SQLiteDatabase db) throws SQLException {
+        int rowsUpdated = 0;
+        try {
+            if ((insert(uri, values)) != null)
+                rowsUpdated = 1;
+        } catch (SQLiteConstraintException e) {
+            rowsUpdated = db.update(DatabaseContract.LogsEntry.TABLE_NAME, values, selection,
+                    selectionArgs);
+        }
+        return rowsUpdated;
+    }
+
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
         int returnCount;
         switch (match) {
-            case RESTAURANTES:
+            case RESTAURANTES: {
                 db.beginTransaction();
                 returnCount = 0;
                 try {
@@ -244,6 +326,41 @@ public class DatabaseProvider extends ContentProvider {
                 }
                 getContext().getContentResolver().notifyChange(uri, null);
                 return returnCount;
+            }
+            case LOGS: {
+                db.beginTransaction();
+                returnCount = 0;
+                try {
+                    for (ContentValues value : values) {
+                        long _id = db.insert(DatabaseContract.LogsEntry.TABLE_NAME, null, value);
+                        if (_id != -1) {
+                            returnCount++;
+                        }
+                    }
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+                getContext().getContentResolver().notifyChange(uri, null);
+                return returnCount;
+            }
+            case MAES_FILHAS: {
+                db.beginTransaction();
+                returnCount = 0;
+                try {
+                    for (ContentValues value : values) {
+                        long _id = db.insert(DatabaseContract.MaesFilhasEntry.TABLE_NAME, null, value);
+                        if (_id != -1) {
+                            returnCount++;
+                        }
+                    }
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+                getContext().getContentResolver().notifyChange(uri, null);
+                return returnCount;
+            }
 //            case USUARIOS:
 //                db.beginTransaction();
 //                returnCount = 0;

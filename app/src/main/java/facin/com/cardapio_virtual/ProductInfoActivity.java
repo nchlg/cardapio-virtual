@@ -1,17 +1,23 @@
 package facin.com.cardapio_virtual;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import facin.com.cardapio_virtual.data.DatabaseContract;
+
 public class ProductInfoActivity extends AppCompatActivity {
 
     private TextView mIngredientesText;
     private TextView mPrecoText;
     private TextView mQuantidadeText;
+    private Intent intent;
 
     private String intentOntClassURI;
 
@@ -21,7 +27,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_info);
 
         // Pega Intent
-        Intent intent = getIntent();
+        intent = getIntent();
         if(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME) != null) {
             if (getActionBar() != null)
                 getActionBar().setTitle(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
@@ -34,6 +40,7 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         // TextViews
         setTextViewContent(intent);
+        new FetchLogsTask().execute((Void) null);
     }
 
     protected void setTextViewContent(Intent intent) {
@@ -111,6 +118,41 @@ public class ProductInfoActivity extends AppCompatActivity {
         if (requestCode == 13) {
             if (resultCode == RESULT_OK)
                 setTextViewContent(data);
+        }
+    }
+
+    public class FetchLogsTask extends AsyncTask<Void, Void, Boolean> {
+
+        Cursor logsCursor;
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                // Busca número de acessos na tabela
+                logsCursor = getContentResolver().query(
+                        DatabaseContract.LogsEntry.CONTENT_URI,
+                        new String[]{DatabaseContract.LogsEntry.COLUMN_ACESSOS},
+                        DatabaseContract.LogsEntry.COLUMN_PRODUTO + " = ?",
+                        new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)},
+                        null
+                );
+
+                ContentValues log = new ContentValues();
+                log.put("_id", (byte[]) null);
+                log.put("produto", intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
+                log.put("acessos", logsCursor.getString(0));
+
+                getContentResolver().update(DatabaseContract.RestaurantesEntry.CONTENT_URI, log,
+                        DatabaseContract.LogsEntry.COLUMN_PRODUTO,
+                        new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)});
+                if (logsCursor != null) {
+                    return true;
+                }
+            } catch (UnsupportedOperationException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return false;
         }
     }
 }

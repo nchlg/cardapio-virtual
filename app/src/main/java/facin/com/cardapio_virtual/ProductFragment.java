@@ -2,6 +2,7 @@ package facin.com.cardapio_virtual;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -46,6 +47,7 @@ import java.util.Set;
 import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
 import facin.com.cardapio_virtual.auxiliares.Restricao;
 import facin.com.cardapio_virtual.auxiliares.VerificadorDeRestricao;
+import facin.com.cardapio_virtual.data.DatabaseContract;
 
 import static com.hp.hpl.jena.ontology.OntModelSpec.OWL_MEM;
 
@@ -223,6 +225,9 @@ public class ProductFragment extends Fragment {
                 temGorduras = ontModel.createOntProperty(NS + "temGorduras");
                 temSal = ontModel.createOntProperty(NS + "temSal");
 
+                // Incializa Banco de Dados
+                inicializaBancoDeProdutos(ontModel, ontModel.getOntClass(NS + "Produto"));
+
                 // Pega indivíduos
                 individuos = ontModel.listIndividuals().toList();
                 relacaoClasseIndividuo = pegaClassesAPartirDeIndividuos(individuos);
@@ -239,6 +244,29 @@ public class ProductFragment extends Fragment {
                 e.printStackTrace();
                 return false;
             }
+        }
+
+        private void inicializaBancoDeProdutos(OntModel ontModel, OntClass raiz) {
+            List<OntClass> nodosFolhas = new ArrayList<>();
+            List<OntClass> nodosMaes = new ArrayList<>();
+
+            // Caminha na árvore
+            Deque<OntClass> filinha = new ArrayDeque<>();
+            filinha.add(raiz);
+            while (!filinha.isEmpty()) {
+                OntClass nodoAtual = filinha.pop();
+                if (!nodoAtual.listSubClasses().toList().isEmpty()) {
+                    nodosMaes.add(nodoAtual);
+                    filinha.addAll(nodoAtual.listSubClasses().toList());
+                }
+                else {
+                    nodosFolhas.add(nodoAtual);
+                }
+            }
+            Cursor produtosCursor;
+            // TODO: Ver quantos nodos tem na lista Logs e quantos nodos mães únicos tem na tabela MaesFilhas
+            // TODO: Se não tiver, preencher o banco. Fazer um for no nodos mães, percorrer a árvore de novo e inserir as folhas na tabela
+            // produtosCursor = DatabaseContract.
         }
 
         private List<OntClass> pegaFilhasDaRaiz(OntClass raiz) {

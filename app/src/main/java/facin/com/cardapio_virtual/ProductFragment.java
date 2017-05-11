@@ -1,6 +1,7 @@
 package facin.com.cardapio_virtual;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -264,6 +265,90 @@ public class ProductFragment extends Fragment {
                 }
             }
             Cursor produtosCursor;
+            produtosCursor = getActivity().getContentResolver().query(
+                    DatabaseContract.LogsEntry.CONTENT_URI,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            if (produtosCursor != null) {
+                if (produtosCursor.getCount() != nodosFolhas.size()) {
+                    for (OntClass oc : nodosFolhas) {
+                        ContentValues folha = new ContentValues();
+                        folha.put("_id", (byte[]) null);
+                        folha.put("produto", oc.getLabel("pt"));
+                        folha.put("acessos", 0);
+                        getActivity().getContentResolver().insert(DatabaseContract.LogsEntry.CONTENT_URI, folha);
+                    }
+                }
+                produtosCursor = getActivity().getContentResolver().query(
+                        DatabaseContract.LogsEntry.CONTENT_URI,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+                if (produtosCursor != null) {
+                    produtosCursor.moveToFirst();
+                    do {
+                        Log.d("Logs", produtosCursor.getString(0) + "/" + produtosCursor.getString(1) + "/" + produtosCursor.getString(2));
+                    } while (produtosCursor.moveToNext());
+                }
+            }
+            produtosCursor = getActivity().getContentResolver().query(
+                    DatabaseContract.MaesFilhasEntry.CONTENT_URI,
+                    new String[]{"DISTINCT " + DatabaseContract.MaesFilhasEntry.COLUMN_MAE},
+                    null,
+                    null,
+                    null
+            );
+            if (produtosCursor != null) {
+                if (produtosCursor.getCount() != nodosMaes.size()) {
+                    for (OntClass oc : nodosMaes) {
+                        filinha.clear();
+                        filinha.add(oc);
+                        while (!filinha.isEmpty()) {
+                            OntClass classeAtual = filinha.pop();
+                            if (classeAtual.listSubClasses().toList().isEmpty()) {
+                                Cursor cursorJr = getActivity().getContentResolver().query(
+                                        DatabaseContract.LogsEntry.CONTENT_URI,
+                                        new String[]{DatabaseContract.LogsEntry._ID},
+                                        DatabaseContract.LogsEntry.COLUMN_PRODUTO + " = ?",
+                                        new String[]{classeAtual.getLabel("pt")},
+                                        null
+                                );
+                                if (cursorJr != null) {
+                                    cursorJr.moveToFirst();
+                                    ContentValues mae = new ContentValues();
+                                    mae.put("_id", (byte[]) null);
+                                    mae.put("nome_mae", oc.getLabel("pt"));
+                                    mae.put("id_filha", cursorJr.getString(0));
+                                    cursorJr.close();
+                                    getActivity().getContentResolver().insert(DatabaseContract.MaesFilhasEntry.CONTENT_URI, mae);
+                                }
+                            }
+                            else {
+                                filinha.addAll(classeAtual.listSubClasses().toList());
+                            }
+                        }
+                    }
+                }
+                produtosCursor = getActivity().getContentResolver().query(
+                        DatabaseContract.MaesFilhasEntry.CONTENT_URI,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+                if (produtosCursor != null) {
+                    produtosCursor.moveToFirst();
+                    do {
+                        Log.d("MaeFilhas", produtosCursor.getString(0) + "/" + produtosCursor.getString(1) + "/" + produtosCursor.getString(2));
+                    } while (produtosCursor.moveToNext());
+                    produtosCursor.close();
+                }
+            }
             // TODO: Ver quantos nodos tem na lista Logs e quantos nodos mães únicos tem na tabela MaesFilhas
             // TODO: Se não tiver, preencher o banco. Fazer um for no nodos mães, percorrer a árvore de novo e inserir as folhas na tabela
             // produtosCursor = DatabaseContract.
@@ -325,7 +410,6 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        // TODO: Arrumar lance idivíduos Pão de Queijo
         private Map<OntClass, Integer> pegaClassesAPartirDeIndividuos(List<Individual> individuals) {
             Map<OntClass, Integer> mapa = new HashMap<>();
             for (Individual i : individuals) {

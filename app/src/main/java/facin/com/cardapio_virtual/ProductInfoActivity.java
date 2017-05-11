@@ -136,16 +136,16 @@ public class ProductInfoActivity extends AppCompatActivity {
                         new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)},
                         null
                 );
-
-                ContentValues log = new ContentValues();
-                log.put("_id", (byte[]) null);
-                log.put("produto", intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
-                log.put("acessos", logsCursor.getString(0));
-
-                getContentResolver().update(DatabaseContract.RestaurantesEntry.CONTENT_URI, log,
-                        DatabaseContract.LogsEntry.COLUMN_PRODUTO,
-                        new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)});
                 if (logsCursor != null) {
+                    logsCursor.moveToFirst();
+                    ContentValues log = new ContentValues();
+                    log.put("_id", (byte[]) null);
+                    log.put("produto", intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
+                    log.put("acessos", logsCursor.getString(0));
+
+                    getContentResolver().update(DatabaseContract.LogsEntry.CONTENT_URI, log,
+                            DatabaseContract.LogsEntry.COLUMN_PRODUTO + "= ?",
+                            new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)});
                     return true;
                 }
             } catch (UnsupportedOperationException e) {

@@ -40,6 +40,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LogsEntry.COLUMN_ACESSOS + " INTEGER NOT NULL" +
                 ");";
 
+        final String SQL_CREATE_MAESFILHAS_TABLE = "CREATE TABLE " + MaesFilhasEntry.TABLE_NAME + " (" +
+                MaesFilhasEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                MaesFilhasEntry.COLUMN_MAE + " VARCHAR(100) NOT NULL, " +
+                MaesFilhasEntry.COLUMN_FILHA + " INTEGER NOT NULL" +
+                ");";
+
 //        final String SQL_CREATE_USUARIOS_TABLE = "CREATE TABLE " + UsuariosEntry.TABLE_NAME + " (" +
 //                UsuariosEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                UsuariosEntry.COLUMN_NOME + " VARCHAR(200) UNIQUE NOT NULL" +
@@ -57,15 +63,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //                ");";
 
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANTES_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_LOG_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_MAESFILHAS_TABLE);
 //        sqLiteDatabase.execSQL(SQL_CREATE_USUARIOS_TABLE);
 //        sqLiteDatabase.execSQL(SQL_CREATE_FAVORITOS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FavoritosEntry.TABLE_NAME);
-//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + UsuariosEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantesEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + LogsEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MaesFilhasEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }

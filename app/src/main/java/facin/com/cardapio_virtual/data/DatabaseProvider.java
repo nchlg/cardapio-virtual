@@ -36,6 +36,8 @@ public class DatabaseProvider extends ContentProvider {
         final String authority = DatabaseContract.CONTENT_AUTHORITY;
         /* Para cada tipo de URI que você deseja adicionar, crie um código correspondente.*/
         matcher.addURI(authority, DatabaseContract.PATH_RESTAURANTES, RESTAURANTES);
+        matcher.addURI(authority, DatabaseContract.PATH_LOGS, LOGS);
+        matcher.addURI(authority, DatabaseContract.PATH_MAES_FILHAS, MAES_FILHAS);
 //        matcher.addURI(authority, DatabaseContract.PATH_USUARIOS, USUARIOS);
 //        matcher.addURI(authority, DatabaseContract.PATH_FAVORITOS, FAVORITOS);
 //        /* Joins */
@@ -267,7 +269,9 @@ public class DatabaseProvider extends ContentProvider {
                 break;
             }
             case LOGS: {
-                rowsUpdated = insertOrUpdate(uri, values, selection, selectionArgs, db);
+//                rowsUpdated = insertOrUpdate(uri, values, selection, selectionArgs, db);
+                rowsUpdated = db.update(DatabaseContract.LogsEntry.TABLE_NAME, values, selection,
+                        selectionArgs);
                 break;
             }
             case MAES_FILHAS: {
@@ -295,8 +299,11 @@ public class DatabaseProvider extends ContentProvider {
                                 String selection, String[] selectionArgs, SQLiteDatabase db) throws SQLException {
         int rowsUpdated = 0;
         try {
-            if ((insert(uri, values)) != null)
+            long _id = db.insert(DatabaseContract.LogsEntry.TABLE_NAME, null, values);
+            if (_id > 0)
                 rowsUpdated = 1;
+            else
+                throw new android.database.SQLException("Falha ao inserir linha em " + uri);
         } catch (SQLiteConstraintException e) {
             rowsUpdated = db.update(DatabaseContract.LogsEntry.TABLE_NAME, values, selection,
                     selectionArgs);

@@ -121,7 +121,7 @@ public class DatabaseProvider extends ContentProvider {
                 retCursor = mOpenHelper.getReadableDatabase().rawQuery(
                         "SELECT " +
                                 DatabaseContract.MaesFilhasEntry.TABLE_NAME + "." + DatabaseContract.MaesFilhasEntry.COLUMN_MAE + ", " +
-                                DatabaseContract.LogsEntry.TABLE_NAME + "." + DatabaseContract.LogsEntry.COLUMN_ACESSOS +
+                                " SUM (" + DatabaseContract.LogsEntry.TABLE_NAME + "." + DatabaseContract.LogsEntry.COLUMN_ACESSOS + ")" +
                                 " FROM " + DatabaseContract.MaesFilhasEntry.TABLE_NAME +
                                 " INNER JOIN " +  DatabaseContract.LogsEntry.TABLE_NAME +
                                 " ON " + DatabaseContract.MaesFilhasEntry.TABLE_NAME + "." + DatabaseContract.MaesFilhasEntry.COLUMN_FILHA +

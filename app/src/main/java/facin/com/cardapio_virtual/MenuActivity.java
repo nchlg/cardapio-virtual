@@ -182,10 +182,9 @@ public class MenuActivity extends AppCompatActivity
                         .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallbackSingleChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                /**
-                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
-                                 * returning false here won't allow the newly selected radio button to actually be selected.
-                                 **/
+                                ProductFragment productFragment =
+                                        (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
+                                productFragment.ordenaProdutos(which);
                                 return true;
                             }
                         })
@@ -200,8 +199,6 @@ public class MenuActivity extends AppCompatActivity
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    private
 
     private List<FiltroInterface> setFiltros(Integer[] which) {
         List<FiltroInterface> filtros = new ArrayList<>();

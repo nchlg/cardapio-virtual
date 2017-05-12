@@ -65,7 +65,8 @@ public class ProductFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private ArrayList<Product> produtos;
+    private static List<Product> produtos = new ArrayList<>();
+    private List<Product> produtosAExibir;
     private List<FiltroInterface> filtros;
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
@@ -75,6 +76,10 @@ public class ProductFragment extends Fragment {
     private File fileDir;
     private String fileName;
     private List<Individual> individuos;
+
+    // Controles (flags)
+    static boolean bancoInicializado = false;
+    static boolean ontologiaInicializada = false;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -166,7 +171,7 @@ public class ProductFragment extends Fragment {
 
     public List<Product> filtraProdutos() {
         List<Product> produtosFiltrados = new ArrayList<>();
-        produtosFiltrados.addAll(produtos);
+        produtosFiltrados.addAll(produtosAExibir);
         for (FiltroInterface filtro : filtros) {
             produtosFiltrados = filtro.filtra(produtosFiltrados);
         }
@@ -182,8 +187,22 @@ public class ProductFragment extends Fragment {
         this.filtros = filtros;
     }
 
+    public void ordenaProdutos(int ordem) {
+        switch (ordem) {
+            case 0:
+                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(ordenaAlfabeticamente(), mListener));
+                break;
+            case 1:
+                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(ordenaPorAcesso(), mListener));
+                break;
+            default:
+                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(ordenaAlfabeticamente(), mListener));
+                break;
+        }
+    }
+
     public List<Product> ordenaAlfabeticamente() {
-        Collections.sort(produtos, new Comparator<Product>() {
+        Collections.sort(produtosAExibir, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
                 // Se p1 tem filhas e p2 NÃO tem filhas:
@@ -204,7 +223,7 @@ public class ProductFragment extends Fragment {
                 }
             }
         });
-        return produtos;
+        return produtosAExibir;
     }
 
     public List<Product> ordenaPorAcesso() {
@@ -218,8 +237,10 @@ public class ProductFragment extends Fragment {
                 nomesProdutosFilhas.add(p.getNome());
             }
         }
-        new FetchOrderTask().execute((String[]) nomesProdutosMaes.toArray(),
-                                     (String[]) nomesProdutosFilhas.toArray());
+        // Adiciona acessos à classe Produto
+        new FetchOrderTask().execute(nomesProdutosMaes.toArray(new String[0]),
+                                     nomesProdutosFilhas.toArray(new String[0]));
+        // Compara produtos
         Collections.sort(produtos, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
@@ -236,29 +257,69 @@ public class ProductFragment extends Fragment {
                 // Se os dois estão na mesma categoria (ambos têm filhas ou ambos não têm filhas):
                 else {
                     // Ordenar pelo número de acessos
-                    // Se for igual, ordenar por ordem alfabética:
-                    String nomeP1 = p1.getNome();
-                    String nomeP2 = p2.getNome();
-                    return nomeP1.compareTo(nomeP2);
+                    // Se acessos p1 > acessos p2
+                    if (p1.getAcessos() > p2.getAcessos()) {
+                        return -1;
+                    }
+                    // Se acessos p1 < acessos p2
+                    else if (p1.getAcessos() < p2.getAcessos()) {
+                        return 1;
+                    }
+                    // Se acessos p1 = acessos p2
+                    else {
+                        String nomeP1 = p1.getNome();
+                        String nomeP2 = p2.getNome();
+                        return nomeP1.compareTo(nomeP2);
+                    }
                 }
             }
         });
+        return produtos;
     }
 
     private class FetchOrderTask extends AsyncTask<String[], Void, Void> {
         @Override
         protected  Void doInBackground(String[]... params) {
             try {
-                Cursor maesCursor = getActivity().getContentResolver().query(
-                        DatabaseContract.MaesFilhasEntry.CONTENT_URI_JOIN,
-                        null,
-                        null,
-                        params[0],
-                        null
-                );
-                if (maesCursor != null) {
-                    // TODO: Salvar informação de acesso nos produtos para ordená-los
-                    maesCursor.moveToFirst();
+                for (String classeMae : params[0]) {
+                    Cursor maesCursor = getActivity().getContentResolver().query(
+                            DatabaseContract.MaesFilhasEntry.CONTENT_URI_JOIN,
+                            null,
+                            null,
+                            new String[]{classeMae},
+                            null
+                    );
+                    if (maesCursor != null) {
+                        maesCursor.moveToFirst();
+                        do {
+                            for (Product p : produtosAExibir) {
+                                if (p.getNome().equals(maesCursor.getString(0))) {
+                                    p.setAcessos(Integer.valueOf(maesCursor.getString(1)));
+                                }
+                            }
+                        } while (maesCursor.moveToNext());
+                        maesCursor.close();
+                    }
+                }
+                for (String classeFilha : params[1]) {
+                    Cursor filhasCursor = getActivity().getContentResolver().query(
+                            DatabaseContract.LogsEntry.CONTENT_URI,
+                            null,
+                            DatabaseContract.LogsEntry.COLUMN_PRODUTO + " = ?",
+                            new String[]{classeFilha},
+                            null
+                    );
+                    if (filhasCursor != null) {
+                        filhasCursor.moveToFirst();
+                        do {
+                            for (Product p : produtosAExibir) {
+                                if (p.getNome().equals(filhasCursor.getString(1))) {
+                                    p.setAcessos(Integer.valueOf(filhasCursor.getString(2)));
+                                }
+                            }
+                        } while (filhasCursor.moveToNext());
+                        filhasCursor.close();
+                    }
                 }
             } catch (UnsupportedOperationException e) {
                 e.printStackTrace();
@@ -311,8 +372,16 @@ public class ProductFragment extends Fragment {
                 temGorduras = ontModel.createOntProperty(NS + "temGorduras");
                 temSal = ontModel.createOntProperty(NS + "temSal");
 
-                // Incializa Banco de Dados
-                inicializaBancoDeProdutos(ontModel, ontModel.getOntClass(NS + "Produto"));
+                // Inicializa Banco de Dados
+                if (!bancoInicializado) {
+                    inicializaBancoDeProdutos(ontModel.getOntClass(NS + "Produto"));
+                    bancoInicializado = true;
+                }
+                // Inicializa Ontologia
+                if (!ontologiaInicializada) {
+                    inicializaOntologia(ontModel.getOntClass(NS + "Produto"));
+                    ontologiaInicializada = true;
+                }
 
                 // Pega indivíduos
                 individuos = ontModel.listIndividuals().toList();
@@ -324,7 +393,8 @@ public class ProductFragment extends Fragment {
                 //ArrayList<OntClass> classesNaoContaveis = pegaClassesPorAtributo(ontModel.listClasses().toSet(), contavel, false);
                 // populaListaProdutos(classesNaoContaveis);
 
-                populaListaProdutos(pegaFilhasDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
+                 // populaListaDeProdutos(pegaFilhasDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
+                populaListaDeProdutosAExibir(pegaFilhasDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -332,7 +402,7 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        private void inicializaBancoDeProdutos(OntModel ontModel, OntClass raiz) {
+        private void inicializaBancoDeProdutos(OntClass raiz) {
             List<OntClass> nodosFolhas = new ArrayList<>();
             List<OntClass> nodosMaes = new ArrayList<>();
 
@@ -437,6 +507,36 @@ public class ProductFragment extends Fragment {
             }
         }
 
+        private void inicializaOntologia(OntClass raiz) {
+            List<OntClass> nodos = new ArrayList<>();
+            Deque<OntClass> filinha = new ArrayDeque<>();
+            filinha.add(raiz);
+            while(!filinha.isEmpty()) {
+                OntClass nodoAtual = filinha.pop();
+                if (!nodoAtual.listSubClasses().toList().isEmpty()) {
+                    for (OntClass filho : nodoAtual.listSubClasses().toList()){
+                        filinha.addLast(filho);
+                    }
+                }
+                nodos.add(nodoAtual);
+            }
+            Log.d("TotalProdutos", String.valueOf(nodos.size()));
+            populaListaDeProdutos(nodos);
+            Log.d("TotalProdutos2", String.valueOf(produtos.size()));
+        }
+
+        private void populaListaDeProdutosAExibir(List<OntClass> nodosFilhos) {
+            produtosAExibir = new ArrayList<>();
+            for (OntClass oc : nodosFilhos) {
+                for (Product p : produtos) {
+                    if (p.getNome().equals(oc.getLabel("pt"))) {
+                        produtosAExibir.add(p);
+                        break;
+                    }
+                }
+            }
+        }
+
         private List<OntClass> pegaFilhasDaRaiz(OntClass raiz) {
             return raiz.listSubClasses().toList();
         }
@@ -448,7 +548,7 @@ public class ProductFragment extends Fragment {
             if (result) {
                 ordenaAlfabeticamente();
                 progressDialog.dismiss();
-                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtos, mListener));
+                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtosAExibir, mListener));
             }
         }
 
@@ -639,9 +739,8 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        private void populaListaProdutos(List<OntClass> ontClasses) {
-            produtos = new ArrayList<>();
-
+        private void populaListaDeProdutos(List<OntClass> ontClasses) {
+            int counter = 1;
             for (OntClass oc : ontClasses) {
                 // Verifica se tem ou não restrições de filtragem e seus valores
                 Map<Restricao, Boolean> mapaRestricoes = verificaRestricoesDentreSuperClasses(oc);
@@ -652,10 +751,10 @@ public class ProductFragment extends Fragment {
                 // Verifica se é ou não contável
                 Boolean contavel = mapaRestricoes.get(Restricao.CONTAVEL);
 
+                Log.d("mapa", counter++ + ". " + oc.getLabel("pt") + "/" + mapaRestricoes.toString());
                 if (isNotContavel(contavel) || temFilhasComQuantidade(oc)) {
                     // Insere mapa de restrições no mapão
                     restricoesOntologia.put(oc.getLabel("pt"), mapaRestricoes);
-                    Log.d("mapa", mapaRestricoes.toString());
 
                     // Se não é nodo folha e é contável, verifica se tem indivídios e cria um Produto intermediário
                     if (!oc.listSubClasses().toList().isEmpty() && contavel) {

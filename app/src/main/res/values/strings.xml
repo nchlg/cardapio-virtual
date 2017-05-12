@@ -41,11 +41,15 @@
     <string name="progress_dialog_product_message">Please wait while the product list is being loaded to the screen</string>
     <string name="action_filter">Filter</string>
     <string name="dialog_choose">Choose</string>
+    <string name="dialog_cancel">Cancel</string>
     <string name="filter_vegetarian">Vegetarian</string>
     <string name="filter_lactose">No Lactose</string>
     <string name="filter_gluten">No Gluten</string>
     <string name="filter_salt">Low Levels of Salt</string>
     <string name="filter_fat">Low Fat</string>
+    <string name="action_order">Order</string>
+    <string name="order_alphabetic">Alphabetic</string>
+    <string name="order_preference">Most visited</string>
 
     <!-- Product Info -->
     <string name="indisp_ingredients">Ingredients unavailable.</string>

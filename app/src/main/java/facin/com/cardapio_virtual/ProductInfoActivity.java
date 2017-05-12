@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class ProductInfoActivity extends AppCompatActivity {
     private Intent intent;
 
     private String intentOntClassURI;
+    private String intentProduct = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         // Pega Intent
         intent = getIntent();
         if(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME) != null) {
+            intentProduct = intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME);
             if (getActionBar() != null)
                 getActionBar().setTitle(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
             if (getSupportActionBar() != null)
@@ -128,25 +131,43 @@ public class ProductInfoActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                // Busca número de acessos na tabela
-                logsCursor = getContentResolver().query(
-                        DatabaseContract.LogsEntry.CONTENT_URI,
-                        new String[]{DatabaseContract.LogsEntry.COLUMN_ACESSOS},
-                        DatabaseContract.LogsEntry.COLUMN_PRODUTO + " = ?",
-                        new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)},
-                        null
-                );
-                if (logsCursor != null) {
-                    logsCursor.moveToFirst();
-                    ContentValues log = new ContentValues();
-                    log.put("_id", (byte[]) null);
-                    log.put("produto", intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
-                    log.put("acessos", logsCursor.getString(0));
+                if (intentProduct != null) {
+                    // Busca número de acessos na tabela
+                    logsCursor = getContentResolver().query(
+                            DatabaseContract.LogsEntry.CONTENT_URI,
+                            new String[]{DatabaseContract.LogsEntry.COLUMN_ACESSOS},
+                            DatabaseContract.LogsEntry.COLUMN_PRODUTO + " = ?",
+                            new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)},
+                            null
+                    );
+                    if (logsCursor != null) {
+                        logsCursor.moveToFirst();
+                        ContentValues log = new ContentValues();
+//                        log.put("_id", (byte[]) null);
+//                        log.put("produto", intentProduct);
+                          log.put("acessos", String.valueOf(Integer.valueOf(logsCursor.getString(0)) + 1));
 
-                    getContentResolver().update(DatabaseContract.LogsEntry.CONTENT_URI, log,
-                            DatabaseContract.LogsEntry.COLUMN_PRODUTO + "= ?",
-                            new String[]{intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME)});
-                    return true;
+                        getContentResolver().update(
+                                DatabaseContract.LogsEntry.CONTENT_URI,
+                                log,
+                                DatabaseContract.LogsEntry.COLUMN_PRODUTO + "= ?",
+                                new String[]{intentProduct});
+                        return true;
+                    }
+//                    logsCursor = getContentResolver().query(
+//                            DatabaseContract.LogsEntry.CONTENT_URI,
+//                            null,
+//                            null,
+//                            null,
+//                            null
+//                    );
+//                    if (logsCursor != null) {
+//                        logsCursor.moveToFirst();
+//                        do {
+//                            Log.d("Logs", logsCursor.getString(0) + "/" + logsCursor.getString(1) + "/" + logsCursor.getString(2));
+//                        } while (logsCursor.moveToNext());
+//                        return true;
+//                    }
                 }
             } catch (UnsupportedOperationException e) {
                 e.printStackTrace();

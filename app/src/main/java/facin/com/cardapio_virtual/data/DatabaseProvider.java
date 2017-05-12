@@ -22,6 +22,8 @@ public class DatabaseProvider extends ContentProvider {
     static final int RESTAURANTES = 100;
     static final int LOGS = 200;
     static final int MAES_FILHAS = 300;
+
+    static final int JOIN_MAESFILHAS_LOGS = 250;
 //    static final int USUARIOS = 200;
 //    static final int FAVORITOS = 300;
     /* Joins */
@@ -38,6 +40,7 @@ public class DatabaseProvider extends ContentProvider {
         matcher.addURI(authority, DatabaseContract.PATH_RESTAURANTES, RESTAURANTES);
         matcher.addURI(authority, DatabaseContract.PATH_LOGS, LOGS);
         matcher.addURI(authority, DatabaseContract.PATH_MAES_FILHAS, MAES_FILHAS);
+        matcher.addURI(authority, DatabaseContract.PATH_JOIN_MAESFILHAS_LOGS, JOIN_MAESFILHAS_LOGS);
 //        matcher.addURI(authority, DatabaseContract.PATH_USUARIOS, USUARIOS);
 //        matcher.addURI(authority, DatabaseContract.PATH_FAVORITOS, FAVORITOS);
 //        /* Joins */
@@ -113,6 +116,21 @@ public class DatabaseProvider extends ContentProvider {
                 );
                 break;
             }
+
+            case JOIN_MAESFILHAS_LOGS:
+                retCursor = mOpenHelper.getReadableDatabase().rawQuery(
+                        "SELECT " +
+                                DatabaseContract.MaesFilhasEntry.TABLE_NAME + "." + DatabaseContract.MaesFilhasEntry.COLUMN_MAE + ", " +
+                                DatabaseContract.LogsEntry.TABLE_NAME + "." + DatabaseContract.LogsEntry.COLUMN_ACESSOS +
+                                " FROM " + DatabaseContract.MaesFilhasEntry.TABLE_NAME +
+                                " INNER JOIN " +  DatabaseContract.LogsEntry.TABLE_NAME +
+                                " ON " + DatabaseContract.MaesFilhasEntry.TABLE_NAME + "." + DatabaseContract.MaesFilhasEntry.COLUMN_FILHA +
+                                " = " + DatabaseContract.LogsEntry.TABLE_NAME + "." + DatabaseContract.LogsEntry._ID +
+                                " WHERE " + DatabaseContract.MaesFilhasEntry.TABLE_NAME + "." + DatabaseContract.MaesFilhasEntry.COLUMN_MAE + " = ?" +
+                                " GROUP BY " + DatabaseContract.MaesFilhasEntry.COLUMN_MAE,
+                        selectionArgs
+                );
+                break;
 //            case USUARIOS: {
 //                retCursor = mOpenHelper.getReadableDatabase().query(
 //                        DatabaseContract.UsuariosEntry.TABLE_NAME,

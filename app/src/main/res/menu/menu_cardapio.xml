@@ -7,4 +7,9 @@
         android:orderInCategory="100"
         android:title="@string/action_filter"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_order"
+        android:orderInCategory="100"
+        android:title="@string/action_order"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -1,11 +1,13 @@
 package facin.com.cardapio_virtual;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -165,15 +167,41 @@ public class MenuActivity extends AppCompatActivity
                             }
                         })
                         .positiveText(R.string.dialog_choose)
+                        .positiveColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
+                        .negativeText(R.string.dialog_cancel)
+                        .negativeColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .widgetColorRes(R.color.colorPrimary)
-                        .buttonRippleColor(getResources().getColor(R.color.colorPrimary))
+                        .buttonRippleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .show();
                 return true;
+            }
+            case R.id.action_order: {
+                new MaterialDialog.Builder(this)
+                        .title(R.string.action_order)
+                        .items(R.array.media_orders)
+                        .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                /**
+                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                                 * returning false here won't allow the newly selected radio button to actually be selected.
+                                 **/
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.dialog_choose).positiveColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
+                        .negativeText(R.string.dialog_cancel)
+                        .negativeColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
+                        .widgetColorRes(R.color.colorPrimary)
+                        .buttonRippleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
+                        .show();
             }
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private
 
     private List<FiltroInterface> setFiltros(Integer[] which) {
         List<FiltroInterface> filtros = new ArrayList<>();

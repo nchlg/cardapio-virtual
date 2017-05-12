@@ -22,4 +22,8 @@
         <item>@string/filter_fat</item>
         <item>@string/filter_salt</item>
     </string-array>
+    <string-array name="media_orders">
+        <item>@string/order_alphabetic</item>
+        <item>@string/order_preference</item>
+    </string-array>
 </resources>

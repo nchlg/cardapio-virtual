@@ -27,6 +27,8 @@ public class Product {
     private boolean contavel;
     // Filtros
     private Map<Restricao, Boolean> mapaRestricoes;
+    // Ordenação
+    private int acessos;
 
 
     // Sem ingredientes
@@ -150,4 +152,11 @@ public class Product {
         this.mapaRestricoes = mapaRestricoes;
     }
 
+    public int getAcessos() {
+        return acessos;
+    }
+
+    public void setAcessos(int acessos) {
+        this.acessos = acessos;
+    }
 }

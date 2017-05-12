@@ -35,11 +35,15 @@
     <string name="progress_dialog_product_message">Aguarde enquanto carregamos o cardápio na tela</string>
     <string name="action_filter">Filtrar</string>
     <string name="dialog_choose">OK</string>
+    <string name="dialog_cancel">Cancelar</string>
     <string name="filter_vegetarian">Vegetariano</string>
     <string name="filter_lactose">Sem Lactose</string>
     <string name="filter_gluten">Sem Glúten</string>
     <string name="filter_salt">Pouco Sal</string>
     <string name="filter_fat">Pouca Gordura</string>
+    <string name="action_order">Ordenar</string>
+    <string name="order_alphabetic">Ordem Alfabética</string>
+    <string name="order_preference">Mais acessados</string>
 
 
     <!-- Product Info -->

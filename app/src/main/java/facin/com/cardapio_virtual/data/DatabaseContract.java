@@ -21,6 +21,7 @@ public class DatabaseContract {
     public static final String PATH_RESTAURANTES = "restaurantes";
     public static final String PATH_LOGS = "logs";
     public static final String PATH_MAES_FILHAS = "maes_filhas";
+    public static final String PATH_JOIN_MAESFILHAS_LOGS = "join_maesfilhas_logs";
     public static final String PATH_USUARIOS = "usuarios";
     public static final String PATH_FAVORITOS = "favoritos";
 
@@ -85,11 +86,12 @@ public class DatabaseContract {
     /* Classe interna que define os conteúdos da tabela Maes_Filhas */
     public static final class MaesFilhasEntry implements BaseColumns {
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_MAES_FILHAS).build();
-
         public static final String CONTENT_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MAES_FILHAS;
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MAES_FILHAS;
+
+        public static final Uri CONTENT_URI_JOIN = BASE_CONTENT_URI.buildUpon().appendPath(PATH_JOIN_MAESFILHAS_LOGS).build();
 
         /* Nome da tabela */
         public static final String TABLE_NAME = "maes_filhas";

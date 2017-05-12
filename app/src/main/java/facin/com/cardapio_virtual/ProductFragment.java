@@ -182,8 +182,93 @@ public class ProductFragment extends Fragment {
         this.filtros = filtros;
     }
 
+    public List<Product> ordenaAlfabeticamente() {
+        Collections.sort(produtos, new Comparator<Product>() {
+            @Override
+            public int compare(Product p1, Product p2) {
+                // Se p1 tem filhas e p2 NÃO tem filhas:
+                if (!p1.getOntClass().listSubClasses().toList().isEmpty()
+                        && p2.getOntClass().listSubClasses().toList().isEmpty()) {
+                    return -1;
+                }
+                // Se p1 NÃO tem filhas e p2 tem filhas:
+                else if (p1.getOntClass().listSubClasses().toList().isEmpty()
+                        && !p2.getOntClass().listSubClasses().toList().isEmpty()) {
+                    return 1;
+                }
+                // Se os dois estão na mesma categoria (ambos têm filhas ou ambos não têm filhas):
+                else {
+                    String nomeP1 = p1.getNome();
+                    String nomeP2 = p2.getNome();
+                    return nomeP1.compareTo(nomeP2);
+                }
+            }
+        });
+        return produtos;
+    }
 
-    public class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
+    public List<Product> ordenaPorAcesso() {
+        List<String> nomesProdutosMaes = new ArrayList<>();
+        List<String> nomesProdutosFilhas = new ArrayList<>();
+        for (Product p : produtos) {
+            if (!p.getOntClass().listSubClasses().toList().isEmpty()) {
+                nomesProdutosMaes.add(p.getNome());
+            }
+            else {
+                nomesProdutosFilhas.add(p.getNome());
+            }
+        }
+        new FetchOrderTask().execute((String[]) nomesProdutosMaes.toArray(),
+                                     (String[]) nomesProdutosFilhas.toArray());
+        Collections.sort(produtos, new Comparator<Product>() {
+            @Override
+            public int compare(Product p1, Product p2) {
+                // Se p1 tem filhas e p2 NÃO tem filhas:
+                if (!p1.getOntClass().listSubClasses().toList().isEmpty()
+                        && p2.getOntClass().listSubClasses().toList().isEmpty()) {
+                    return -1;
+                }
+                // Se p1 NÃO tem filhas e p2 tem filhas:
+                else if (p1.getOntClass().listSubClasses().toList().isEmpty()
+                        && !p2.getOntClass().listSubClasses().toList().isEmpty()) {
+                    return 1;
+                }
+                // Se os dois estão na mesma categoria (ambos têm filhas ou ambos não têm filhas):
+                else {
+                    // Ordenar pelo número de acessos
+                    // Se for igual, ordenar por ordem alfabética:
+                    String nomeP1 = p1.getNome();
+                    String nomeP2 = p2.getNome();
+                    return nomeP1.compareTo(nomeP2);
+                }
+            }
+        });
+    }
+
+    private class FetchOrderTask extends AsyncTask<String[], Void, Void> {
+        @Override
+        protected  Void doInBackground(String[]... params) {
+            try {
+                Cursor maesCursor = getActivity().getContentResolver().query(
+                        DatabaseContract.MaesFilhasEntry.CONTENT_URI_JOIN,
+                        null,
+                        null,
+                        params[0],
+                        null
+                );
+                if (maesCursor != null) {
+                    // TODO: Salvar informação de acesso nos produtos para ordená-los
+                    maesCursor.moveToFirst();
+                }
+            } catch (UnsupportedOperationException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+
+    private class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
 
         OntProperty temIngrediente;
         OntProperty preco;
@@ -282,19 +367,19 @@ public class ProductFragment extends Fragment {
                         getActivity().getContentResolver().insert(DatabaseContract.LogsEntry.CONTENT_URI, folha);
                     }
                 }
-                produtosCursor = getActivity().getContentResolver().query(
-                        DatabaseContract.LogsEntry.CONTENT_URI,
-                        null,
-                        null,
-                        null,
-                        null
-                );
-                if (produtosCursor != null) {
-                    produtosCursor.moveToFirst();
-                    do {
-                        Log.d("Logs", produtosCursor.getString(0) + "/" + produtosCursor.getString(1) + "/" + produtosCursor.getString(2));
-                    } while (produtosCursor.moveToNext());
-                }
+//                produtosCursor = getActivity().getContentResolver().query(
+//                        DatabaseContract.LogsEntry.CONTENT_URI,
+//                        null,
+//                        null,
+//                        null,
+//                        null
+//                );
+//                if (produtosCursor != null) {
+//                    produtosCursor.moveToFirst();
+//                    do {
+//                        Log.d("Logs", produtosCursor.getString(0) + "/" + produtosCursor.getString(1) + "/" + produtosCursor.getString(2));
+//                    } while (produtosCursor.moveToNext());
+//                }
             }
             produtosCursor = getActivity().getContentResolver().query(
                     DatabaseContract.MaesFilhasEntry.CONTENT_URI,
@@ -334,24 +419,22 @@ public class ProductFragment extends Fragment {
                         }
                     }
                 }
-                produtosCursor = getActivity().getContentResolver().query(
-                        DatabaseContract.MaesFilhasEntry.CONTENT_URI,
-                        null,
-                        null,
-                        null,
-                        null
-                );
-                if (produtosCursor != null) {
-                    produtosCursor.moveToFirst();
-                    do {
-                        Log.d("MaeFilhas", produtosCursor.getString(0) + "/" + produtosCursor.getString(1) + "/" + produtosCursor.getString(2));
-                    } while (produtosCursor.moveToNext());
-                    produtosCursor.close();
-                }
+//                produtosCursor = getActivity().getContentResolver().query(
+//                        DatabaseContract.MaesFilhasEntry.CONTENT_URI,
+//                        null,
+//                        null,
+//                        null,
+//                        null
+//                );
+//                if (produtosCursor != null) {
+//                    produtosCursor.moveToFirst();
+//                    do {
+//                        Log.d("MaeFilhas", produtosCursor.getString(0) + "/" + produtosCursor.getString(1) + "/" + produtosCursor.getString(2));
+//                    } while (produtosCursor.moveToNext());
+//                    produtosCursor.close();
+//                }
+                produtosCursor.close();
             }
-            // TODO: Ver quantos nodos tem na lista Logs e quantos nodos mães únicos tem na tabela MaesFilhas
-            // TODO: Se não tiver, preencher o banco. Fazer um for no nodos mães, percorrer a árvore de novo e inserir as folhas na tabela
-            // produtosCursor = DatabaseContract.
         }
 
         private List<OntClass> pegaFilhasDaRaiz(OntClass raiz) {
@@ -363,27 +446,7 @@ public class ProductFragment extends Fragment {
         @Override
         protected void onPostExecute(final Boolean result) {
             if (result) {
-                Collections.sort(produtos, new Comparator<Product>() {
-                    @Override
-                    public int compare(Product p1, Product p2) {
-                        // Se p1 tem filhas e p2 NÃO tem filhas:
-                        if (!p1.getOntClass().listSubClasses().toList().isEmpty()
-                                && p2.getOntClass().listSubClasses().toList().isEmpty()) {
-                            return -1;
-                        }
-                        // Se p1 NÃO tem filhas e p2 tem filhas:
-                        else if (p1.getOntClass().listSubClasses().toList().isEmpty()
-                                && !p2.getOntClass().listSubClasses().toList().isEmpty()) {
-                            return 1;
-                        }
-                        // Se os dois estão na mesma categoria (ambos têm filhas ou ambos não têm filhas):
-                        else {
-                            String nomeP1 = p1.getNome();
-                            String nomeP2 = p2.getNome();
-                            return nomeP1.compareTo(nomeP2);
-                        }
-                    }
-                });
+                ordenaAlfabeticamente();
                 progressDialog.dismiss();
                 recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtos, mListener));
             }

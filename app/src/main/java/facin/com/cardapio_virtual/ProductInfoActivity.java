@@ -143,9 +143,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                     if (logsCursor != null) {
                         logsCursor.moveToFirst();
                         ContentValues log = new ContentValues();
-//                        log.put("_id", (byte[]) null);
-//                        log.put("produto", intentProduct);
-                          log.put("acessos", String.valueOf(Integer.valueOf(logsCursor.getString(0)) + 1));
+                        log.put("acessos", String.valueOf(Integer.valueOf(logsCursor.getString(0)) + 1));
 
                         getContentResolver().update(
                                 DatabaseContract.LogsEntry.CONTENT_URI,

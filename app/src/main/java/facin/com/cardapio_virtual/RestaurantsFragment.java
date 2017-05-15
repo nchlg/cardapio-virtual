@@ -14,9 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hp.hpl.jena.assembler.Content;
+
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -37,6 +40,7 @@ public class RestaurantsFragment extends Fragment {
     private Cursor searchesCursor;
     private ArrayList<Restaurant> restaurants;
     private RecyclerView recyclerView;
+    private static boolean restaurantesInicializados = false;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -128,7 +132,10 @@ public class RestaurantsFragment extends Fragment {
             // Se mSearchQuery for nula, significa que a atividade é a MainActivity. Senão, é a SearchableActivity.
             if (params[0] == null) {
                 try {
-                    insereRestauranteTeste();
+                    if (!restaurantesInicializados) {
+                        insereRestaurantes();
+                        restaurantesInicializados = true;
+                    }
                     restaurantsCursor = getActivity().getContentResolver().query(
                             DatabaseContract.RestaurantesEntry.CONTENT_URI,
                             null,
@@ -190,47 +197,68 @@ public class RestaurantsFragment extends Fragment {
                         cursor.getString(4),
                         Double.parseDouble(cursor.getString(5).trim()),
                         Double.parseDouble(cursor.getString(6).trim()),
-                        cursor.getString(7)
+                        cursor.getString(7),
+                        !cursor.getString(8).equals("0")
                 );
                 restaurants.add(restaurant);
             }
             return restaurants;
         }
 
-        boolean insereRestauranteTeste() {
-            Cursor testCursor = getActivity().getContentResolver().query(
+    }
+    boolean insereRestaurantes() {
+        List<ContentValues> restaurantes = new ArrayList<>();
+
+        ContentValues rest1 = new ContentValues();
+        rest1.put("_id", (byte[]) null);
+        rest1.put("nome", "Bar do 5");
+        rest1.put("email", "bardo5@mail.com");
+        rest1.put("telefone", "(51) 3354-1999");
+        rest1.put("endereco", "Av. Ipiranga, 6681");
+        rest1.put("latitude", -30.059947);
+        rest1.put("longitude", -51.174464);
+        rest1.put("descricao","Bar do prédio de História que oferece deliciosas opções vegetarianas e um ambiente aconchegante.");
+        rest1.put("favorito", 0);
+        restaurantes.add(rest1);
+
+        ContentValues rest2 = new ContentValues();
+        rest2.put("_id", (byte[]) null);
+        rest2.put("nome", "Espaço 32");
+        rest2.put("email", "espaco32@gmail.com");
+        rest2.put("telefone", "(51) 3093-3256");
+        rest2.put("endereco", "Av. Bento Gonçalves, 4314 (PUCRS - Prédio 32)");
+        rest2.put("latitude", -30.061238);
+        rest2.put("longitude", -51.173792);
+        rest2.put("descricao", "Almoço com um delicioso buffet; lanches, cafés, coffee break, eventos corporativos e festas.");
+        rest2.put("favorito", 0);
+        restaurantes.add(rest2);
+
+        try {
+            Cursor restaurantesCursor = getActivity().getContentResolver().query(
                     DatabaseContract.RestaurantesEntry.CONTENT_URI,
-                    null,
+                    new String[]{DatabaseContract.RestaurantesEntry.COLUMN_NOME},
                     null,
                     null,
                     null
             );
 
-            if (testCursor != null) {
-                while(testCursor.moveToNext()) {
-                    if (testCursor.getString(testCursor.getColumnIndex("nome")).equals("Bar do 5")) {
-                        testCursor.close();
-                        return false;
+            if (restaurantesCursor != null) {
+                restaurantesCursor.moveToFirst();
+                do {
+                    for (ContentValues cv : restaurantes) {
+                        if (cv.get("nome").equals(restaurantesCursor.getString(0))) {
+
+                        }
                     }
                 }
             }
-
-            ContentValues rest1 = new ContentValues();
-            rest1.put("_id", (byte[]) null);
-            rest1.put("nome", "Bar do 5");
-            rest1.put("email", "bardo5@mail.com");
-            rest1.put("telefone", "(XXX) XXXX-XXXX");
-            rest1.put("endereco", "Av. Ipiranga, 6681");
-            rest1.put("latitude", -30.059947);
-            rest1.put("longitude", -51.174464);
-            rest1.put("descricao","Bar do prédio de História que oferece deliciosas opções vegetarianas e um ambiente aconchegante.");
-            rest1.put("favorito", 1);
-            getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest1);
-
-            if (testCursor != null ) {
-                testCursor.close();
-            }
-            return true;
         }
+
+
+
+        getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest1);
+        getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest2);
+
+        return true;
     }
 }

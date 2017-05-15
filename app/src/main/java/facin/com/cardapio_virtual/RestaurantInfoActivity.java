@@ -1,13 +1,18 @@
 package facin.com.cardapio_virtual;
 
+import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.hp.hpl.jena.iri.impl.Main;
+import facin.com.cardapio_virtual.data.DatabaseContract;
 
 public class RestaurantInfoActivity extends AppCompatActivity {
 
@@ -16,8 +21,14 @@ public class RestaurantInfoActivity extends AppCompatActivity {
     private TextView mEmailText;
     private TextView mTelefoneText;
     private Button mBtnMenu;
+    private Button mBtnFavoritar;
+    private boolean favorito;
+
+    // ProgressDialog
+    private ProgressDialog progressDialog;
 
     // Intent
+    private String intentNome;
     private String intentDescricao;
     private String intentEndereco;
     private String intentEmail;
@@ -33,11 +44,12 @@ public class RestaurantInfoActivity extends AppCompatActivity {
 
         // Pega Intent
         Intent intent = getIntent();
-        if(intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_NOME) != null) {
+        intentNome = intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_NOME);
+        if(intentNome != null) {
             if (getActionBar() != null)
-                getActionBar().setTitle(intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_NOME));
+                getActionBar().setTitle(intentNome);
             if (getSupportActionBar() != null)
-                getSupportActionBar().setTitle(intent.getStringExtra(MainActivity.EXTRA_RESTAURANT_NOME));
+                getSupportActionBar().setTitle(intentNome);
         }
 
         // TextViews
@@ -56,7 +68,39 @@ public class RestaurantInfoActivity extends AppCompatActivity {
                 startActivityForResult(intent, 13);
             }
         });
+        mBtnFavoritar = (Button) findViewById(R.id.btn_favoritar);
+        favorito = intent.getBooleanExtra(MainActivity.EXTRA_RESTAURANT_FAVORITO, false);
+        alteraEstadoDoBotaoFavorito();
+        mBtnFavoritar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (favorito) {
+                    progressDialog = ProgressDialog.show(RestaurantInfoActivity.this,
+                            null,
+                            getResources().getText(R.string.progress_dialog_favoriting_unfavoriting),
+                            true,
+                            false);
+                } else {
+                    progressDialog = ProgressDialog.show(RestaurantInfoActivity.this,
+                            null,
+                            getResources().getText(R.string.progress_dialog_favoriting),
+                            true,
+                            false);
+                }
+                new FetchFavoritarTask().execute((Void) null);
+            }
+        });
+    }
 
+    protected void alteraEstadoDoBotaoFavorito() {
+        if (favorito) {
+            mBtnFavoritar.setText(R.string.btn_favorite_unfavorite);
+            mBtnFavoritar.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.lightBackground));
+            mBtnFavoritar.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+        } else {
+            mBtnFavoritar.setText(R.string.btn_favorite);
+            mBtnMenu.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+            mBtnMenu.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+        }
     }
 
     protected void setTextViewContent(Intent intent) {
@@ -109,6 +153,34 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         if (requestCode == 13) {
             if (resultCode == RESULT_OK)
                 setTextViewContent(data);
+        }
+    }
+
+    private class FetchFavoritarTask extends AsyncTask<Void, Void, Boolean> {
+        @Override
+        public Boolean doInBackground(Void... params) {
+            try {
+                ContentValues cv = new ContentValues();
+                cv.put("favorito", favorito ? 0 : 1);
+                getContentResolver().update(
+                        DatabaseContract.RestaurantesEntry.CONTENT_URI,
+                        cv,
+                        DatabaseContract.RestaurantesEntry.COLUMN_NOME + "= ?",
+                        new String[]{intentNome}
+                );
+            } catch (UnsupportedOperationException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean result) {
+            favorito = !favorito;
+            alteraEstadoDoBotaoFavorito();
+            Log.d("Favorito", intentNome + "/" + String.valueOf(favorito));
+            progressDialog.dismiss();
         }
     }
 }

@@ -27,6 +27,10 @@
     <!-- Restaurant Info -->
     <string name="title_activity_restaurant_info">Additional Information</string>
     <string name="btn_menu">Restaurant Menu</string>
+    <string name="btn_favorite">Favorite</string>
+    <string name="btn_favorite_unfavorite">Unfavorite</string>
+    <string name="progress_dialog_favoriting">Adding restaurant to your favorites</string>
+    <string name="progress_dialog_favoriting_unfavoriting">Removing restaurant from your favorites</string>
     <string name="indisp_description">Description unavailable.</string>
     <string name="indisp_address">Address unavailable</string>
     <string name="indisp_email">E-mail unavailable</string>

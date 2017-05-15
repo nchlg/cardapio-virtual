@@ -28,7 +28,7 @@ public class Restaurant {
     }
 
     public Restaurant(int primaryKey, String nome, String email, String telefone, String endereco,
-                      double latitude, double longitude, String descricao) {
+                      double latitude, double longitude, String descricao, boolean favorito) {
         this.primaryKey = primaryKey;
         this.nome = nome;
         this.email = email;
@@ -37,7 +37,7 @@ public class Restaurant {
         this.endereco = endereco;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.favorito = false;
+        this.favorito = favorito;
     }
 
     public String getNome() {

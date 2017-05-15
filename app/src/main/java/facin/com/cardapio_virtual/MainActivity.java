@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     protected static final String EXTRA_RESTAURANT_ENDERECO = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_ENDERECO";
     protected static final String EXTRA_RESTAURANT_EMAIL = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_EMAIL";
     protected static final String EXTRA_RESTAURANT_TELEFONE = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_TELEFONE";
+    protected static final String EXTRA_RESTAURANT_FAVORITO = "facin.com.cardapio_virtual.EXTRA_RESTAURANT_FAVORITO";
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(EXTRA_RESTAURANT_ENDERECO, item.getEndereco());
         intent.putExtra(EXTRA_RESTAURANT_EMAIL, item.getEmail());
         intent.putExtra(EXTRA_RESTAURANT_TELEFONE, item.getTelefone());
+        intent.putExtra(EXTRA_RESTAURANT_FAVORITO, item.isFavorito());
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
         startActivityForResult(intent, -1);
     }
@@ -190,8 +192,8 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         @Override
@@ -202,8 +204,8 @@ public class MainActivity extends AppCompatActivity
                     return getResources().getString(R.string.tab_fav);
                 case 1:
                     return getResources().getString(R.string.tab_restaurants);
-                case 2:
-                    return getResources().getString(R.string.tab_map);
+//                case 2:
+//                    return getResources().getString(R.string.tab_map);
             }
             return null;
         }

@@ -149,6 +149,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
 
             }
 
+
             public void onStatusChanged(String provider, int status, Bundle extras) {
             }
 
@@ -313,7 +314,6 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                 LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,
                         locationSettingsBuilder.build());
         result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
-            // TODO: Fazer isso funcionar kkk
             @Override
             public void onResult(@NonNull LocationSettingsResult result) {
                 final Status status = result.getStatus();
@@ -333,10 +333,8 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback,
                                     REQUEST_CHECK_SETTINGS);
                         } catch (IntentSender.SendIntentException e) {
                             // Ignore the error.
-                        } finally {
-
+                            break;
                         }
-                        break;
                     case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
                         // Location settings are not satisfied. However, we have no way
                         // to fix the settings so we won't show the dialog.

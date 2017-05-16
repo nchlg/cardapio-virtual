@@ -3,6 +3,7 @@ package facin.com.cardapio_virtual;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,11 +13,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.hp.hpl.jena.iri.impl.Main;
+
+import facin.com.cardapio_virtual.auxiliares.Utilitarios;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -32,7 +38,7 @@ public class FavouritesFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private Cursor restaurantsCursor;
-    private ArrayList<Restaurant> favourites;
+    private List<Restaurant> favoritos;
     private RecyclerView recyclerView;
 
     /**
@@ -59,6 +65,7 @@ public class FavouritesFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        favoritos = new ArrayList<>();
     }
 
     @Override
@@ -113,6 +120,10 @@ public class FavouritesFragment extends Fragment {
         void onListFragmentInteraction(Restaurant item);
     }
 
+    public void atualizaRecyclerView() {
+        recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(favoritos, mListener));
+    }
+
     public class FetchFavouriteTask extends AsyncTask<Void, Void, Boolean> {
 
         @Override
@@ -139,13 +150,14 @@ public class FavouritesFragment extends Fragment {
         @Override
         protected void onPostExecute(final Boolean result) {
             if (result) {
-                favourites = populaLista(restaurantsCursor);
-                recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(favourites, mListener));
+                favoritos = populaLista(restaurantsCursor);
+                Utilitarios.ordenaRestaurantes(favoritos, MainActivity.mLastLocation);
+                recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(favoritos, mListener));
             }
         }
 
-        public ArrayList<Restaurant> populaLista(Cursor cursor) {
-            favourites = new ArrayList<>();
+        public List<Restaurant> populaLista(Cursor cursor) {
+            favoritos = new ArrayList<>();
             DatabaseUtils.dumpCursor(restaurantsCursor);
             /* Cria restaurantes */
             while(restaurantsCursor.moveToNext()) {
@@ -160,9 +172,25 @@ public class FavouritesFragment extends Fragment {
                         restaurantsCursor.getString(7),
                         !cursor.getString(8).equals("0")
                 );
-                favourites.add(restaurant);
+                favoritos.add(restaurant);
             }
-            return favourites;
+            return favoritos;
         }
+    }
+
+    public List<Restaurant> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Restaurant> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    public void setRecyclerView(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
     }
 }

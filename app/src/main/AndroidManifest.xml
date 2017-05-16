@@ -84,7 +84,7 @@
             tools:targetApi="jelly_bean" />
         <activity android:name=".ProductInfoActivity"
             android:parentActivityName=".MenuActivity"
-            tools:targetApi="jelly_bean"></activity>
+            tools:targetApi="jelly_bean" />
     </application>
 
 </manifest>

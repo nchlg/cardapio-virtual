@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
@@ -98,8 +99,8 @@ public class RestaurantInfoActivity extends AppCompatActivity {
             mBtnFavoritar.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
         } else {
             mBtnFavoritar.setText(R.string.btn_favorite);
-            mBtnMenu.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
-            mBtnMenu.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+            mBtnFavoritar.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+            mBtnFavoritar.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
         }
     }
 
@@ -181,6 +182,13 @@ public class RestaurantInfoActivity extends AppCompatActivity {
             alteraEstadoDoBotaoFavorito();
             Log.d("Favorito", intentNome + "/" + String.valueOf(favorito));
             progressDialog.dismiss();
+            if (favorito) {
+                Toast favoritoToast = Toast.makeText(getApplicationContext(), R.string.toast_favorite, Toast.LENGTH_SHORT);
+                favoritoToast.show();
+            } else {
+                Toast favoritoDesfavoritadoToast = Toast.makeText(getApplicationContext(), R.string.toast_favorite_unfavorite, Toast.LENGTH_SHORT);
+                favoritoDesfavoritadoToast.show();
+            }
         }
     }
 }

@@ -6,14 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
+
 import facin.com.cardapio_virtual.RestaurantsFragment.OnListFragmentInteractionListener;
 
 public class MyRestaurantRecyclerViewAdapter extends RecyclerView.Adapter<MyRestaurantRecyclerViewAdapter.ViewHolder> {
 
-    private final ArrayList<Restaurant> mValues;
+    private final List<Restaurant> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyRestaurantRecyclerViewAdapter(ArrayList<Restaurant> items, OnListFragmentInteractionListener listener) {
+    public MyRestaurantRecyclerViewAdapter(List<Restaurant> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

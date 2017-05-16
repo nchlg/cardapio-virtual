@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,11 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hp.hpl.jena.assembler.Content;
-
+import facin.com.cardapio_virtual.auxiliares.Utilitarios;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -38,7 +40,7 @@ public class RestaurantsFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     private Cursor restaurantsCursor;
     private Cursor searchesCursor;
-    private ArrayList<Restaurant> restaurants;
+    private List<Restaurant> restaurantes;
     private RecyclerView recyclerView;
     private static boolean restaurantesInicializados = false;
 
@@ -59,8 +61,6 @@ public class RestaurantsFragment extends Fragment {
         return fragment;
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +69,8 @@ public class RestaurantsFragment extends Fragment {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
             mSearchQuery = getArguments().getString(ARG_QUERY);
         }
+
+        restaurantes = new ArrayList<>();
     }
 
     @Override
@@ -125,6 +127,10 @@ public class RestaurantsFragment extends Fragment {
         void onListFragmentInteraction(Restaurant item);
     }
 
+    public void atualizaRecyclerView() {
+        recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurantes, mListener));
+    }
+
     public class FetchRestaurantTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -136,6 +142,7 @@ public class RestaurantsFragment extends Fragment {
                         insereRestaurantes();
                         restaurantesInicializados = true;
                     }
+
                     restaurantsCursor = getActivity().getContentResolver().query(
                             DatabaseContract.RestaurantesEntry.CONTENT_URI,
                             null,
@@ -174,18 +181,18 @@ public class RestaurantsFragment extends Fragment {
         @Override
         protected void onPostExecute(final String result) {
             if (result.equals("restaurantsCursor")) {
-                restaurants = populaLista(restaurantsCursor);
-                recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurants, mListener));
+                restaurantes = populaLista(restaurantsCursor);
             } else {
                 if (result.equals("searchesCursor")) {
-                    restaurants = populaLista(searchesCursor);
-                    recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurants, mListener));
+                    restaurantes = populaLista(searchesCursor);
                 }
             }
+            Utilitarios.ordenaRestaurantes(restaurantes, MainActivity.mLastLocation);
+            recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurantes, mListener));
         }
 
-        public ArrayList<Restaurant> populaLista(Cursor cursor) {
-            restaurants = new ArrayList<>();
+        public List<Restaurant> populaLista(Cursor cursor) {
+            restaurantes = new ArrayList<>();
             DatabaseUtils.dumpCursor(cursor);
             /* Cria restaurantes */
             while(cursor.moveToNext()) {
@@ -200,9 +207,9 @@ public class RestaurantsFragment extends Fragment {
                         cursor.getString(7),
                         !cursor.getString(8).equals("0")
                 );
-                restaurants.add(restaurant);
+                restaurantes.add(restaurant);
             }
-            return restaurants;
+            return restaurantes;
         }
 
     }
@@ -242,23 +249,32 @@ public class RestaurantsFragment extends Fragment {
                     null
             );
 
-            if (restaurantesCursor != null) {
-                restaurantesCursor.moveToFirst();
-                do {
-                    for (ContentValues cv : restaurantes) {
-                        if (cv.get("nome").equals(restaurantesCursor.getString(0))) {
+            List<String> nomesDosRestaurantesAdvindosDoCursor = new ArrayList<>();
 
-                        }
+            if (restaurantesCursor != null) {
+                while(restaurantesCursor.moveToNext()) {
+                    nomesDosRestaurantesAdvindosDoCursor.add(restaurantesCursor.getString(0));
+                }
+                for (ContentValues cv : restaurantes) {
+                    if (!nomesDosRestaurantesAdvindosDoCursor.contains(cv.getAsString("nome"))) {
+                        getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, cv);
                     }
                 }
             }
+        } catch (UnsupportedOperationException e) {
+            e.printStackTrace();
+            return false;
         }
-
-
-
-        getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest1);
-        getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, rest2);
 
         return true;
     }
+
+    public List<Restaurant> getRestaurantes() {
+        return restaurantes;
+    }
+
+    public void setRestaurantes(List<Restaurant> restaurantes) {
+        this.restaurantes = restaurantes;
+    }
+
 }

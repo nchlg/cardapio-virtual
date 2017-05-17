@@ -72,12 +72,14 @@ public class ProductFragment extends Fragment {
     private ProgressDialog progressDialog;
 
     // Ontology
+    private static OntModel ontModel;
     private File lanchesFile;
     private File fileDir;
     private String fileName;
     private List<Individual> individuos;
 
     // Controles (flags)
+    static boolean ontologiaLida = false;
     static boolean bancoInicializado = false;
     static boolean ontologiaInicializada = false;
 
@@ -100,6 +102,7 @@ public class ProductFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("1", "OnCreate");
         super.onCreate(savedInstanceState);
         fileDir = getActivity().getApplicationContext().getFilesDir();
         individuos = null;
@@ -140,6 +143,7 @@ public class ProductFragment extends Fragment {
             }
             progressDialog = ProgressDialog.show(getActivity(), getResources().getText(R.string.progress_dialog_product_title),
                     getResources().getText(R.string.progress_dialog_product_message), true, false);
+            Log.d("2", "Chamando FetchOntologyTask");
             new FetchOntologyTask().execute((Void) null);
             //recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
@@ -229,7 +233,7 @@ public class ProductFragment extends Fragment {
     public List<Product> ordenaPorAcesso() {
         List<String> nomesProdutosMaes = new ArrayList<>();
         List<String> nomesProdutosFilhas = new ArrayList<>();
-        for (Product p : produtos) {
+        for (Product p : produtosAExibir) {
             if (!p.getOntClass().listSubClasses().toList().isEmpty()) {
                 nomesProdutosMaes.add(p.getNome());
             }
@@ -241,7 +245,7 @@ public class ProductFragment extends Fragment {
         new FetchOrderTask().execute(nomesProdutosMaes.toArray(new String[0]),
                                      nomesProdutosFilhas.toArray(new String[0]));
         // Compara produtos
-        Collections.sort(produtos, new Comparator<Product>() {
+        Collections.sort(produtosAExibir, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
                 // Se p1 tem filhas e p2 NÃO tem filhas:
@@ -330,7 +334,6 @@ public class ProductFragment extends Fragment {
 
 
     private class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
-
         OntProperty temIngrediente;
         OntProperty preco;
         Map<OntClass, Integer> relacaoClasseIndividuo = new HashMap<>();
@@ -347,18 +350,24 @@ public class ProductFragment extends Fragment {
         protected Boolean doInBackground(Void... params) {
             try {
                 // Caminhos dos arquivos
+                Log.d("3", "Pegando informações da ontologia");
                 InputStream assetFile = getActivity().getApplicationContext().getAssets().open("lanches2.owl");
                 String outputFilePath = fileDir + "/" + fileName;
                 String protocol = "file:/";
                 String SOURCE = "http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3";
                 String NS = SOURCE + "#";
-                OntModel ontModel = ModelFactory.createOntologyModel(OWL_MEM);
 
                 // Carrega o arquivo dos assets para a pasta de arquivos do aplicativo
+                Log.d("4", "Carrega arquivo inicial");
                 carregaArquivoInicial(assetFile, outputFilePath);
 
                 // Lê a ontologia
-                ontModel.read(new FileInputStream(outputFilePath), "OWL");
+                Log.d("5", "Lê ontologia");
+                if (!ontologiaLida) {
+                    ontModel = ModelFactory.createOntologyModel(OWL_MEM);
+                    ontModel.read(new FileInputStream(outputFilePath), "OWL");
+                    ontologiaLida = true;
+                }
 
                 // Cria propriedades
                 temIngrediente = ontModel.createOntProperty(NS + "temIngrediente");
@@ -372,6 +381,12 @@ public class ProductFragment extends Fragment {
                 temGorduras = ontModel.createOntProperty(NS + "temGorduras");
                 temSal = ontModel.createOntProperty(NS + "temSal");
 
+                // Pega indivíduos
+                Log.d("6", "Carrega individuos");
+                individuos = ontModel.listIndividuals().toList();
+                relacaoClasseIndividuo = pegaClassesAPartirDeIndividuos(individuos);
+                Log.d("7", "Carregou individuos");
+
                 // Inicializa Banco de Dados
                 if (!bancoInicializado) {
                     inicializaBancoDeProdutos(ontModel.getOntClass(NS + "Produto"));
@@ -382,10 +397,6 @@ public class ProductFragment extends Fragment {
                     inicializaOntologia(ontModel.getOntClass(NS + "Produto"));
                     ontologiaInicializada = true;
                 }
-
-                // Pega indivíduos
-                individuos = ontModel.listIndividuals().toList();
-                relacaoClasseIndividuo = pegaClassesAPartirDeIndividuos(individuos);
 
                 // Transforma as OntClasses em Products e popula a lista com produtos
                 //HashMap<OntClass, Integer> classesContaveis = pegaClassesAPartirDeIndividuos(ontModel.listIndividuals().toSet());
@@ -510,7 +521,7 @@ public class ProductFragment extends Fragment {
         private void inicializaOntologia(OntClass raiz) {
             List<OntClass> nodos = new ArrayList<>();
             Deque<OntClass> filinha = new ArrayDeque<>();
-            filinha.add(raiz);
+            filinha.addAll(pegaFilhasDaRaiz(raiz));
             while(!filinha.isEmpty()) {
                 OntClass nodoAtual = filinha.pop();
                 if (!nodoAtual.listSubClasses().toList().isEmpty()) {
@@ -540,8 +551,6 @@ public class ProductFragment extends Fragment {
         private List<OntClass> pegaFilhasDaRaiz(OntClass raiz) {
             return raiz.listSubClasses().toList();
         }
-
-        // protected boolean saveFile(File file)
 
         @Override
         protected void onPostExecute(final Boolean result) {
@@ -661,6 +670,9 @@ public class ProductFragment extends Fragment {
                 } else {
                     taTodoMundoCerto &= verificaConjuntoRestricao(kv.getKey(), kv.getValue());
                 }
+                if(!taTodoMundoCerto){
+                    return true;
+                }
             }
             return !taTodoMundoCerto;
         }
@@ -711,6 +723,11 @@ public class ProductFragment extends Fragment {
             }
         }
 
+        private void intercalaSeTemQuantidadeParaBaixo(boolean temFilhasComQuantidadeOrigem,
+                                                       boolean temFilhasComQuantidadeSecundaria) {
+
+        }
+
         private void olhaParaCima(OntClass ontClass, Map<Restricao, Boolean> mapaRestricoes) {
             while (ontClass != null && temValorIndesejado(mapaRestricoes)) {
                 ontClass = pegaSuperClasse(ontClass);
@@ -721,7 +738,7 @@ public class ProductFragment extends Fragment {
             }
         }
 
-        private void olhaParaBaixo(OntClass ontClass, Map<Restricao, Boolean> mapaRestricoes) {
+        private void olhaParaBaixo(OntClass ontClass, Map<Restricao, Boolean> mapaRestricoes, boolean temFilhasComQuantidade) {
             Deque<OntClass> filinha = new ArrayDeque<>();
             filinha.add(ontClass);
             OntClass classeAtual;
@@ -730,7 +747,7 @@ public class ProductFragment extends Fragment {
                 Map<Restricao, Boolean> mapaSecundario = verificaRestricoesDentreSuperClasses(classeAtual);
                 if (isNotContavel(mapaSecundario.get(Restricao.CONTAVEL)) ||
                         isNotContavel(mapaRestricoes.get(Restricao.CONTAVEL)) ||
-                        temFilhasComQuantidade(classeAtual)) {
+                        temFilhasComQuantidade) {
                     intercalaRestricoesParaBaixo(mapaRestricoes, mapaSecundario);
                     if (!classeAtual.listSubClasses().toList().isEmpty()) {
                         filinha.addAll(classeAtual.listSubClasses().toList());
@@ -742,17 +759,19 @@ public class ProductFragment extends Fragment {
         private void populaListaDeProdutos(List<OntClass> ontClasses) {
             int counter = 1;
             for (OntClass oc : ontClasses) {
+                // Verifica se tem filhas com quantidade
+                boolean temFilhasComQuantidade = temFilhasComQuantidade(oc);
                 // Verifica se tem ou não restrições de filtragem e seus valores
                 Map<Restricao, Boolean> mapaRestricoes = verificaRestricoesDentreSuperClasses(oc);
                 // Verifica restricoes nas classes superiores
                 olhaParaCima(oc, mapaRestricoes);
                 // Verifica restricoes nas classes inferiores
-                olhaParaBaixo(oc, mapaRestricoes);
+                olhaParaBaixo(oc, mapaRestricoes, temFilhasComQuantidade);
                 // Verifica se é ou não contável
                 Boolean contavel = mapaRestricoes.get(Restricao.CONTAVEL);
 
                 Log.d("mapa", counter++ + ". " + oc.getLabel("pt") + "/" + mapaRestricoes.toString());
-                if (isNotContavel(contavel) || temFilhasComQuantidade(oc)) {
+                if (isNotContavel(contavel) || temFilhasComQuantidade) {
                     // Insere mapa de restrições no mapão
                     restricoesOntologia.put(oc.getLabel("pt"), mapaRestricoes);
 
@@ -794,7 +813,6 @@ public class ProductFragment extends Fragment {
             }
             return false;
         }
-
 
         private Product transformaOntClassEmProdutoContavel(OntClass ontClass,
                                                             int quantidade,

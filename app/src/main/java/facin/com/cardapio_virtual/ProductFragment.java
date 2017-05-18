@@ -44,8 +44,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
+import facin.com.cardapio_virtual.auxiliares.Nodo;
 import facin.com.cardapio_virtual.auxiliares.Restricao;
 import facin.com.cardapio_virtual.auxiliares.VerificadorDeRestricao;
 import facin.com.cardapio_virtual.data.DatabaseContract;
@@ -236,14 +238,13 @@ public class ProductFragment extends Fragment {
         for (Product p : produtosAExibir) {
             if (!p.getOntClass().listSubClasses().toList().isEmpty()) {
                 nomesProdutosMaes.add(p.getNome());
-            }
-            else {
+            } else {
                 nomesProdutosFilhas.add(p.getNome());
             }
         }
         // Adiciona acessos à classe Produto
         new FetchOrderTask().execute(nomesProdutosMaes.toArray(new String[0]),
-                                     nomesProdutosFilhas.toArray(new String[0]));
+                nomesProdutosFilhas.toArray(new String[0]));
         // Compara produtos
         Collections.sort(produtosAExibir, new Comparator<Product>() {
             @Override
@@ -278,12 +279,12 @@ public class ProductFragment extends Fragment {
                 }
             }
         });
-        return produtos;
+        return produtosAExibir;
     }
 
-    private class FetchOrderTask extends AsyncTask<String[], Void, Void> {
+    private class FetchOrderTask extends AsyncTask<String[], Void, Boolean> {
         @Override
-        protected  Void doInBackground(String[]... params) {
+        protected Boolean doInBackground(String[]... params) {
             try {
                 for (String classeMae : params[0]) {
                     Cursor maesCursor = getActivity().getContentResolver().query(
@@ -325,11 +326,18 @@ public class ProductFragment extends Fragment {
                         filhasCursor.close();
                     }
                 }
+                return true;
             } catch (UnsupportedOperationException e) {
                 e.printStackTrace();
+                return false;
             }
-            return null;
         }
+
+        @Override
+        protected void onPostExecute(final Boolean result) {
+
+        }
+
     }
 
 
@@ -394,7 +402,8 @@ public class ProductFragment extends Fragment {
                 }
                 // Inicializa Ontologia
                 if (!ontologiaInicializada) {
-                    inicializaOntologia(ontModel.getOntClass(NS + "Produto"));
+                    // inicializaOntologia(ontModel.getOntClass(NS + "Produto"));
+                    inicializaOntologiaUmaNovaEsperanca(ontModel.getOntClass(NS + "Produto"));
                     ontologiaInicializada = true;
                 }
 
@@ -404,7 +413,7 @@ public class ProductFragment extends Fragment {
                 //ArrayList<OntClass> classesNaoContaveis = pegaClassesPorAtributo(ontModel.listClasses().toSet(), contavel, false);
                 // populaListaProdutos(classesNaoContaveis);
 
-                 // populaListaDeProdutos(pegaFilhasDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
+                // populaListaDeProdutos(pegaFilhasDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
                 populaListaDeProdutosAExibir(pegaFilhasDaRaiz(ontModel.getOntClass(((MenuActivity) getActivity()).getIntentOntClassURI())));
                 return true;
             } catch (Exception e) {
@@ -425,8 +434,7 @@ public class ProductFragment extends Fragment {
                 if (!nodoAtual.listSubClasses().toList().isEmpty()) {
                     nodosMaes.add(nodoAtual);
                     filinha.addAll(nodoAtual.listSubClasses().toList());
-                }
-                else {
+                } else {
                     nodosFolhas.add(nodoAtual);
                 }
             }
@@ -493,8 +501,7 @@ public class ProductFragment extends Fragment {
                                     cursorJr.close();
                                     getActivity().getContentResolver().insert(DatabaseContract.MaesFilhasEntry.CONTENT_URI, mae);
                                 }
-                            }
-                            else {
+                            } else {
                                 filinha.addAll(classeAtual.listSubClasses().toList());
                             }
                         }
@@ -518,14 +525,79 @@ public class ProductFragment extends Fragment {
             }
         }
 
+        private void inicializaOntologiaUmaNovaEsperanca(OntClass raiz) {
+            List<Nodo> nodos = new ArrayList<>();
+            // Nodo raiz é a classe Produto, que não entra no cardápio. Por isso, a raiz da árvore será nula.
+            Nodo nodoRaiz = new Nodo(raiz);
+            Deque<Nodo> filinha = new ArrayDeque<>();
+            Stack<Nodo> pilhinha = new Stack<>();
+            filinha.add(nodoRaiz);
+            // Criando a árvore de cima pra baixo
+            while (!filinha.isEmpty()) {
+                Nodo nodoAtual = filinha.pop();
+                pilhinha.add(nodoAtual);
+                List<OntClass> filhosOntClass = nodoAtual.getOntClass().listSubClasses().toList();
+                for (OntClass oc : filhosOntClass) {
+                    Nodo filho = new Nodo(oc, nodoAtual.getMapaRestricoes(), individuos);
+                    nodoAtual.getFilhos().add(filho);
+                    filinha.add(filho);
+                }
+                if (nodoAtual != nodoRaiz)
+                    nodos.add(nodoAtual);
+            }
+            // Complementação da árvore de baixo pra cima
+            while (!pilhinha.isEmpty()) {
+                Nodo nodoAtual = pilhinha.pop();
+                for (Nodo filho : nodoAtual.getFilhos()) {
+                    nodoAtual.intercalaRestricoesParaBaixo(filho.getMapaRestricoes(), filho.isTemQuantidade());
+                }
+            }
+            populaListaDeProdutosAOntologiaContraAtaca(nodos);
+        }
+
+        private void populaListaDeProdutosAOntologiaContraAtaca(List<Nodo> nodos) {
+            int counter = 1;
+            for (Nodo nodo : nodos) {
+                Boolean contavel = nodo.getMapaRestricoes().get(Restricao.CONTAVEL);
+                if (isNotContavel(contavel) || nodo.isTemQuantidade()) {
+                    // Se não é nodo folha e é contável, verifica se tem indivídios e cria um Produto intermediário
+                    if (!nodo.getFilhos().isEmpty() && contavel) {
+                        if (individuos != null) {
+                            produtos.add(transformaOntClassEmProdutoIntermediario(nodo.getOntClass(), nodo.getMapaRestricoes()));
+                        }
+                    }
+                    // Se é nodo folha e contável, verifica indivíduos e cria um produto contável
+                    else if (nodo.getFilhos().isEmpty() && contavel) {
+                        if (individuos != null) {
+                            if (nodo.isTemQuantidade())
+                                produtos.add(transformaOntClassEmProdutoContavel(nodo.getOntClass(),
+                                        nodo.getQuantidade(),
+                                        nodo.getMapaRestricoes()));
+                        }
+                    }
+                    // Se não é folha e não é contável, cria intermediário
+                    else if (!nodo.getFilhos().isEmpty() && !contavel) {
+                        produtos.add(transformaOntClassEmProdutoIntermediario(nodo.getOntClass(), nodo.getMapaRestricoes()));
+                    }
+                    // Se é folha e não é contável...
+                    else if (nodo.getFilhos().isEmpty() && !contavel) {
+                        produtos.add(transformaOntClassEmProdutoNaoContavel(nodo.getOntClass(), nodo.getMapaRestricoes()));
+                    }
+                }
+            }
+            if (individuos != null) {
+                Log.d("Individuos", relacaoClasseIndividuo.toString());
+            }
+        }
+
         private void inicializaOntologia(OntClass raiz) {
             List<OntClass> nodos = new ArrayList<>();
             Deque<OntClass> filinha = new ArrayDeque<>();
             filinha.addAll(pegaFilhasDaRaiz(raiz));
-            while(!filinha.isEmpty()) {
+            while (!filinha.isEmpty()) {
                 OntClass nodoAtual = filinha.pop();
                 if (!nodoAtual.listSubClasses().toList().isEmpty()) {
-                    for (OntClass filho : nodoAtual.listSubClasses().toList()){
+                    for (OntClass filho : nodoAtual.listSubClasses().toList()) {
                         filinha.addLast(filho);
                     }
                 }
@@ -670,7 +742,7 @@ public class ProductFragment extends Fragment {
                 } else {
                     taTodoMundoCerto &= verificaConjuntoRestricao(kv.getKey(), kv.getValue());
                 }
-                if(!taTodoMundoCerto){
+                if (!taTodoMundoCerto) {
                     return true;
                 }
             }

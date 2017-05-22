@@ -50,6 +50,7 @@
     <string name="action_order">Ordenar</string>
     <string name="order_alphabetic">Ordem Alfabética</string>
     <string name="order_preference">Mais acessados</string>
+    <string name="category_prefix">Categoria</string>
 
 
     <!-- Product Info -->

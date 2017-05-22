@@ -16,6 +16,7 @@ import java.util.List;
 
 import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
 import facin.com.cardapio_virtual.auxiliares.Filtros;
+import facin.com.cardapio_virtual.auxiliares.Restricao;
 
 public class MenuActivity extends AppCompatActivity
         implements ProductFragment.OnListFragmentInteractionListener {
@@ -90,7 +91,7 @@ public class MenuActivity extends AppCompatActivity
             intent.putExtra(EXTRA_PRODUCT_NOME, product.getNome());
             intent.putExtra(EXTRA_PRODUCT_INGREDIENTES, product.getIngredientesAsString());
             intent.putExtra(EXTRA_PRODUCT_PRECO, product.getPrecoAsString());
-            if (product.isContavel())
+            if (product.getMapaRestricoes().get(Restricao.CONTAVEL))
                 intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, Integer.toString(product.getQuantidade()));
             else
                 intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, (String) null);

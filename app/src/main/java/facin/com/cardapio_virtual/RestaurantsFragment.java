@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
 import facin.com.cardapio_virtual.auxiliares.Utilitarios;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
@@ -82,6 +83,7 @@ public class RestaurantsFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
+            recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {

@@ -49,6 +49,7 @@ import java.util.Stack;
 import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
 import facin.com.cardapio_virtual.auxiliares.Nodo;
 import facin.com.cardapio_virtual.auxiliares.Restricao;
+import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
 import facin.com.cardapio_virtual.auxiliares.VerificadorDeRestricao;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
@@ -138,6 +139,7 @@ public class ProductFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
+            recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {

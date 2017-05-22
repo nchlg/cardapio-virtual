@@ -56,6 +56,7 @@
     <string name="action_order">Order</string>
     <string name="order_alphabetic">Alphabetic</string>
     <string name="order_preference">Most visited</string>
+    <string name="category_prefix">Category</string>
 
     <!-- Product Info -->
     <string name="indisp_ingredients">Ingredients unavailable.</string>

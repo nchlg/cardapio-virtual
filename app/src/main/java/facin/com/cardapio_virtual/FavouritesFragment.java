@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.hp.hpl.jena.iri.impl.Main;
 
+import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
 import facin.com.cardapio_virtual.auxiliares.Utilitarios;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
@@ -77,6 +78,7 @@ public class FavouritesFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
+            recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {

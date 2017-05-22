@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
- <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/text_margin"
     tools:context="facin.com.cardapio_virtual.RestaurantInfoActivity"
      tools:layout_editor_absoluteY="25dp"
      tools:layout_editor_absoluteX="0dp">
@@ -12,68 +13,52 @@
         android:id="@+id/descricao_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:paddingLeft="16dp"
-        android:paddingStart="16dp"
+        android:layout_marginBottom="@dimen/text_margin"
         android:textAppearance="@style/TextAppearance.Medium"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:textIsSelectable="true" />
 
     <TextView
         android:id="@+id/endereco_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="@dimen/text_margin"
         android:paddingRight="16dp"
         android:paddingEnd="16dp"
+        android:textIsSelectable="true"
         android:textAppearance="@style/TextAppearance.Medium"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descricao_text"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:layout_below="@+id/descricao_text" />
 
     <TextView
         android:id="@+id/email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:paddingRight="16dp"
+        android:layout_marginBottom="@dimen/text_margin"
         android:paddingEnd="16dp"
+        android:paddingRight="16dp"
         android:textAppearance="@style/TextAppearance.Medium"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endereco_text"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:textIsSelectable="true"
+        android:layout_below="@+id/endereco_text" />
 
     <TextView
         android:id="@+id/telefone_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginBottom="@dimen/text_margin"
         android:paddingRight="16dp"
         android:paddingEnd="16dp"
+        android:textIsSelectable="true"
         android:textAppearance="@style/TextAppearance.Medium"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_text"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:layout_below="@+id/email_text" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:weightSum="1"
         style="?android:attr/buttonBarStyle"
-        app:layout_constraintTop_toBottomOf="@+id/telefone_text"
         android:layout_marginTop="23dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical">
+        android:layout_marginBottom="23dp"
+        android:orientation="vertical"
+        android:layout_below="@id/telefone_text">
 
         <Button
             android:id="@+id/btn_cardapio"
@@ -82,12 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:background="@color/colorPrimary"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/telefone_text"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintTop_creator="1" />
+            android:textColor="@color/colorAccent" />
         <Button
             android:id="@+id/btn_favoritar"
             android:layout_width="match_parent"
@@ -95,13 +75,7 @@
             android:background="@color/colorPrimary"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="8dp"
-            style="?android:attr/buttonBarButtonStyle"
-            tools:layout_constraintTop_creator="1"
-            tools:layout_constraintLeft_creator="1"
-            app:layout_constraintTop_toBottomOf="@+id/btn_cardapio"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
 

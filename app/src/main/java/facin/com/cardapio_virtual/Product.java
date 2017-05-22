@@ -23,8 +23,6 @@ public class Product {
     private int quantidade;
     private int preferencia;
     private OntClass ontClass;
-    // Propriedades da Ontologia
-    private boolean contavel;
     // Filtros
     private Map<Restricao, Boolean> mapaRestricoes;
     // Ordenação
@@ -65,7 +63,6 @@ public class Product {
         preferencia = 0;
         this.ontClass = ontClass;
         // Propriedades da Ontologia
-        contavel = true;
         // Filtros
         this.mapaRestricoes = mapaRestricoes;
     }
@@ -126,14 +123,6 @@ public class Product {
 
     public void setPreferencia(int preferencia) {
         this.preferencia = preferencia;
-    }
-
-    public boolean isContavel() {
-        return contavel;
-    }
-
-    public void setContavel(boolean contavel) {
-        this.contavel = contavel;
     }
 
     public OntClass getOntClass() {

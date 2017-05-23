@@ -31,8 +31,6 @@
     <string name="btn_favorite_unfavorite">Unfavorite</string>
     <string name="progress_dialog_favoriting">Adding restaurant to your favorites</string>
     <string name="progress_dialog_favoriting_unfavoriting">Removing restaurant from your favorites</string>
-    <string name="toast_favorite">Restuarant added to your list of favorites restaurants</string>
-    <string name="toast_favorite_unfavorite">Restuarant removed from your list of favorites restaurants</string>
     <string name="indisp_description">Description unavailable.</string>
     <string name="indisp_address">Address unavailable</string>
     <string name="indisp_email">E-mail unavailable</string>
@@ -65,5 +63,11 @@
     <string name="pre_ingredients">Ingredients</string>
     <string name="pre_price">Price</string>
     <string name="pre_quantity">Quantity</string>
+    <string name="post_quantity">Units</string>
+
+    <!-- Toasts -->
+    <string name="toast_favorite">Restuarant added to your list of favorites restaurants.</string>
+    <string name="toast_favorite_unfavorite">Restuarant removed from your list of favorites restaurants.</string>
+    <string name="toast_menu_unavailable">This menu isn\'t avaiable.</string>
 
 </resources>

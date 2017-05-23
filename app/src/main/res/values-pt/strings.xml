@@ -25,8 +25,6 @@
     <string name="btn_favorite_unfavorite">Desfavoritar</string>
     <string name="progress_dialog_favoriting">Adicionando restaurante a sua lista de favoritos</string>
     <string name="progress_dialog_favoriting_unfavoriting">Removendo restaurante da sua lista de favoritos</string>
-    <string name="toast_favorite">Restuarante adicionado aos favoritos</string>
-    <string name="toast_favorite_unfavorite">Restuarante removido de seus favoritos</string>
     <string name="indisp_description">Descrição indisponível.</string>
     <string name="indisp_address">Endereço indisponivel</string>
     <string name="indisp_email">E-mail indisponível</string>
@@ -52,7 +50,6 @@
     <string name="order_preference">Mais acessados</string>
     <string name="category_prefix">Categoria</string>
 
-
     <!-- Product Info -->
     <string name="indisp_ingredients">Ingredientes indisponíveis.</string>
     <string name="indisp_price">Preço indisponível.</string>
@@ -60,4 +57,10 @@
     <string name="pre_ingredients">Ingredientes</string>
     <string name="pre_price">Preço</string>
     <string name="pre_quantity">Quantidade</string>
+    <string name="post_quantity">Unidades</string>
+
+    <!-- Toasts -->
+    <string name="toast_favorite">Restuarante adicionado aos favoritos</string>
+    <string name="toast_favorite_unfavorite">Restuarante removido de seus favoritos</string>
+    <string name="toast_menu_unavailable">Este cardápio não está disponível.</string>
 </resources>

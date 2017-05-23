@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.text.Normalizer;
+
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 public class RestaurantInfoActivity extends AppCompatActivity {
@@ -38,6 +41,9 @@ public class RestaurantInfoActivity extends AppCompatActivity {
     private String auxEmailText;
     private String auxTelefoneText;
 
+    // Intent
+    protected final static String EXTRA_NOME_RESTAURANTE_ASSET = "facin.com.cardapio_virtual.EXTRA_NOME_RESTAURANTE_ASSET";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,12 +67,33 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         mBtnMenu.setText(getResources().getString(R.string.btn_menu));
         mBtnMenu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(RestaurantInfoActivity.this, MenuActivity.class);
-                intent.putExtra(MainActivity.EXTRA_RESTAURANT_DESCRICAO, intentDescricao);
-                intent.putExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO, intentEndereco);
-                intent.putExtra(MainActivity.EXTRA_RESTAURANT_EMAIL, intentEmail);
-                intent.putExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE, intentTelefone);
-                startActivityForResult(intent, 13);
+                try {
+                    Intent intent = new Intent(RestaurantInfoActivity.this, MenuActivity.class);
+
+                    boolean temCardapio = false;
+                    String restaurantNome = Normalizer
+                            .normalize(intentNome.toLowerCase().replace(" ", ""), Normalizer.Form.NFD)
+                            .replaceAll("[^\\p{ASCII}]", "");
+                    for (String asset : getAssets().list("")) {
+                        if (asset.contains(restaurantNome)) {
+                            temCardapio = true;
+                            intent.putExtra(EXTRA_NOME_RESTAURANTE_ASSET, restaurantNome);
+                        }
+                    }
+                    if (!temCardapio) {
+                        Toast.makeText(getApplicationContext(), R.string.toast_menu_unavailable, Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        intent.putExtra(MainActivity.EXTRA_RESTAURANT_NOME, intentNome);
+                        intent.putExtra(MainActivity.EXTRA_RESTAURANT_DESCRICAO, intentDescricao);
+                        intent.putExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO, intentEndereco);
+                        intent.putExtra(MainActivity.EXTRA_RESTAURANT_EMAIL, intentEmail);
+                        intent.putExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE, intentTelefone);
+                        startActivityForResult(intent, 13);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         mBtnFavoritar = (Button) findViewById(R.id.btn_favoritar);
@@ -100,7 +127,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         } else {
             mBtnFavoritar.setText(R.string.btn_favorite);
             mBtnFavoritar.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
-            mBtnFavoritar.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+            mBtnFavoritar.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent2));
         }
     }
 

@@ -43,9 +43,9 @@ public class MyProductRecyclerViewAdapter extends RecyclerView.Adapter<MyProduct
             holder.mContentView.setText(String.valueOf(mValues.get(position).getPreco()));
             if (holder.mItem.getMapaRestricoes().get(Restricao.CONTAVEL)) {
                 holder.mQtdView.setText(
-                        holder.mView.getContext().getResources().getString(R.string.pre_quantity) +
-                                ": " +
-                                String.valueOf(mValues.get(position).getQuantidade()));
+                        String.valueOf(mValues.get(position).getQuantidade()) +
+                        " " +
+                        holder.mView.getContext().getResources().getString(R.string.post_quantity).toLowerCase());
             } else {
                 holder.mQtdView.setVisibility(View.GONE);
             }

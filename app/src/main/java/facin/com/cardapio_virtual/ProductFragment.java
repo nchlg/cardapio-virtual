@@ -12,6 +12,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Stack;
 
 import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
@@ -78,7 +78,7 @@ public class ProductFragment extends Fragment {
     private static OntModel ontModel;
     private File lanchesFile;
     private File fileDir;
-    private String fileName;
+    private static String fileName;
     private List<Individual> individuos;
 
     // Controles (flags)
@@ -105,12 +105,11 @@ public class ProductFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d("1", "OnCreate");
         super.onCreate(savedInstanceState);
         fileDir = getActivity().getApplicationContext().getFilesDir();
         individuos = null;
         filtros = new ArrayList<>();
-        criaArquivoMetodo2();
+        // criaArquivoMetodo2();
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -118,15 +117,29 @@ public class ProductFragment extends Fragment {
 
     protected void criaArquivoMetodo2() {
         try {
-            fileName = "lanches2.owl";
-            String content = getActivity().getApplicationContext().getAssets().open("lanches2.owl").toString();
 
+            String content = criaFileName().toString();
             FileOutputStream outputLanches;
             outputLanches = getActivity().openFileOutput(fileName, Context.MODE_PRIVATE);
             outputLanches.write(content.getBytes());
             outputLanches.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    protected InputStream criaFileName() {
+        try {
+            for (String nomeRestaurante : getActivity().getApplicationContext().getAssets().list("")) {
+                if (nomeRestaurante.contains(MenuActivity.nomeRestauranteArquivo)) {
+                    fileName = nomeRestaurante;
+                }
+            }
+            InputStream content = getActivity().getApplicationContext().getAssets().open(fileName);
+            return content;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -361,7 +374,12 @@ public class ProductFragment extends Fragment {
             try {
                 // Caminhos dos arquivos
                 Log.d("3", "Pegando informações da ontologia");
-                InputStream assetFile = getActivity().getApplicationContext().getAssets().open("lanches2.owl");
+                InputStream assetFile;
+                if (fileName == null)
+                    assetFile = criaFileName();
+                else {
+                    assetFile = getActivity().getApplicationContext().getAssets().open(fileName);
+                }
                 String outputFilePath = fileDir + "/" + fileName;
                 String protocol = "file:/";
                 String SOURCE = "http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3";

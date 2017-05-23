@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.io.IOException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +43,7 @@ public class MenuActivity extends AppCompatActivity
     protected static final String PRODUCT_FRAGMENT_TAG = "facin.com.cardapio_virtual.PRODUCT_FRAGMENT_TAG";
 
     private final static int REQUEST_RESTAURANT_INFO = 13;
+    protected static String nomeRestauranteArquivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +86,11 @@ public class MenuActivity extends AppCompatActivity
         } else {
             intentOntClassURI = NS + "Produto";
         }
-
+        if (intent.getStringExtra(RestaurantInfoActivity.EXTRA_NOME_RESTAURANTE_ASSET) != null) {
+            nomeRestauranteArquivo = intent.getStringExtra(RestaurantInfoActivity.EXTRA_NOME_RESTAURANTE_ASSET);
+        } else {
+            nomeRestauranteArquivo = null;
+        }
     }
 
     @Override

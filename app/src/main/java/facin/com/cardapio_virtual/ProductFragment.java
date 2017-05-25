@@ -45,6 +45,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import facin.com.cardapio_virtual.auxiliares.FiltroInterface;
 import facin.com.cardapio_virtual.auxiliares.Nodo;
@@ -130,9 +132,9 @@ public class ProductFragment extends Fragment {
 
     protected InputStream criaFileName() {
         try {
-            for (String nomeRestaurante : getActivity().getApplicationContext().getAssets().list("")) {
-                if (nomeRestaurante.contains(MenuActivity.nomeRestauranteArquivo)) {
-                    fileName = nomeRestaurante;
+            for (String nomeArquivo : getActivity().getApplicationContext().getAssets().list("")) {
+                if (nomeArquivo.contains(MenuActivity.nomeRestauranteArquivo)) {
+                    fileName = nomeArquivo;
                 }
             }
             InputStream content = getActivity().getApplicationContext().getAssets().open(fileName);
@@ -373,7 +375,6 @@ public class ProductFragment extends Fragment {
         protected Boolean doInBackground(Void... params) {
             try {
                 // Caminhos dos arquivos
-                Log.d("3", "Pegando informações da ontologia");
                 InputStream assetFile;
                 if (fileName == null)
                     assetFile = criaFileName();
@@ -382,15 +383,15 @@ public class ProductFragment extends Fragment {
                 }
                 String outputFilePath = fileDir + "/" + fileName;
                 String protocol = "file:/";
-                String SOURCE = "http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3";
+                assetFile.mark(0);
+                String SOURCE = getSource(assetFile);
                 String NS = SOURCE + "#";
 
                 // Carrega o arquivo dos assets para a pasta de arquivos do aplicativo
-                Log.d("4", "Carrega arquivo inicial");
+                assetFile.reset();
                 carregaArquivoInicial(assetFile, outputFilePath);
 
                 // Lê a ontologia
-                Log.d("5", "Lê ontologia");
                 if (!ontologiaLida) {
                     ontModel = ModelFactory.createOntologyModel(OWL_MEM);
                     ontModel.read(new FileInputStream(outputFilePath), "OWL");
@@ -440,6 +441,22 @@ public class ProductFragment extends Fragment {
                 e.printStackTrace();
                 return false;
             }
+        }
+
+        private String getSource(InputStream arquivo) throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(arquivo));
+            String linha = null;
+            // xml:base="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3"
+            while ((linha = br.readLine()) != null) {
+                if (linha.contains("xml:base")) {
+                    Pattern pattern = Pattern.compile("\"(.+)\"");
+                    Matcher matcher = pattern.matcher(linha);
+                    matcher.find();
+                    return matcher.group(1);
+                }
+            }
+
+            throw new IOException("XML:BASE não encontrado em \"" + arquivo.toString() + "\"");
         }
 
         private void inicializaBancoDeProdutos(OntClass raiz) {
@@ -558,7 +575,7 @@ public class ProductFragment extends Fragment {
                 pilhinha.add(nodoAtual);
                 List<OntClass> filhosOntClass = nodoAtual.getOntClass().listSubClasses().toList();
                 for (OntClass oc : filhosOntClass) {
-                    Nodo filho = new Nodo(oc, nodoAtual.getMapaRestricoes(), individuos);
+                    Nodo filho = new Nodo(oc, individuos, nodoAtual);
                     nodoAtual.getFilhos().add(filho);
                     filinha.add(filho);
                 }
@@ -583,25 +600,23 @@ public class ProductFragment extends Fragment {
                     // Se não é nodo folha e é contável, verifica se tem indivídios e cria um Produto intermediário
                     if (!nodo.getFilhos().isEmpty() && contavel) {
                         if (individuos != null) {
-                            produtos.add(transformaOntClassEmProdutoIntermediario(nodo.getOntClass(), nodo.getMapaRestricoes()));
+                            produtos.add(transformaOntClassEmProdutoIntermediario(nodo));
                         }
                     }
                     // Se é nodo folha e contável, verifica indivíduos e cria um produto contável
                     else if (nodo.getFilhos().isEmpty() && contavel) {
                         if (individuos != null) {
                             if (nodo.isTemQuantidade())
-                                produtos.add(transformaOntClassEmProdutoContavel(nodo.getOntClass(),
-                                        nodo.getQuantidade(),
-                                        nodo.getMapaRestricoes()));
+                                produtos.add(transformaOntClassEmProdutoContavel(nodo));
                         }
                     }
                     // Se não é folha e não é contável, cria intermediário
                     else if (!nodo.getFilhos().isEmpty() && !contavel) {
-                        produtos.add(transformaOntClassEmProdutoIntermediario(nodo.getOntClass(), nodo.getMapaRestricoes()));
+                        produtos.add(transformaOntClassEmProdutoIntermediario(nodo));
                     }
                     // Se é folha e não é contável...
                     else if (nodo.getFilhos().isEmpty() && !contavel) {
-                        produtos.add(transformaOntClassEmProdutoNaoContavel(nodo.getOntClass(), nodo.getMapaRestricoes()));
+                        produtos.add(transformaOntClassEmProdutoNaoContavel(nodo));
                     }
                 }
             }
@@ -870,25 +885,25 @@ public class ProductFragment extends Fragment {
                     // Se não é nodo folha e é contável, verifica se tem indivídios e cria um Produto intermediário
                     if (!oc.listSubClasses().toList().isEmpty() && contavel) {
                         if (individuos != null) {
-                            produtos.add(transformaOntClassEmProdutoIntermediario(oc, mapaRestricoes));
+                            // produtos.add(transformaOntClassEmProdutoIntermediario(oc, mapaRestricoes));
                         }
                     }
                     // Se é nodo folha e contável, verifica indivíduos e cria um produto contável
                     else if (oc.listSubClasses().toList().isEmpty() && contavel) {
                         if (individuos != null) {
                             for (Map.Entry<OntClass, Integer> kv : relacaoClasseIndividuo.entrySet()) {
-                                if (kv.getKey().equals(oc))
-                                    produtos.add(transformaOntClassEmProdutoContavel(oc, kv.getValue(), mapaRestricoes));
+                                if (kv.getKey().equals(oc)) {}
+                                    //produtos.add(transformaOntClassEmProdutoContavel(oc, kv.getValue(), mapaRestricoes, null));
                             }
                         }
                     }
                     // Se não é folha e não é contável, cria intermediário
                     else if (!oc.listSubClasses().toList().isEmpty() && !contavel) {
-                        produtos.add(transformaOntClassEmProdutoIntermediario(oc, mapaRestricoes));
+                        // produtos.add(transformaOntClassEmProdutoIntermediario(oc, mapaRestricoes));
                     }
                     // Se é folha e não é contável...
                     else if (oc.listSubClasses().toList().isEmpty() && !contavel) {
-                        produtos.add(transformaOntClassEmProdutoNaoContavel(oc, mapaRestricoes));
+                     //   produtos.add(transformaOntClassEmProdutoNaoContavel(oc, mapaRestricoes, null));
                     }
                 }
             }
@@ -906,36 +921,32 @@ public class ProductFragment extends Fragment {
             return false;
         }
 
-        private Product transformaOntClassEmProdutoContavel(OntClass ontClass,
-                                                            int quantidade,
-                                                            Map<Restricao, Boolean> mapaRestricoes) {
+        private Product transformaOntClassEmProdutoContavel(Nodo nodo) {
             return new Product(
-                    ontClass.getLabel("pt"),
-                    getPreco(ontClass),
-                    populaIngredientes(ontClass),
-                    quantidade,
-                    ontClass,
-                    mapaRestricoes
+                    nodo.getOntClass().getLabel("pt"),
+                    nodo.getPreco(),
+                    nodo.getIngredientes(),
+                    nodo.getQuantidade(),
+                    nodo.getOntClass(),
+                    nodo.getMapaRestricoes()
             );
         }
 
-        private Product transformaOntClassEmProdutoNaoContavel(OntClass ontClass,
-                                                               Map<Restricao, Boolean> mapaRestricoes) {
+        private Product transformaOntClassEmProdutoNaoContavel(Nodo nodo) {
             return new Product(
-                    ontClass.getLabel("pt"),
-                    getPreco(ontClass),
-                    populaIngredientes(ontClass),
-                    ontClass,
-                    mapaRestricoes
+                    nodo.getOntClass().getLabel("pt"),
+                    nodo.getPreco(),
+                    nodo.getIngredientes(),
+                    nodo.getOntClass(),
+                    nodo.getMapaRestricoes()
             );
         }
 
-        private Product transformaOntClassEmProdutoIntermediario(OntClass ontClass,
-                                                                 Map<Restricao, Boolean> mapaRestricoes) {
+        private Product transformaOntClassEmProdutoIntermediario(Nodo nodo) {
             return new Product(
-                    ontClass.getLabel("pt"),
-                    ontClass,
-                    mapaRestricoes
+                    nodo.getOntClass().getLabel("pt"),
+                    nodo.getOntClass(),
+                    nodo.getMapaRestricoes()
             );
         }
 

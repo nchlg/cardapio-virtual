@@ -63,7 +63,8 @@
     <string name="pre_ingredients">Ingredients</string>
     <string name="pre_price">Price</string>
     <string name="pre_quantity">Quantity</string>
-    <string name="post_quantity">Units</string>
+    <string name="post_quantity_many">Units</string>
+    <string name="post_quantity_one">Unit</string>
 
     <!-- Toasts -->
     <string name="toast_favorite">Restuarant added to your list of favorites restaurants.</string>

@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class Product {
 
     private String nome;
     private double preco;
-    private ArrayList<String> ingredientes;
+    private List<String> ingredientes;
     private int quantidade;
     private int preferencia;
     private OntClass ontClass;
@@ -36,7 +37,7 @@ public class Product {
     }
 
     // Sem quantidade
-    public Product(String nome, double preco, ArrayList<String> ingredientes, OntClass ontClass,
+    public Product(String nome, double preco, List<String> ingredientes, OntClass ontClass,
                    Map<Restricao, Boolean> mapaRestricoes) {
         this(nome, preco, ingredientes, 0, ontClass, mapaRestricoes);
 
@@ -54,7 +55,7 @@ public class Product {
     }
 
     // Contrutor completo
-    public Product(String nome, double preco, ArrayList<String> ingredientes, int quantidade, OntClass ontClass,
+    public Product(String nome, double preco, List<String> ingredientes, int quantidade, OntClass ontClass,
                    Map<Restricao, Boolean> mapaRestricoes) {
         this.nome = nome;
         this.preco = preco;
@@ -80,9 +81,12 @@ public class Product {
     // TODO: Verificar String format
     public String getPrecoAsString() {
 
-        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.GERMANY);
-        DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
-        return "R$ " + decimalFormat.format(preco);
+//        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.);
+        NumberFormat numberFormat = new DecimalFormat("R$###,##0.00");
+//        DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
+//        decimalFormat.applyPattern("R$###,##0.00");
+        return numberFormat.format(preco);
+//        return "R$" + String.format("%.2f", preco).replaceAll("\\.", ",");
     }
 
     public String getNome() {
@@ -101,7 +105,7 @@ public class Product {
         this.preco = preco;
     }
 
-    public ArrayList<String> getIngredientes() {
+    public List<String> getIngredientes() {
         return ingredientes;
     }
 

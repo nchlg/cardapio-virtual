@@ -10,6 +10,7 @@ public enum Restricao {
     LACTOSE("Lactose"),
     PRECO("Preço"),
     TEMGORDURAS("Tem gorduras"),
+    TEMINGREDIENTE("Tem ingrediente"),
     TEMSAL("Tem sal"),
     VEGETARIANO("Vegetariano");
 
@@ -19,7 +20,7 @@ public enum Restricao {
         this.descricao = descricao;
     }
 
-    public String getDescricao() {
+    public final String getDescricao() {
         return descricao;
     }
 }

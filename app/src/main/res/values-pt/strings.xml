@@ -57,10 +57,11 @@
     <string name="pre_ingredients">Ingredientes</string>
     <string name="pre_price">Preço</string>
     <string name="pre_quantity">Quantidade</string>
-    <string name="post_quantity">Unidades</string>
+    <string name="post_quantity_many">Unidades</string>
+    <string name="post_quantity_one">Unidade</string>
 
     <!-- Toasts -->
-    <string name="toast_favorite">Restuarante adicionado aos favoritos</string>
-    <string name="toast_favorite_unfavorite">Restuarante removido de seus favoritos</string>
+    <string name="toast_favorite">Restaurante adicionado aos favoritos.</string>
+    <string name="toast_favorite_unfavorite">Restaurante removido de seus favoritos.</string>
     <string name="toast_menu_unavailable">Este cardápio não está disponível.</string>
 </resources>

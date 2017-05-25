@@ -1,10 +1,17 @@
 package facin.com.cardapio_virtual.auxiliares;
 
+import android.support.annotation.Nullable;
+
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntProperty;
+import com.hp.hpl.jena.ontology.Restriction;
+import com.hp.hpl.jena.rdf.model.Literal;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -18,15 +25,22 @@ public class Nodo {
     private List<Nodo> filhos;
     private boolean temQuantidade;
     private int quantidade;
+    private double preco;
+    private List<String> ingredientes;
 
-    public Nodo(OntClass ontClass, Map<Restricao, Boolean> mapaRestricoesMamae, List<Individual> individuos) {
+    public Nodo(OntClass ontClass, List<Individual> individuos,
+                Nodo mamae) {
         this.ontClass = ontClass;
         filhos = new ArrayList<>();
         temQuantidade = false;
         quantidade = 0;
-        inicializaMapaRestricoes();
-        intercalaRestricoesParaCima(mapaRestricoesMamae);
+        preco = Double.NEGATIVE_INFINITY;
+        ingredientes = new ArrayList<>();
+        verificaSuperClasses();
+        intercalaIngredientes(mamae.getIngredientes());
+        intercalaRestricoesParaCima(mamae.getMapaRestricoes());
         calculaQuantidade(individuos);
+        intercalaPreco(mamae.getPreco());
     }
 
     // Construtor da raiz
@@ -34,8 +48,23 @@ public class Nodo {
         this.ontClass = ontClass;
         filhos = new ArrayList<>();
         mapaRestricoes = new HashMap<>();
+        ingredientes = new ArrayList<>();
         for (Restricao r : Restricao.values()) {
             mapaRestricoes.put(r, null);
+        }
+    }
+
+    private void intercalaIngredientes(List<String> ingredientesMamae) {
+        for (String ingredienteMamae : ingredientesMamae) {
+            if (!ingredientes.contains(ingredienteMamae)) {
+                ingredientes.add(ingredienteMamae);
+            }
+        }
+    }
+
+    private void intercalaPreco(double precoMamae) {
+        if(preco == Double.NEGATIVE_INFINITY) {
+            preco = precoMamae;
         }
     }
 
@@ -52,11 +81,89 @@ public class Nodo {
         }
     }
 
-    private void inicializaMapaRestricoes() {
+    // Método tbm conhecido como "inicializa"
+    private void verificaSuperClasses() {
         mapaRestricoes = new HashMap<>();
         for (Restricao r : Restricao.values()) {
-            Boolean valorDaRestricao = VerificadorDeRestricao.verificaRestricao(ontClass, r);
-            mapaRestricoes.put(r, valorDaRestricao);
+            if (r != Restricao.TEMINGREDIENTE) {
+                mapaRestricoes.put(r, null);
+            }
+        }
+        for (Iterator<OntClass> superClasses = ontClass.listSuperClasses(); superClasses.hasNext(); ) {
+            OntClass superClasse = superClasses.next();
+            if (superClasse.isRestriction()) {
+                Restriction restriction = superClasse.asRestriction();
+                String label = restriction.getOnProperty().getLabel("pt");
+                if (label != null) {
+                    //CONTAVEL("Contável"),
+                    if (label.equals(Restricao.CONTAVEL.getDescricao())) {
+                        if (label.equals(Restricao.CONTAVEL.getDescricao())) {
+                            mapaRestricoes.put(Restricao.CONTAVEL,
+                                    restriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean());
+                        }
+                    }
+                    //GLUTEN("Glúten"),
+                    else if (label.equals(Restricao.GLUTEN.getDescricao())) {
+                        if (label.equals(Restricao.GLUTEN.getDescricao())) {
+                            mapaRestricoes.put(Restricao.GLUTEN,
+                                    restriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean());
+                        }
+                    }
+                    //LACTOSE("Lactose"),
+                    else if (label.equals(Restricao.LACTOSE.getDescricao())) {
+                        if (label.equals(Restricao.LACTOSE.getDescricao())) {
+                            mapaRestricoes.put(Restricao.LACTOSE,
+                                    restriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean());
+                        }
+                    }
+                    //PRECO("Preço"),
+                    else if (label.equals(Restricao.PRECO.getDescricao())) {
+                        if (label.equals(Restricao.PRECO.getDescricao())) {
+                            mapaRestricoes.put(Restricao.PRECO, true);
+                            preco = restriction.asHasValueRestriction().getHasValue().as(Literal.class).getDouble();
+                        }
+                    }
+                    //TEMGORDURAS("Tem gorduras"),
+                    else if (label.equals(Restricao.TEMGORDURAS.getDescricao())) {
+                        if (label.equals(Restricao.TEMGORDURAS.getDescricao())) {
+                            mapaRestricoes.put(Restricao.TEMGORDURAS,
+                                    !restriction.asSomeValuesFromRestriction()
+                                            .getSomeValuesFrom()
+                                            .as(OntClass.class)
+                                            .getLabel("pt")
+                                            .equals("Não Gorduroso"));
+                        }
+                    }
+                    //TEMINGREDIENTE("Tem ingrediente")
+                    else if (label.equals(Restricao.TEMINGREDIENTE.getDescricao())) {
+                        if (label.equals("Tem ingrediente")) {
+                            ingredientes.add(restriction
+                                    .asSomeValuesFromRestriction()
+                                    .getSomeValuesFrom()
+                                    .as(OntClass.class)
+                                    .getLabel("pt"));
+                        }
+                    }
+                    //TEMSAL("Tem sal"),
+                    else if (label.equals(Restricao.TEMSAL.getDescricao())) {
+                        if (label.equals(Restricao.TEMSAL.getDescricao())) {
+                            mapaRestricoes.put(Restricao.TEMSAL,
+                                    !restriction.asSomeValuesFromRestriction()
+                                            .getSomeValuesFrom()
+                                            .as(OntClass.class)
+                                            .getLabel("pt")
+                                            .equals("Pouco Salgado"));
+                        }
+                    }
+                    //VEGETARIANO("Vegetariano");
+                    else if (label.equals(Restricao.VEGETARIANO.getDescricao())) {
+                        if (label.equals(Restricao.VEGETARIANO.getDescricao())) {
+                            mapaRestricoes.put(Restricao.VEGETARIANO,
+                                    restriction.asHasValueRestriction().getHasValue().as(Literal.class).getBoolean());
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -144,5 +251,21 @@ public class Nodo {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public List<String> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<String> ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public double getPreco() {
+        return preco;
     }
 }

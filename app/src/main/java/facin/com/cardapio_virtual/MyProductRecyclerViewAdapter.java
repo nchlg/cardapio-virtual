@@ -40,12 +40,19 @@ public class MyProductRecyclerViewAdapter extends RecyclerView.Adapter<MyProduct
             holder.mQtdView.setVisibility(View.GONE);
         } else {
             holder.mIdView.setText(holder.mItem.getNome());
-            holder.mContentView.setText(String.valueOf(mValues.get(position).getPreco()));
+            holder.mContentView.setText(mValues.get(position).getPrecoAsString());
             if (holder.mItem.getMapaRestricoes().get(Restricao.CONTAVEL)) {
-                holder.mQtdView.setText(
-                        String.valueOf(mValues.get(position).getQuantidade()) +
-                        " " +
-                        holder.mView.getContext().getResources().getString(R.string.post_quantity).toLowerCase());
+                if (mValues.get(position).getQuantidade() > 1) {
+                    holder.mQtdView.setText(
+                            String.valueOf(mValues.get(position).getQuantidade()) +
+                                    " " +
+                                    holder.mView.getContext().getResources().getString(R.string.post_quantity_many).toLowerCase());
+                } else {
+                    holder.mQtdView.setText(
+                            String.valueOf(mValues.get(position).getQuantidade()) +
+                                    " " +
+                                    holder.mView.getContext().getResources().getString(R.string.post_quantity_one).toLowerCase());
+                }
             } else {
                 holder.mQtdView.setVisibility(View.GONE);
             }

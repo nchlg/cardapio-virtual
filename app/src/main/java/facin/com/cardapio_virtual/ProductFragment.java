@@ -12,7 +12,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +70,13 @@ public class ProductFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private static List<Product> produtos = new ArrayList<>();
+    private List<Product> produtosDoFragmento;
     private List<Product> produtosAExibir;
-    private List<FiltroInterface> filtros;
+
+    // Filtros e Ordem
+    private static List<FiltroInterface> filtros = new ArrayList<>();
+    private static int ordem = 0;
+
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
 
@@ -110,11 +114,14 @@ public class ProductFragment extends Fragment {
         super.onCreate(savedInstanceState);
         fileDir = getActivity().getApplicationContext().getFilesDir();
         individuos = null;
-        filtros = new ArrayList<>();
         // criaArquivoMetodo2();
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+    }
+
+    public void configuraProdutosAExibir() {
+        produtosAExibir = ordenaProdutos(filtraProdutos(produtosDoFragmento));
     }
 
     protected void criaArquivoMetodo2() {
@@ -164,7 +171,6 @@ public class ProductFragment extends Fragment {
                     getResources().getText(R.string.progress_dialog_product_message), true, false);
             Log.d("2", "Chamando FetchOntologyTask");
             new FetchOntologyTask().execute((Void) null);
-            //recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -192,40 +198,45 @@ public class ProductFragment extends Fragment {
         void onListFragmentInteraction(Product product);
     }
 
-    public List<Product> filtraProdutos() {
+    public List<Product> filtraProdutos(List<Product> produtos) {
         List<Product> produtosFiltrados = new ArrayList<>();
-        produtosFiltrados.addAll(produtosAExibir);
+        produtosFiltrados.addAll(produtos);
+
         for (FiltroInterface filtro : filtros) {
             produtosFiltrados = filtro.filtra(produtosFiltrados);
         }
+
         return produtosFiltrados;
     }
 
     public void atualizaListaDeProdutos() {
-        recyclerView.setAdapter(new MyProductRecyclerViewAdapter(filtraProdutos(), mListener));
-        // recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtosAExibir, mListener));
     }
 
-    public void setFiltros(List<FiltroInterface> filtros) {
-        this.filtros = filtros;
+    public static void setFiltros(List<FiltroInterface> novosFiltros) {
+        filtros = novosFiltros;
     }
 
-    public void ordenaProdutos(int ordem) {
+    public static List<FiltroInterface> getFiltros() {
+        return filtros;
+    }
+
+    public List<Product> ordenaProdutos(List<Product> produtos) {
         switch (ordem) {
             case 0:
-                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(ordenaAlfabeticamente(), mListener));
-                break;
+                return ordenaAlfabeticamente(produtos);
             case 1:
-                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(ordenaPorAcesso(), mListener));
-                break;
+                return ordenaPorAcesso(produtos);
             default:
-                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(ordenaAlfabeticamente(), mListener));
-                break;
+                return ordenaAlfabeticamente(produtos);
         }
     }
 
-    public List<Product> ordenaAlfabeticamente() {
-        Collections.sort(produtosAExibir, new Comparator<Product>() {
+    public List<Product> ordenaAlfabeticamente(List<Product> produtos) {
+        List<Product> listaOrdenada = new ArrayList<>();
+        listaOrdenada.addAll(produtos);
+
+        Collections.sort(listaOrdenada, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
                 // Se p1 tem filhas e p2 NÃO tem filhas:
@@ -246,24 +257,29 @@ public class ProductFragment extends Fragment {
                 }
             }
         });
-        return produtosAExibir;
+
+        return listaOrdenada;
     }
 
-    public List<Product> ordenaPorAcesso() {
+    public List<Product> ordenaPorAcesso(List<Product> produtos) {
         List<String> nomesProdutosMaes = new ArrayList<>();
         List<String> nomesProdutosFilhas = new ArrayList<>();
-        for (Product p : produtosAExibir) {
+        List<Product> produtosOrdenados = new ArrayList<>();
+        produtosOrdenados.addAll(produtos);
+
+        for (Product p : produtosOrdenados) {
             if (!p.getOntClass().listSubClasses().toList().isEmpty()) {
                 nomesProdutosMaes.add(p.getNome());
             } else {
                 nomesProdutosFilhas.add(p.getNome());
             }
         }
+
         // Adiciona acessos à classe Produto
         new FetchOrderTask().execute(nomesProdutosMaes.toArray(new String[0]),
                 nomesProdutosFilhas.toArray(new String[0]));
         // Compara produtos
-        Collections.sort(produtosAExibir, new Comparator<Product>() {
+        Collections.sort(produtosOrdenados, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
                 // Se p1 tem filhas e p2 NÃO tem filhas:
@@ -296,7 +312,8 @@ public class ProductFragment extends Fragment {
                 }
             }
         });
-        return produtosAExibir;
+
+        return produtosOrdenados;
     }
 
     private class FetchOrderTask extends AsyncTask<String[], Void, Boolean> {
@@ -314,7 +331,7 @@ public class ProductFragment extends Fragment {
                     if (maesCursor != null) {
                         maesCursor.moveToFirst();
                         do {
-                            for (Product p : produtosAExibir) {
+                            for (Product p : produtosDoFragmento) {
                                 if (p.getNome().equals(maesCursor.getString(0))) {
                                     p.setAcessos(Integer.valueOf(maesCursor.getString(1)));
                                 }
@@ -334,7 +351,7 @@ public class ProductFragment extends Fragment {
                     if (filhasCursor != null) {
                         filhasCursor.moveToFirst();
                         do {
-                            for (Product p : produtosAExibir) {
+                            for (Product p : produtosDoFragmento) {
                                 if (p.getNome().equals(filhasCursor.getString(1))) {
                                     p.setAcessos(Integer.valueOf(filhasCursor.getString(2)));
                                 }
@@ -356,7 +373,6 @@ public class ProductFragment extends Fragment {
         }
 
     }
-
 
     private class FetchOntologyTask extends AsyncTask<Void, Void, Boolean> {
         OntProperty temIngrediente;
@@ -644,11 +660,11 @@ public class ProductFragment extends Fragment {
         }
 
         private void populaListaDeProdutosAExibir(List<OntClass> nodosFilhos) {
-            produtosAExibir = new ArrayList<>();
+            produtosDoFragmento = new ArrayList<>();
             for (OntClass oc : nodosFilhos) {
                 for (Product p : produtos) {
                     if (p.getNome().equals(oc.getLabel("pt"))) {
-                        produtosAExibir.add(p);
+                        produtosDoFragmento.add(p);
                         break;
                     }
                 }
@@ -659,10 +675,11 @@ public class ProductFragment extends Fragment {
             return raiz.listSubClasses().toList();
         }
 
+
         @Override
         protected void onPostExecute(final Boolean result) {
             if (result) {
-                ordenaAlfabeticamente();
+                configuraProdutosAExibir();
                 progressDialog.dismiss();
                 recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtosAExibir, mListener));
             }
@@ -1007,5 +1024,13 @@ public class ProductFragment extends Fragment {
                 constraint) {
             return null;
         }
+    }
+
+    public static int getOrdem() {
+        return ordem;
+    }
+
+    public static void setOrdem(int ordem) {
+        ProductFragment.ordem = ordem;
     }
 }

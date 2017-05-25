@@ -163,15 +163,16 @@ public class MenuActivity extends AppCompatActivity
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_filter: {
+                final ProductFragment productFragment =
+                        (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
                 new MaterialDialog.Builder(MenuActivity.this)
                         .title(R.string.action_filter)
                         .items(R.array.media_filters)
-                        .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                        .itemsCallbackMultiChoice(getFiltros(ProductFragment.getFiltros()), new MaterialDialog.ListCallbackMultiChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                                ProductFragment productFragment =
-                                        (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
-                                productFragment.setFiltros(setFiltros(which));
+                                ProductFragment.setFiltros(setFiltros(which));
+                                productFragment.configuraProdutosAExibir();
                                 productFragment.atualizaListaDeProdutos();
                                 return true;
                             }
@@ -186,15 +187,17 @@ public class MenuActivity extends AppCompatActivity
                 return true;
             }
             case R.id.action_order: {
+                final ProductFragment productFragment =
+                        (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
                 new MaterialDialog.Builder(this)
                         .title(R.string.action_order)
                         .items(R.array.media_orders)
-                        .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallbackSingleChoice() {
+                        .itemsCallbackSingleChoice(ProductFragment.getOrdem(), new MaterialDialog.ListCallbackSingleChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                ProductFragment productFragment =
-                                        (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
-                                productFragment.ordenaProdutos(which);
+                                ProductFragment.setOrdem(which);
+                                productFragment.configuraProdutosAExibir();
+                                productFragment.atualizaListaDeProdutos();
                                 return true;
                             }
                         })
@@ -234,5 +237,29 @@ public class MenuActivity extends AppCompatActivity
             }
         }
         return filtros;
+    }
+
+    private Integer[] getFiltros(List<FiltroInterface> filtros) {
+        List<Integer> filtrosSelecionados = new ArrayList<>();
+
+        for (FiltroInterface filtro : filtros) {
+            if(filtro.getClass() == Filtros.getFiltroGluten().getClass()) {
+                filtrosSelecionados.add(0);
+            }
+            else if(filtro.getClass() == Filtros.getFiltroLactose().getClass()) {
+                filtrosSelecionados.add(1);
+            }
+            else if(filtro.getClass() == Filtros.getFiltroVegetariano().getClass()) {
+                filtrosSelecionados.add(2);
+            }
+            else if(filtro.getClass() == Filtros.getFiltroGordura().getClass()) {
+                filtrosSelecionados.add(3);
+            }
+            else if(filtro.getClass() == Filtros.getFiltroSal().getClass()) {
+                filtrosSelecionados.add(4);
+            }
+        }
+
+        return filtrosSelecionados.toArray(new Integer[0]);
     }
 }

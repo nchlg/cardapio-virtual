@@ -286,12 +286,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLocationChanged(Location location) {
         mLastLocation = location;
-        // FavouritesFragment favouritesFragment = (FavouritesFragment) getSupportFragmentManager().findFragmentByTag(FAVOURITES_FRAGMENT_TAG);
+
         Utilitarios.ordenaRestaurantes(((FavouritesFragment) fragmentos.get(0)).getFavoritos(), mLastLocation);
         ((FavouritesFragment) fragmentos.get(0)).atualizaRecyclerView();
-        // RestaurantsFragment restaurantsFragment = (RestaurantsFragment) getSupportFragmentManager().findFragmentByTag(RESTAURANTS_FRAGMENT_TAG);
+
         Utilitarios.ordenaRestaurantes(((RestaurantsFragment) fragmentos.get(1)).getRestaurantes(), mLastLocation);
         ((RestaurantsFragment) fragmentos.get(1)).atualizaRecyclerView();
+
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }

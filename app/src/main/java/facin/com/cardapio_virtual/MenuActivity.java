@@ -178,6 +178,7 @@ public class MenuActivity extends AppCompatActivity
                             }
                         })
                         .positiveText(R.string.dialog_choose)
+                        .contentColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .positiveColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .negativeText(R.string.dialog_cancel)
                         .negativeColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
@@ -203,6 +204,7 @@ public class MenuActivity extends AppCompatActivity
                         })
                         .positiveText(R.string.dialog_choose).positiveColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .negativeText(R.string.dialog_cancel)
+                        .contentColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .negativeColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .widgetColorRes(R.color.colorPrimary)
                         .buttonRippleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))

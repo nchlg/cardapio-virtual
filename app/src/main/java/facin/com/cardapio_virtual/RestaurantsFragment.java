@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import facin.com.cardapio_virtual.auxiliares.Utilitarios;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -89,9 +91,7 @@ public class RestaurantsFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            // Pode-se checar que a Atividade é instanceof SearchableActivity para garantia........
             new FetchRestaurantTask().execute(mSearchQuery);
-            // recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -138,7 +138,7 @@ public class RestaurantsFragment extends Fragment {
         @Override
         protected String doInBackground(String... params) {
             // Se mSearchQuery for nula, significa que a atividade é a MainActivity. Senão, é a SearchableActivity.
-            if (params[0] == null) {
+            if (params[0].length() <= 0) {
                 try {
                     if (!restaurantesInicializados) {
                         insereRestaurantes();
@@ -256,12 +256,14 @@ public class RestaurantsFragment extends Fragment {
             if (restaurantesCursor != null) {
                 while(restaurantesCursor.moveToNext()) {
                     nomesDosRestaurantesAdvindosDoCursor.add(restaurantesCursor.getString(0));
+                    Log.d("3", nomesDosRestaurantesAdvindosDoCursor.toString());
                 }
                 for (ContentValues cv : restaurantes) {
                     if (!nomesDosRestaurantesAdvindosDoCursor.contains(cv.getAsString("nome"))) {
                         getActivity().getContentResolver().insert(DatabaseContract.RestaurantesEntry.CONTENT_URI, cv);
                     }
                 }
+                restaurantesCursor.close();
             }
         } catch (UnsupportedOperationException e) {
             e.printStackTrace();

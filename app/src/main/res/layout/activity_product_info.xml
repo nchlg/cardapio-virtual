@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/text_margin"
+    android:importantForAccessibility="1"
+    tools:targetApi="jelly_bean"
     tools:context="facin.com.cardapio_virtual.ProductInfoActivity">
 
     <TextView
         android:id="@+id/ingredientes_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/item_margin"
-        android:paddingRight="16dp"
-        android:paddingEnd="16dp"
+        android:layout_marginBottom="@dimen/text_margin"
         android:textAppearance="@style/TextAppearance.Medium"
         android:textIsSelectable="true" />
 
@@ -21,9 +21,7 @@
         android:id="@+id/preco_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/item_margin"
-        android:paddingRight="16dp"
-        android:paddingEnd="16dp"
+        android:layout_marginBottom="@dimen/text_margin"
         android:textAppearance="@style/TextAppearance.Medium"
         android:textIsSelectable="true"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -33,10 +31,7 @@
         android:id="@+id/quantidade_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/item_margin"
-        android:paddingRight="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="@dimen/text_margin"
         android:textIsSelectable="true"
         android:textAppearance="@style/TextAppearance.Medium"
         android:layout_below="@id/preco_text"/>

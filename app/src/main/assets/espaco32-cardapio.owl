@@ -2398,31 +2398,31 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Couve"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Folhas_de_Hortela"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Gengibre"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Limao"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2443,7 +2443,7 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Suco"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temGorduras"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Laranja"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2518,9 +2518,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Completa -->
+    <!-- http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Da_Casa -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Completa">
+    <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada_Da_Casa">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Torrada"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2558,7 +2558,7 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:label xml:lang="pt">Torrada Completa</rdfs:label>
+        <rdfs:label xml:lang="pt">Torrada da Casa</rdfs:label>
     </owl:Class>
     
 

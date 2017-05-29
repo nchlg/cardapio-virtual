@@ -204,6 +204,7 @@ public class MenuActivity extends AppCompatActivity
                         .widgetColorRes(R.color.colorPrimary)
                         .buttonRippleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .show();
+                return true;
             }
             case android.R.id.home: {
                 Intent intent = new Intent();

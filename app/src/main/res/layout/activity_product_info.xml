@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/text_margin"
+    android:orientation="vertical"
     android:importantForAccessibility="1"
     tools:targetApi="jelly_bean"
     tools:context="facin.com.cardapio_virtual.ProductInfoActivity">
 
     <TextView
         android:id="@+id/ingredientes_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/text_margin"
         android:textAppearance="@style/TextAppearance.Medium"
@@ -19,7 +20,7 @@
 
     <TextView
         android:id="@+id/preco_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/text_margin"
         android:textAppearance="@style/TextAppearance.Medium"
@@ -29,11 +30,11 @@
 
     <TextView
         android:id="@+id/quantidade_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/text_margin"
         android:textIsSelectable="true"
         android:textAppearance="@style/TextAppearance.Medium"
         android:layout_below="@id/preco_text"/>
 
-</RelativeLayout>
+</LinearLayout>

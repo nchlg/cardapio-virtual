@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +58,9 @@ public class RestaurantInfoActivity extends AppCompatActivity {
                 getActionBar().setTitle(intentNome);
             if (getSupportActionBar() != null)
                 getSupportActionBar().setTitle(intentNome);
+
+            getWindow().getDecorView()
+                    .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
         }
 
         // TextViews
@@ -68,7 +72,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         mBtnMenu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(RestaurantInfoActivity.this, MenuActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
 
                     boolean temCardapio = false;
                     String restaurantNome = Normalizer
@@ -177,10 +181,12 @@ public class RestaurantInfoActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 13) {
             if (resultCode == RESULT_OK)
                 setTextViewContent(data);
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 

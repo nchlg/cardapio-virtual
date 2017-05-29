@@ -4,11 +4,15 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.TextView;
 
 import facin.com.cardapio_virtual.data.DatabaseContract;
@@ -23,6 +27,7 @@ public class ProductInfoActivity extends AppCompatActivity {
     private String intentOntClassURI;
     private String intentProduct = null;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,9 @@ public class ProductInfoActivity extends AppCompatActivity {
                 getActionBar().setTitle(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
             if (getSupportActionBar() != null)
                 getSupportActionBar().setTitle(intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_NOME));
+
+            getWindow().getDecorView()
+                    .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
         }
         if (intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI) != null ) {
             intentOntClassURI = intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI);
@@ -43,6 +51,7 @@ public class ProductInfoActivity extends AppCompatActivity {
 
         // TextViews
         setTextViewContent(intent);
+
         new FetchLogsTask().execute((Void) null);
     }
 
@@ -112,7 +121,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         intent.putExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
         setResult(RESULT_OK, intent);
-        finish();
+        super.onBackPressed();
     }
 
     @Override

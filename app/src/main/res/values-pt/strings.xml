@@ -6,20 +6,21 @@
     <string name="res_search_label">Resultados da Busca</string>
     <string name="res_search_hint">Buscar restaurantes</string>
     <string name="res_search_descr">Barra de busca de restaurantes</string>
-    <string name="res_search_icon_descr">Ícone de busca de restaurantes</string>
+    <string name="res_search_icon_descr">Buscar restaurantes botão</string>
     <string name="voice_language">pt</string>
 
     <!-- Strings related to the tabs -->
     <string name="tab_fav">Favoritos</string>
     <string name="tab_restaurants">Restaurantes</string>
     <string name="tab_map">Mapa</string>
+    <string name ="tab_description">Aba</string>
     <string name="materialized_ontologies_file">materializedOntologies</string>
 
     <!-- Mapa -->
     <string name="current_position_title">Posição Atual</string>
 
     <!-- Restaurant Info -->
-    <string name="title_activity_restaurant_info">Informações Adicionais</string>
+    <string name="title_activity_restaurant_info">Informações Adicionais do Restaurante</string>
     <string name="btn_menu">Cardápio</string>
     <string name="btn_favorite">Favoritar</string>
     <string name="btn_favorite_unfavorite">Desfavoritar</string>
@@ -51,6 +52,7 @@
     <string name="category_prefix">Categoria</string>
 
     <!-- Product Info -->
+    <string name="title_activity_product_info">Informações Adicionais do Produto</string>
     <string name="indisp_ingredients">Ingredientes indisponíveis.</string>
     <string name="indisp_price">Preço indisponível.</string>
     <string name="indisp_quantity">Quantidade indisponível.</string>

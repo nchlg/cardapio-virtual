@@ -24,7 +24,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:configChanges="orientation|keyboardHidden|screenSize"
         android:theme="@style/AppTheme">
 
         <provider
@@ -35,6 +34,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,6 +48,7 @@
         </activity>
         <activity
             android:name=".SearchableActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/res_search_label"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean">
@@ -64,6 +65,7 @@
         </activity>
         <activity
             android:name=".MenuActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_menu"
             android:parentActivityName=".RestaurantInfoActivity"
             tools:targetApi="jelly_bean" />
@@ -85,13 +87,17 @@
 
         <activity
             android:name=".MapsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".RestaurantInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_restaurant_info"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
         <activity android:name=".ProductInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_product_info"
             android:parentActivityName=".MenuActivity"
             tools:targetApi="jelly_bean" />
     </application>

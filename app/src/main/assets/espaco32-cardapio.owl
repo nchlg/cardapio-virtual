@@ -276,7 +276,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Batata_Frita">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Ingrediente"/>
-        <rdfs:label xml:lang="pt">BatataFrita</rdfs:label>
+        <rdfs:label xml:lang="pt">Batata Frita</rdfs:label>
     </owl:Class>
     
 

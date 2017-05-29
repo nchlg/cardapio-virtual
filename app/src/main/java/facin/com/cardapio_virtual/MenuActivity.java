@@ -4,17 +4,14 @@ import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.io.IOException;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,8 +92,9 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Product product) {
+        Intent intent;
         if (product.getOntClass().listSubClasses().toList().isEmpty()) {
-            Intent intent = new Intent(getApplicationContext(), ProductInfoActivity.class);
+            intent = new Intent(getApplicationContext(), ProductInfoActivity.class);
             intent.putExtra(EXTRA_PRODUCT_NOME, product.getNome());
             intent.putExtra(EXTRA_PRODUCT_INGREDIENTES, product.getIngredientesAsString());
             intent.putExtra(EXTRA_PRODUCT_PRECO, product.getPrecoAsString());
@@ -105,42 +103,39 @@ public class MenuActivity extends AppCompatActivity
             else
                 intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, (String) null);
             intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
-            // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
-            startActivityForResult(intent, -1);
         } else {
-            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent = new Intent(getApplicationContext(), MenuActivity.class);
             intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, product.getOntClass().getURI());
-            startActivityForResult(intent, -1);
         }
+        configuraIntent(intent);
+        startActivityForResult(intent, -1);
     }
 
     @Override
     public void onBackPressed() {
-        setIntent();
+        Intent intent = new Intent(getApplicationContext(), RestaurantInfoActivity.class);
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_NOME, intentNome);
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_DESCRICAO, intentDescricao);
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO, intentEndereco);
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_EMAIL, intentEmail);
+        intent.putExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE, intentTelefone);
+        intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
+        setResult(RESULT_OK, intent);
+        super.onBackPressed();
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem menuItem) {
-//        switch (menuItem.getItemId()) {
-//            case android.R.id.home: {
-//                setIntent();
-//                return true;
-//            }
-//            default:
-//                return super.onOptionsItemSelected(menuItem);
-//        }
-//    }
-
-    protected void setIntent() {
-        Intent intent = new Intent();
+    protected void configuraIntent(Intent intentDaAtividade) {
+        Intent intent;
+        if (intentDaAtividade == null)
+            intent = new Intent();
+        else
+            intent = intentDaAtividade;
         intent.putExtra(MainActivity.EXTRA_RESTAURANT_NOME, intentNome);
         intent.putExtra(MainActivity.EXTRA_RESTAURANT_DESCRICAO, intentDescricao);
         intent.putExtra(MainActivity.EXTRA_RESTAURANT_ENDERECO, intentEndereco);
         intent.putExtra(MainActivity.EXTRA_RESTAURANT_EMAIL, intentEmail);
         intent.putExtra(MainActivity.EXTRA_RESTAURANT_TELEFONE, intentTelefone);
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
-        setResult(RESULT_OK, intent);
-        finish();
+        // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
     }
 
     public String getIntentOntClassURI() {
@@ -209,6 +204,14 @@ public class MenuActivity extends AppCompatActivity
                         .widgetColorRes(R.color.colorPrimary)
                         .buttonRippleColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
                         .show();
+            }
+            case android.R.id.home: {
+                Intent intent = new Intent();
+                configuraIntent(intent);
+                intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
+                setResult(RESULT_OK, intent);
+                super.onBackPressed();
+                return true;
             }
             default:
                 return super.onOptionsItemSelected(item);

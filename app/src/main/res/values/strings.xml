@@ -6,7 +6,7 @@
     <string name="res_search_label">Search Results</string>
     <string name="res_search_hint">Search restaurants</string>
     <string name="res_search_descr">Restaurants search bar</string>
-    <string name="res_search_icon_descr">Restaurants search icon</string>
+    <string name="res_search_icon_descr">Restaurants search button</string>
     <string name="voice_language">pt</string>
     <string name="title_activity_locais">LocaisActivity</string>
     <string name="large_text">Large text</string>
@@ -15,6 +15,7 @@
     <string name="tab_fav">Favourites</string>
     <string name="tab_restaurants">Restaurants</string>
     <string name="tab_map">Map</string>
+    <string name ="tab_description">Tab</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Ontology -->
@@ -25,7 +26,7 @@
     <string name="current_position_title">Current Position</string>
 
     <!-- Restaurant Info -->
-    <string name="title_activity_restaurant_info">Additional Information</string>
+    <string name="title_activity_restaurant_info">Restaurant\'s Additional Information</string>
     <string name="btn_menu">Restaurant Menu</string>
     <string name="btn_favorite">Favorite</string>
     <string name="btn_favorite_unfavorite">Unfavorite</string>
@@ -57,6 +58,7 @@
     <string name="category_prefix">Category</string>
 
     <!-- Product Info -->
+    <string name="title_activity_product_info">Product\'s Additional Information</string>
     <string name="indisp_ingredients">Ingredients unavailable.</string>
     <string name="indisp_price">Price unavailable.</string>
     <string name="indisp_quantity">Quantity unavailable.</string>

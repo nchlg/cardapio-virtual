@@ -8,8 +8,10 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -100,6 +102,7 @@ public class MainActivity extends AppCompatActivity
     FavouritesFragment favouritesFragment;
     List<Fragment> fragmentos = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,8 +123,22 @@ public class MainActivity extends AppCompatActivity
         mSlidingTabLayout.setupWithViewPager(mViewPager);
         // Tab/Aba 0
         mSlidingTabLayout.getTabAt(0).setText(R.string.tab_fav);
+        mSlidingTabLayout.getTabAt(0).setContentDescription(
+                getResources().getString(R.string.tab_fav) +
+                        ": " +
+                getResources().getString(R.string.tab_description) + " " +
+                        (0 + 1) +
+                        " de "
+                        + mSlidingTabLayout.getTabCount());
         // Tab/Aba 1
         mSlidingTabLayout.getTabAt(1).setText(R.string.tab_restaurants);
+        mSlidingTabLayout.getTabAt(1).setContentDescription(
+                getResources().getString(R.string.tab_restaurants) +
+                        ": " +
+                        getResources().getString(R.string.tab_description) + " " +
+                        (1 + 1) +
+                        " de "
+                        + mSlidingTabLayout.getTabCount());
         // Tab/Aba 2
         //mSlidingTabLayout.getTabAt(2).setText(R.string.tab_map);
         // Google API

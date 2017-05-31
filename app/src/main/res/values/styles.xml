@@ -29,7 +29,8 @@
     <style name="NewDialog" parent="Base.Theme.AppCompat.Dialog.Alert">
         <item name="android:colorAccent" tools:targetApi="lollipop">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorControlHighlight" tools:targetApi="lollipop">@color/colorAccent</item>
+        <item name="android:colorControlHighlight" tools:targetApi="lollipop">@color/colorAccent
+        </item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>

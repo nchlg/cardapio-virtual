@@ -39,6 +39,7 @@
     <string name="progress_dialog_product_title">Carregando cardápio</string>
     <string name="progress_dialog_product_message">Aguarde enquanto carregamos o cardápio na tela</string>
     <string name="action_filter">Filtrar</string>
+    <string name="action_help">Ajuda</string>
     <string name="dialog_choose">OK</string>
     <string name="dialog_cancel">Cancelar</string>
     <string name="filter_vegetarian">Vegetariano</string>
@@ -66,4 +67,7 @@
     <string name="toast_favorite">Restaurante adicionado aos favoritos.</string>
     <string name="toast_favorite_unfavorite">Restaurante removido de seus favoritos.</string>
     <string name="toast_menu_unavailable">Este cardápio não está disponível.</string>
+
+    <string name="title_activity_help">Ajuda</string>
+    <string name="title_activity_help_info">Resposta</string>
 </resources>

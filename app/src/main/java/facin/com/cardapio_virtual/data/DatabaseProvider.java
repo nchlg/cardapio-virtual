@@ -22,6 +22,7 @@ public class DatabaseProvider extends ContentProvider {
     static final int RESTAURANTES = 100;
     static final int LOGS = 200;
     static final int MAES_FILHAS = 300;
+    static final int DUVIDAS = 400;
 
     static final int JOIN_MAESFILHAS_LOGS = 250;
 //    static final int USUARIOS = 200;
@@ -41,6 +42,7 @@ public class DatabaseProvider extends ContentProvider {
         matcher.addURI(authority, DatabaseContract.PATH_LOGS, LOGS);
         matcher.addURI(authority, DatabaseContract.PATH_MAES_FILHAS, MAES_FILHAS);
         matcher.addURI(authority, DatabaseContract.PATH_JOIN_MAESFILHAS_LOGS, JOIN_MAESFILHAS_LOGS);
+        matcher.addURI(authority, DatabaseContract.PATH_DUVIDAS, DUVIDAS);
 //        matcher.addURI(authority, DatabaseContract.PATH_USUARIOS, USUARIOS);
 //        matcher.addURI(authority, DatabaseContract.PATH_FAVORITOS, FAVORITOS);
 //        /* Joins */
@@ -66,6 +68,8 @@ public class DatabaseProvider extends ContentProvider {
                 return DatabaseContract.LogsEntry.CONTENT_TYPE;
             case MAES_FILHAS:
                 return DatabaseContract.MaesFilhasEntry.CONTENT_TYPE;
+            case DUVIDAS:
+                return DatabaseContract.DuvidasEntry.CONTENT_TYPE;
 //            case USUARIOS:
 //                return DatabaseContract.UsuariosEntry.CONTENT_TYPE;
 //            case FAVORITOS:
@@ -131,6 +135,18 @@ public class DatabaseProvider extends ContentProvider {
                         selectionArgs
                 );
                 break;
+            case DUVIDAS: {
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        DatabaseContract.DuvidasEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
+                break;
+            }
 //            case USUARIOS: {
 //                retCursor = mOpenHelper.getReadableDatabase().query(
 //                        DatabaseContract.UsuariosEntry.TABLE_NAME,
@@ -208,6 +224,14 @@ public class DatabaseProvider extends ContentProvider {
                     throw new android.database.SQLException("Falha ao inserir linha em " + uri);
                 break;
             }
+            case DUVIDAS: {
+                long _id = db.insert(DatabaseContract.DuvidasEntry.TABLE_NAME, null, values);
+                if (_id > 0)
+                    returnUri = DatabaseContract.DuvidasEntry.buildAvaliacoesUri(_id);
+                else
+                    throw new android.database.SQLException("Falha ao inserir linha em " + uri);
+                break;
+            }
 //            case USUARIOS: {
 //                long _id = db.insert(DatabaseContract.UsuariosEntry.TABLE_NAME, null, values);
 //                if (_id > 0)
@@ -254,6 +278,11 @@ public class DatabaseProvider extends ContentProvider {
                         DatabaseContract.MaesFilhasEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             }
+            case DUVIDAS: {
+                rowsDeleted = db.delete(
+                        DatabaseContract.DuvidasEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            }
 
 //            case USUARIOS: {
 //                rowsDeleted = db.delete(
@@ -294,6 +323,11 @@ public class DatabaseProvider extends ContentProvider {
             }
             case MAES_FILHAS: {
                 rowsUpdated = db.update(DatabaseContract.MaesFilhasEntry.TABLE_NAME, values, selection,
+                        selectionArgs);
+                break;
+            }
+            case DUVIDAS: {
+                rowsUpdated = db.update(DatabaseContract.DuvidasEntry.TABLE_NAME, values, selection,
                         selectionArgs);
                 break;
             }
@@ -375,6 +409,23 @@ public class DatabaseProvider extends ContentProvider {
                 try {
                     for (ContentValues value : values) {
                         long _id = db.insert(DatabaseContract.MaesFilhasEntry.TABLE_NAME, null, value);
+                        if (_id != -1) {
+                            returnCount++;
+                        }
+                    }
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+                getContext().getContentResolver().notifyChange(uri, null);
+                return returnCount;
+            }
+            case DUVIDAS: {
+                db.beginTransaction();
+                returnCount = 0;
+                try {
+                    for (ContentValues value : values) {
+                        long _id = db.insert(DatabaseContract.DuvidasEntry.TABLE_NAME, null, value);
                         if (_id != -1) {
                             returnCount++;
                         }

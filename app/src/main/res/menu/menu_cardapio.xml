@@ -6,10 +6,16 @@
         android:id="@+id/action_filter"
         android:orderInCategory="100"
         android:title="@string/action_filter"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="collapseActionView|ifRoom" />
     <item
         android:id="@+id/action_order"
         android:orderInCategory="100"
         android:title="@string/action_order"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="collapseActionView|ifRoom" />
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="100"
+        android:title="@string/action_help"
+        android:icon="@drawable/ic_help_outline"
+        app:showAsAction="collapseActionView|always" />
 </menu>

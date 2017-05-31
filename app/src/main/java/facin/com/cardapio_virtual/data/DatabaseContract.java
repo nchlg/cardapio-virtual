@@ -20,6 +20,7 @@ public class DatabaseContract {
 
     public static final String PATH_RESTAURANTES = "restaurantes";
     public static final String PATH_LOGS = "logs";
+    public static final String PATH_DUVIDAS = "duvidas";
     public static final String PATH_MAES_FILHAS = "maes_filhas";
     public static final String PATH_JOIN_MAESFILHAS_LOGS = "join_maesfilhas_logs";
     public static final String PATH_USUARIOS = "usuarios";
@@ -99,6 +100,27 @@ public class DatabaseContract {
         /* Colunas */
         public static final String COLUMN_MAE = "nome_mae";
         public static final String COLUMN_FILHA = "id_filha";
+
+        /* Gera o ID da tabela */
+        public static Uri buildAvaliacoesUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+    }
+
+    /* Classe interna que define os conteúdos da tabela Duvidas */
+    public static final class DuvidasEntry implements BaseColumns {
+        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_DUVIDAS).build();
+        public static final String CONTENT_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DUVIDAS;
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DUVIDAS;
+
+        /* Nome da tabela */
+        public static final String TABLE_NAME = "duvidas";
+
+        /* Colunas */
+        public static final String COLUMN_PERGUNTA = "pergunta";
+        public static final String COLUM_RESPOSTA = "resposta";
 
         /* Gera o ID da tabela */
         public static Uri buildAvaliacoesUri(long id) {

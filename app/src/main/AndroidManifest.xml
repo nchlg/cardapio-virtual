@@ -12,12 +12,13 @@
     <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
     <uses-feature android:name="android.hardware.location.gps" />
 
-    <supports-screens android:resizeable="true"
-        android:smallScreens="true"
-        android:normalScreens="true"
+    <supports-screens
+        android:anyDensity="true"
         android:largeScreens="true"
-        android:xlargeScreens="true"
-        android:anyDensity="true" />
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +26,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
             android:name=".data.DatabaseProvider"
             android:authorities="@string/content_authority"
@@ -95,11 +95,25 @@
             android:label="@string/title_activity_restaurant_info"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
-        <activity android:name=".ProductInfoActivity"
+        <activity
+            android:name=".ProductInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_product_info"
             android:parentActivityName=".MenuActivity"
             tools:targetApi="jelly_bean" />
+        <activity
+            android:name=".HelpActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_help"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:targetApi="jelly_bean" />
+        <activity android:name=".QuestionInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_help_info"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".HelpActivity"
+            tools:targetApi="jelly_bean"/>
     </application>
 
 </manifest>

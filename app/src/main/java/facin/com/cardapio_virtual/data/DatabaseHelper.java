@@ -11,7 +11,7 @@ import facin.com.cardapio_virtual.data.DatabaseContract.*;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Alterar a medida que o banco de dados for modificado
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     static final String DATABASE_NAME = "cardapio-virtual.db";
 
@@ -46,6 +46,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 MaesFilhasEntry.COLUMN_FILHA + " INTEGER NOT NULL" +
                 ");";
 
+        final String SQL_CREATE_DUVIDAS_TABLE = "CREATE TABLE " + DuvidasEntry.TABLE_NAME + " (" +
+                DuvidasEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DuvidasEntry.COLUMN_PERGUNTA + " VARCHAR(500) UNIQUE NOT NULL, " +
+                DuvidasEntry.COLUM_RESPOSTA + " VARCHAR(2500) NOT NULL" +
+                ");";
+
 //        final String SQL_CREATE_USUARIOS_TABLE = "CREATE TABLE " + UsuariosEntry.TABLE_NAME + " (" +
 //                UsuariosEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 //                UsuariosEntry.COLUMN_NOME + " VARCHAR(200) UNIQUE NOT NULL" +
@@ -65,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_RESTAURANTES_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_LOGS_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_MAESFILHAS_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_DUVIDAS_TABLE);
 //        sqLiteDatabase.execSQL(SQL_CREATE_USUARIOS_TABLE);
 //        sqLiteDatabase.execSQL(SQL_CREATE_FAVORITOS_TABLE);
     }
@@ -74,6 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RestaurantesEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + LogsEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MaesFilhasEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DuvidasEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }

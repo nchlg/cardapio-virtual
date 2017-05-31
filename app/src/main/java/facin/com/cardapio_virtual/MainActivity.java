@@ -182,6 +182,19 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_help: {
+                Intent intent = new Intent(getApplicationContext(), HelpActivity.class);
+                startActivityForResult(intent, -1);
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     // Métodos relacionado aos fragmentos
     public void onListFragmentInteraction(Restaurant item) {
         Intent intent = new Intent(getApplicationContext(), RestaurantInfoActivity.class);

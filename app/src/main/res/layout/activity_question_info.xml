@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/text_margin"
+    android:orientation="vertical"
+    android:importantForAccessibility="1"
+    tools:targetApi="jelly_bean"
     tools:context="facin.com.cardapio_virtual.QuestionInfoActivity">
 
     <TextView
@@ -11,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/text_margin"
-        android:textAppearance="@style/TextAppearance.Medium"
+        android:textAppearance="@style/MainText"
+        android:layout_gravity="center_vertical|end"
         android:textIsSelectable="true" />
 
 </android.support.constraint.ConstraintLayout>

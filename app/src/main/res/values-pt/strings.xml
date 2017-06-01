@@ -4,10 +4,12 @@
     <string name="app_label">Cardápio Virtual</string>
     <!-- Search/Busca -->
     <string name="res_search_label">Resultados da Busca</string>
-    <string name="res_search_hint">Buscar restaurantes</string>
+    <string name="res_search_hint">Buscar restaurantes botão</string>
     <string name="res_search_descr">Barra de busca de restaurantes</string>
     <string name="res_search_icon_descr">Buscar restaurantes botão</string>
     <string name="voice_language">pt</string>
+
+    <string name="res_help_hint">Ajuda Botão</string>
 
     <!-- Strings related to the tabs -->
     <string name="tab_fav">Favoritos</string>
@@ -39,7 +41,6 @@
     <string name="progress_dialog_product_title">Carregando cardápio</string>
     <string name="progress_dialog_product_message">Aguarde enquanto carregamos o cardápio na tela</string>
     <string name="action_filter">Filtrar</string>
-    <string name="action_help">Ajuda</string>
     <string name="dialog_choose">OK</string>
     <string name="dialog_cancel">Cancelar</string>
     <string name="filter_vegetarian">Vegetariano</string>

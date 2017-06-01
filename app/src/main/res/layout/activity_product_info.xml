@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/text_margin"
-        android:textAppearance="@style/TextAppearance.Medium"
+        android:textAppearance="@style/MainText"
         android:textIsSelectable="true" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/text_margin"
-        android:textAppearance="@style/TextAppearance.Medium"
+        android:textAppearance="@style/MainText"
         android:textIsSelectable="true"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_below="@id/ingredientes_text"/>
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/text_margin"
         android:textIsSelectable="true"
-        android:textAppearance="@style/TextAppearance.Medium"
+        android:textAppearance="@style/MainText"
         android:layout_below="@id/preco_text"/>
 
 </LinearLayout>

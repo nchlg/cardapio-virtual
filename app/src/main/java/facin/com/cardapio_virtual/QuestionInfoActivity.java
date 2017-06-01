@@ -15,10 +15,11 @@ public class QuestionInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_info);
+        mRespostaText = (TextView) findViewById(R.id.answer_text);
 
         // Pega Intent
         intent = getIntent();
-        if (intent.getStringExtra(MenuActivity.EXTRA_PRODUCT_ONTCLASS_URI) != null ) {
+        if (intent.getStringExtra(HelpActivity.EXTRA_RESPOSTA) != null ) {
             mRespostaText.setText(intent.getStringExtra(HelpActivity.EXTRA_RESPOSTA));
         }
     }

@@ -9,7 +9,7 @@
         app:actionViewClass="android.support.v7.widget.SearchView"/>
     <item android:id="@+id/action_help"
         android:orderInCategory="100"
-        android:title="@string/action_help"
+        android:title="@string/res_help_hint"
         android:icon="@drawable/ic_help_outline"
         app:showAsAction="collapseActionView|always" />
 </menu>

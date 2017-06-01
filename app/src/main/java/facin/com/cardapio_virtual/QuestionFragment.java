@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 import facin.com.cardapio_virtual.dummy.DummyContent;
 import facin.com.cardapio_virtual.dummy.DummyContent.DummyItem;
@@ -76,6 +77,7 @@ public class QuestionFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             recyclerView = (RecyclerView) view;
+            recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -150,11 +152,17 @@ public class QuestionFragment extends Fragment {
             ContentValues p1 = new ContentValues();
             p1.put("_id", (byte[]) null);
             p1.put("pergunta", "Como adiciono um restaurante aos meus favoritos?");
-            p1.put("resposta", "Para adicionar um restaurante a sua lista de favoritos, primeiramente acesse a aba de Restaurantes na tela inicial da aplicação." +
-                    " Em seguida, selecione o restaurante que deseja favoritar. Note que a tela das informações adicionais do restaurante abrirá." +
-                    " Navegue nesta tela em busca de um botão de \"Favoritar\" e clique nele. Desta forma, o restaurante será favoritado e aparecerá" +
+            p1.put("resposta", "\t\tPara adicionar um restaurante a sua lista de favoritos, primeiramente acesse a aba de Restaurantes na tela inicial da aplicação." +
+                    "\n\t\tEm seguida, selecione o restaurante que deseja favoritar. Note que a tela das informações adicionais do restaurante abrirá." +
+                    "\n\t\tNavegue nesta tela em busca de um botão de \"Favoritar\" e clique nele.\n\t\tDesta forma, o restaurante será favoritado e aparecerá" +
                     " na aba de Favoritos na tela inicial.");
             perguntas.add(p1);
+
+            ContentValues p2 = new ContentValues();
+            p2.put("_id", (byte[]) null);
+            p2.put("pergunta", "Por que alguns produtos apresentam uma \"quantidade indisponível\"?");
+            p2.put("resposta", "\t\tAlguns produtos estão sempre disponíveis nos bares. Por este motivo, suas quantidades não são contabilizadas.");
+            perguntas.add(p2);
 
             try {
                 Cursor perguntasCursor = getActivity().getContentResolver().query(
@@ -175,6 +183,15 @@ public class QuestionFragment extends Fragment {
                     for (ContentValues cv : perguntas) {
                         if (!perguntasAdvindasDoCursor.contains(cv.getAsString("pergunta"))) {
                             getActivity().getContentResolver().insert(DatabaseContract.DuvidasEntry.CONTENT_URI, cv);
+                        } else {
+                            ContentValues respostaAtualizada = new ContentValues();
+                            respostaAtualizada.put("resposta", cv.getAsString("resposta"));
+                            getActivity().getContentResolver().update(
+                                    DatabaseContract.DuvidasEntry.CONTENT_URI,
+                                    respostaAtualizada,
+                                    DatabaseContract.DuvidasEntry.COLUMN_PERGUNTA + "= ?",
+                                    new String[]{cv.getAsString("pergunta")}
+                            );
                         }
                     }
                     perguntasCursor.close();

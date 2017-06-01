@@ -106,12 +106,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             tools:targetApi="jelly_bean" />
+
         <activity android:name=".QuestionInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help_info"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".HelpActivity"
             tools:targetApi="jelly_bean"/>
     </application>

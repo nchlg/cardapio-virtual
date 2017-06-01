@@ -11,7 +11,7 @@ import facin.com.cardapio_virtual.data.DatabaseContract.*;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Alterar a medida que o banco de dados for modificado
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     static final String DATABASE_NAME = "cardapio-virtual.db";
 

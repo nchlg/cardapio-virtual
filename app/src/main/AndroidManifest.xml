@@ -31,7 +31,13 @@
             android:authorities="@string/content_authority"
             android:exported="true"
             android:syncable="true" />
-
+        <provider
+            android:name=".data.SuggestionProvider"
+            android:authorities="@string/content_authority"
+            android:syncable="false">
+            <path-permission android:pathPrefix="/search_suggest_query"
+            android:readPermission="android.permission.GLOBAL_SEARCH" />
+        </provider>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

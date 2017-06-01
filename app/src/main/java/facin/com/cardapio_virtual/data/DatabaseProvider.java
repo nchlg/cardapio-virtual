@@ -2,6 +2,7 @@ package facin.com.cardapio_virtual.data;
 
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -21,15 +22,9 @@ public class DatabaseProvider extends ContentProvider {
     /* Tabelas */
     static final int RESTAURANTES = 100;
     static final int LOGS = 200;
+    static final int JOIN_MAESFILHAS_LOGS = 250;
     static final int MAES_FILHAS = 300;
     static final int DUVIDAS = 400;
-
-    static final int JOIN_MAESFILHAS_LOGS = 250;
-//    static final int USUARIOS = 200;
-//    static final int FAVORITOS = 300;
-    /* Joins */
-//    static final int RELATIONSHIP_JOIN_RESTAURANTESFAVORITOS = 301;
-    /* Distinct */
 
     static UriMatcher buildUriMatcher() {
         /* Todos caminhos (paths) adicionados à UriMatcher têm um código correspondente que será

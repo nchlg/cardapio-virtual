@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
@@ -20,10 +22,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.CursorAdapter;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,6 +57,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import facin.com.cardapio_virtual.auxiliares.Utilitarios;
+import facin.com.cardapio_virtual.data.SuggestionProvider;
 import facin.com.cardapio_virtual.owlModels.OntologyInitializer;
 
 public class MainActivity extends AppCompatActivity
@@ -171,13 +177,47 @@ public class MainActivity extends AppCompatActivity
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
+        final SearchView searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
         searchView.setSubmitButtonEnabled(true);
-        //searchView.setOnQueryTextListener(this);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Cursor sugestoes = getContentResolver().query(
+                        SuggestionProvider.CONTENT_URI,
+                        null,
+                        null,
+                        new String[]{newText},
+                        null
+                );
+                searchView.setSuggestionsAdapter(new SimpleCursorAdapter(getApplicationContext(),
+                        R.layout.fragment_question,
+                        sugestoes,
+                        null,
+                        null,
+                        0));
+                return false;
+            }
+        });
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int position) {
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int position) {
+                return false;
+            }
+        });
 
         return true;
     }
@@ -374,7 +414,6 @@ public class MainActivity extends AppCompatActivity
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    // TODO: mudar descrição para algo como "Aba X de Y".
                     return getResources().getString(R.string.tab_fav);
                 case 1:
                     return getResources().getString(R.string.tab_restaurants);

@@ -3,6 +3,7 @@ package facin.com.cardapio_virtual;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,10 @@ public class SearchableActivity extends AppCompatActivity
             query = intent.getStringExtra(SearchManager.QUERY);
             //new FetchSearchTask().execute(query);
             //use the query to search your data somehow
+        } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            String data = intent.getDataString();
+            intent =  new Intent(getApplicationContext(), RestaurantInfoActivity.class);
+            intent.putExtra(MainActivity.EXTRA_RESTAURANT_PK, data);
         }
         return query;
     }

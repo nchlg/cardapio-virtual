@@ -5,5 +5,9 @@
     android:contentDescription="@string/res_search_descr"
     android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
     android:voiceLanguage="@string/voice_language"
-    android:launchMode="singleTop">
+    android:launchMode="singleTop"
+    android:searchSuggestAuthority=".data.SuggestionProvider"
+    android:searchSuggestIntentAction="android.intent.action.VIEW"
+    android:searchSuggestSelection="\?"
+    android:searchMode="queryRewriteFromText">
 </searchable>

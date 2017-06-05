@@ -11,7 +11,7 @@
     android:layout_marginRight="@dimen/text_margin">
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/restaurant_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_margin"
@@ -19,7 +19,7 @@
         android:textAppearance="@style/MainText"/>
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/restaurant_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_margin"

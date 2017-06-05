@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,9 +20,6 @@ import facin.com.cardapio_virtual.auxiliares.Utilitarios;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -130,7 +126,7 @@ public class RestaurantsFragment extends Fragment {
     }
 
     public void atualizaRecyclerView() {
-        recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurantes, mListener));
+        recyclerView.setAdapter(new RestaurantRecyclerViewAdapter(restaurantes, mListener));
     }
 
     public class FetchRestaurantTask extends AsyncTask<String, Void, String> {
@@ -190,7 +186,7 @@ public class RestaurantsFragment extends Fragment {
                 }
             }
             Utilitarios.ordenaRestaurantes(restaurantes, MainActivity.mLastLocation);
-            recyclerView.setAdapter(new MyRestaurantRecyclerViewAdapter(restaurantes, mListener));
+            recyclerView.setAdapter(new RestaurantRecyclerViewAdapter(restaurantes, mListener));
         }
 
         public List<Restaurant> populaLista(Cursor cursor) {

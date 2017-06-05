@@ -17,8 +17,6 @@ import android.view.ViewGroup;
 
 import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
 import facin.com.cardapio_virtual.data.DatabaseContract;
-import facin.com.cardapio_virtual.dummy.DummyContent;
-import facin.com.cardapio_virtual.dummy.DummyContent.DummyItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,7 +82,7 @@ public class QuestionFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             new FetchQuestionTask().execute((Void) null);
-            // recyclerView.setAdapter(new MyQuestionRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            // recyclerView.setAdapter(new QuestionRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -130,7 +128,7 @@ public class QuestionFragment extends Fragment {
                     return q1.getQuestion().compareTo(q2.getQuestion());
                 }
             });
-            recyclerView.setAdapter(new MyQuestionRecyclerViewAdapter(perguntas, mListener));
+            recyclerView.setAdapter(new QuestionRecyclerViewAdapter(perguntas, mListener));
         }
 
         protected void populaLista(Cursor cursor) {

@@ -198,13 +198,14 @@ public class MainActivity extends AppCompatActivity
                         new String[]{newText},
                         null
                 );
+                // TODO Cursor nulo! Verificar
                 searchView.setSuggestionsAdapter(new SimpleCursorAdapter(getApplicationContext(),
-                        R.layout.fragment_question,
+                        R.layout.fragment_restaurant,
                         sugestoes,
-                        null,
-                        null,
+                        new String[]{"SUGGEST_COLUMN_TEXT_1","SUGGEST_COLUMN_TEXT_2"},
+                        new int[]{R.id.restaurant_id, R.id.restaurant_content},
                         0));
-                return false;
+                return true;
             }
         });
         searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {

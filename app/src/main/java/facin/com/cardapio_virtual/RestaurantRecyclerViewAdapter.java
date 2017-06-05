@@ -5,17 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.ArrayList;
+
 import java.util.List;
 
-import facin.com.cardapio_virtual.FavouritesFragment.OnListFragmentInteractionListener;
+import facin.com.cardapio_virtual.RestaurantsFragment.OnListFragmentInteractionListener;
 
-public class MyFavouriteRecyclerViewAdapter extends RecyclerView.Adapter<MyFavouriteRecyclerViewAdapter.ViewHolder> {
+public class RestaurantRecyclerViewAdapter extends RecyclerView.Adapter<RestaurantRecyclerViewAdapter.ViewHolder> {
 
     private final List<Restaurant> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyFavouriteRecyclerViewAdapter(List<Restaurant> items, OnListFragmentInteractionListener listener) {
+    public RestaurantRecyclerViewAdapter(List<Restaurant> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -23,7 +23,7 @@ public class MyFavouriteRecyclerViewAdapter extends RecyclerView.Adapter<MyFavou
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_favourite, parent, false);
+                .inflate(R.layout.fragment_restaurant, parent, false);
         return new ViewHolder(view);
     }
 
@@ -32,6 +32,7 @@ public class MyFavouriteRecyclerViewAdapter extends RecyclerView.Adapter<MyFavou
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getNome());
         holder.mContentView.setText(mValues.get(position).getEndereco());
+        //holder.mContentView.setText(System.getProperty("user.dir"));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +60,8 @@ public class MyFavouriteRecyclerViewAdapter extends RecyclerView.Adapter<MyFavou
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.restaurant_id);
+            mContentView = (TextView) view.findViewById(R.id.restaurant_content);
         }
 
         @Override

@@ -15,12 +15,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyQuestionRecyclerViewAdapter extends RecyclerView.Adapter<MyQuestionRecyclerViewAdapter.ViewHolder> {
+public class QuestionRecyclerViewAdapter extends RecyclerView.Adapter<QuestionRecyclerViewAdapter.ViewHolder> {
 
     private final List<Question> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyQuestionRecyclerViewAdapter(List<Question> items, OnListFragmentInteractionListener listener) {
+    public QuestionRecyclerViewAdapter(List<Question> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -62,7 +62,7 @@ public class MyQuestionRecyclerViewAdapter extends RecyclerView.Adapter<MyQuesti
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
+            mIdView = (TextView) view.findViewById(R.id.restaurant_id);
         }
 
         @Override

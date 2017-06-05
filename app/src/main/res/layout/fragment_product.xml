@@ -12,7 +12,7 @@
 
     <!-- Produto ou Categoria -->
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/restaurant_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_margin"
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/item_margin"
         android:textAppearance="@style/SubText"
-        android:layout_alignEnd="@id/id"
-        android:layout_alignRight="@id/id" />
+        android:layout_alignEnd="@id/restaurant_id"
+        android:layout_alignRight="@id/restaurant_id" />
 
     <!-- Quantidade -->
     <TextView
@@ -37,6 +37,6 @@
         android:layout_marginTop="@dimen/item_margin"
         android:layout_marginBottom="@dimen/item_margin"
         android:textAppearance="@style/SubText"
-        android:layout_below="@id/id"/>
+        android:layout_below="@id/restaurant_id"/>
 
 </RelativeLayout>

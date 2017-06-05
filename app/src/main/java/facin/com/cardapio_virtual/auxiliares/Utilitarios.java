@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import facin.com.cardapio_virtual.MainActivity;
-import facin.com.cardapio_virtual.MyFavouriteRecyclerViewAdapter;
 import facin.com.cardapio_virtual.Restaurant;
 
 /**

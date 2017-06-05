@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class SuggestionProvider extends ContentProvider {
 
-    public static final String AUTHORITY = "facin.com.cardapio_virtual";
+    public static final String AUTHORITY = "facin.com.cardapio_virtual.suggestions";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + SearchManager.SUGGEST_URI_PATH_QUERY);
 
     // UriMatcher constant for search suggestions

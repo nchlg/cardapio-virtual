@@ -3,7 +3,6 @@ package facin.com.cardapio_virtual;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,15 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hp.hpl.jena.iri.impl.Main;
-
 import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
 import facin.com.cardapio_virtual.auxiliares.Utilitarios;
 import facin.com.cardapio_virtual.data.DatabaseContract;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -85,7 +80,7 @@ public class FavouritesFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             new FetchFavouriteTask().execute((Void) null);
-            //recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            //recyclerView.setAdapter(new FavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -123,7 +118,7 @@ public class FavouritesFragment extends Fragment {
     }
 
     public void atualizaRecyclerView() {
-        recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(favoritos, mListener));
+        recyclerView.setAdapter(new FavouriteRecyclerViewAdapter(favoritos, mListener));
     }
 
     public class FetchFavouriteTask extends AsyncTask<Void, Void, Boolean> {
@@ -154,7 +149,7 @@ public class FavouritesFragment extends Fragment {
             if (result) {
                 favoritos = populaLista(restaurantsCursor);
                 Utilitarios.ordenaRestaurantes(favoritos, MainActivity.mLastLocation);
-                recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(favoritos, mListener));
+                recyclerView.setAdapter(new FavouriteRecyclerViewAdapter(favoritos, mListener));
             }
         }
 

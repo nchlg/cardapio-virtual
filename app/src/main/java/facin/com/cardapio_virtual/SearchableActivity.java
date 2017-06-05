@@ -90,7 +90,7 @@ public class SearchableActivity extends AppCompatActivity
             if (result) {
                 // TODO: Criar lista com os restaurantes que voltaram na Query. A classe SearchableActivity deve ter uma lista.
                 //favourites = populaLista(restaurantsCursor);
-                //recyclerView.setAdapter(new MyFavouriteRecyclerViewAdapter(favourites, mListener));
+                //recyclerView.setAdapter(new FavouriteRecyclerViewAdapter(favourites, mListener));
             }
         }
     }

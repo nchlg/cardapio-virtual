@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Virtual Menu</string>
     <string name="content_authority">facin.com.cardapio_virtual</string>
+    <string name="content_authority_suggestions">facin.com.cardapio_virtual.suggestions</string>
     <string name="app_label">Virtual Menu</string>
     <!-- Search/Busca -->
     <string name="res_search_label">Search Results</string>

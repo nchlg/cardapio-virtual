@@ -8,15 +8,14 @@ import android.widget.TextView;
 import facin.com.cardapio_virtual.ProductFragment.OnListFragmentInteractionListener;
 import facin.com.cardapio_virtual.auxiliares.Restricao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MyProductRecyclerViewAdapter extends RecyclerView.Adapter<MyProductRecyclerViewAdapter.ViewHolder> {
+public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder> {
 
     private final List<Product> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyProductRecyclerViewAdapter(List<Product> items, OnListFragmentInteractionListener listener) {
+    public ProductRecyclerViewAdapter(List<Product> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -85,7 +84,7 @@ public class MyProductRecyclerViewAdapter extends RecyclerView.Adapter<MyProduct
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
+            mIdView = (TextView) view.findViewById(R.id.restaurant_id);
             mContentView = (TextView) view.findViewById(R.id.preco);
             mQtdView = (TextView) view.findViewById((R.id.quantidade));
 

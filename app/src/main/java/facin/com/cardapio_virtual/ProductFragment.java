@@ -210,7 +210,7 @@ public class ProductFragment extends Fragment {
     }
 
     public void atualizaListaDeProdutos() {
-        recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtosAExibir, mListener));
+        recyclerView.setAdapter(new ProductRecyclerViewAdapter(produtosAExibir, mListener));
     }
 
     public static void setFiltros(List<FiltroInterface> novosFiltros) {
@@ -681,7 +681,7 @@ public class ProductFragment extends Fragment {
             if (result) {
                 configuraProdutosAExibir();
                 progressDialog.dismiss();
-                recyclerView.setAdapter(new MyProductRecyclerViewAdapter(produtosAExibir, mListener));
+                recyclerView.setAdapter(new ProductRecyclerViewAdapter(produtosAExibir, mListener));
             }
         }
 

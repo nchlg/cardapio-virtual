@@ -198,16 +198,20 @@ public class MainActivity extends AppCompatActivity
                         new String[]{newText},
                         null
                 );
-                // TODO Cursor nulo! Verificar
                 searchView.setSuggestionsAdapter(new SimpleCursorAdapter(getApplicationContext(),
                         R.layout.fragment_restaurant,
                         sugestoes,
-                        new String[]{"SUGGEST_COLUMN_TEXT_1","SUGGEST_COLUMN_TEXT_2"},
+                        new String[]{SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_TEXT_2},
                         new int[]{R.id.restaurant_id, R.id.restaurant_content},
                         0));
+                if (sugestoes != null)
+                    sugestoes.close();
                 return true;
             }
+
         });
+
+        // TODO: Pegar intent com o cursor sugestões
         searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
             @Override
             public boolean onSuggestionSelect(int position) {

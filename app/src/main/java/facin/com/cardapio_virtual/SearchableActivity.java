@@ -71,8 +71,8 @@ public class SearchableActivity extends AppCompatActivity
                 searchCursor = getContentResolver().query(
                         DatabaseContract.RestaurantesEntry.CONTENT_URI,
                         null,
-                        DatabaseContract.RestaurantesEntry.COLUMN_NOME + " = ?",
-                        new String[]{searchQuery},
+                        DatabaseContract.RestaurantesEntry.COLUMN_NOME + " LIKE ?",
+                        new String[]{"%" + searchQuery + "%"},
                         null
                 );
                 if (searchCursor != null) {

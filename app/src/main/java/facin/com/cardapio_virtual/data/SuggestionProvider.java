@@ -65,22 +65,21 @@ public class SuggestionProvider extends ContentProvider {
                         String sortOrder) {
         MatrixCursor cursor = null;
         // Use the UriMatcher to see what kind of query we have
-        if (!uri.getLastPathSegment().equals(SearchManager.SUGGEST_URI_PATH_QUERY)) {
-            String query = uri.getLastPathSegment().toLowerCase();
-
+        if (uri.getLastPathSegment().equals(SearchManager.SUGGEST_URI_PATH_QUERY)) {
+            // String query = uri.getLastPathSegment().toLowerCase();
+            Log.d("Provider", selectionArgs[0]);
             Cursor suggestions = getContext().getContentResolver().query(
                     DatabaseContract.RestaurantesEntry.CONTENT_URI,
-                    new String[]{DatabaseContract.RestaurantesEntry._ID,
-                            DatabaseContract.RestaurantesEntry.COLUMN_NOME,
-                            DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO},
-                    DatabaseContract.RestaurantesEntry.COLUMN_NOME + " = ? OR " +
-                            DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO + " = ?",
-                    new String[]{query},
+                    null,
+                    DatabaseContract.RestaurantesEntry.COLUMN_NOME + " LIKE ? OR " +
+                            DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO + " LIKE ?",
+                    new String[]{"%" + selectionArgs[0] + "%"},
                     null
             );
-
+            //new String[]{DatabaseContract.RestaurantesEntry._ID,            DatabaseContract.RestaurantesEntry.COLUMN_NOME,                    DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO}
             cursor = new MatrixCursor(SEARCH_SUGGEST_COLUMNS, 1);
             while(suggestions.moveToNext()) {
+                Log.d("Provider", suggestions.getColumnName(0));
                 cursor.addRow(new String[]{
                     suggestions.getString(0),
                         suggestions.getString(1),

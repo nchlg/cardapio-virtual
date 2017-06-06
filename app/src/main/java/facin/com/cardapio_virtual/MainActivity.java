@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mSlidingTabLayout = (TabLayout) findViewById(R.id.tab_examinador);
-        mSlidingTabLayout.setTabGravity(mSlidingTabLayout.GRAVITY_FILL);
+        mSlidingTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         mSlidingTabLayout.setupWithViewPager(mViewPager);
         // Tab/Aba 0
         mSlidingTabLayout.getTabAt(0).setText(R.string.tab_fav);

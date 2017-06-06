@@ -16,7 +16,7 @@ public enum Restricao {
 
     private String descricao;
 
-    private Restricao(String descricao) {
+    Restricao(String descricao) {
         this.descricao = descricao;
     }
 

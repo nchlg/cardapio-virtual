@@ -9,5 +9,5 @@ import facin.com.cardapio_virtual.Product;
  */
 
 public interface FiltroInterface {
-    public List<Product> filtra(List<Product> produtos);
+    List<Product> filtra(List<Product> produtos);
 }

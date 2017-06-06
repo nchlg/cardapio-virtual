@@ -44,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 MaesFilhasEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 MaesFilhasEntry.COLUMN_MAE + " VARCHAR(100) NOT NULL, " +
                 MaesFilhasEntry.COLUMN_FILHA + " INTEGER NOT NULL" +
+//                ", FOREIGN KEY(" + MaesFilhasEntry.COLUMN_FILHA + ") REFERENCES " +
                 ");";
 
         final String SQL_CREATE_DUVIDAS_TABLE = "CREATE TABLE " + DuvidasEntry.TABLE_NAME + " (" +

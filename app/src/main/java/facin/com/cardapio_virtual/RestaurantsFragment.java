@@ -219,7 +219,7 @@ public class RestaurantsFragment extends Fragment {
         rest1.put("nome", "Bar do 5");
         rest1.put("email", "bardo5@mail.com");
         rest1.put("telefone", "(51) 3354-1999");
-        rest1.put("endereco", "Av. Ipiranga, 6681");
+        rest1.put("endereco", "Av Ipiranga, 6681");
         rest1.put("latitude", -30.059947);
         rest1.put("longitude", -51.174464);
         rest1.put("descricao","Bar do prédio de História que oferece deliciosas opções vegetarianas e um ambiente aconchegante.");
@@ -231,7 +231,7 @@ public class RestaurantsFragment extends Fragment {
         rest2.put("nome", "Espaço 32");
         rest2.put("email", "espaco32@gmail.com");
         rest2.put("telefone", "(51) 3093-3256");
-        rest2.put("endereco", "Av. Bento Gonçalves, 4314 (PUCRS - Prédio 32)");
+        rest2.put("endereco", "Av Bento Gonçalves, 4314 (PUCRS - Prédio 32)");
         rest2.put("latitude", -30.061238);
         rest2.put("longitude", -51.173792);
         rest2.put("descricao", "Almoço com um delicioso buffet; lanches, cafés, coffee break, eventos corporativos e festas.");

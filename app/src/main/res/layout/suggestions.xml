@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultBackground">
 
+    <TextView
+        android:id="@+id/suggestion_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/restaurant_margin"
+        android:layout_marginBottom="@dimen/restaurant_margin"
+        android:layout_marginStart="@dimen/restaurant_margin"
+        android:layout_marginLeft="@dimen/restaurant_margin"
+        android:layout_marginEnd="@dimen/restaurant_margin"
+        android:layout_marginRight="@dimen/restaurant_margin"
+        android:textAppearance="@style/MainText" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightBackground"
+        android:layout_marginRight="@dimen/restaurant_margin"
+        android:layout_marginStart="@dimen/restaurant_margin"
+        android:layout_marginLeft="@dimen/restaurant_margin"
+        android:layout_marginEnd="@dimen/restaurant_margin"/>
 
 </LinearLayout>

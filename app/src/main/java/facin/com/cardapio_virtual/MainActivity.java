@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -57,6 +58,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import facin.com.cardapio_virtual.auxiliares.Utilitarios;
+import facin.com.cardapio_virtual.data.DatabaseContract;
 import facin.com.cardapio_virtual.data.SuggestionProvider;
 import facin.com.cardapio_virtual.owlModels.OntologyInitializer;
 
@@ -173,6 +175,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
+        final Cursor[] sugestoes = new Cursor[1];
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
@@ -191,7 +194,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Cursor sugestoes = getContentResolver().query(
+                sugestoes[0] = getContentResolver().query(
                         SuggestionProvider.CONTENT_URI,
                         null,
                         null,
@@ -199,13 +202,12 @@ public class MainActivity extends AppCompatActivity
                         null
                 );
                 searchView.setSuggestionsAdapter(new SimpleCursorAdapter(getApplicationContext(),
-                        R.layout.fragment_restaurant,
-                        sugestoes,
-                        new String[]{SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_TEXT_2},
-                        new int[]{R.id.restaurant_id, R.id.restaurant_content},
+                        R.layout.suggestions,
+                        sugestoes[0],
+                        new String[]{SearchManager.SUGGEST_COLUMN_TEXT_1},
+                        new int[]{R.id.suggestion_id},
                         0));
-                if (sugestoes != null)
-                    sugestoes.close();
+
                 return true;
             }
 
@@ -220,10 +222,13 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public boolean onSuggestionClick(int position) {
-                return false;
+                sugestoes[0].moveToPosition(position);
+                new FetchSuggestionTask().execute(sugestoes[0].getString(3));
+                return true;
             }
         });
-
+        if (sugestoes[0] != null)
+            sugestoes[0].close();
         return true;
     }
 
@@ -426,6 +431,51 @@ public class MainActivity extends AppCompatActivity
 //                    return getResources().getString(R.string.tab_map);
             }
             return null;
+        }
+    }
+
+    public class FetchSuggestionTask extends AsyncTask<String, Void, Boolean> {
+        Restaurant restaurant = null;
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            // Se mSearchQuery for nula, significa que a atividade é a MainActivity. Senão, é a SearchableActivity.
+            try {
+                Cursor restaurantsCursor = getContentResolver().query(
+                        DatabaseContract.RestaurantesEntry.CONTENT_URI,
+                        null,
+                        DatabaseContract.RestaurantesEntry._ID + "= ?",
+                        new String[]{params[0]},
+                        null
+                );
+                if (restaurantsCursor != null) {
+                    restaurantsCursor.moveToFirst();
+                    restaurant = new Restaurant(
+                            Integer.parseInt(restaurantsCursor.getString(0)),
+                            restaurantsCursor.getString(1),
+                            restaurantsCursor.getString(2),
+                            restaurantsCursor.getString(3),
+                            restaurantsCursor.getString(4),
+                            Double.parseDouble(restaurantsCursor.getString(5).trim()),
+                            Double.parseDouble(restaurantsCursor.getString(6).trim()),
+                            restaurantsCursor.getString(7),
+                            !restaurantsCursor.getString(8).equals("0")
+                    );
+                    restaurantsCursor.close();
+                    return true;
+                }
+            } catch (UnsupportedOperationException e) {
+                e.printStackTrace();
+                return false;
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean result) {
+            if (result) {
+                onListFragmentInteraction(restaurant);
+            }
         }
     }
 }

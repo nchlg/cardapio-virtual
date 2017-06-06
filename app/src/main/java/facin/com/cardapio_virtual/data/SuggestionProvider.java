@@ -24,7 +24,7 @@ public class SuggestionProvider extends ContentProvider {
     private static final String[] SEARCH_SUGGEST_COLUMNS = {
             BaseColumns._ID,
             SearchManager.SUGGEST_COLUMN_TEXT_1,
-            SearchManager.SUGGEST_COLUMN_TEXT_2,
+//            SearchManager.SUGGEST_COLUMN_TEXT_2,
             SearchManager.SUGGEST_COLUMN_INTENT_ACTION,
             SearchManager.SUGGEST_COLUMN_INTENT_DATA
     };
@@ -67,27 +67,25 @@ public class SuggestionProvider extends ContentProvider {
         // Use the UriMatcher to see what kind of query we have
         if (uri.getLastPathSegment().equals(SearchManager.SUGGEST_URI_PATH_QUERY)) {
             // String query = uri.getLastPathSegment().toLowerCase();
-            Log.d("Provider", selectionArgs[0]);
             Cursor suggestions = getContext().getContentResolver().query(
                     DatabaseContract.RestaurantesEntry.CONTENT_URI,
-                    null,
-                    DatabaseContract.RestaurantesEntry.COLUMN_NOME + " LIKE ? OR " +
-                            DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO + " LIKE ?",
-                    new String[]{"%" + selectionArgs[0] + "%"},
+                    new String[]{DatabaseContract.RestaurantesEntry._ID,
+                            DatabaseContract.RestaurantesEntry.COLUMN_NOME},
+                    "(" + DatabaseContract.RestaurantesEntry.COLUMN_NOME + " LIKE ?) OR (" +
+                            DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO + " LIKE ?)",
+                    new String[]{"%" + selectionArgs[0] + "%", "%" + selectionArgs[0] + "%"},
                     null
             );
-            //new String[]{DatabaseContract.RestaurantesEntry._ID,            DatabaseContract.RestaurantesEntry.COLUMN_NOME,                    DatabaseContract.RestaurantesEntry.COLUMN_ENDERECO}
             cursor = new MatrixCursor(SEARCH_SUGGEST_COLUMNS, 1);
             while(suggestions.moveToNext()) {
-                Log.d("Provider", suggestions.getColumnName(0));
                 cursor.addRow(new String[]{
                     suggestions.getString(0),
-                        suggestions.getString(1),
-                        suggestions.getString(2),
+                        suggestions.getString(1).toLowerCase(),
                         null,
                         suggestions.getString(0)
                 });
             }
+            suggestions.close();
         }
         return cursor;
     }

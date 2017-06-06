@@ -5,7 +5,7 @@
     <string name="app_label">Virtual Menu</string>
     <!-- Search/Busca -->
     <string name="res_search_label">Search Results</string>
-    <string name="res_search_hint">Search restaurants</string>
+    <string name="res_search_hint">Search restaurants by name or address</string>
     <string name="res_search_descr">Restaurants search bar</string>
     <string name="res_search_icon_descr">Restaurants search button</string>
     <string name="voice_language">pt</string>

@@ -5,10 +5,10 @@
     android:orientation="vertical"
     android:layout_marginTop="@dimen/text_margin"
     android:layout_marginBottom="@dimen/text_margin"
-    android:layout_marginStart="@dimen/text_margin"
-    android:layout_marginLeft="@dimen/text_margin"
-    android:layout_marginEnd="@dimen/text_margin"
-    android:layout_marginRight="@dimen/text_margin">
+    android:layout_marginStart="@dimen/restaurant_margin"
+    android:layout_marginLeft="@dimen/restaurant_margin"
+    android:layout_marginEnd="@dimen/restaurant_margin"
+    android:layout_marginRight="@dimen/restaurant_margin">
 
     <TextView
         android:id="@+id/restaurant_id"
@@ -16,6 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_margin"
         android:layout_marginBottom="@dimen/item_margin"
+        android:layout_marginStart="@dimen/item_margin"
+        android:layout_marginLeft="@dimen/item_margin"
+        android:layout_marginEnd="@dimen/item_margin"
+        android:layout_marginRight="@dimen/item_margin"
         android:textAppearance="@style/MainText"/>
 
     <TextView
@@ -24,6 +28,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_margin"
         android:layout_marginBottom="@dimen/item_margin"
+        android:layout_marginStart="@dimen/item_margin"
+        android:layout_marginLeft="@dimen/item_margin"
+        android:layout_marginEnd="@dimen/item_margin"
+        android:layout_marginRight="@dimen/item_margin"
         android:textAppearance="@style/SubText"
         android:maxLines="1"
         android:ellipsize="end"/>

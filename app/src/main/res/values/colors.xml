@@ -5,6 +5,7 @@
     <color name="colorAccent2">#ffffff</color>
     <color name="colorAccent">#009688</color>
     <color name="lightBackground">#cecece</color>
+    <color name="defaultBackground">#eeeeee</color>
     <color name="verdeReal">#006338</color>
     <color name="colorPrimaryLight">#ffffff</color>
 </resources>

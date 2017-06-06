@@ -4,7 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import facin.com.cardapio_virtual.data.DatabaseContract.*;
+import facin.com.cardapio_virtual.data.DatabaseContract.DuvidasEntry;
+import facin.com.cardapio_virtual.data.DatabaseContract.LogsEntry;
+import facin.com.cardapio_virtual.data.DatabaseContract.MaesFilhasEntry;
+import facin.com.cardapio_virtual.data.DatabaseContract.RestaurantesEntry;
 
 /**
  * Created by 13108306 on 03/01/2017.

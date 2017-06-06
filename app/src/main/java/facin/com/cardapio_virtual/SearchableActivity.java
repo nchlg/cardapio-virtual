@@ -3,10 +3,9 @@ package facin.com.cardapio_virtual;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import facin.com.cardapio_virtual.data.DatabaseContract;
 

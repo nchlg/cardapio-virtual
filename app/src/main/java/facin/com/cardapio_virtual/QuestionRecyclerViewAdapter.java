@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import facin.com.cardapio_virtual.QuestionFragment.OnListFragmentInteractionListener;
-
 import java.util.List;
+
+import facin.com.cardapio_virtual.QuestionFragment.OnListFragmentInteractionListener;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Question} and makes a call to the

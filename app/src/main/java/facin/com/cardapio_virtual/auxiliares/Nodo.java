@@ -1,13 +1,9 @@
 package facin.com.cardapio_virtual.auxiliares;
 
-import android.support.annotation.Nullable;
-
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
-import com.hp.hpl.jena.ontology.OntProperty;
 import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Resource;
 
 import java.util.ArrayList;
 import java.util.HashMap;

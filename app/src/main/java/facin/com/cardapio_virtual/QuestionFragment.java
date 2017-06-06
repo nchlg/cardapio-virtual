@@ -15,13 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
-import facin.com.cardapio_virtual.data.DatabaseContract;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import facin.com.cardapio_virtual.auxiliares.SimpleDividerItemDecoration;
+import facin.com.cardapio_virtual.data.DatabaseContract;
 
 /**
  * A fragment representing a list of Items.

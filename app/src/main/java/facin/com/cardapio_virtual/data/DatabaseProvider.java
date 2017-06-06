@@ -2,7 +2,6 @@ package facin.com.cardapio_virtual.data;
 
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;

@@ -1,14 +1,10 @@
 package facin.com.cardapio_virtual.auxiliares;
 
-import android.util.Log;
-
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.Restriction;
 import com.hp.hpl.jena.rdf.model.Literal;
 
 import java.util.Iterator;
-
-import facin.com.cardapio_virtual.Restaurant;
 
 /**
  * Created by priscila on 08/05/17.

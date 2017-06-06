@@ -5,10 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import facin.com.cardapio_virtual.ProductFragment.OnListFragmentInteractionListener;
-import facin.com.cardapio_virtual.auxiliares.Restricao;
 
 import java.util.List;
+
+import facin.com.cardapio_virtual.ProductFragment.OnListFragmentInteractionListener;
+import facin.com.cardapio_virtual.auxiliares.Restricao;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder> {
 

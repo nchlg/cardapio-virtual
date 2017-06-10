@@ -1,9 +1,11 @@
 package facin.com.cardapio_virtual;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -65,6 +67,11 @@ public class RestaurantInfoActivity extends AppCompatActivity {
 
         // TextViews
         setTextViewContent(intent);
+
+        // Back Button
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            getActionBar().setHomeActionContentDescription(R.string.back_button);
+        }
 
         // Buttons
         mBtnMenu = (Button) findViewById(R.id.btn_cardapio);

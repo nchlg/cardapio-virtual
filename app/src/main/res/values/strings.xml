@@ -74,7 +74,11 @@
     <string name="toast_favorite_unfavorite">Restuarant removed from your list of favorites restaurants.</string>
     <string name="toast_menu_unavailable">This menu isn\'t avaiable.</string>
 
+    <!-- Help -->
     <string name="title_activity_help">Help</string>
     <string name="title_activity_help_info">Answer</string>
+
+    <!-- App Bar -->
+    <string name="back_button">Back Button</string>
 
 </resources>

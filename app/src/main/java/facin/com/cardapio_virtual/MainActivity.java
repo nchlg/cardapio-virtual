@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         // Fragmentos
-        fragmentos.add(favouritesFragment = FavouritesFragment.newInstance(1));
         fragmentos.add(RestaurantsFragment.newInstance(""));
+        fragmentos.add(favouritesFragment = FavouritesFragment.newInstance(1));
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fragmentos);
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -119,21 +119,21 @@ public class MainActivity extends AppCompatActivity
         mSlidingTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         mSlidingTabLayout.setupWithViewPager(mViewPager);
         // Tab/Aba 0
-        mSlidingTabLayout.getTabAt(0).setText(R.string.tab_fav);
-        mSlidingTabLayout.getTabAt(0).setContentDescription(
-                getResources().getString(R.string.tab_fav) +
-                        ": " +
-                getResources().getString(R.string.tab_description) + " " +
-                        (0 + 1) +
-                        " de "
-                        + mSlidingTabLayout.getTabCount());
-        // Tab/Aba 1
-        mSlidingTabLayout.getTabAt(1).setText(R.string.tab_restaurants);
+        mSlidingTabLayout.getTabAt(1).setText(R.string.tab_fav);
         mSlidingTabLayout.getTabAt(1).setContentDescription(
-                getResources().getString(R.string.tab_restaurants) +
+                getResources().getString(R.string.tab_fav) +
                         ": " +
                         getResources().getString(R.string.tab_description) + " " +
                         (1 + 1) +
+                        " de "
+                        + mSlidingTabLayout.getTabCount());
+        // Tab/Aba 1
+        mSlidingTabLayout.getTabAt(0).setText(R.string.tab_restaurants);
+        mSlidingTabLayout.getTabAt(0).setContentDescription(
+                getResources().getString(R.string.tab_restaurants) +
+                        ": " +
+                        getResources().getString(R.string.tab_description) + " " +
+                        (0 + 1) +
                         " de "
                         + mSlidingTabLayout.getTabCount());
         // Tab/Aba 2
@@ -202,7 +202,6 @@ public class MainActivity extends AppCompatActivity
 
         });
 
-        // TODO: Pegar intent com o cursor sugestões
         searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
             @Override
             public boolean onSuggestionSelect(int position) {
@@ -218,6 +217,7 @@ public class MainActivity extends AppCompatActivity
         });
         if (sugestoes[0] != null)
             sugestoes[0].close();
+
         return true;
     }
 
@@ -356,11 +356,11 @@ public class MainActivity extends AppCompatActivity
     public void onLocationChanged(Location location) {
         mLastLocation = location;
 
-        Utilitarios.ordenaRestaurantes(((FavouritesFragment) fragmentos.get(0)).getFavoritos(), mLastLocation);
-        ((FavouritesFragment) fragmentos.get(0)).atualizaRecyclerView();
+        Utilitarios.ordenaRestaurantes(((FavouritesFragment) fragmentos.get(1)).getFavoritos(), mLastLocation);
+        ((FavouritesFragment) fragmentos.get(1)).atualizaRecyclerView();
 
-        Utilitarios.ordenaRestaurantes(((RestaurantsFragment) fragmentos.get(1)).getRestaurantes(), mLastLocation);
-        ((RestaurantsFragment) fragmentos.get(1)).atualizaRecyclerView();
+        Utilitarios.ordenaRestaurantes(((RestaurantsFragment) fragmentos.get(0)).getRestaurantes(), mLastLocation);
+        ((RestaurantsFragment) fragmentos.get(0)).atualizaRecyclerView();
 
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -381,7 +381,7 @@ public class MainActivity extends AppCompatActivity
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 1)
-                // Restaurantes
+                // Favoritos
                 return fragmentosAdapter.get(1);
 //            else if (position == 2) {
 //                /*map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity
 //                return new MyMapFragment();
 //            }
             else
-                // Favoritos
+                // Restaurantes
                 return fragmentosAdapter.get(0);
         }
 
@@ -412,9 +412,9 @@ public class MainActivity extends AppCompatActivity
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0:
-                    return getResources().getString(R.string.tab_fav);
                 case 1:
+                    return getResources().getString(R.string.tab_fav);
+                case 0:
                     return getResources().getString(R.string.tab_restaurants);
 //                case 2:
 //                    return getResources().getString(R.string.tab_map);

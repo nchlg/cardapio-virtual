@@ -69,6 +69,10 @@
     <string name="toast_favorite_unfavorite">Restaurante removido de seus favoritos.</string>
     <string name="toast_menu_unavailable">Este cardápio não está disponível.</string>
 
+    <!-- Help -->
     <string name="title_activity_help">Ajuda</string>
     <string name="title_activity_help_info">Resposta</string>
+
+    <!-- App Bar -->
+    <string name="back_button">Voltar Botão</string>
 </resources>

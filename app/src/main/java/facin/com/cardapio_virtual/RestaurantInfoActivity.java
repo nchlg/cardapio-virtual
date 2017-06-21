@@ -69,9 +69,9 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         setTextViewContent(intent);
 
         // Back Button
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             getActionBar().setHomeActionContentDescription(R.string.back_button);
-        }
+        }*/
 
         // Buttons
         mBtnMenu = (Button) findViewById(R.id.btn_cardapio);

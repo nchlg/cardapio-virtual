@@ -162,6 +162,38 @@ public class QuestionFragment extends Fragment {
             p2.put("resposta", "\t\tAlguns produtos estão sempre disponíveis nos bares. Por este motivo, suas quantidades não são contabilizadas.");
             perguntas.add(p2);
 
+            ContentValues p3 = new ContentValues();
+            p3.put("_id", (byte[]) null);
+            p3.put("pergunta", "Como acesso o cardápio de um restaurante?");
+            p3.put("resposta", "\t\tPara acessar o cardápio de um restaurante, acesse a página de informações adicionais do restaurante desejado." +
+                    "\n\t\tApós isso, busque pelo botão \"Cardápio\" e selecione-o. Desta forma, você será direcionado ao cardápio na aplicação.");
+            perguntas.add(p3);
+
+            ContentValues p4 = new ContentValues();
+            p4.put("_id", (byte[]) null);
+            p4.put("pergunta", "Como filtro o cardápio por produtos vegetarianos? Quais são as opções de filtragem disponíveis?");
+            p4.put("resposta", "\t\tPara filtrar qualquer produto, vá ao cardápio de um restaurante de sua escolha e clique na opção \"Filtrar\" no menu." +
+                    "\n\t\tEm seguida, escolha um ou mais itens da lista e selecione a opção \"Ok\"." +
+                    "\n\t\tAs opções de filtragem são: produtos sem glúten, sem lactose, com pouca gordura, com pouco sal e vegetarianos.");
+            perguntas.add(p4);
+
+            ContentValues p5 = new ContentValues();
+            p5.put("_id", (byte[]) null);
+            p5.put("pergunta", "O que significa ordenar o cardápio por \"mais acessados\"?");
+            p5.put("resposta", "\t\tCada vez que você acessa um produto do cardápio, o número de acessos a este produto é incrementado." +
+                    "\n\t\tOrdenando o cardápio por acessos, os produtos mais acessados por você serão mostrados primeiro." +
+                    "\n\t\tDesta forma, você não precisará procurá-los por toda a lista de produtos e o acesso será mais rápido e prático.");
+            perguntas.add(p5);
+
+            ContentValues p6 = new ContentValues();
+            p6.put("_id", (byte[]) null);
+            p6.put("pergunta", "Como procuro um restaurante através do sistema de buscas?");
+            p6.put("resposta", "\t\tAlém de buscar restaurantes na lista de restaurantes, você também pode buscá-los através do sistema de buscas da aplicação." +
+                    "\n\t\tPara isso, busque pelo botão \"Buscar Restaurantes\" na tela inicial da aplicação. Este botão está representado por uma lupa na interface gráfica." +
+                    "\n\t\tAo selecioná-lo, você pode inserir o nome ou o endereço do local desejado." +
+                            "Caso tenha digitado sua busca, selecione o botão de avançar para ver o resultado de sua busca. Em seguida, basta selecionar o restaurante desejado.");
+            perguntas.add(p6);
+
             try {
                 Cursor perguntasCursor = getActivity().getContentResolver().query(
                         DatabaseContract.DuvidasEntry.CONTENT_URI,

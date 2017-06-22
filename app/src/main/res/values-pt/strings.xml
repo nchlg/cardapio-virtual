@@ -68,6 +68,7 @@
     <string name="toast_favorite">Restaurante adicionado aos favoritos.</string>
     <string name="toast_favorite_unfavorite">Restaurante removido de seus favoritos.</string>
     <string name="toast_menu_unavailable">Este cardápio não está disponível.</string>
+    <string name="toast_product_error">Este produto não pode ser carregado.</string>
 
     <!-- Help -->
     <string name="title_activity_help">Ajuda</string>

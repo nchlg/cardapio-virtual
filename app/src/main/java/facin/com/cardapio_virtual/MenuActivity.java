@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -91,23 +93,29 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Product product) {
-        Intent intent;
-        if (product.getOntClass().listSubClasses().toList().isEmpty()) {
-            intent = new Intent(getApplicationContext(), ProductInfoActivity.class);
-            intent.putExtra(EXTRA_PRODUCT_NOME, product.getNome());
-            intent.putExtra(EXTRA_PRODUCT_INGREDIENTES, product.getIngredientesAsString());
-            intent.putExtra(EXTRA_PRODUCT_PRECO, product.getPrecoAsString());
-            if (product.getMapaRestricoes().get(Restricao.CONTAVEL))
-                intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, Integer.toString(product.getQuantidade()));
-            else
-                intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, (String) null);
-            intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
-        } else {
-            intent = new Intent(getApplicationContext(), MenuActivity.class);
-            intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, product.getOntClass().getURI());
+        try {
+            Intent intent;
+            if (product.getOntClass().listSubClasses().toList().isEmpty()) {
+                intent = new Intent(getApplicationContext(), ProductInfoActivity.class);
+                intent.putExtra(EXTRA_PRODUCT_NOME, product.getNome());
+                Log.d("Prod.", product.getNome());
+                Log.d("Prod.", product.getIngredientes().toString());
+                intent.putExtra(EXTRA_PRODUCT_INGREDIENTES, product.getIngredientesAsString());
+                intent.putExtra(EXTRA_PRODUCT_PRECO, product.getPrecoAsString());
+                if (product.getMapaRestricoes().get(Restricao.CONTAVEL))
+                    intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, Integer.toString(product.getQuantidade()));
+                else
+                    intent.putExtra(EXTRA_PRODUCT_QUANTIDADE, (String) null);
+                intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, intentOntClassURI);
+            } else {
+                intent = new Intent(getApplicationContext(), MenuActivity.class);
+                intent.putExtra(EXTRA_PRODUCT_ONTCLASS_URI, product.getOntClass().getURI());
+            }
+            configuraIntent(intent);
+            startActivityForResult(intent, -1);
+        } catch (NullPointerException e) {
+            Toast.makeText(getApplicationContext(), R.string.toast_product_error, Toast.LENGTH_SHORT).show();
         }
-        configuraIntent(intent);
-        startActivityForResult(intent, -1);
     }
 
     @Override

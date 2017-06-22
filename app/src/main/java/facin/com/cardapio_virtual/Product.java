@@ -1,5 +1,7 @@
 package facin.com.cardapio_virtual;
 
+import android.util.Log;
+
 import com.hp.hpl.jena.ontology.OntClass;
 
 import java.text.DecimalFormat;
@@ -67,7 +69,7 @@ public class Product {
         this.mapaRestricoes = mapaRestricoes;
     }
 
-    public String getIngredientesAsString() {
+    public String getIngredientesAsString() throws NullPointerException {
         String ingredientesAsString = "";
         for (String ingr : ingredientes) {
             ingredientesAsString = ingredientesAsString + ingr.toLowerCase();

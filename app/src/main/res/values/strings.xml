@@ -73,6 +73,7 @@
     <string name="toast_favorite">Restuarant added to your list of favorites restaurants.</string>
     <string name="toast_favorite_unfavorite">Restuarant removed from your list of favorites restaurants.</string>
     <string name="toast_menu_unavailable">This menu isn\'t avaiable.</string>
+    <string name="toast_product_error">Unable to load this product.</string>
 
     <!-- Help -->
     <string name="title_activity_help">Help</string>

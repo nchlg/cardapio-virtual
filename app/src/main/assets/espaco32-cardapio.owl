@@ -2371,12 +2371,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#temIngrediente"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#Fruta"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/priscila/ontologies/2017/3/untitled-ontology-3#gluten"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>

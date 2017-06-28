@@ -170,7 +170,6 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onResume() {
-        Log.d("onResume","@@@@@@@@ On Resume @@@@@@@@@");
         super.onResume();
         final ProductFragment productFragment =
                 (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);

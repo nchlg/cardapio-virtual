@@ -43,6 +43,7 @@ public class FavouritesFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public FavouritesFragment() {
+        // favoritos = new ArrayList<>();
     }
 
     // TODO: Customize parameter initialization

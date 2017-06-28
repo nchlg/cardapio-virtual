@@ -48,6 +48,7 @@ public class RestaurantsFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public RestaurantsFragment() {
+        // restaurantes = new ArrayList<>();
     }
 
     // TODO: Customize parameter initialization

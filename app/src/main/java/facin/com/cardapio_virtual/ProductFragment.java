@@ -342,6 +342,7 @@ public class ProductFragment extends Fragment {
                         maesCursor.moveToFirst();
                         do {
                             for (Product p : produtosDoFragmento) {
+                                Log.d("Order",maesCursor.getString(0) == null ? ":/" : maesCursor.getString(0));
                                 if (p.getNome().equals(maesCursor.getString(0))) {
                                     p.setAcessos(Integer.valueOf(maesCursor.getString(1)));
                                 }

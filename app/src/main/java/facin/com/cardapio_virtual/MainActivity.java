@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity
 
     protected static final String RESTAURANTS_FRAGMENT_TAG = "facin.com.cardapio_virtual.RESTAURANTS_FRAGMENT_TAG";
     protected static final String FAVOURITES_FRAGMENT_TAG = "facin.com.cardapio_virtual.FAVOURITES_FRAGMENT_TAG";
+
+    protected static final int REQUEST_INFO = 17;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -224,8 +226,8 @@ public class MainActivity extends AppCompatActivity
 //    @Override
 //    public void onResume() {
 //        super.onResume();
-//        ((FavouritesFragment) fragmentos.get(1)).atualizaFavoritos();
-//        onRestart();
+//        finish();
+//        startActivity(getIntent());
 //    }
 
     @Override
@@ -252,7 +254,7 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(EXTRA_RESTAURANT_TELEFONE, item.getTelefone());
         intent.putExtra(EXTRA_RESTAURANT_FAVORITO, item.isFavorito());
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
-        startActivityForResult(intent, -1);
+        startActivityForResult(intent, REQUEST_CHECK_SETTINGS);
     }
 
     public void onFragmentInteraction(Uri uri) {
@@ -261,17 +263,20 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        final LocationSettingsStates states = LocationSettingsStates.fromIntent(intent);
+        // final LocationSettingsStates states = LocationSettingsStates.fromIntent(intent);
         switch (requestCode) {
             case REQUEST_CHECK_SETTINGS:
                 switch (resultCode) {
                     case RESULT_OK:
-                        // All required changes were successfully made
+                        finish();
+                        startActivity(getIntent());
                         break;
                     case RESULT_CANCELED:
                         // The user was asked to change settings, but chose not to
                         break;
                     default:
+                        finish();
+                        startActivity(getIntent());
                         break;
                 }
                 break;

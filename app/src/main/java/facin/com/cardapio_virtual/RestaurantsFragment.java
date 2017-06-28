@@ -87,11 +87,23 @@ public class RestaurantsFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            new FetchRestaurantTask().execute(mSearchQuery);
+            atualizaRestaurantes();
         }
         return view;
     }
 
+    public void atualizaRestaurantes() {
+        try {
+            new FetchRestaurantTask().execute(mSearchQuery).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//    }
 
     @Override
     public void onAttach(Context context) {

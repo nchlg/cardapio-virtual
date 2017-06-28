@@ -36,6 +36,7 @@ public class FavouritesFragment extends Fragment {
     private Cursor restaurantsCursor;
     private List<Restaurant> favoritos;
     private RecyclerView recyclerView;
+    private View view;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -67,7 +68,7 @@ public class FavouritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_favourite_list, container, false);
+        view = inflater.inflate(R.layout.fragment_favourite_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -79,12 +80,12 @@ public class FavouritesFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            new FetchFavouriteTask().execute((Void) null);
+            // new FetchFavouriteTask().execute((Void) null);
+            atualizaFavoritos();
             //recyclerView.setAdapter(new FavouriteRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -103,6 +104,12 @@ public class FavouritesFragment extends Fragment {
         mListener = null;
     }
 
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        atualizaFavoritos();
+//    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -115,6 +122,14 @@ public class FavouritesFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         void onListFragmentInteraction(Restaurant item);
+    }
+
+    public void atualizaFavoritos() {
+        try {
+            new FetchFavouriteTask().execute((Void) null).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void atualizaRecyclerView() {

@@ -221,6 +221,13 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        ((FavouritesFragment) fragmentos.get(1)).atualizaFavoritos();
+//        onRestart();
+//    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

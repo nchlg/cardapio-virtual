@@ -114,6 +114,7 @@ public class ProductFragment extends Fragment {
         super.onCreate(savedInstanceState);
         fileDir = getActivity().getApplicationContext().getFilesDir();
         individuos = null;
+        produtosDoFragmento = new ArrayList<>();
         // criaArquivoMetodo2();
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -264,7 +265,7 @@ public class ProductFragment extends Fragment {
     public List<Product> ordenaPorAcesso(List<Product> produtos) {
         List<String> nomesProdutosMaes = new ArrayList<>();
         List<String> nomesProdutosFilhas = new ArrayList<>();
-        List<Product> produtosOrdenados = new ArrayList<>();
+        final List<Product> produtosOrdenados = new ArrayList<>();
         produtosOrdenados.addAll(produtos);
 
         for (Product p : produtosOrdenados) {
@@ -276,9 +277,17 @@ public class ProductFragment extends Fragment {
         }
 
         // Adiciona acessos à classe Produto
-        new FetchOrderTask().execute(nomesProdutosMaes.toArray(new String[0]),
-                nomesProdutosFilhas.toArray(new String[0]));
+        Log.d("Ordem","FetchOrdemTask!!!!!!!!!!!!!!!!!!!!!!!!!");
+        try {
+            new FetchOrderTask().execute(nomesProdutosMaes.toArray(new String[0]),
+                    nomesProdutosFilhas.toArray(new String[0])).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return produtosOrdenados;
+        }
+
         // Compara produtos
+        Log.d("Ordem","Sort!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         Collections.sort(produtosOrdenados, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
@@ -317,6 +326,7 @@ public class ProductFragment extends Fragment {
     }
 
     private class FetchOrderTask extends AsyncTask<String[], Void, Boolean> {
+
         @Override
         protected Boolean doInBackground(String[]... params) {
             try {
@@ -360,6 +370,7 @@ public class ProductFragment extends Fragment {
                         filhasCursor.close();
                     }
                 }
+                Log.d("Ordem","Saiu FetchOrdemTask");
                 return true;
             } catch (UnsupportedOperationException e) {
                 e.printStackTrace();

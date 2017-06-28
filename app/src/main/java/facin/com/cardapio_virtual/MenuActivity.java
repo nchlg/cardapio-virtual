@@ -145,6 +145,14 @@ public class MenuActivity extends AppCompatActivity
         // requestCode - int: If >= 0, this code will be returned in onActivityResult() when the activity exits
     }
 
+//    @Override
+//    public void onRestart() {
+//        super.onRestart();
+//        final ProductFragment productFragment =
+//                (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
+//        productFragment.atualizaListaDeProdutos();
+//    }
+
     public String getIntentOntClassURI() {
         return intentOntClassURI;
     }
@@ -158,6 +166,17 @@ public class MenuActivity extends AppCompatActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_cardapio, menu);
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        Log.d("onResume","@@@@@@@@ On Resume @@@@@@@@@");
+        super.onResume();
+        final ProductFragment productFragment =
+                (ProductFragment) getSupportFragmentManager().findFragmentById(R.id.activity_menu);
+        productFragment.configuraProdutosAExibir();
+        productFragment.atualizaListaDeProdutos();
+        onRestart();
     }
 
     @Override
